@@ -22,6 +22,7 @@ Abaixo você encontrará todos as informações necessárias para iniciar o seu 
 - A Aplicação estará disponível na porta `http://localhost:8080/`
 
 ## Objetivo
+
 Tem-se usuários comuns e lojistas, ambos têm carteira com dinheiro. Usuários podem enviar dinheiro (efetuar transações) para lojistas e entre usuários. 
 
 - Lojistas não podem enviar dinheiro para usuários. 
@@ -35,6 +36,9 @@ Tem-se usuários comuns e lojistas, ambos têm carteira com dinheiro. Usuários 
 - Esse serviço funciona via interface RESTful. 
 
 ### Payload
+
+POST /transaction
+
 ```json
 {
     "value" : 100.00,
@@ -42,14 +46,30 @@ Tem-se usuários comuns e lojistas, ambos têm carteira com dinheiro. Usuários 
     "payee" : 15
 }
 ```
+Retorno
+```json
+{
+    "value" : 100.00,
+    "payer" : 4,
+    "payee" : 15,
+    "transaction_date": "06/10/2020"
+}
+```
 
+GET /{user_id}/transactions
 
 ## O que será avaliado
-- Organização do código
 - Arquitetura
 - Uso de features do framework
+- Modelagem de Dados
+- Domínio da Linguagem
+- Legibilidade do Código
+- Estrutura do Código
+- Organização do Código
+- Design Patterns
+- Manutenibilidade do Código
 
-## o que será um diferencial
+## O que será um diferencial
 - Criação de imagem própria (Dockerfile)
 - Teste unitários
 - Melhoria na arquitetura
