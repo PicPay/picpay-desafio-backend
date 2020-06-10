@@ -43,16 +43,17 @@ Tem-se usuários comuns e lojistas, ambos têm carteira com dinheiro. Usuários 
 }
 ```
 
-- No recebimento de pagamento, o usuário ou lojista precisa receber notificação enviada por um serviço de terceiro e eventualmente pode estar indisponível (https://run.mocky.io/v3/b19f7b9f-9cbf-4fc6-ad22-dc30601aec04). 
 
 ## O que será avaliado
 - Organização do código
 - Arquitetura
+- Uso de features do framework
 
 ## o que será um diferencial
 - Criação de imagem própria (Dockerfile)
 - Teste unitários
-- 
+- Melhoria na arquitetura
+- Uso de Design Patters
 
 ## Documentação Laravel
 
