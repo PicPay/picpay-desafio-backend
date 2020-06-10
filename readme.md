@@ -68,6 +68,7 @@ GET /{user_id}/transactions
 - Organização do Código
 - Design Patterns
 - Manutenibilidade do Código
+- Tratamento de erros
 
 ## O que será um diferencial
 - Criação de imagem própria (Dockerfile)
