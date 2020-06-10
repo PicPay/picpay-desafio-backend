@@ -1,0 +1,35 @@
+version: '3.4'
+services:
+  users-api-php:
+    container_name: users-api-php
+    build:
+      context: .
+      dockerfile: api.Dockerfile
+    depends_on:
+      - users-db-mongo
+      - users-db-mysql
+    ports:
+      - "8000:80"
+    environment:
+      - NOOP=
+      - DB_URL_MYSQL=users-db-mysql
+      - DB_URL_MONGODB=users-db-mongo
+    volumes:
+      - ./:/app
+
+  users-db-mongo:
+    container_name: users-db-mongo
+    image: mongo:3.6
+    ports:
+      - "27017:27017"
+
+  users-db-mysql:
+    container_name: users-db-mysql
+    build:
+      context: .
+      dockerfile: mysql.Dockerfile
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_DATABASE=users
+      - MYSQL_ROOT_PASSWORD=root
