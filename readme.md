@@ -35,7 +35,7 @@ Tem-se usuários comuns e lojistas, ambos têm carteira com dinheiro. Usuários 
 
 - Deve verificar se o usuário tem saldo suficiente
 
-- A operação de transação deve ser uma transação (ou seja, revertida em qualquer caso de inconsistência) e o dinheiro deve voltar para a carteira do usuário que envia. 
+- A operação de transferência deve ser uma transação (ou seja, revertida em qualquer caso de inconsistência) e o dinheiro deve voltar para a carteira do usuário que envia. 
 
 - No recebimento de pagamento, o usuário ou lojista precisa receber notificação enviada por um serviço de terceiro e eventualmente pode estar indisponível (https://run.mocky.io/v3/b19f7b9f-9cbf-4fc6-ad22-dc30601aec04). 
 
