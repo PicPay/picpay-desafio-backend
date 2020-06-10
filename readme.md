@@ -21,7 +21,7 @@ Abaixo você encontrará todos as informações necessárias para iniciar o seu 
 - Na raiz do repositório, rode este comando `php artisan serve` para iniciar o servidor de desenvolvimento.
 - A Aplicação estará disponível na porta `http://localhost:8080/`
 
-## Objetivo
+## Objetivo - PicPay Simplificado
 
 Tem-se usuários comuns e lojistas, ambos têm carteira com dinheiro. Usuários podem enviar dinheiro (efetuar transações) para lojistas e entre usuários. 
 
