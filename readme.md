@@ -58,11 +58,10 @@ Retorno
     "value" : 100.00,
     "payer" : 4,
     "payee" : 15,
-    "transaction_date": "06/10/2020"
+    "transaction_date": "06/10/2020 20:00:00"
 }
 ```
 
-GET /{user_id}/transactions
 
 ## O que será avaliado
 - Arquitetura
