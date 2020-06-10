@@ -1,4 +1,4 @@
-# Desafio Front-end PicPay
+# Desafio Back-end PicPay
 
 Primeiramente, obrigado pelo seu interesse em trabalhar na melhor plataforma de pagamentos do mundo!
 Abaixo você encontrará todos as informações necessárias para iniciar o seu teste.
@@ -48,7 +48,6 @@ Tem-se usuários comuns e lojistas, ambos têm carteira com dinheiro. Usuários 
 ## O que será avaliado
 - Organização do código
 - Arquitetura
-- Uso de Docker
 
 ## o que será um diferencial
 - Criação de imagem própria (Dockerfile)
@@ -59,6 +58,6 @@ Tem-se usuários comuns e lojistas, ambos têm carteira com dinheiro. Usuários 
 
 https://laravel.com/docs
 
-Sugestoes de estudo
+## Sugestões de estudo
 https://laracasts.com
 
