@@ -75,20 +75,17 @@ Retorno
 - Organização do Código
 - Manutenibilidade do Código
 - Tratamento de erros
-
-### Senior 
 - [Diagrama de sequencia](https://www.ateomomento.com.br/diagrama-de-sequencia-uml/) - salvar a imagem dentro da pasta /docs
 
 ## O que será um diferencial
-
-### Pleno e Senior
 - Criação de imagem própria (Dockerfile)
-- Teste de integração
+- Testes de integração
+- Testes unitários
 - Uso de Design Patters
-
-### Senior
-- Teste unitários
 - Proposta de melhoria na arquitetura
+
+## Para o dia da avaliação
+Na data marcada pelo recrutador tenha sua aplicacao rodando na sua máquina local ou em algum serviço ne web (Ex: [Heroku](https://www.heroku.com/)).
 
 ## Documentação Laravel
 
@@ -97,5 +94,5 @@ https://laravel.com/docs
 ## Sugestões de estudo
 
 https://laracasts.com
-
+https://www.atlassian.com/continuous-delivery/software-testing/types-of-software-testing
 
