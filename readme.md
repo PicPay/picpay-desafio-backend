@@ -69,6 +69,12 @@ Retorno
 }
 ```
 
+# Avaliação
+
+Caso você não se sinta à vontade com a arquitetura proposta, você pode apresentar sua solução utilizando frameworks diferentes.
+
+A correção objetiva será realizada através da utilização de um script de correção automatizada. 
+A correção qualitativa será durante a entrevista e levará em conta os seguintes critérios:
 
 ## O que será avaliado
 - Arquitetura
