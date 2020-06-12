@@ -17,9 +17,16 @@ Abaixo você encontrará todos as informações necessárias para iniciar o seu 
 
 ## Como Rodar?
 
+### Local
+
 - Instale as dependências usando o comando `composer install`
 - Na raiz do repositório, rode este comando `php artisan serve` para iniciar o servidor de desenvolvimento.
-- A Aplicação estará disponível na porta `http://localhost:8080/`
+- A Aplicação estará disponível na porta `http://localhost:8000/`
+
+### Docker
+- Instale o Docker
+- Execute `docker-compose up -d`
+- A Aplicação estará disponível na porta `http://localhost:8000/`
 
 ## Objetivo - PicPay Simplificado
 
@@ -64,8 +71,6 @@ Retorno
 
 
 ## O que será avaliado
-
-### Pleno e senior
 - Arquitetura
 - Uso de features do framework
 - Modelagem de Dados
