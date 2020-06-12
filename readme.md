@@ -64,6 +64,8 @@ Retorno
 
 
 ## O que será avaliado
+
+### Pleno e senior
 - Arquitetura
 - Uso de features do framework
 - Modelagem de Dados
@@ -74,16 +76,26 @@ Retorno
 - Manutenibilidade do Código
 - Tratamento de erros
 
+### Senior 
+- [Diagrama de sequencia](https://www.ateomomento.com.br/diagrama-de-sequencia-uml/) - salvar a imagem dentro da pasta /docs
+
 ## O que será um diferencial
+
+### Pleno e Senior
 - Criação de imagem própria (Dockerfile)
-- Teste unitários
-- Melhoria na arquitetura
+- Teste de integração
 - Uso de Design Patters
+
+### Senior
+- Teste unitários
+- Proposta de melhoria na arquitetura
 
 ## Documentação Laravel
 
 https://laravel.com/docs
 
 ## Sugestões de estudo
+
 https://laracasts.com
+
 
