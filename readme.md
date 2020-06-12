@@ -71,7 +71,6 @@ Retorno
 - Legibilidade do Código
 - Estrutura do Código
 - Organização do Código
-- Design Patterns
 - Manutenibilidade do Código
 - Tratamento de erros
 
