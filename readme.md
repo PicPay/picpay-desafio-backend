@@ -75,7 +75,7 @@ A correção qualitativa será durante a entrevista e levará em conta os seguin
 - Manutenibilidade do Código
 - Tratamento de erros
 - Cuidado com itens de segurança
-- [Diagrama de sequencia](https://www.ateomomento.com.br/diagrama-de-sequencia-uml/) - salvar a imagem dentro da pasta /docs
+- Esboço da arquitetura usando o diagrama que achar melhor
 
 # O que não será avaliado
 - Fluxo de cadastro de usuários
@@ -87,6 +87,7 @@ A correção qualitativa será durante a entrevista e levará em conta os seguin
 - Testes [unitários](https://www.atlassian.com/continuous-delivery/software-testing/types-of-software-testing)
 - Uso de Design Patters
 - Proposta de melhoria na arquitetura
+
 
 ## Para o dia da avaliação
 Na data marcada pelo recrutador tenha sua aplicacao rodando na sua máquina local ou em algum serviço ne web (Ex: [Heroku](https://www.heroku.com/)).
