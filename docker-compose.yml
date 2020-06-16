@@ -1,35 +1,27 @@
-version: '3.4'
+version: '3.2'
 services:
-  users-api-php:
-    container_name: users-api-php
+  api.desafio.dev:
+    container_name: api.desafio.dev
     build:
       context: .
       dockerfile: api.Dockerfile
-    depends_on:
-      - users-db-mongo
-      - users-db-mysql
+    env_file:
+      - ./.env.example
     ports:
       - "8000:80"
-    environment:
-      - NOOP=
-      - DB_URL_MYSQL=users-db-mysql
-      - DB_URL_MONGODB=users-db-mongo
     volumes:
-      - ./:/app
-
-  users-db-mongo:
-    container_name: users-db-mongo
-    image: mongo:3.6
+      - "./:/app"
+  mysql.desafio.dev:
+    container_name: mysql.desafio.dev
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: desafio
+    command: mysqld --innodb-buffer-pool-size=64M
+    ports:
+      - "3407:3306"
+  mongo.desafio.dev:
+    container_name: mongo.desafio.dev
+    image: mongo
     ports:
       - "27017:27017"
-
-  users-db-mysql:
-    container_name: users-db-mysql
-    build:
-      context: .
-      dockerfile: mysql.Dockerfile
-    ports:
-      - "3306:3306"
-    environment:
-      - MYSQL_DATABASE=users
-      - MYSQL_ROOT_PASSWORD=root

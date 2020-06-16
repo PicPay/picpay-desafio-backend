@@ -19,6 +19,7 @@ Abaixo você encontrará todos as informações necessárias para iniciar o seu 
 
 - Instale o [Docker](https://docs.docker.com/get-docker/)
 - Execute `docker-compose up -d`
+- Execute `docker exec -it api.desafio.dev php artisan key:generate` 
 - A Aplicação estará disponível na porta `http://localhost:8000/`
 
 ## Objetivo - PicPay Simplificado

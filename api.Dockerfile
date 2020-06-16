@@ -7,7 +7,6 @@ RUN pecl install -f mongodb-1.5.3
 
 RUN composer install \
     && composer dump-autoload -a \
-    # && php artisan optimize \
     && chown -R www-data:www-data /var/tmp/nginx \
     && chown -R www-data:www-data /app/storage \
     && chmod +x /start.sh
