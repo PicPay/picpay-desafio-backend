@@ -31,13 +31,9 @@ Requisitos:
 
 - Usuários podem enviar dinheiro (efetuar transferência) para lojistas e entre usuários. 
 
-- Lojistas **só recebem** transferências.
+- Lojistas **só recebem** transferências, não enviam dinheiro para ninguém.
 
 - Antes de finalizar a transferência, deve-se consultar um serviço autorizador externo, use este mock para simular (https://run.mocky.io/v3/8fafdd68-a090-496f-8c9a-3442cf30dae6).
-
-- Lojistas não podem enviar dinheiro para usuários. 
-
-- Deve verificar se o usuário tem saldo suficiente
 
 - A operação de transferência deve ser uma transação (ou seja, revertida em qualquer caso de inconsistência) e o dinheiro deve voltar para a carteira do usuário que envia. 
 
@@ -61,9 +57,9 @@ POST /transaction
 # Avaliação
 
 Caso você não se sinta à vontade com a arquitetura proposta, você pode apresentar sua solução utilizando frameworks diferentes.
-Atente-se a cumprir a maioria dos requisitos, pois voce pode cumprir-los parcialmente e durante a avaliação vamos bater um papo a respeito do que faltou.
+Atente-se a cumprir a maioria dos requisitos, pois você pode cumprir-los parcialmente e durante a avaliação vamos bater um papo a respeito do que faltou.
 
-Teremos 2 parte:
+Teremos 2 partes da avaliação:
 A correção objetiva será realizada através da utilização de um script de correção automatizada. 
 A correção qualitativa será durante a entrevista e levará em conta os seguintes critérios:
 
@@ -86,8 +82,8 @@ A correção qualitativa será durante a entrevista e levará em conta os seguin
 
 ## O que será um diferencial
 - Criação de imagem própria (Dockerfile)
-- Testes de integração
-- Testes unitários
+- Testes de [integração](https://www.atlassian.com/continuous-delivery/software-testing/types-of-software-testing)
+- Testes [unitários](https://www.atlassian.com/continuous-delivery/software-testing/types-of-software-testing)
 - Uso de Design Patters
 - Proposta de melhoria na arquitetura
 
@@ -102,5 +98,5 @@ https://laravel.com/docs
 
 - https://laracasts.com
 
-- https://www.atlassian.com/continuous-delivery/software-testing/types-of-software-testing
+- https://www.php-fig.org/psr/psr-12/
 
