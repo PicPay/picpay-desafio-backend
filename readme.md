@@ -15,28 +15,27 @@ Abaixo você encontrará todos as informações necessárias para iniciar o seu 
 - Laravel 5.8
 - PHP > 7.2
 
-## Como Rodar?
+## Como Rodar
 
-### Local
-
-- Instale as dependências usando o comando `composer install`
-- Na raiz do repositório, rode este comando `php artisan serve` para iniciar o servidor de desenvolvimento.
-- A Aplicação estará disponível na porta `http://localhost:8000/`
-
-### Docker
-- Instale o Docker
+- Instale o [Docker](https://docs.docker.com/get-docker/)
 - Execute `docker-compose up -d`
 - A Aplicação estará disponível na porta `http://localhost:8000/`
 
 ## Objetivo - PicPay Simplificado
 
-Tem-se usuários comuns e lojistas, ambos têm carteira com dinheiro. Usuários podem enviar dinheiro (efetuar transações) para lojistas e entre usuários. 
+Temos 2 tipos de usuários, os comuns e lojistas, ambos têm carteira com dinheiro e realizam transferências entre eles. Vamos nos atentar **somente** ao fluxo de transferência entre dois usuários.
 
-- Todo o processo começa com a criação de um Usuário. Um usuário pode ter mais de um tipo de conta vinculada a ele. De um Usuário (User), queremos saber seu Nome Completo, CPF, Número de Telefone, e-mail e Senha. CPFs e e-mails devem ser únicos no sistema. Sendo assim, seu sistema deve permitir apenas um cadastro com o mesmo CPF ou endereço de e-mail.
+Requisitos:
+
+- Para ambos tipos de usuário, precisamos do Nome Completo, CPF, e-mail e Senha. CPFs e e-mails devem ser únicos no sistema. Sendo assim, seu sistema deve permitir apenas um cadastro com o mesmo CPF ou endereço de e-mail.
+
+- Usuários podem enviar dinheiro (efetuar transferência) para lojistas e entre usuários. 
+
+- Lojistas **só recebem** transferências.
 
 - De um Lojista queremos saber a Razão Social, o Nome Fantasia, o CNPJ e seu Username, além do id de Usuário que será dono dessa conta.
 
-- Serviço autorizador deve ser externo, use este mock (https://run.mocky.io/v3/8fafdd68-a090-496f-8c9a-3442cf30dae6).
+- Antes de finalizar a transferência, deve-se consultar um serviço autorizador externo, use este mock para simular (https://run.mocky.io/v3/8fafdd68-a090-496f-8c9a-3442cf30dae6).
 
 - Lojistas não podem enviar dinheiro para usuários. 
 
@@ -44,9 +43,9 @@ Tem-se usuários comuns e lojistas, ambos têm carteira com dinheiro. Usuários 
 
 - A operação de transferência deve ser uma transação (ou seja, revertida em qualquer caso de inconsistência) e o dinheiro deve voltar para a carteira do usuário que envia. 
 
-- No recebimento de pagamento, o usuário ou lojista precisa receber notificação enviada por um serviço de terceiro e eventualmente pode estar indisponível (https://run.mocky.io/v3/b19f7b9f-9cbf-4fc6-ad22-dc30601aec04). 
+- No recebimento de pagamento, o usuário ou lojista precisa receber notificação enviada por um serviço de terceiro e eventualmente este serviço pode estar indisponível/instável. Use este mock para simular o envio (https://run.mocky.io/v3/b19f7b9f-9cbf-4fc6-ad22-dc30601aec04). 
 
-- Esse serviço funciona via interface RESTful. 
+
 
 ### Payload
 
@@ -59,20 +58,14 @@ POST /transaction
     "payee" : 15
 }
 ```
-Retorno
-```json
-{
-    "value" : 100.00,
-    "payer" : 4,
-    "payee" : 15,
-    "transaction_date": "06/10/2020 20:00:00"
-}
-```
+
 
 # Avaliação
 
 Caso você não se sinta à vontade com a arquitetura proposta, você pode apresentar sua solução utilizando frameworks diferentes.
+Atente-se a cumprir a maioria dos requisitos, pois voce pode cumprir-los parcialmente e durante a avaliação vamos bater um papo a respeito do que faltou.
 
+Teremos 2 parte:
 A correção objetiva será realizada através da utilização de um script de correção automatizada. 
 A correção qualitativa será durante a entrevista e levará em conta os seguintes critérios:
 
@@ -86,7 +79,12 @@ A correção qualitativa será durante a entrevista e levará em conta os seguin
 - Organização do Código
 - Manutenibilidade do Código
 - Tratamento de erros
+- Cuidado com itens de segurança
 - [Diagrama de sequencia](https://www.ateomomento.com.br/diagrama-de-sequencia-uml/) - salvar a imagem dentro da pasta /docs
+
+# O que não será avaliado
+- Fluxo de cadastro de usuários
+- Autenticaçao
 
 ## O que será um diferencial
 - Criação de imagem própria (Dockerfile)
