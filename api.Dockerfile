@@ -1,4 +1,4 @@
-FROM picpay/php:7.2-fpm-base
+FROM picpay/php:7.4-fpm-base
 
 COPY ./                             /app
 COPY ./support/docker/config/       /
