@@ -1,0 +1,49 @@
+server {
+    #listen 80 default_server;
+    server_name Docker;
+
+    sendfile off;
+
+    # para parametros como 'app_version'
+    underscores_in_headers on;
+
+    root /app/public;
+    index index.php index.html;
+
+    location / {
+        # First attempt to serve request as file, then
+        # as directory, then fall back to index.php
+        try_files $uri /index.php?q=$uri&$args;
+        #try_files $uri $uri/ /index.php?q=$uri&$args;
+    }
+
+    # redirect server error pages to the static page /50x.html
+    error_page 500 502 503 504 /50x.html;
+    location = /50x.html {
+        root /var/lib/nginx/html;
+    }
+
+    # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
+    location ~ \.php$ {
+        try_files $uri =404;
+        fastcgi_split_path_info ^(.+\.php)(/.+)$;
+        #fastcgi_pass 0.0.0.0:9000;
+        fastcgi_pass unix:/var/run/php7-fpm.sock;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_param SCRIPT_NAME $fastcgi_script_name;
+        fastcgi_index index.php;
+        include fastcgi_params;
+    }
+
+    location ~* \.(?:ico|css|js|gif|jpe?g|png)$ {
+      expires 30d;
+      add_header Pragma public;
+      add_header Cache-Control "public, must-revalidate, proxy-revalidate";
+    }
+
+    # deny access to . files, for security
+    location ~ /\. {
+        log_not_found off;
+        deny all;
+    }
+}
