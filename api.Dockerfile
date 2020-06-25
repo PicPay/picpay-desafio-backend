@@ -5,9 +5,7 @@ COPY ./support/docker/config/       /
 
 RUN pecl install -f mongodb-1.5.3
 
-RUN composer install \
-    && composer dump-autoload -a \
-    && chown -R www-data:www-data /var/tmp/nginx \
+RUN chown -R www-data:www-data /var/tmp/nginx \
     && chown -R www-data:www-data /app/storage \
     && chmod +x /start.sh
 

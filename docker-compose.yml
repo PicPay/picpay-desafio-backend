@@ -11,6 +11,7 @@ services:
       - "8000:80"
     volumes:
       - "./:/app"
+      - "./vendor:/app/vendor"
   mysql.desafio.dev:
     container_name: mysql.desafio.dev
     image: mysql:5.7
