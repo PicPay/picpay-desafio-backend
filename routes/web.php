@@ -10,7 +10,9 @@
 | and give it the Closure to call when that URI is requested.
 |
 */
-
+use App\Http\Controllers\TransactionController;
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+$router->post('/api/v1/transaction',TransactionController::class.'@execute');
