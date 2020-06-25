@@ -61,7 +61,7 @@ Caso você não se sinta à vontade com a arquitetura proposta, você pode apres
 Atente-se a cumprir a maioria dos requisitos, pois você pode cumprir-los parcialmente e durante a avaliação vamos bater um papo a respeito do que faltou.
 
 Teremos 2 partes da avaliação:
-A correção objetiva será realizada através da utilização de um script de correção automatizada. 
+A correção objetiva será realizada através da utilização de um script de correção automatizada.
 A correção qualitativa será durante a entrevista e levará em conta os seguintes critérios:
 
 ## O que será avaliado
@@ -75,14 +75,13 @@ A correção qualitativa será durante a entrevista e levará em conta os seguin
 - Manutenibilidade do Código
 - Tratamento de erros
 - Cuidado com itens de segurança
-- Esboço da arquitetura usando o diagrama que achar melhor
+- Esboço da arquitetura usando o diagrama da sua escolha
 
-# O que não será avaliado
-- Fluxo de cadastro de usuários
-- Autenticaçao
+## O que NÃO será avaliado
+- Fluxo de cadastro de usuários e lojistas
+- Autenticação
 
 ## O que será um diferencial
-- Criação de imagem própria (Dockerfile)
 - Testes de [integração](https://www.atlassian.com/continuous-delivery/software-testing/types-of-software-testing)
 - Testes [unitários](https://www.atlassian.com/continuous-delivery/software-testing/types-of-software-testing)
 - Uso de Design Patters
@@ -90,7 +89,7 @@ A correção qualitativa será durante a entrevista e levará em conta os seguin
 
 
 ## Para o dia da avaliação
-Na data marcada pelo recrutador tenha sua aplicacao rodando na sua máquina local ou em algum serviço ne web (Ex: [Heroku](https://www.heroku.com/)).
+Na data marcada pelo recrutador tenha sua aplicação rodando na sua máquina local **ou** em algum serviço ne web (Ex: [Heroku](https://www.heroku.com/)).
 
 ## Documentação Laravel
 
