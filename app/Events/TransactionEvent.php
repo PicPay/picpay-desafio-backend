@@ -4,12 +4,13 @@ namespace App\Events;
 
 use App\User;
 use App\Transaction;
+use Illuminate\Support\Facades\DB;
 
 class TransactionEvent extends Event
 {
     
-    private $error  = false;
-    private $failed = false;
+    private $error  = "Unknow error";
+    private $failed = true;
 
     private $transaction = null;
 
@@ -66,9 +67,34 @@ class TransactionEvent extends Event
         return false;
     }
 
+    public function proceed()
+    {
+        $this->failed = false;
+        $this->error  = null;
+    }
+
     public function done()
     {
-        $this->getTransaction()->save();
+        if( $this->failed ) {
+            return false;
+        }
+
+
+        $value = $this->getTransaction()->value;
+
+        $this->payer->balance = $this->payer->balance - $value;
+        $this->payee->balance = $this->payee->balance + $value;
+
+        try {
+            DB::transaction(function () {
+                $this->payer->save();
+                $this->payee->save();
+                $this->getTransaction()->save();
+            }, 5);
+        }catch( \Exception $e ) {
+            return $this->abort('Failed to proceed');
+        }
+        
         return $this->getTransaction();
     }
 }

@@ -22,6 +22,7 @@ class User extends Seeder
                 $user = AppUser::create([
                     'name' => $faker->name(),
                     'email' => $faker->email(),
+                    'balance' => rand(200, 500 ),
                     'is_merchant' => $isMerchant,
                     'document' =>  $isMerchant ?
                         $faker->numberBetween(10000000000000, 999999999999999) :

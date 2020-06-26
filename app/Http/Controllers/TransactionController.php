@@ -41,6 +41,12 @@ class TransactionController extends Controller
 
         $event->done();
 
+        if( $event->isFailed() ) {
+            return response([
+                'failed' => 1,
+                'error'  => $event->getError()
+            ], 405 );
+        }
         return [
             'message' => "Done"
         ];

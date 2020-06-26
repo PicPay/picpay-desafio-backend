@@ -5,7 +5,7 @@ namespace App\Listeners\Transaction;
 use App\Events\TransactionEvent;
 use Log;
 
-class ValidatorListener
+class ApproveListener
 {
     /**
      * Create the event listener.
@@ -26,16 +26,7 @@ class ValidatorListener
     public function handle(TransactionEvent $event)
     {
 
-        if( !!$event->getPayer()->is_merchant === true ) {
-            return $event->abort('Merchant Payer not permitted');
-        }
-
-
-        if( $event->getPayer()->balance < $event->getTransaction()->value ) {
-            return $event->abort('Payer balance is insuficient');
-        }
-
-        Log::debug('Payer authorized');
+        $event->proceed();
         return $event;
     }
 }

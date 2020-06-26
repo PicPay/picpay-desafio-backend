@@ -27,10 +27,23 @@ class TransactionIntegrationTest extends TestCase
                 'payee' => 4
             ]);
 
+    
         $res->seeStatusCode(422)
             ->seeJson(['payer' => ['Payer must be valid'] ] );
     }
 
+    public function testInvalidBalance()
+    {
+        $res = $this->json( 'POST', '/api/v1/transaction',[
+                'value' => 12200,
+                'payer' => 4,
+                'payee' => 15
+            ]);
+
+        
+        $res->seeStatusCode(403)
+            ->seeJson(['failed' => 1, 'error' => 'Payer balance is insuficient' ] );
+    }
     public function testInvalidPayee()
     {
         $res = $this->json( 'POST', '/api/v1/transaction',[
@@ -39,6 +52,7 @@ class TransactionIntegrationTest extends TestCase
                 'payee' => -1
             ]);
 
+        
         $res->seeStatusCode(422)
             ->seeJson(['payee' => ['Payee must be valid'] ] );
     }
@@ -52,6 +66,6 @@ class TransactionIntegrationTest extends TestCase
             ]);
 
         $res->seeStatusCode(422)
-            ->seeJson(['payee' => ['Must provide a valid value'] ] );
+            ->seeJson(['value' => ['Must provide a valid value'] ] );
     }
 }

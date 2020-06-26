@@ -16,6 +16,7 @@ class EventServiceProvider extends ServiceProvider
             0 => \App\Listeners\Transaction\ValidatorListener::class,
             1 => \App\Listeners\Transaction\AuthorizatorListener::class,
             2 => \App\Listeners\Transaction\NotificationListener::class,
+            3 => \App\Listeners\Transaction\ApproveListener::class,
         ],
     ];
 }
