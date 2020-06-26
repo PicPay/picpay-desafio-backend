@@ -15,4 +15,5 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
+$router->get('/api/v1/transaction',TransactionController::class.'@execute');
 $router->post('/api/v1/transaction',TransactionController::class.'@execute');

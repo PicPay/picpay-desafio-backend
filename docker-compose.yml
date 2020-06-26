@@ -6,12 +6,15 @@ services:
       context: .
       dockerfile: api.Dockerfile
     env_file:
-      - ./.env.example
+      - ./.env
     ports:
       - "8000:80"
     volumes:
       - "./:/app"
       - "./vendor:/app/vendor"
+    links:
+      - mysql.desafio.dev
+      - mongo.desafio.dev
   mysql.desafio.dev:
     container_name: mysql.desafio.dev
     image: mysql:5.7

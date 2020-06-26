@@ -3,6 +3,32 @@
 Primeiramente, obrigado pelo seu interesse em trabalhar na melhor plataforma de pagamentos do mundo!
 Abaixo você encontrará todos as informações necessárias para iniciar o seu teste.
 
+
+## Mudancas / implementacoes
+ * Upgrade do lumen e das dependencias para ultima versao
+ * Migrations e seeder com o projeto
+ * comandos para testar
+    - composer test
+    - composer migrate:seed
+
+ * Implementado
+    - funcionalidades exigida
+    - /api/v1/transaction endpoint
+    - banco de dados no MySQL
+    - Testes unitarios / integracao da rota
+ * Arquitetura
+    - utilizei o padrao de eventos do Lumen / Laravel
+        onde transferir um valor dispara um evento `TransactionEvent`
+        e a partir disso encadeia uma série de execuçoes, validacoes e notificacoes.
+        Somente quando todo o fluxo ocorreu bem, finaliza a transacao (tabela transaction),
+        caso contrário retorna erro para a rota
+    - Utilizado Guzzle para acessar os endpoints
+    - Projeto no docker
+    - Usando os recursos do Lumen
+        - validation / request / event / test / eloquent / Http dentre outros.
+
+Obrigado pelo tempo! =)
+
 ## Avisos antes de começar
 
 - Primeiro crie uma branch a partir da `master` nesse padrão de nomenclatura: dd-mm-yy/nome-sobrenome (por exemplo, 30-04-20/meu-nome)

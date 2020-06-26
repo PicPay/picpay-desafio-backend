@@ -5,15 +5,19 @@
     "license": "MIT",
     "type": "project",
     "require": {
-        "php": "^7.2.5",
-        "laravel/lumen-framework": "^7.0"
+        "php": "^7.4",
+        "guzzlehttp/guzzle": "^6.5",
+        "laravel/lumen-framework": "^7.2"
     },
     "require-dev": {
-        "fzaninotto/faker": "^1.9.1",
-        "mockery/mockery": "^1.3.1",
-        "phpunit/phpunit": "^8.5"
+        "fzaninotto/faker": "^1.9",
+        "mockery/mockery": "^1.4",
+        "phpunit/phpunit": "^9.2"
     },
     "autoload": {
+        "files": [
+            "helpers/functions.php"
+        ],
         "classmap": [
             "database/seeds",
             "database/factories"
@@ -35,6 +39,13 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "scripts": {
+        "migrate:seed": [
+            "docker exec api.desafio.dev php artisan migrate:refresh",
+            "docker exec api.desafio.dev php artisan db:seed"
+        ],
+        "test": [
+            "docker exec api.desafio.dev vendor/bin/phpunit"
+        ],
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ]
