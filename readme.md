@@ -13,7 +13,7 @@ Abaixo você encontrará todos as informações necessárias para iniciar o seu 
 ## Setup do projeto
 
 - Lumen 7.0
-- PHP > 7.2
+- PHP 7.4
 
 ## Como Rodar
 
