@@ -58,6 +58,7 @@ POST /transaction
 # Avaliação
 
 Caso você não se sinta à vontade com a arquitetura proposta, você pode apresentar sua solução utilizando frameworks diferentes.
+
 Atente-se a cumprir a maioria dos requisitos, pois você pode cumprir-los parcialmente e durante a avaliação vamos bater um papo a respeito do que faltou.
 
 Teremos 2 partes da avaliação:
