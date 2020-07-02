@@ -87,13 +87,9 @@ A correção qualitativa será durante a entrevista e levará em conta os seguin
 ## Para o dia da avaliação
 Na data marcada pelo recrutador tenha sua aplicação rodando na sua máquina local **ou** em algum serviço ne web (Ex: [Heroku](https://www.heroku.com/)).
 
-## Documentação Laravel
-
-https://laravel.com/docs
 
 ## Sugestões de estudo
-
-- https://laracasts.com
-
 - https://www.php-fig.org/psr/psr-12/
+- https://www.atlassian.com/continuous-delivery/software-testing/types-of-software-testing
+- https://github.com/exakat/php-static-analysis-tools
 
