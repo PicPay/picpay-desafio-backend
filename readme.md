@@ -12,15 +12,9 @@ Abaixo você encontrará todos as informações necessárias para iniciar o seu 
 
 ## Setup do projeto
 
-- Lumen 7.0
-- PHP 7.4
+- Framework: Fique a vontade pra usar o framework que quiser
+- Subir local ou Docker
 
-## Como Rodar
-
-- Instale o [Docker](https://docs.docker.com/get-docker/)
-- Execute `docker-compose up -d`
-- Execute `docker exec -it api.desafio.dev php artisan key:generate` 
-- A Aplicação estará disponível na porta `http://localhost:8000/`
 
 ## Objetivo - PicPay Simplificado
 
@@ -83,6 +77,7 @@ A correção qualitativa será durante a entrevista e levará em conta os seguin
 - Autenticação
 
 ## O que será um diferencial
+- Uso de Docker
 - Testes de [integração](https://www.atlassian.com/continuous-delivery/software-testing/types-of-software-testing)
 - Testes [unitários](https://www.atlassian.com/continuous-delivery/software-testing/types-of-software-testing)
 - Uso de Design Patters
