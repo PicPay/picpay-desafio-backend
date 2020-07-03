@@ -2,31 +2,68 @@
 
 namespace App;
 
-use Illuminate\Auth\Authenticatable;
-use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
-use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Database\Eloquent\Model;
-use Laravel\Lumen\Auth\Authorizable;
 
-class User extends Model implements AuthenticatableContract, AuthorizableContract
+class User extends Model
 {
-    use Authenticatable, Authorizable;
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
-        'name', 'email',
+        'id' , 'name', 'email', 'cpf', 'cnpj', 'type'
     ];
 
-    /**
-     * The attributes excluded from the model's JSON form.
-     *
-     * @var array
-     */
     protected $hidden = [
-        'password',
+        'password', 'created_at', 'updated_at', 'wallet',
     ];
+
+    public static function verifyNotFoundUsers($usersIds) {
+        $notFoundUsers = [];
+
+        foreach ($usersIds as $key => $value) {
+            $userData = self::getOne($value);
+            if (!isset($userData)) {
+                $notFoundUsers[] = $key;
+            }
+        }
+
+        return $notFoundUsers;
+    }
+
+    public static function canDoTransaction($userId) {
+        $userData = self::getOne($userId);
+
+        if (!isset($userData)) {
+            return false;
+        }
+
+        return $userData->type == 'user';
+    }
+
+    public static function getOne($userId)
+    {
+        return self::where('id', $userId)->first();
+    }
+
+    public static function details($userId) {
+        $user = self::getOne($userId);
+
+        if (empty($user)) {
+            return [];
+        }
+
+        $user->wallet_balance = $user->wallet->balance;
+
+        return [
+            'details' => $user,
+            'transactions' => Transaction::byUser($userId)
+        ];
+    }
+
+    public static function verifyHaveBalance($userId, $transactionValue) {
+        $user = self::getOne($userId);
+
+        return $user->wallet->balance >= $transactionValue;
+    }
+
+    public function wallet() {
+        return $this->hasOne('App\Wallet');
+    }
 }

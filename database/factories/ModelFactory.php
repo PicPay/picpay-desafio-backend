@@ -18,7 +18,10 @@ use Faker\Generator as Faker;
 
 $factory->define(User::class, function (Faker $faker) {
     return [
-        'name' => $faker->name,
+        'fullname' => $faker->name,
         'email' => $faker->email,
+        'cpf' => $faker->numberBetween(10000000000, 99999999999),
+        'password' => \Illuminate\Support\Facades\Hash::make($faker->password()),
+        'type' => 'user'
     ];
 });

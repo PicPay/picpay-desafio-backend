@@ -11,8 +11,10 @@
 |
 */
 use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\UserController;
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
-$router->post('/api/v1/transaction',TransactionController::class.'@execute');
+$router->post('/api/v1/transaction', TransactionController::class. '@execute');
+$router->get('/api/v1/user/{id}/details', UserController::class . '@details');

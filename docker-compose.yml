@@ -18,6 +18,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: desafio
+      MYSQL_USER: roger
+      MYSQL_PASSWORD: 123456
     command: mysqld --innodb-buffer-pool-size=64M
     ports:
       - "3407:3306"
