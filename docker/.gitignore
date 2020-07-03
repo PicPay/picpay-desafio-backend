@@ -1,0 +1,11 @@
+.env
+web/core/apache/log
+web/wallet/apache/log
+#web/core/apache/sites-available
+#web/wallet/apache/sites-available
+#web/core/php/conf
+#web/wallet/php/conf
+rabbitmq/core/etc
+rabbitmq/wallet/etc
+rabbitmq/core/logs
+rabbitmq/wallet/logs
