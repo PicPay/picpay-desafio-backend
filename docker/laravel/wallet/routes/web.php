@@ -14,8 +14,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    if (DB::connection()->getDatabaseName()) {
-        echo "connected sucessfully to database ".DB::connection()->getDatabaseName();
-    }
+    echo "wallet";
     return view('welcome');
 });

@@ -31,11 +31,20 @@ php artisan key:generate
 
 # Acessar App (vhost)
 http://core.local
+
 http://wallet.local
 
 # Configuração de Vhost Local
 127.0.0.1	core.local
-127.0.0.1	wallet.local
+
+[IP_DO_CONTAINER] wallet.local
+Ou
+acessar no navegador = http://localhost:8081
+
+# Informações de um container (Descobrir IP)
+docker inspect [NOME_DO_CONTAINER]
+
+docker inspect web_wallet
 
 # Acessar Mongo Express
 http://localhost:8081
