@@ -55,6 +55,5 @@ class Cpf extends AbstractDocument
         $digit2 = $rest < 2 ? 0 : 11 - $rest;
 
         return $number[10] == $digit2;
-
     }
 }

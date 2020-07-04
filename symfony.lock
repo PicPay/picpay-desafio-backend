@@ -106,6 +106,15 @@
     "sebastian/version": {
         "version": "3.0.1"
     },
+    "squizlabs/php_codesniffer": {
+        "version": "3.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "3.0",
+            "ref": "0dc9cceda799fd3a08b96987e176a261028a3709"
+        }
+    },
     "symfony/cache": {
         "version": "v4.4.10"
     },
