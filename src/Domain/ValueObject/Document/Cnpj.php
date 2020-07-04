@@ -7,7 +7,6 @@ namespace App\Domain\ValueObject\Document;
 use App\Domain\Exception\ValueObject\Document\Cnpj\InvalidNumberException;
 
 use function filter_var;
-use function preg_match;
 use function preg_replace;
 use function strlen;
 
