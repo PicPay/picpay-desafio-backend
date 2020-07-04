@@ -36,25 +36,25 @@ class Cpf extends AbstractDocument
 
         $sum = [];
         for ($i = 0, $j = 10; $i < 9; $i++, $j--) {
-            $sum[] = $number{$i} * $j;
+            $sum[] = $number[$i] * $j;
         }
 
         $rest = array_sum($sum) % 11;
         $digit1 = $rest < 2 ? 0 : 11 - $rest;
 
-        if ($number{9} != $digit1) {
+        if ($number[9] != $digit1) {
             return false;
         }
 
         $sum = [];
         for ($i = 0, $j = 11; $i < 10; $i++, $j--) {
-            $sum[] = $number{$i} * $j;
+            $sum[] = $number[$i] * $j;
         }
 
         $rest = array_sum($sum) % 11;
         $digit2 = $rest < 2 ? 0 : 11 - $rest;
 
-        return $number{10} == $digit2;
+        return $number[10] == $digit2;
 
     }
 }

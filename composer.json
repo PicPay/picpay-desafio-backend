@@ -12,6 +12,7 @@
         "symfony/yaml": "4.4.*"
     },
     "require-dev": {
+        "phpunit/phpunit": "^9.2"
     },
     "config": {
         "preferred-install": {
@@ -47,6 +48,12 @@
         ],
         "post-update-cmd": [
             "@auto-scripts"
+        ],
+        "tests-unit": "vendor/phpunit/phpunit/phpunit -c tests/phpunit.unit.xml --no-coverage",
+        "coverage-unit": "vendor/phpunit/phpunit/phpunit -c tests/phpunit.unit.xml",
+        "coverage-unit-show": [
+            "@coverage-unit",
+            "xdg-open tests/_reports/unit/coverage/index.html"
         ]
     },
     "conflict": {
