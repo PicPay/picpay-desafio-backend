@@ -1,4 +1,6 @@
 # Versões
+docker 2.3.0.3
+
 debian:buster-slim
 
 php 7.4.7

@@ -30,7 +30,7 @@ services:
       context: ${COMPOSER_HOST_BUILDER_PATH}
       dockerfile: ${DOCKERFILE}
     command: ["composer", "install"]
-    restart: always
+    restart: ${ALWAYS}
     volumes:
       - ${APPLICATION_CORE_HOST_PATH}:${COMPOSER_CONTAINER_APP_PATH}
   composer_wallet:
@@ -39,7 +39,7 @@ services:
       context: ${COMPOSER_HOST_BUILDER_PATH}
       dockerfile: ${DOCKERFILE}
     command: ["composer", "install"]
-    restart: always
+    restart: ${ALWAYS}
     volumes:
       - ${APPLICATION_WALLET_HOST_PATH}:${COMPOSER_CONTAINER_APP_PATH}
   mongo_core:
@@ -47,7 +47,11 @@ services:
     build:
       context: ${MONGO_HOST_BUILDER_PATH}
       dockerfile: ${DOCKERFILE}
-    restart: always
+    restart: ${ALWAYS}
+    ports:
+      - ${MONGO_CORE_HOST_HTTP_PORT}:${MONGO_CONTAINER_HTTP_PORT}
+    networks:
+      - ${MONGO_CORE_NETWORK}
     environment:
       - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
       - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
@@ -56,7 +60,11 @@ services:
     build:
       context: ${MONGO_HOST_BUILDER_PATH}
       dockerfile: ${DOCKERFILE}
-    restart: always
+    restart: ${ALWAYS}
+    ports:
+      - ${MONGO_WALLET_HOST_HTTP_PORT}:${MONGO_CONTAINER_HTTP_PORT}
+    networks:
+      - ${MONGO_WALLET_NETWORK}
     environment:
       - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
       - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
@@ -65,29 +73,41 @@ services:
     build:
       context: ${MONGO_EXPRESS_HOST_BUILDER_PATH}
       dockerfile: ${DOCKERFILE}
-    restart: always
+    restart: ${ALWAYS}
     ports:
       - ${MONGO_EXPRESS_CORE_HOST_HTTP_PORT}:${MONGO_EXPRESS_CONTAINER_HTTP_PORT}
+    networks:
+      - ${MONGO_CORE_NETWORK}
+    links:
+      - ${MONGO_CORE_LINK_SERVICE}
     environment:
-      - ME_CONFIG_MONGODB_ADMINUSERNAME=${MONGO_EXPRESS_CONFIG_MONGODB_ADMINUSERNAME}
-      - ME_CONFIG_MONGODB_ADMINPASSWORD=${MONGO_EXPRESS_CONFIG_MONGODB_ADMINPASSWORD}
+      - ME_CONFIG_MONGODB_SERVER=${MONGO_CORE_CONTAINER_NAME}
+      - ME_CONFIG_MONGODB_PORT=${MONGO_CONTAINER_HTTP_PORT}
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=${MONGO_INITDB_ROOT_USERNAME}
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
   mongo_express_wallet:
     container_name: ${MONGO_EXPRESS_WALLET_CONTAINER_NAME}
     build:
       context: ${MONGO_EXPRESS_HOST_BUILDER_PATH}
       dockerfile: ${DOCKERFILE}
-    restart: always
+    restart: ${ALWAYS}
     ports:
       - ${MONGO_EXPRESS_WALLET_HOST_HTTP_PORT}:${MONGO_EXPRESS_CONTAINER_HTTP_PORT}
+    networks:
+      - ${MONGO_WALLET_NETWORK}
+    links:
+      - ${MONGO_WALLET_LINK_SERVICE}
     environment:
-      - ME_CONFIG_MONGODB_ADMINUSERNAME=${MONGO_EXPRESS_CONFIG_MONGODB_ADMINUSERNAME}
-      - ME_CONFIG_MONGODB_ADMINPASSWORD=${MONGO_EXPRESS_CONFIG_MONGODB_ADMINPASSWORD}
+      - ME_CONFIG_MONGODB_SERVER=${MONGO_WALLET_CONTAINER_NAME}
+      - ME_CONFIG_MONGODB_PORT=${MONGO_CONTAINER_HTTP_PORT}
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=${MONGO_INITDB_ROOT_USERNAME}
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
   rabbitmq_core:
     container_name: ${RABBITMQ_CORE_CONTAINER_NAME}
     build:
       context: ${RABBITMQ_HOST_BUILDER_PATH}
       dockerfile: ${DOCKERFILE}
-    restart: always
+    restart: ${ALWAYS}
     ports:
       - ${RABBITMQ_CORE_HOST_HTTP_PORT}:${RABBITMQ_CONTAINER_HTTP_PORT}
       - ${RABBITMQ_CORE_MANAGEMENT_HOST_HTTP_PORT}:${RABBITMQ_MANAGEMENT_CONTAINER_HTTP_PORT}
@@ -102,7 +122,7 @@ services:
     build:
       context: ${RABBITMQ_HOST_BUILDER_PATH}
       dockerfile: ${DOCKERFILE}
-    restart: always
+    restart: ${ALWAYS}
     ports:
       - ${RABBITMQ_WALLET_HOST_HTTP_PORT}:${RABBITMQ_CONTAINER_HTTP_PORT}
       - ${RABBITMQ_WALLET_MANAGEMENT_HOST_HTTP_PORT}:${RABBITMQ_MANAGEMENT_CONTAINER_HTTP_PORT}
@@ -113,4 +133,5 @@ services:
       - ${RABBITMQ_WALLET_HOST_ETC}:${RABBITMQ_CONTAINER_ETC}
       - ${RABBITMQ_WALLET_HOST_LOG}:${RABBITMQ_CONTAINER_LOG}
 networks:
-  backend:
+  mongo_core_network:
+  mongo_wallet_network:
