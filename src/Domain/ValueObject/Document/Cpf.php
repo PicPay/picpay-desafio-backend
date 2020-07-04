@@ -13,30 +13,14 @@ use function strlen;
 
 class Cpf extends AbstractDocument
 {
-    public const TYPE = 'cpf';
-
     public function __construct(string $number)
     {
         if (!self::isValidNumber($number)) {
             throw InvalidNumberException::handle($number);
         }
 
-        $this->number = $number;
-    }
-
-    public function getType(): string
-    {
-        return self::TYPE;
-    }
-
-    public function isTypeCpf(): bool
-    {
-        return true;
-    }
-
-    public function isTypeCnpj(): bool
-    {
-        return false;
+        $this->setNumber($number);
+        $this->setTypeCpf();
     }
 
     public static function isValidNumber(string $number): bool

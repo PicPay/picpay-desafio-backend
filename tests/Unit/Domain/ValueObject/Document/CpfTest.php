@@ -10,12 +10,16 @@ use PHPUnit\Framework\TestCase;
 
 class CpfTest extends TestCase
 {
-    public function testGetNumber(): void
+    public function testAttributes(): void
     {
         $numberExpected = '57588899034';
+        $typeExpected = Cpf::TYPE_CPF;
         $cpf = new Cpf($numberExpected);
 
         self::assertEquals($numberExpected, $cpf->getNumber());
+        self::assertEquals($typeExpected, $cpf->getType());
+        self::assertTrue($cpf->isTypeCpf());
+        self::assertFalse($cpf->isTypeCnpj());
     }
 
     public function testConstructThrowInvalidNumberException(): void
