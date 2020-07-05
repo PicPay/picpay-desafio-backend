@@ -5,70 +5,70 @@ declare(strict_types=1);
 namespace App\Domain\UserAccount\Entity;
 
 use App\Domain\Shared\Helper\TimestampHelperTrait;
-use App\Domain\Shared\ValueObject\Amount;
-use App\Domain\Shared\ValueObject\Document;
-use App\Domain\Shared\ValueObject\Email;
-use App\Domain\Shared\ValueObject\Name;
-use App\Domain\Shared\ValueObject\Uuid\V4 as UuidV4;
+use App\Domain\Shared\ValueObject\AmountInterface;
+use App\Domain\Shared\ValueObject\DocumentInterface;
+use App\Domain\Shared\ValueObject\EmailInterface;
+use App\Domain\Shared\ValueObject\NameInterface;
+use App\Domain\Shared\ValueObject\Uuid\UuidInterface as UuidV4Interface;
 
 final class Account
 {
     use TimestampHelperTrait;
 
-    private UuidV4 $uuid;
-    private Name $firstName;
-    private Name $lastName;
-    private Document $document;
-    private Email $email;
+    private UuidV4Interface $uuid;
+    private NameInterface $firstName;
+    private NameInterface $lastName;
+    private DocumentInterface $document;
+    private EmailInterface $email;
     private string $password;
-    private Amount $balance;
+    private AmountInterface $balance;
 
-    public function getUuid(): UuidV4
+    public function getUuid(): UuidV4Interface
     {
         return $this->uuid;
     }
 
-    public function setUuid(UuidV4 $uuid): void
+    public function setUuid(UuidV4Interface $uuid): void
     {
         $this->uuid = $uuid;
     }
 
-    public function getFirstName(): Name
+    public function getFirstName(): NameInterface
     {
         return $this->firstName;
     }
 
-    public function setFirstName(Name $firstName): void
+    public function setFirstName(NameInterface $firstName): void
     {
         $this->firstName = $firstName;
     }
 
-    public function getLastName(): Name
+    public function getLastName(): NameInterface
     {
         return $this->lastName;
     }
 
-    public function setLastName(Name $lastName): void
+    public function setLastName(NameInterface $lastName): void
     {
         $this->lastName = $lastName;
     }
 
-    public function getDocument(): Document
+    public function getDocument(): DocumentInterface
     {
         return $this->document;
     }
 
-    public function setDocument(Document $document): void
+    public function setDocument(DocumentInterface $document): void
     {
         $this->document = $document;
     }
 
-    public function getEmail(): Email
+    public function getEmail(): EmailInterface
     {
         return $this->email;
     }
 
-    public function setEmail(Email $email): void
+    public function setEmail(EmailInterface $email): void
     {
         $this->email = $email;
     }
@@ -83,12 +83,12 @@ final class Account
         $this->password = $password;
     }
 
-    public function getBalance(): Amount
+    public function getBalance(): AmountInterface
     {
         return $this->balance;
     }
 
-    public function setBalance(Amount $balance): void
+    public function setBalance(AmountInterface $balance): void
     {
         $this->balance = $balance;
     }
