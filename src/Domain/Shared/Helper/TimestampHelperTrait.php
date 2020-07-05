@@ -9,7 +9,7 @@ use DateTimeInterface;
 trait TimestampHelperTrait
 {
     private DateTimeInterface $createdAt;
-    private ?DateTimeInterface $updatedAt;
+    private ?DateTimeInterface $updatedAt = null;
 
     public function getCreatedAt(): DateTimeInterface
     {

@@ -19,6 +19,8 @@ class TimestampHelperTraitTest extends TestCase
             use TimestampHelperTrait;
         };
 
+        self::assertNull($object->getUpdatedAt());
+
         $object->setCreatedAt($createdAtExpected);
         $object->setUpdatedAt($updatedAtExpected);
 
