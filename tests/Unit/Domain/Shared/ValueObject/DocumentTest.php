@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Unit\Domain\ValueObject;
+namespace App\Tests\Unit\Domain\Shared\ValueObject;
 
-use App\Domain\Exception\ValueObject\Document\InvalidNumberException;
-use App\Domain\ValueObject\Document;
+use App\Domain\Shared\Exception\ValueObject\Document\InvalidNumberException;
+use App\Domain\Shared\ValueObject\Document;
 use PHPUnit\Framework\TestCase;
 
 class DocumentTest extends TestCase

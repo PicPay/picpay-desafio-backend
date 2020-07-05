@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Unit\Domain\ValueObject;
+namespace App\Tests\Unit\Domain\Shared\ValueObject;
 
-use App\Domain\Exception\ValueObject\Amount\InvalidValueException;
-use App\Domain\ValueObject\Amount;
+use App\Domain\Shared\Exception\ValueObject\Amount\InvalidValueException;
+use App\Domain\Shared\ValueObject\Amount;
 use PHPUnit\Framework\TestCase;
 
 class AmountTest extends TestCase

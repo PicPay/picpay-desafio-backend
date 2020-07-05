@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Domain\ValueObject;
+namespace App\Domain\Shared\ValueObject;
 
-use App\Domain\Exception\ValueObject\Amount\InvalidValueException;
+use App\Domain\Shared\Exception\ValueObject\Amount\InvalidValueException;
 
 final class Amount implements AmountInterface
 {

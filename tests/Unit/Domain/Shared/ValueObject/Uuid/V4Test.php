@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Unit\Domain\ValueObject\Uuid;
+namespace App\Tests\Unit\Domain\Shared\ValueObject\Uuid;
 
-use App\Domain\Exception\ValueObject\Uuid\V4\InvalidValueException;
-use App\Domain\ValueObject\Uuid\V4 as UuidV4;
+use App\Domain\Shared\Exception\ValueObject\Uuid\V4\InvalidValueException;
+use App\Domain\Shared\ValueObject\Uuid\V4 as UuidV4;
 use PHPUnit\Framework\TestCase;
 
 class V4Test extends TestCase

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Domain\ValueObject\Uuid;
+namespace App\Domain\Shared\ValueObject\Uuid;
 
-use App\Domain\Exception\ValueObject\Uuid\V4\InvalidValueException;
+use App\Domain\Shared\Exception\ValueObject\Uuid\V4\InvalidValueException;
 
 final class V4 implements UuidInterface
 {

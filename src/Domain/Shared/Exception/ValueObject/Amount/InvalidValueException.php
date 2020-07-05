@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Domain\Exception\ValueObject\Amount;
+namespace App\Domain\Shared\Exception\ValueObject\Amount;
 
 use InvalidArgumentException;
 

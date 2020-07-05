@@ -2,14 +2,16 @@
 
 declare(strict_types=1);
 
-namespace App\Domain\ValueObject;
+namespace App\Domain\Shared\ValueObject;
 
-use App\Domain\Exception\ValueObject\Email\InvalidValueException;
+use App\Domain\Shared\Exception\ValueObject\Name\InvalidValueException;
 
 use function filter_var;
 
-final class Email implements EmailInterface
+final class Name implements NameInterface
 {
+    public const REGEX = '/^[a-zA-Z\u00C0-\u00FF ]{2,}$/';
+
     private string $value;
 
     public function __construct(string $value)
@@ -26,8 +28,8 @@ final class Email implements EmailInterface
         return $this->value;
     }
 
-    public static function isValid(?string $email): bool
+    public static function isValid(?string $name): bool
     {
-        return filter_var($email, FILTER_VALIDATE_EMAIL) !== false;
+        return filter_var($name, FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => self::REGEX]]) !== false;
     }
 }

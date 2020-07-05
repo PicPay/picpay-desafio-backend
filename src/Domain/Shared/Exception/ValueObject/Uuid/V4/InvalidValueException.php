@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Domain\Exception\ValueObject\Uuid\V4;
+namespace App\Domain\Shared\Exception\ValueObject\Uuid\V4;
 
 use InvalidArgumentException;
 

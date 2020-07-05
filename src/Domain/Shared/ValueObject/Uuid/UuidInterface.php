@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Domain\ValueObject\Uuid;
+namespace App\Domain\Shared\ValueObject\Uuid;
 
 interface UuidInterface
 {
