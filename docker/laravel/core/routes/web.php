@@ -12,5 +12,8 @@
 */
 
 Route::get('/', function () {
+    //$person = App\Person::all();
+    //dd($person);
+    phpinfo();
     return view('welcome');
 });

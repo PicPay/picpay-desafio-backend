@@ -12,7 +12,8 @@
         "fideloper/proxy": "^4.0",
         "jenssegers/mongodb": "^3.6",
         "laravel/framework": "^6.2",
-        "laravel/tinker": "^2.0"
+        "laravel/tinker": "^2.0",
+        "mongodb/mongodb": "^1.6"
     },
     "require-dev": {
         "facade/ignition": "^1.4",

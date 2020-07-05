@@ -5,6 +5,8 @@ services:
     build:
       context: ${WEB_HOST_BUILDER_PATH}
       dockerfile: ${DOCKERFILE}
+    networks:
+      - backend_core
     ports:
       - "${WEB_CORE_HOST_HTTP_PORT}:${WEB_CONTAINER_HTTP_PORT}"
     volumes:
@@ -17,6 +19,8 @@ services:
     build:
       context: ${WEB_HOST_BUILDER_PATH}
       dockerfile: ${DOCKERFILE}
+    networks:
+      - backend_wallet
     ports:
       - "${WEB_WALLET_HOST_HTTP_PORT}:${WEB_CONTAINER_HTTP_PORT}"
     volumes:
@@ -24,70 +28,40 @@ services:
       - ${WEB_WALLET_APACHE_HOST_LOG}:${APACHE_CONTAINER_LOG}
       - ${WEB_WALLET_APACHE_HOST_SITES_AVAILABLE}:${APACHE_CONTAINER_SITES_AVAILABLE}
       - ${WEB_WALLET_PHP_HOST_CONF}:${PHP_CONTAINER_CONF}
-  mongo_core:
-    container_name: ${MONGO_CORE_CONTAINER_NAME}
+  mysql_core:
+    container_name: ${MYSQL_CORE_CONTAINER_NAME}
     build:
-      context: ${MONGO_HOST_BUILDER_PATH}
+      context: ${MYSQL_HOST_BUILDER_PATH}
       dockerfile: ${DOCKERFILE}
+    networks:
+      - backend_core
     restart: ${ALWAYS}
     ports:
-      - ${MONGO_CORE_HOST_HTTP_PORT}:${MONGO_CONTAINER_HTTP_PORT}
-    networks:
-      - ${MONGO_CORE_NETWORK}
+      - "${MYSQL_CORE_HOST_HTTP_PORT}:${MYSQL_CONTAINER_HTTP_PORT}"
     volumes:
-      - ${MONGO_CORE_EXTERNAL_VOLUME_DATA}:${MONGO_CONTAINER_DATA}
+      - ${MYSQL_CORE_HOST_DATA}:${MYSQL_CONTAINER_DATA}
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
-      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
-  mongo_wallet:
-    container_name: ${MONGO_WALLET_CONTAINER_NAME}
+      - MYSQL_DATABASE=${MYSQL_CORE_ENV_DATABASE}
+      - MYSQL_USER=${MYSQL_ENV_USER}
+      - MYSQL_PASSWORD=${MYSQL_ENV_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ENV_ROOT_PASSWORD}
+  mysql_wallet:
+    container_name: ${MYSQL_WALLET_CONTAINER_NAME}
     build:
-      context: ${MONGO_HOST_BUILDER_PATH}
+      context: ${MYSQL_HOST_BUILDER_PATH}
       dockerfile: ${DOCKERFILE}
+    networks:
+      - backend_wallet
     restart: ${ALWAYS}
     ports:
-      - ${MONGO_WALLET_HOST_HTTP_PORT}:${MONGO_CONTAINER_HTTP_PORT}
-    networks:
-      - ${MONGO_WALLET_NETWORK}
+      - "${MYSQL_WALLET_HOST_HTTP_PORT}:${MYSQL_CONTAINER_HTTP_PORT}"
     volumes:
-      - ${MONGO_WALLET_EXTERNAL_VOLUME_DATA}:${MONGO_CONTAINER_DATA}
+      - ${MYSQL_WALLET_HOST_DATA}:${MYSQL_CONTAINER_DATA}
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
-      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
-  mongo_express_core:
-    container_name: ${MONGO_EXPRESS_CORE_CONTAINER_NAME}
-    build:
-      context: ${MONGO_EXPRESS_HOST_BUILDER_PATH}
-      dockerfile: ${DOCKERFILE}
-    restart: ${ALWAYS}
-    ports:
-      - ${MONGO_EXPRESS_CORE_HOST_HTTP_PORT}:${MONGO_EXPRESS_CONTAINER_HTTP_PORT}
-    networks:
-      - ${MONGO_CORE_NETWORK}
-    links:
-      - ${MONGO_CORE_LINK_SERVICE}
-    environment:
-      - ME_CONFIG_MONGODB_SERVER=${MONGO_CORE_CONTAINER_NAME}
-      - ME_CONFIG_MONGODB_PORT=${MONGO_CONTAINER_HTTP_PORT}
-      - ME_CONFIG_MONGODB_ADMINUSERNAME=${MONGO_INITDB_ROOT_USERNAME}
-      - ME_CONFIG_MONGODB_ADMINPASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
-  mongo_express_wallet:
-    container_name: ${MONGO_EXPRESS_WALLET_CONTAINER_NAME}
-    build:
-      context: ${MONGO_EXPRESS_HOST_BUILDER_PATH}
-      dockerfile: ${DOCKERFILE}
-    restart: ${ALWAYS}
-    ports:
-      - ${MONGO_EXPRESS_WALLET_HOST_HTTP_PORT}:${MONGO_EXPRESS_CONTAINER_HTTP_PORT}
-    networks:
-      - ${MONGO_WALLET_NETWORK}
-    links:
-      - ${MONGO_WALLET_LINK_SERVICE}
-    environment:
-      - ME_CONFIG_MONGODB_SERVER=${MONGO_WALLET_CONTAINER_NAME}
-      - ME_CONFIG_MONGODB_PORT=${MONGO_CONTAINER_HTTP_PORT}
-      - ME_CONFIG_MONGODB_ADMINUSERNAME=${MONGO_INITDB_ROOT_USERNAME}
-      - ME_CONFIG_MONGODB_ADMINPASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_WALLET_ENV_DATABASE}
+      - MYSQL_USER=${MYSQL_ENV_USER}
+      - MYSQL_PASSWORD=${MYSQL_ENV_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ENV_ROOT_PASSWORD}
   rabbitmq_core:
     container_name: ${RABBITMQ_CORE_CONTAINER_NAME}
     build:
@@ -119,10 +93,5 @@ services:
       - ${RABBITMQ_WALLET_HOST_ETC}:${RABBITMQ_CONTAINER_ETC}
       - ${RABBITMQ_WALLET_HOST_LOG}:${RABBITMQ_CONTAINER_LOG}
 networks:
-  mongo_core_network:
-  mongo_wallet_network:
-volumes:
-  mongodbdatacore:
-    external: true
-  mongodbdatawallet:
-    external: true
+  backend_core:
+  backend_wallet:
