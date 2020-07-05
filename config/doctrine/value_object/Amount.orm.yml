@@ -1,5 +1,0 @@
-App\Infrastructure\ORM\ValueObject\Amount:
-  type: embeddable
-  fields:
-    value:
-      type: integer
