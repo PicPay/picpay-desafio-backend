@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Domain\Exception\ValueObject\Document\Cpf;
+namespace App\Domain\Exception\ValueObject\Document;
 
 use InvalidArgumentException;
 

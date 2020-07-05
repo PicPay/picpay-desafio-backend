@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Domain\ValueObject\Document;
+namespace App\Domain\ValueObject;
 
 interface DocumentInterface
 {
@@ -14,5 +14,7 @@ interface DocumentInterface
 
     public function isTypeCnpj(): bool;
 
-    public static function isValidNumber(string $number): bool;
+    public static function isValidCpf(string $number): bool;
+
+    public static function isValidCnpj(string $number): bool;
 }
