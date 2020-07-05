@@ -15,10 +15,14 @@ jobs:
     - uses: actions/checkout@v2
     - name: PWD Command
       run: pwd
+    - name: LS Command
+      run: ls
     - name: Access core folder
       run: cd ./docker/laravel/core
     - name: PWD Command new folder
       run: pwd
+    - name: LS LA Command
+      run: ls -la
     - name: Copy .env
       run: php -r "file_exists('.env') || copy('.env.example', '.env');"
     - name: Install Dependencies
