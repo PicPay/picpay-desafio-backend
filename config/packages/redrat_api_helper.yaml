@@ -1,0 +1,4 @@
+redrat_api_helper:
+    paths:
+        api_v1:
+            url_path_prefix: /api/v1
