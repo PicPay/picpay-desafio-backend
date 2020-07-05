@@ -81,6 +81,9 @@
     "fig/http-message-util": {
         "version": "1.1.4"
     },
+    "hamcrest/hamcrest-php": {
+        "version": "v2.0.0"
+    },
     "laminas/laminas-code": {
         "version": "3.4.1"
     },
@@ -89,6 +92,9 @@
     },
     "laminas/laminas-zendframework-bridge": {
         "version": "1.0.4"
+    },
+    "mockery/mockery": {
+        "version": "1.4.0"
     },
     "myclabs/deep-copy": {
         "version": "1.10.1"
