@@ -8,6 +8,7 @@ use App\Infrastructure\Controller\Api\ApiController;
 use App\Infrastructure\Validator\UserAccountRegisterValidator;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Throwable;
 
 class UserAccountController extends ApiController
 {
@@ -19,6 +20,10 @@ class UserAccountController extends ApiController
             return $this->responseBadRequest($validator->getErrors());
         }
 
-        return $this->json(['time' => time()]);
+        try {
+            return $this->responseCreated(['time' => time()]);
+        } catch (Throwable $e) {
+            return $this->responseCreated(['e' => $e->getMessage()]);
+        }
     }
 }

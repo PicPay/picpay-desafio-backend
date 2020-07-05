@@ -10,13 +10,18 @@ use Symfony\Component\HttpFoundation\Response;
 
 abstract class ApiController extends AbstractController
 {
-    public function responseBadRequest(array $responseData): JsonResponse
-    {
-        return $this->json($responseData, Response::HTTP_BAD_REQUEST);
-    }
-
     public function responseCreated(array $responseData): JsonResponse
     {
         return $this->json($responseData, Response::HTTP_CREATED);
+    }
+
+    public function responseBadRequest(array $responseData): JsonResponse
+    {
+        return $this->json(['errors' => $responseData], Response::HTTP_BAD_REQUEST);
+    }
+
+    public function responseInternalServerError(array $responseData): JsonResponse
+    {
+        return $this->json(['errors' => $responseData], Response::HTTP_INTERNAL_SERVER_ERROR);
     }
 }

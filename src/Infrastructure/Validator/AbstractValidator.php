@@ -28,11 +28,7 @@ abstract class AbstractValidator implements ValidatorInterface
 
     public function getErrors(): array
     {
-        if (!$this->hasErrors()) {
-            return [];
-        }
-
-        return ['errors' => $this->errors];
+        return $this->errors;
     }
 
     protected function addError(string $param, string $message): void
