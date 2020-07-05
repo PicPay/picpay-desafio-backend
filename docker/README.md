@@ -7,7 +7,7 @@ php 7.4.7
 
 apache 2.4
 
-laravel 7.15.0
+laravel 6.18.8
 
 composer 1.10.7
 
@@ -23,7 +23,7 @@ RabbitMQ 3.8.5
 docker-compose up -d
 
 # Laravel
-cd application
+cd core
 
 cp .env.example .env
 
@@ -74,3 +74,22 @@ a2enmod rewrite
 service apache2 restart
 docker start web_core
 docker start web_wallet
+
+# Instalar Git
+apt update
+
+apt-get install git
+
+git --version
+
+# Install Composer
+curl -sS https://getcomposer.org/installer | php
+
+mv composer.phar /usr/local/bin/composer
+
+chmod +x /usr/local/bin/composer
+
+composer
+
+# Instalar MongoDB PHP
+pecl install mongodb

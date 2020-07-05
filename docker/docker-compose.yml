@@ -24,24 +24,6 @@ services:
       - ${WEB_WALLET_APACHE_HOST_LOG}:${APACHE_CONTAINER_LOG}
       - ${WEB_WALLET_APACHE_HOST_SITES_AVAILABLE}:${APACHE_CONTAINER_SITES_AVAILABLE}
       - ${WEB_WALLET_PHP_HOST_CONF}:${PHP_CONTAINER_CONF}
-  composer_core:
-    container_name: ${COMPOSER_CORE_CONTAINER_NAME}
-    build:
-      context: ${COMPOSER_HOST_BUILDER_PATH}
-      dockerfile: ${DOCKERFILE}
-    command: ["composer", "install"]
-    restart: ${ALWAYS}
-    volumes:
-      - ${APPLICATION_CORE_HOST_PATH}:${COMPOSER_CONTAINER_APP_PATH}
-  composer_wallet:
-    container_name: ${COMPOSER_WALLET_CONTAINER_NAME}
-    build:
-      context: ${COMPOSER_HOST_BUILDER_PATH}
-      dockerfile: ${DOCKERFILE}
-    command: ["composer", "install"]
-    restart: ${ALWAYS}
-    volumes:
-      - ${APPLICATION_WALLET_HOST_PATH}:${COMPOSER_CONTAINER_APP_PATH}
   mongo_core:
     container_name: ${MONGO_CORE_CONTAINER_NAME}
     build:
@@ -52,6 +34,8 @@ services:
       - ${MONGO_CORE_HOST_HTTP_PORT}:${MONGO_CONTAINER_HTTP_PORT}
     networks:
       - ${MONGO_CORE_NETWORK}
+    volumes:
+      - ${MONGO_CORE_EXTERNAL_VOLUME_DATA}:${MONGO_CONTAINER_DATA}
     environment:
       - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
       - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
@@ -65,6 +49,8 @@ services:
       - ${MONGO_WALLET_HOST_HTTP_PORT}:${MONGO_CONTAINER_HTTP_PORT}
     networks:
       - ${MONGO_WALLET_NETWORK}
+    volumes:
+      - ${MONGO_WALLET_EXTERNAL_VOLUME_DATA}:${MONGO_CONTAINER_DATA}
     environment:
       - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
       - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
@@ -135,3 +121,8 @@ services:
 networks:
   mongo_core_network:
   mongo_wallet_network:
+volumes:
+  mongodbdatacore:
+    external: true
+  mongodbdatawallet:
+    external: true
