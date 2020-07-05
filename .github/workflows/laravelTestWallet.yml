@@ -7,7 +7,7 @@ on:
     branches: [ master ]
 
 jobs:
-  laravel-tests:
+  laravel-tests-wallet:
 
     runs-on: ubuntu-latest
     env:

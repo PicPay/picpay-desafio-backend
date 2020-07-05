@@ -7,12 +7,12 @@ on:
     branches: [ master ]
 
 jobs:
-  laravel-tests:
+  laravel-tests-core:
 
     runs-on: ubuntu-latest
     env:
       working-directory: ./docker/laravel/core
-    
+
     steps:
     - uses: actions/checkout@v2
     - name: Copy .env
