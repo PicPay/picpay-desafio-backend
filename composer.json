@@ -5,6 +5,7 @@
         "php": ">=7.4",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "ramsey/uuid": "^4.0",
         "redrat/api-helper-bundle": "^0.2.0",
         "symfony/console": "4.4.*",
         "symfony/dotenv": "4.4.*",
