@@ -1,4 +1,4 @@
-api_v1_register:
-    path: /api/v1/register
-    controller: App\Infrastructure\Controller\Api\V1\UserAccountController::handleRegister
+api_v1_user_accounts_create:
+    path: /api/v1/user-accounts
+    controller: App\Infrastructure\Controller\Api\V1\UserAccountController::handleCreate
     methods: [POST]

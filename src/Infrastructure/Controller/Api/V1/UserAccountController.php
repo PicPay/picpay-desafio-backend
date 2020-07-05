@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class UserAccountController extends ApiController
 {
-    public function handleRegister(Request $request): JsonResponse
+    public function handleCreate(Request $request): JsonResponse
     {
         $validator = new UserAccountRegisterValidator($request);
 
