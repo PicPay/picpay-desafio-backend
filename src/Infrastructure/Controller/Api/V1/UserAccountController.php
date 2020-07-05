@@ -7,6 +7,7 @@ namespace App\Infrastructure\Controller\Api\V1;
 use App\Application\Command\UserAccount\CreateCommand;
 use App\Domain\UserAccount\Exception\Service\CreateService\AccountFoundException;
 use App\Infrastructure\Controller\Api\ApiController;
+use App\Infrastructure\Domain\UserAccount\DTO\AccountDTO;
 use App\Infrastructure\Validator\UserAccountRegisterValidator;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -30,8 +31,9 @@ class UserAccountController extends ApiController
 
             $createCommand = $this->get(CreateCommand::class);
             $account = $createCommand->execute($requestData);
+            $accountDTO = new AccountDTO($account);
 
-            return $this->responseCreated(['time' => time()]);
+            return $this->responseCreated($accountDTO->toArray());
         } catch (AccountFoundException $e) {
             return $this->responseUnprocessableEntity([$e->getMessage()]);
         } catch (Throwable $e) {
