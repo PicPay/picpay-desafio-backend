@@ -11,13 +11,13 @@ use function is_null;
 use function preg_replace;
 use function strlen;
 
-final class Document implements DocumentInterface
+class Document implements DocumentInterface
 {
     public const TYPE_CPF = 'cpf';
     public const TYPE_CNPJ = 'cnpj';
 
-    private string $number;
-    private string $type;
+    protected string $number;
+    protected string $type;
 
     public function __construct(string $number)
     {

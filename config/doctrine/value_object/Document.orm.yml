@@ -1,0 +1,9 @@
+App\Infrastructure\ORM\ValueObject\Document:
+  type: embeddable
+  fields:
+    number:
+      type: string
+      length: 16
+    type:
+      type: string
+      length: 5

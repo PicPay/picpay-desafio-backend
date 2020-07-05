@@ -6,11 +6,11 @@ namespace App\Domain\Shared\ValueObject;
 
 use App\Domain\Shared\Exception\ValueObject\Amount\InvalidValueException;
 
-final class Amount implements AmountInterface
+class Amount implements AmountInterface
 {
     const VALUE_MINIMUM = 0;
 
-    private int $value;
+    protected int $value;
 
     public function __construct(int $value)
     {

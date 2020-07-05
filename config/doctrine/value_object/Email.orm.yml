@@ -1,5 +1,6 @@
-App\Domain\ValueObject\Email:
+App\Infrastructure\ORM\ValueObject\Email:
   type: embeddable
   fields:
     value:
       type: string
+      length: 100

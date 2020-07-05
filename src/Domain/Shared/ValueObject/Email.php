@@ -8,9 +8,9 @@ use App\Domain\Shared\Exception\ValueObject\Email\InvalidValueException;
 
 use function filter_var;
 
-final class Email implements EmailInterface
+class Email implements EmailInterface
 {
-    private string $value;
+    protected string $value;
 
     public function __construct(string $value)
     {

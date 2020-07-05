@@ -1,0 +1,6 @@
+App\Infrastructure\ORM\ValueObject\Name:
+  type: embeddable
+  fields:
+    value:
+      type: string
+      length: 255

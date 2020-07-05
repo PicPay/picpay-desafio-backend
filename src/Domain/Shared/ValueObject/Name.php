@@ -8,11 +8,11 @@ use App\Domain\Shared\Exception\ValueObject\Name\InvalidValueException;
 
 use function filter_var;
 
-final class Name implements NameInterface
+class Name implements NameInterface
 {
     public const REGEX = '/^[a-zA-Z\u00C0-\u00FF ]{2,}$/';
 
-    private string $value;
+    protected string $value;
 
     public function __construct(string $value)
     {

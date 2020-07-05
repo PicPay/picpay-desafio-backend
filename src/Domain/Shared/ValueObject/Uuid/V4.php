@@ -6,12 +6,12 @@ namespace App\Domain\Shared\ValueObject\Uuid;
 
 use App\Domain\Shared\Exception\ValueObject\Uuid\V4\InvalidValueException;
 
-final class V4 implements UuidInterface
+class V4 implements UuidInterface
 {
     public const VERSION = 'v4';
     public const REGEX = '/^[0-9A-F]{8}-[0-9A-F]{4}-4[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$/i';
 
-    private string $value;
+    protected string $value;
 
     public function __construct(string $value)
     {

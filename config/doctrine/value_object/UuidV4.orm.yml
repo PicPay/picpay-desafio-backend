@@ -1,0 +1,6 @@
+App\Infrastructure\ORM\ValueObject\UuidV4:
+  type: embeddable
+  fields:
+    value:
+      type: string
+      length: 38
