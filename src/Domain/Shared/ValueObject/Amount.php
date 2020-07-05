@@ -25,4 +25,9 @@ final class Amount implements AmountInterface
     {
         return $this->value;
     }
+
+    public function getValueDecimal(): float
+    {
+        return $this->getValue() / 100;
+    }
 }

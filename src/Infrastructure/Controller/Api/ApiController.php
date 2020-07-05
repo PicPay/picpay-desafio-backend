@@ -10,6 +10,11 @@ use Symfony\Component\HttpFoundation\Response;
 
 abstract class ApiController extends AbstractController
 {
+    public function responseOk(array $responseData): JsonResponse
+    {
+        return $this->json($responseData, Response::HTTP_OK);
+    }
+
     public function responseCreated(array $responseData): JsonResponse
     {
         return $this->json($responseData, Response::HTTP_CREATED);

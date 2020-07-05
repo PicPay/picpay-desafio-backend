@@ -7,4 +7,6 @@ namespace App\Domain\Shared\ValueObject;
 interface AmountInterface
 {
     public function getValue(): int;
+
+    public function getValueDecimal(): float;
 }

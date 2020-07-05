@@ -2,3 +2,8 @@ api_v1_user_accounts_create:
     path: /api/v1/user-accounts
     controller: App\Infrastructure\Controller\Api\V1\UserAccountController::handleCreate
     methods: [POST]
+
+api_v1_user_accounts_list:
+    path: /api/v1/user-accounts
+    controller: App\Infrastructure\Controller\Api\V1\UserAccountController::handleList
+    methods: [GET]

@@ -10,7 +10,7 @@ use function filter_var;
 
 final class Name implements NameInterface
 {
-    public const REGEX = '/^[a-zA-Z\u00C0-\u00FF ]{2,}$/';
+    public const REGEX = '/^[a-zA-ZÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûüýýþÿŔŕ\'+\s]{2,}/';
 
     protected string $value;
 

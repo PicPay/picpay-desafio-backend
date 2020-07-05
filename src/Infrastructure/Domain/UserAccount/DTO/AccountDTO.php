@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Domain\UserAccount\DTO;
 
+use App\Domain\Shared\ValueObject\AmountInterface;
 use App\Domain\UserAccount\Entity\Account;
 use App\Infrastructure\DTO\ItemInterface;
 use DateTimeInterface;
@@ -55,11 +56,11 @@ class AccountDTO implements ItemInterface
                 ->getValue()
             ,
             'password' => 'boooo, this is secret data',
-            'balance' => $this
-                ->account
-                ->getBalance()
-                ->getValue()
-            ,
+            'balance' => $this->getBalanceFragment(
+                $this
+                    ->account
+                    ->getBalance()
+            ),
             'createdAt' => $this->getDateTimeFragment(
                 $this
                     ->account
@@ -70,6 +71,14 @@ class AccountDTO implements ItemInterface
                     ->account
                     ->getUpdatedAt()
             ),
+        ];
+    }
+
+    private function getBalanceFragment(AmountInterface $amount): array
+    {
+        return [
+            'integer' => $amount->getValue(),
+            'decimal' => $amount->getValueDecimal(),
         ];
     }
 

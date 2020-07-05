@@ -7,7 +7,9 @@ namespace App\Infrastructure\Domain\UserAccount\Repository;
 use App\Domain\Shared\ValueObject\DocumentInterface;
 use App\Domain\Shared\ValueObject\Uuid\V4 as UuidV4;
 use App\Domain\UserAccount\Entity\Account;
+use App\Domain\UserAccount\Entity\AccountCollection;
 use App\Domain\UserAccount\Repository\AccountRepositoryInterface;
+use App\Infrastructure\Domain\UserAccount\Factory\AccountCollectionFactory;
 use App\Infrastructure\ORM\Builder\AccountBuilder;
 use App\Infrastructure\ORM\Entity\Account as AccountORM;
 use App\Infrastructure\ORM\Repository\AccountRepository as AccountRepositoryORM;
@@ -55,5 +57,15 @@ class AccountRepository implements AccountRepositoryInterface
         $account->setCreatedAt($accountORM->getCreatedAt());
 
         return $account;
+    }
+
+    public function list(): AccountCollection
+    {
+        $accountsORM = $this
+            ->accountRepositoryORM
+            ->findAll()
+        ;
+
+        return AccountCollectionFactory::createFromORM($accountsORM);
     }
 }
