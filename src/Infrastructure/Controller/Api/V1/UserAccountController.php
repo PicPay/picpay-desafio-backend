@@ -25,7 +25,8 @@ class UserAccountController extends ApiController
         try {
             $requestData = $request
                 ->request
-                ->all();
+                ->all()
+            ;
 
             $createCommand = $this->get(CreateCommand::class);
             $account = $createCommand->execute($requestData);
