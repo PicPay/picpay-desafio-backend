@@ -17,6 +17,10 @@ services:
         resource: '../src/Infrastructure/Controller'
         tags: ['controller.service_arguments']
 
+    App\Infrastructure\Fixtures\AccountFixtures:
+        autowire: true
+        autoconfigure: true
+
     App\Application\Command\UserAccount\CreateCommand:
         public: true
         arguments:
