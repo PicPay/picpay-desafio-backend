@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Domain\Exception\ValueObject\Email;
 
 use InvalidArgumentException;
+
 use function sprintf;
 
 class InvalidValueException extends InvalidArgumentException

@@ -6,6 +6,7 @@ namespace App\Domain\ValueObject;
 
 use App\Domain\Exception\ValueObject\Document\InvalidNumberException;
 use function filter_var;
+use function is_null;
 use function preg_replace;
 use function strlen;
 
@@ -72,8 +73,12 @@ final class Document implements DocumentInterface
         return self::TYPE_CNPJ === $this->getType();
     }
 
-    public static function isValidCpf(string $number): bool
+    public static function isValidCpf(?string $number): bool
     {
+        if (is_null($number)) {
+            return false;
+        }
+
         $number = preg_replace("/[^0-9]/", "", $number);
 
         if (strlen($number) != 11) {
@@ -107,8 +112,12 @@ final class Document implements DocumentInterface
         return $number[10] == $digit2;
     }
 
-    public static function isValidCnpj(string $number): bool
+    public static function isValidCnpj(?string $number): bool
     {
+        if (is_null($number)) {
+            return false;
+        }
+
         $number = preg_replace("/[^0-9]/", "", $number);
 
         if (strlen($number) != 14) {

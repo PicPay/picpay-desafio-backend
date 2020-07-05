@@ -14,7 +14,7 @@ interface DocumentInterface
 
     public function isTypeCnpj(): bool;
 
-    public static function isValidCpf(string $number): bool;
+    public static function isValidCpf(?string $number): bool;
 
-    public static function isValidCnpj(string $number): bool;
+    public static function isValidCnpj(?string $number): bool;
 }
