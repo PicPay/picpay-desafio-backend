@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Validator;
 
-use App\Domain\ValueObject\Document;
-use App\Domain\ValueObject\Email;
-use App\Domain\ValueObject\Name;
+use App\Domain\Shared\ValueObject\Document;
+use App\Domain\Shared\ValueObject\Email;
+use App\Domain\Shared\ValueObject\Name;
 use function sprintf;
 
 class UserAccountRegisterValidator extends AbstractValidator
