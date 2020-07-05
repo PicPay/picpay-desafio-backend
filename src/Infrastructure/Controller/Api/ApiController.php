@@ -20,6 +20,11 @@ abstract class ApiController extends AbstractController
         return $this->json(['errors' => $responseData], Response::HTTP_BAD_REQUEST);
     }
 
+    public function responseUnprocessableEntity(array $responseData): JsonResponse
+    {
+        return $this->json(['errors' => $responseData], Response::HTTP_UNPROCESSABLE_ENTITY);
+    }
+
     public function responseInternalServerError(array $responseData): JsonResponse
     {
         return $this->json(['errors' => $responseData], Response::HTTP_INTERNAL_SERVER_ERROR);

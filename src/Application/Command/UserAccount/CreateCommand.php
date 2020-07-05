@@ -5,7 +5,8 @@ declare(strict_types=1);
 namespace App\Application\Command\UserAccount;
 
 use App\Application\Factory\UserAccount\CreateFactory;
-use App\Domain\Service\UserAccount\CreateService;
+use App\Domain\UserAccount\Entity\Account;
+use App\Domain\UserAccount\Service\CreateService;
 
 class CreateCommand
 {
@@ -16,13 +17,13 @@ class CreateCommand
         $this->createService = $createService;
     }
 
-    public function execute(array $data)
+    public function execute(array $data): Account
     {
-        $userAccount = CreateFactory::createFromRequest($data);
+        $account = CreateFactory::createFromRequest($data);
 
-        $userAccount = $this
+        return $this
             ->createService
-            ->createUserAccount($userAccount)
+            ->handleCreate($account)
         ;
     }
 }
