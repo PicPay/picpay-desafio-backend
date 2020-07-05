@@ -10,13 +10,17 @@ jobs:
   laravel-tests:
 
     runs-on: ubuntu-latest
+    env:
+      working-directory: ./docker/laravel/core
     
     steps:
     - uses: actions/checkout@v2
     - name: PWD Command
       run: pwd
+      working-directory: ${{env.working-directory}}
     - name: LS Command
       run: ls
+      working-directory: ${{env.working-directory}}
     - name: Access core folder
       run: cd ./docker/laravel/core
     - name: PWD Command new folder
