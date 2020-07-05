@@ -13,8 +13,12 @@ jobs:
     
     steps:
     - uses: actions/checkout@v2
+    - name: PWD Command
+      run: pwd
     - name: Access core folder
       run: cd ./docker/laravel/core
+    - name: PWD Command new folder
+      run: pwd
     - name: Copy .env
       run: php -r "file_exists('.env') || copy('.env.example', '.env');"
     - name: Install Dependencies
