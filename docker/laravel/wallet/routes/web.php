@@ -17,3 +17,8 @@ Route::get('/', function () {
     echo "wallet";
     return view('welcome');
 });
+
+Route::get('/testando', function () {
+    echo "testando";
+    return view('welcome');
+});

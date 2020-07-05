@@ -68,3 +68,9 @@ http://localhost:15673
 usuário = guest
 
 senha = guest
+
+# URL Friendly
+a2enmod rewrite
+service apache2 restart
+docker start web_core
+docker start web_wallet
