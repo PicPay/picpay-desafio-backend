@@ -6,7 +6,7 @@ namespace App\Domain\Shared\ValueObject;
 
 use App\Domain\Shared\Exception\ValueObject\Amount\InvalidValueException;
 
-class Amount implements AmountInterface
+final class Amount implements AmountInterface
 {
     const VALUE_MINIMUM = 0;
 

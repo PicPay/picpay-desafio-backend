@@ -8,7 +8,7 @@ use App\Domain\Shared\Exception\ValueObject\Name\InvalidValueException;
 
 use function filter_var;
 
-class Name implements NameInterface
+final class Name implements NameInterface
 {
     public const REGEX = '/^[a-zA-Z\u00C0-\u00FF ]{2,}$/';
 

@@ -8,7 +8,7 @@ use App\Domain\Shared\Exception\ValueObject\Email\InvalidValueException;
 
 use function filter_var;
 
-class Email implements EmailInterface
+final class Email implements EmailInterface
 {
     protected string $value;
 

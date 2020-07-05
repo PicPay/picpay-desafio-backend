@@ -11,7 +11,7 @@ use function is_null;
 use function preg_replace;
 use function strlen;
 
-class Document implements DocumentInterface
+final class Document implements DocumentInterface
 {
     public const TYPE_CPF = 'cpf';
     public const TYPE_CNPJ = 'cnpj';
