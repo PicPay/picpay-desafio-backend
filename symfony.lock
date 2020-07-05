@@ -179,6 +179,9 @@
     "redrat/api-helper-bundle": {
         "version": "0.2.0"
     },
+    "redrat/entity-datetime": {
+        "version": "0.2.0"
+    },
     "sebastian/code-unit": {
         "version": "1.0.5"
     },

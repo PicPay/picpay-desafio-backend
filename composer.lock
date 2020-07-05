@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6439794d3ea8b92c1862e869d54ef197",
+    "content-hash": "d1f373b87fd89a56c0b908fc5b4e2cdf",
     "packages": [
         {
             "name": "brick/math",
@@ -2149,6 +2149,53 @@
             ],
             "homepage": "https://github.com/joubertredrat/ApiHelperBundle",
             "time": "2020-07-04T01:03:05+00:00"
+        },
+        {
+            "name": "redrat/entity-datetime",
+            "version": "0.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/joubertredrat/entity-datetime.git",
+                "reference": "936c276c1e5c5bc813164b4389fe78390ecf1fe4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/joubertredrat/entity-datetime/zipball/936c276c1e5c5bc813164b4389fe78390ecf1fe4",
+                "reference": "936c276c1e5c5bc813164b4389fe78390ecf1fe4",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7.2",
+                "squizlabs/php_codesniffer": "^3.3",
+                "symfony/var-dumper": "^4.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "RedRat\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Joubert RedRat",
+                    "email": "me+github@redrat.com.br"
+                }
+            ],
+            "description": "Datetime trait for entities",
+            "homepage": "https://github.com/joubertredrat/entity-datetime",
+            "keywords": [
+                "datetime",
+                "php",
+                "trait"
+            ],
+            "time": "2019-10-10T21:15:28+00:00"
         },
         {
             "name": "symfony/cache",
