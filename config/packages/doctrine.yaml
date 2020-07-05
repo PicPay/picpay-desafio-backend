@@ -14,11 +14,11 @@ doctrine:
                 is_bundle: false
                 type: yml
                 dir: '%kernel.project_dir%/config/doctrine/entity'
-                prefix: 'App\Entity'
+                prefix: App\Domain\Entity
                 alias: AppEntity
             AppValueObject:
                 is_bundle: false
                 type: yml
                 dir: '%kernel.project_dir%/config/doctrine/value_object'
-                prefix: 'App\ValueObject'
+                prefix: App\Domain\ValueObject
                 alias: AppValueObject

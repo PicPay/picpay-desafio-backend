@@ -1,0 +1,5 @@
+App\Domain\ValueObject\Email:
+  type: embeddable
+  fields:
+    value:
+      type: string
