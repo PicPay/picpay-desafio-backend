@@ -1,0 +1,40 @@
+name: Laravel
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  laravel-tests:
+
+    runs-on: ubuntu-latest
+    env:
+      working-directory: ./docker/laravel/wallet
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Copy .env
+      run: php -r "file_exists('.env') || copy('.env.example', '.env');"
+      working-directory: ${{env.working-directory}}
+    - name: Install Dependencies
+      run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+      working-directory: ${{env.working-directory}}
+    - name: Generate key
+      run: php artisan key:generate
+      working-directory: ${{env.working-directory}}
+    - name: Directory Permissions
+      run: chmod -R 777 storage bootstrap/cache
+      working-directory: ${{env.working-directory}}
+    - name: Create Database
+      run: |
+        mkdir -p database
+        touch database/database.sqlite
+      working-directory: ${{env.working-directory}}
+    - name: Execute tests (Unit and Feature tests) via PHPUnit
+      env:
+        DB_CONNECTION: sqlite
+        DB_DATABASE: database/database.sqlite
+      run: vendor/bin/phpunit
+      working-directory: ${{env.working-directory}}
