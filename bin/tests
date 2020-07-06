@@ -1,0 +1,5 @@
+#!/bin/bash
+cd "$(dirname "$0")/.."
+
+params=$@
+docker exec -it desafio-picpay-app bash -c "php ./vendor/bin/phpunit $params"

@@ -1,0 +1,42 @@
+version: "3"
+
+services:
+    # Serviço Web
+    nginx:
+        image: nginx:1.13
+        container_name: desafio-picpay-nginx
+        volumes:
+            - "${APP_PATH}:/var/www/html"
+            - "${NGINX_PATH}:/etc/nginx/nginx.conf"
+        ports:
+            - "${NGINX_PORT}:80"
+        depends_on:
+            - app
+
+    # Serviço PHP
+    app:
+        build:
+            context: ${PHP_PATH}
+        container_name: desafio-picpay-app
+        volumes:
+            - "${APP_PATH}:/var/www/html"
+        ports:
+            - "${PHP_PORT}:9000"
+        depends_on:
+            - mysql
+        environment:
+            - MYSQL_USER=${MYSQL_USER}
+            - MYSQL_PASS=${MYSQL_PASS}
+
+    # Serviço MySql
+    mysql:
+        image: mysql:5.7.20
+        container_name: desafio-picpay-mysql
+        volumes:
+            - "db_data:/var/lib/mysql"
+        ports:
+            - "${MYSQL_PORT}:3306"
+        environment:
+            - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+volumes:
+    db_data:

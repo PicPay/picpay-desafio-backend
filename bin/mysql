@@ -1,0 +1,2 @@
+#!/bin/bash
+docker exec -it desafio-picpay-mysql bash
