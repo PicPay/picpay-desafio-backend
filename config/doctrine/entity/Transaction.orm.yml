@@ -1,0 +1,36 @@
+App\Infrastructure\ORM\Entity\Transaction:
+  type: entity
+  table: transactions
+  repositoryClass: App\Infrastructure\ORM\Repository\TransactionRepository
+  indexes:
+    transactions_uuid_index:
+      columns: [ uuid ]
+  id:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: identity
+  fields:
+    uuid:
+      type: guid
+    balance:
+      type: integer
+    authentication:
+      type: string
+      length: 150
+    createdAt:
+      type: datetimetz
+  lifecycleCallbacks:
+    prePersist: [ forgeCreatedAt, forgeUuid ]
+  manyToOne:
+    payer:
+      targetEntity: App\Infrastructure\ORM\Entity\Account
+      joinColumn:
+        name: payer_id
+        referencedColumnName: id
+    payee:
+      targetEntity: App\Infrastructure\ORM\Entity\Account
+      joinColumn:
+        name: payee_id
+        referencedColumnName: id
