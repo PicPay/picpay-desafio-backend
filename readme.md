@@ -5,7 +5,8 @@ Abaixo você encontrará todos as informações necessárias para iniciar o seu 
 
 ## Avisos antes de começar
 
-- Primeiro crie uma branch a partir da `master` nesse padrão de nomenclatura: dd-mm-yy/nome-sobrenome (por exemplo, 30-04-20/meu-nome)
+- Faça um fork desse repositório para seu usuário
+- Crie uma branch a partir da `master` nesse padrão de nomenclatura: dd-mm-yy/nome-sobrenome (por exemplo, 30-04-20/meu-nome)
 - Você poderá consultar o Google, Stackoverflow ou algum projeto particular na sua máquina.
 - Fique à vontade para perguntar qualquer dúvida aos recrutadores.
 - Fique tranquilo, respire, assim como você, também já passamos por essa etapa. Boa sorte! :)
