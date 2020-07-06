@@ -2,18 +2,12 @@ App\Infrastructure\ORM\Entity\Account:
   type: entity
   table: accounts
   repositoryClass: App\Infrastructure\ORM\Repository\AccountRepository
-  indexes:
-    accounts_uuid_index:
-      columns: [ uuid ]
   id:
-    id:
-      type: integer
-      id: true
-      generator:
-        strategy: identity
-  fields:
     uuid:
       type: guid
+      generator:
+        strategy: none
+  fields:
     firstName:
       type: string
       length: 255

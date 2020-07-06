@@ -2,18 +2,12 @@ App\Infrastructure\ORM\Entity\Operation:
   type: entity
   table: operations
   repositoryClass: App\Infrastructure\ORM\Repository\OperationRepository
-  indexes:
-    operations_uuid_index:
-      columns: [ uuid ]
   id:
-    id:
-      type: integer
-      id: true
-      generator:
-        strategy: identity
-  fields:
     uuid:
       type: guid
+      generator:
+        strategy: none
+  fields:
     type:
       type: string
     createdAt:
@@ -24,10 +18,10 @@ App\Infrastructure\ORM\Entity\Operation:
     account:
       targetEntity: App\Infrastructure\ORM\Entity\Account
       joinColumn:
-        name: account_id
-        referencedColumnName: id
+        name: account_uuid
+        referencedColumnName: uuid
     transaction:
       targetEntity: App\Infrastructure\ORM\Entity\Transaction
       joinColumn:
-        name: transaction_id
-        referencedColumnName: id
+        name: transaction_uuid
+        referencedColumnName: uuid
