@@ -14,7 +14,7 @@ App\Infrastructure\ORM\Entity\Transaction:
   fields:
     uuid:
       type: guid
-    balance:
+    amount:
       type: integer
     authentication:
       type: string

@@ -7,3 +7,8 @@ api_v1_user_accounts_list:
     path: /api/v1/user-accounts
     controller: App\Infrastructure\Controller\Api\V1\UserAccountController::handleList
     methods: [GET]
+
+api_v1_transaction:
+    path: /api/v1/transactions
+    controller: App\Infrastructure\Controller\Api\V1\TransactionController::handleTransaction
+    methods: [POST]

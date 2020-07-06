@@ -12,19 +12,19 @@ class Transaction
     use IdentifierTrait;
     use DateTimeCreatedTrait;
 
-    private int $balance;
+    private int $amount;
     private string $authentication;
     private Account $payer;
     private Account $payee;
 
-    public function getBalance(): int
+    public function getAmount(): int
     {
-        return $this->balance;
+        return $this->amount;
     }
 
-    public function setBalance(int $balance): void
+    public function setAmount(int $amount): void
     {
-        $this->balance = $balance;
+        $this->amount = $amount;
     }
 
     public function getAuthentication(): string

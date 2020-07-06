@@ -45,3 +45,12 @@ services:
 
     App\Infrastructure\ORM\Repository\AccountRepository:
         autowire: true
+        public: true
+
+    App\Infrastructure\ORM\Repository\OperationRepository:
+        autowire: true
+        public: true
+
+    App\Infrastructure\ORM\Repository\TransactionRepository:
+        autowire: true
+        public: true

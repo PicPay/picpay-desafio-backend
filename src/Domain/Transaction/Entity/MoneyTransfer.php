@@ -6,7 +6,7 @@ namespace App\Domain\Transaction\Entity;
 
 use App\Domain\Shared\ValueObject\Amount;
 
-class MoneyTransfer
+final class MoneyTransfer
 {
     private AccountPayer $accountPayer;
     private AccountPayee $accountPayee;
