@@ -2,18 +2,12 @@ App\Infrastructure\ORM\Entity\Transaction:
   type: entity
   table: transactions
   repositoryClass: App\Infrastructure\ORM\Repository\TransactionRepository
-  indexes:
-    transactions_uuid_index:
-      columns: [ uuid ]
   id:
-    id:
-      type: integer
-      id: true
-      generator:
-        strategy: identity
-  fields:
     uuid:
       type: guid
+      generator:
+        strategy: none
+  fields:
     amount:
       type: integer
     authentication:
@@ -27,10 +21,10 @@ App\Infrastructure\ORM\Entity\Transaction:
     payer:
       targetEntity: App\Infrastructure\ORM\Entity\Account
       joinColumn:
-        name: payer_id
-        referencedColumnName: id
+        name: payer_uuid
+        referencedColumnName: uuid
     payee:
       targetEntity: App\Infrastructure\ORM\Entity\Account
       joinColumn:
-        name: payee_id
-        referencedColumnName: id
+        name: payee_uuid
+        referencedColumnName: uuid

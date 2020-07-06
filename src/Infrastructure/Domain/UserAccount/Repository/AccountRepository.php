@@ -8,20 +8,27 @@ use App\Domain\Shared\ValueObject\DocumentInterface;
 use App\Domain\Shared\ValueObject\Uuid\V4 as UuidV4;
 use App\Domain\UserAccount\Entity\Account;
 use App\Domain\UserAccount\Entity\AccountCollection;
+use App\Domain\UserAccount\Entity\TransactionOperationCollection;
 use App\Domain\UserAccount\Repository\AccountRepositoryInterface;
 use App\Infrastructure\Domain\UserAccount\Factory\AccountCollectionFactory;
 use App\Infrastructure\Domain\UserAccount\Factory\AccountFactory;
+use App\Infrastructure\Domain\UserAccount\Factory\TransactionOperationCollectionFactory;
 use App\Infrastructure\ORM\Builder\AccountBuilder;
 use App\Infrastructure\ORM\Entity\Account as AccountORM;
 use App\Infrastructure\ORM\Repository\AccountRepository as AccountRepositoryORM;
+use App\Infrastructure\ORM\Repository\OperationRepository as OperationRepositoryORM;
 
 class AccountRepository implements AccountRepositoryInterface
 {
     private AccountRepositoryORM $accountRepositoryORM;
+    private OperationRepositoryORM $operationRepositoryORM;
 
-    public function __construct(AccountRepositoryORM $accountRepositoryORM)
-    {
+    public function __construct(
+        AccountRepositoryORM $accountRepositoryORM,
+        OperationRepositoryORM $operationRepositoryORM
+    ) {
         $this->accountRepositoryORM = $accountRepositoryORM;
+        $this->operationRepositoryORM = $operationRepositoryORM;
     }
 
     public function hasByDocument(DocumentInterface $document): bool
@@ -82,5 +89,19 @@ class AccountRepository implements AccountRepositoryInterface
         ;
 
         return AccountCollectionFactory::createFromORM($accountsORM);
+    }
+
+    public function listTransactionOperations(Account $account): TransactionOperationCollection
+    {
+        $data = $this
+            ->operationRepositoryORM
+            ->getOperationsByAccount(
+                $account
+                    ->getUuid()
+                    ->getValue()
+            )
+        ;
+
+        return TransactionOperationCollectionFactory::createFromORM($data);
     }
 }

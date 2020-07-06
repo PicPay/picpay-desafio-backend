@@ -24,25 +24,22 @@ class OperationRepository extends ServiceEntityRepository
         return $operation;
     }
 
-    public function testBla(string $accountUuid): array
+    public function getOperationsByAccount(string $accountUuid): array
     {
         $queryBuilder = $this->createQueryBuilder('o');
 
         $queryBuilder
-            ->select([
-                'o.type AS operation_type',
-                't.authentication as transaction_authentication',
-                't.amount as transaction_amount',
-                't.createdAt as transaction_created_at',
-                'pa.uuid as payer_uuid',
-            ])
             ->join('o.transaction', 't')
             ->join('t.payer', 'pa')
             ->join('t.payee', 'pe')
             ->where('o.account = :uuid')
-            ->setParameter('uuid', 1)
+            ->orderBy('t.createdAt', 'desc')
+            ->setParameter('uuid', $accountUuid)
         ;
 
-        return $queryBuilder->getQuery()->execute();
+        return $queryBuilder
+            ->getQuery()
+            ->execute()
+        ;
     }
 }

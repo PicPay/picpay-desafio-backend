@@ -36,6 +36,11 @@ services:
         arguments:
             $listService: '@App\Domain\UserAccount\Service\ListService'
 
+    App\Application\Command\UserAccount\TransactionOperationListCommand:
+        public: true
+        arguments:
+            $transactionOperationListService: '@App\Domain\UserAccount\Service\TransactionOperationListService'
+
     App\Domain\UserAccount\Service\CreateService:
         arguments:
             $accountRepository: '@App\Infrastructure\Domain\UserAccount\Repository\AccountRepository'
@@ -48,9 +53,14 @@ services:
         arguments:
             $accountRepository: '@App\Infrastructure\Domain\UserAccount\Repository\AccountRepository'
 
+    App\Domain\UserAccount\Service\TransactionOperationListService:
+        arguments:
+            $accountRepository: '@App\Infrastructure\Domain\UserAccount\Repository\AccountRepository'
+
     App\Infrastructure\Domain\UserAccount\Repository\AccountRepository:
         arguments:
             $accountRepositoryORM: '@App\Infrastructure\ORM\Repository\AccountRepository'
+            $operationRepositoryORM: '@App\Infrastructure\ORM\Repository\OperationRepository'
 
     App\Infrastructure\ORM\Repository\AccountRepository:
         autowire: true

@@ -6,7 +6,7 @@ namespace App\Domain\UserAccount\Entity;
 
 use function in_array;
 
-class AccountCollection
+final class AccountCollection
 {
     private array $accounts;
 
