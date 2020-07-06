@@ -26,12 +26,21 @@ services:
         arguments:
             $createService: '@App\Domain\UserAccount\Service\CreateService'
 
+    App\Application\Command\UserAccount\GetCommand:
+        public: true
+        arguments:
+            $getService: '@App\Domain\UserAccount\Service\GetService'
+
     App\Application\Command\UserAccount\ListCommand:
         public: true
         arguments:
             $listService: '@App\Domain\UserAccount\Service\ListService'
 
     App\Domain\UserAccount\Service\CreateService:
+        arguments:
+            $accountRepository: '@App\Infrastructure\Domain\UserAccount\Repository\AccountRepository'
+
+    App\Domain\UserAccount\Service\GetService:
         arguments:
             $accountRepository: '@App\Infrastructure\Domain\UserAccount\Repository\AccountRepository'
 

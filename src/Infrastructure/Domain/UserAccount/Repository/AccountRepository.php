@@ -10,6 +10,7 @@ use App\Domain\UserAccount\Entity\Account;
 use App\Domain\UserAccount\Entity\AccountCollection;
 use App\Domain\UserAccount\Repository\AccountRepositoryInterface;
 use App\Infrastructure\Domain\UserAccount\Factory\AccountCollectionFactory;
+use App\Infrastructure\Domain\UserAccount\Factory\AccountFactory;
 use App\Infrastructure\ORM\Builder\AccountBuilder;
 use App\Infrastructure\ORM\Entity\Account as AccountORM;
 use App\Infrastructure\ORM\Repository\AccountRepository as AccountRepositoryORM;
@@ -31,6 +32,20 @@ class AccountRepository implements AccountRepositoryInterface
         ;
 
         return $accountORMFound instanceof AccountORM;
+    }
+
+    public function get(string $accountUuid): ?Account
+    {
+        $accountORM = $this
+            ->accountRepositoryORM
+            ->find($accountUuid)
+        ;
+
+        if (!$accountORM instanceof AccountORM) {
+            return null;
+        }
+
+        return AccountFactory::createFromORM($accountORM);
     }
 
     public function create(Account $account): Account

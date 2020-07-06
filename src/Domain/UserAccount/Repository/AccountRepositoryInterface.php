@@ -12,6 +12,8 @@ interface AccountRepositoryInterface
 {
     public function hasByDocument(DocumentInterface $document): bool;
 
+    public function get(string $accountUuid): ?Account;
+
     public function create(Account $account): Account;
 
     public function list(): AccountCollection;

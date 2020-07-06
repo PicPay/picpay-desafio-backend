@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace App\Infrastructure\Controller\Api\V1;
 
 use App\Application\Command\UserAccount\CreateCommand;
+use App\Application\Command\UserAccount\GetCommand;
 use App\Application\Command\UserAccount\ListCommand;
 use App\Domain\UserAccount\Exception\Service\CreateService\AccountFoundException;
+use App\Domain\UserAccount\Exception\Service\GetService\AccountNotFoundException;
 use App\Infrastructure\Controller\Api\ApiController;
 use App\Infrastructure\Domain\UserAccount\DTO\AccountDTO;
 use App\Infrastructure\DTO\Collection;
@@ -56,6 +58,21 @@ class UserAccountController extends ApiController
             }
 
             return $this->responseOk($dtoCollection->toArray());
+        } catch (Throwable $e) {
+            return $this->responseInternalServerError([$e->getMessage()]);
+        }
+    }
+
+    public function handleGet(string $uuid): JsonResponse
+    {
+        try {
+            $getCommand = $this->get(GetCommand::class);
+            $account = $getCommand->execute($uuid);
+            $accountDTO = new AccountDTO($account);
+
+            return $this->responseOk($accountDTO->toArray());
+        } catch (AccountNotFoundException $e) {
+            return $this->responseNotFound([$e->getMessage()]);
         } catch (Throwable $e) {
             return $this->responseInternalServerError([$e->getMessage()]);
         }
