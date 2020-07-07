@@ -18,6 +18,15 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        'App\Events\PersonType\PersonTypeSave' => [
+            'App\Listeners\PersonType\SendPersonTypeSaveNotification',
+        ],
+        'App\Events\DocumentType\DocumentTypeSave' => [
+            'App\Listeners\DocumentType\SendDocumentTypeSaveNotification',
+        ],
+        'App\Events\Person\PersonSave' => [
+            'App\Listeners\Person\SendPersonSaveNotification',
+        ],
     ];
 
     /**

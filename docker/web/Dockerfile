@@ -277,6 +277,16 @@ RUN docker-php-ext-install pdo_mysql
 # Sockets
 RUN docker-php-ext-install sockets
 
+# Mcrypt
+# RUN docker-php-ext-install libmcrypt-dev
+#RUN apt-get install -y libmcrypt-dev
+
+# Gmp
+#RUN docker-php-ext-install gmp
+
+# pcntl
+RUN docker-php-ext-install pcntl
+
 # GIT
 RUN apt update
 RUN apt-get -y install git

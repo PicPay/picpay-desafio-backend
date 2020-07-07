@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\PersonType\PersonTypeSave;
 use App\Http\Requests\PersonType\StorePersonType;
 use App\Http\Requests\PersonType\UpdatePersonType;
-use App\Jobs\PersonTypeJob;
 use App\Repositories\PersonTypeRepository;
 use Exception;
 use Illuminate\Http\Response;
@@ -58,7 +58,7 @@ class PersonTypeController extends Controller
     {
         try {
             $personType = $this->personTypeRepository->create($request->all());
-            // PersonTypeJob::dispatch($personType->toArray())->onConnection('rabbitmq');
+            event(new PersonTypeSave($personType->toJson()));
             return response()->json($personType, Response::HTTP_CREATED);
         } catch(\Exception $e) {
             return response()->json([
@@ -84,6 +84,7 @@ class PersonTypeController extends Controller
                 throw new Exception(self::COUNDT_SAVE_RECORD);
             }
 
+            event(new PersonTypeSave($personType->toJson()));
             $personType = $this->personTypeRepository->getById($id);
             return response()->json($personType, Response::HTTP_OK);
         } catch(\Exception $e) {

@@ -13,8 +13,5 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/transfer', 'TransferController@index')->name('transfer_index');
 Route::get('transfer/{id}', 'TransferController@show')->name('transfer_show');
 Route::post('transfer', 'TransferController@store')->name('transfer_store');
-Route::put('transfer/{id}', 'TransferController@update')->name('transfer_update');
-Route::delete('transfer/{id}', 'TransferController@delete')->name('transfer_delete');

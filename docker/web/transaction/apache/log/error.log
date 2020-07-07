@@ -30,3 +30,29 @@ AH00558: apache2: Could not reliably determine the server's fully qualified doma
 AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 192.168.144.3. Set the 'ServerName' directive globally to suppress this message
 [Tue Jul 07 04:10:02.489173 2020] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.38 (Debian) PHP/7.4.7 configured -- resuming normal operations
 [Tue Jul 07 04:10:02.502096 2020] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[Tue Jul 07 05:51:35.040964 2020] [mpm_prefork:notice] [pid 1] AH00170: caught SIGWINCH, shutting down gracefully
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.20.0.2. Set the 'ServerName' directive globally to suppress this message
+PHP Warning:  PHP Startup: Unable to load dynamic library 'mcrypt' (tried: /usr/local/lib/php/extensions/no-debug-non-zts-20190902/mcrypt (/usr/local/lib/php/extensions/no-debug-non-zts-20190902/mcrypt: cannot open shared object file: No such file or directory), /usr/local/lib/php/extensions/no-debug-non-zts-20190902/mcrypt.so (/usr/local/lib/php/extensions/no-debug-non-zts-20190902/mcrypt.so: cannot open shared object file: No such file or directory)) in Unknown on line 0
+PHP Warning:  PHP Startup: Unable to load dynamic library 'gmp' (tried: /usr/local/lib/php/extensions/no-debug-non-zts-20190902/gmp (/usr/local/lib/php/extensions/no-debug-non-zts-20190902/gmp: cannot open shared object file: No such file or directory), /usr/local/lib/php/extensions/no-debug-non-zts-20190902/gmp.so (/usr/local/lib/php/extensions/no-debug-non-zts-20190902/gmp.so: cannot open shared object file: No such file or directory)) in Unknown on line 0
+[Tue Jul 07 07:20:53.335286 2020] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.38 (Debian) PHP/7.4.7 configured -- resuming normal operations
+[Tue Jul 07 07:20:53.336677 2020] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[Tue Jul 07 09:06:48.477279 2020] [mpm_prefork:notice] [pid 1] AH00170: caught SIGWINCH, shutting down gracefully
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.23.0.3. Set the 'ServerName' directive globally to suppress this message
+[Tue Jul 07 09:09:15.961647 2020] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.38 (Debian) PHP/7.4.7 configured -- resuming normal operations
+[Tue Jul 07 09:09:15.963355 2020] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[Tue Jul 07 09:14:43.417665 2020] [mpm_prefork:notice] [pid 1] AH00170: caught SIGWINCH, shutting down gracefully
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.19.0.2. Set the 'ServerName' directive globally to suppress this message
+[Tue Jul 07 13:16:07.633566 2020] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.38 (Debian) PHP/7.4.7 configured -- resuming normal operations
+[Tue Jul 07 13:16:07.635884 2020] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[Tue Jul 07 13:17:45.955420 2020] [mpm_prefork:notice] [pid 1] AH00170: caught SIGWINCH, shutting down gracefully
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.24.0.4. Set the 'ServerName' directive globally to suppress this message
+[Tue Jul 07 13:26:26.540140 2020] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.38 (Debian) PHP/7.4.7 configured -- resuming normal operations
+[Tue Jul 07 13:26:26.541291 2020] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[Tue Jul 07 13:38:57.622964 2020] [mpm_prefork:notice] [pid 1] AH00169: caught SIGTERM, shutting down
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.24.0.4. Set the 'ServerName' directive globally to suppress this message
+[Tue Jul 07 13:39:09.093979 2020] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.38 (Debian) PHP/7.4.7 configured -- resuming normal operations
+[Tue Jul 07 13:39:09.095057 2020] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[Tue Jul 07 18:04:43.399889 2020] [mpm_prefork:notice] [pid 1] AH00169: caught SIGTERM, shutting down
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.26.0.3. Set the 'ServerName' directive globally to suppress this message
+[Tue Jul 07 18:05:13.906558 2020] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.38 (Debian) PHP/7.4.7 configured -- resuming normal operations
+[Tue Jul 07 18:05:13.942420 2020] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'

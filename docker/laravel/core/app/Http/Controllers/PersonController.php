@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\Person\PersonSave;
 use App\Http\Requests\Person\StorePerson;
 use App\Http\Requests\Person\UpdatePerson;
 use App\Repositories\PersonRepository;
@@ -57,6 +58,7 @@ class PersonController extends Controller
     {
         try {
             $person = $this->personRepository->create($request->all());
+            event(new PersonSave($person->toJson()));
             return response()->json($person, Response::HTTP_CREATED);
         } catch(\Exception $e) {
             return response()->json([
@@ -82,6 +84,7 @@ class PersonController extends Controller
                 throw new Exception(self::COUNDT_SAVE_RECORD);
             }
 
+            event(new PersonSave($person->toJson()));
             $person = $this->personRepository->getById($id);
             return response()->json($person, Response::HTTP_OK);
         } catch(\Exception $e) {

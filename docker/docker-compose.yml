@@ -7,6 +7,7 @@ services:
       dockerfile: ${DOCKERFILE}
     networks:
       - backend_core
+      - backend_rabbitmq
     ports:
       - "${WEB_CORE_HOST_HTTP_PORT}:${WEB_CONTAINER_HTTP_PORT}"
     volumes:
@@ -21,6 +22,7 @@ services:
       dockerfile: ${DOCKERFILE}
     networks:
       - backend_wallet
+      - backend_rabbitmq
     ports:
       - "${WEB_WALLET_HOST_HTTP_PORT}:${WEB_CONTAINER_HTTP_PORT}"
     volumes:
@@ -35,6 +37,7 @@ services:
       dockerfile: ${DOCKERFILE}
     networks:
       - backend_transaction
+      - backend_rabbitmq
     ports:
       - "${WEB_TRANSACTION_HOST_HTTP_PORT}:${WEB_CONTAINER_HTTP_PORT}"
     volumes:
@@ -102,6 +105,8 @@ services:
     ports:
       - ${RABBITMQ_HOST_HTTP_PORT}:${RABBITMQ_CONTAINER_HTTP_PORT}
       - ${RABBITMQ_MANAGEMENT_HOST_HTTP_PORT}:${RABBITMQ_MANAGEMENT_CONTAINER_HTTP_PORT}
+    networks:
+      - backend_rabbitmq
     environment:
       - RABBITMQ_DEFAULT_USER=${RABBITMQ_DEFAULT_USER}
       - RABBITMQ_DEFAULT_PASS=${RABBITMQ_DEFAULT_PASS}
@@ -112,3 +117,4 @@ networks:
   backend_core:
   backend_wallet:
   backend_transaction:
+  backend_rabbitmq:

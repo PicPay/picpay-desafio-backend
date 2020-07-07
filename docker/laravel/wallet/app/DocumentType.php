@@ -9,12 +9,12 @@ class DocumentType extends Model
 {
     protected $table = 'document_type';
     protected $fillable = [
+        'id',
         'name',
         'description',
     ];
 
     protected $guarded = [
-        'id',
         'created_at',
         'update_at'
     ];

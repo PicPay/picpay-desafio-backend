@@ -23,7 +23,7 @@ abstract class EloquentRepository implements EloquentRepositoryInterface {
 
     public function getById($id)
     {
-        return $this->model->findOrFail($id);
+        return $this->model->find($id);
     }
 
     public function create(array $data)

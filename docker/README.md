@@ -33,7 +33,11 @@ http://wallet.local
 
 [IP_DO_CONTAINER] wallet.local
 Ou
-acessar no navegador = http://localhost:8081
+acessar no navegador = http://localhost:81
+
+[IP_DO_CONTAINER] transaction.local
+Ou
+acessar no navegador = http://localhost:82
 
 # Informações de um container (Descobrir IP)
 docker inspect [NOME_DO_CONTAINER]
@@ -41,8 +45,7 @@ docker inspect [NOME_DO_CONTAINER]
 docker inspect web_wallet
 
 # Ativar Plugin RabbitMQ Management
-acessar container: winpty docker exec -it rabbitmq_core bash
-acessar container: winpty docker exec -it rabbitmq_wallet bash
+acessar container: winpty docker exec -it rabbitmq bash
 
 rodar comando: rabbitmq-plugins enable rabbitmq_management
 
@@ -50,7 +53,6 @@ obs: winpty é usado somente no windows.
 
 # Acessar RabbitMQ Management
 http://localhost:15672
-http://localhost:15673
 
 usuário = guest
 
@@ -61,39 +63,3 @@ a2enmod rewrite
 service apache2 restart
 docker start web_core
 docker start web_wallet
-
-# Instalar Git
-apt update
-
-apt-get install git
-
-git --version
-
-# Install Composer
-curl -sS https://getcomposer.org/installer | php
-
-mv composer.phar /usr/local/bin/composer
-
-chmod +x /usr/local/bin/composer
-
-composer
-
-# Instalar Mysql no PHP
-apt-get install php-mysql
-
-
-
-
-
-# instalar amqp
-# https://github.com/php-amqplib/php-amqplib/issues/521
-apt-get update
-apt-get install -y librabbitmq-dev
-apt-get install -y libssh-dev
-pecl install amqp
-
-composer require php-amqplib/php-amqplib
-composer require vladimir-yuldashev/laravel-queue-rabbitmq
-
-# instalar socker
-apt-get install -y socket

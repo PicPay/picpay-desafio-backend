@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\DocumentType\DocumentTypeSave;
 use App\Http\Requests\DocumentType\StoreDocumentType;
 use App\Http\Requests\DocumentType\UpdateDocumentType;
 use App\Repositories\DocumentTypeRepository;
@@ -57,6 +58,7 @@ class DocumentTypeController extends Controller
     {
         try {
             $documentType = $this->documentTypeRepository->create($request->all());
+            event(new DocumentTypeSave($documentType->toJson()));
             return response()->json($documentType, Response::HTTP_CREATED);
         } catch(\Exception $e) {
             return response()->json([
@@ -82,6 +84,7 @@ class DocumentTypeController extends Controller
                 throw new Exception(self::COUNDT_SAVE_RECORD);
             }
 
+            event(new DocumentTypeSave($documentType->toJson()));
             $documentType = $this->documentTypeRepository->getById($id);
             return response()->json($documentType, Response::HTTP_OK);
         } catch(\Exception $e) {
