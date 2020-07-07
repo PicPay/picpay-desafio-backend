@@ -9,6 +9,7 @@
         "eightpoints/guzzle-bundle": "^8.1",
         "fzaninotto/faker": "^1.9",
         "guzzlehttp/guzzle": "^6.0",
+        "predis/predis": "^1.1",
         "ramsey/uuid": "^4.0",
         "redrat/api-helper-bundle": "^0.2.0",
         "redrat/entity-datetime": "^0.2.0",
