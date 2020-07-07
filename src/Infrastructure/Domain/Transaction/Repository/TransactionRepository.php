@@ -13,17 +13,17 @@ use App\Infrastructure\Domain\Transaction\Factory\Transaction\TransactionCollect
 use App\Infrastructure\Domain\Transaction\Factory\Transaction\TransactionFactory;
 use App\Infrastructure\ORM\Builder\TransactionBuilder;
 use App\Infrastructure\ORM\Entity\Account as AccountORM;
-use App\Infrastructure\ORM\Repository\AccountRepository as AccountRepositoryORM;
-use App\Infrastructure\ORM\Repository\TransactionRepository as TransactionRepositoryORM;
+use App\Infrastructure\ORM\Repository\AccountRepositoryInterface as AccountRepositoryORMInterface;
+use App\Infrastructure\ORM\Repository\TransactionRepositoryInterface as TransactionRepositoryORMInterface;
 
 class TransactionRepository implements TransactionRepositoryInterface
 {
-    private AccountRepositoryORM $accountRepositoryORM;
-    private TransactionRepositoryORM $transactionRepositoryORM;
+    private AccountRepositoryORMInterface $accountRepositoryORM;
+    private TransactionRepositoryORMInterface $transactionRepositoryORM;
 
     public function __construct(
-        AccountRepositoryORM $accountRepositoryORM,
-        TransactionRepositoryORM $transactionRepositoryORM
+        AccountRepositoryORMInterface $accountRepositoryORM,
+        TransactionRepositoryORMInterface $transactionRepositoryORM
     ) {
         $this->accountRepositoryORM = $accountRepositoryORM;
         $this->transactionRepositoryORM = $transactionRepositoryORM;
@@ -33,7 +33,7 @@ class TransactionRepository implements TransactionRepositoryInterface
     {
         $transactionsORM = $this
             ->transactionRepositoryORM
-            ->findBy([], ['createdAt' => 'desc'])
+            ->getList()
         ;
 
         return TransactionCollectionFactory::createFromORM($transactionsORM);
@@ -70,7 +70,7 @@ class TransactionRepository implements TransactionRepositoryInterface
     {
         return $this
             ->accountRepositoryORM
-            ->find(
+            ->get(
                 $account
                     ->getUuid()
                     ->getValue()

@@ -8,7 +8,7 @@ use App\Infrastructure\ORM\Entity\Account;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
-class AccountRepository extends ServiceEntityRepository
+class AccountRepository extends ServiceEntityRepository implements AccountRepositoryInterface
 {
     public function __construct(ManagerRegistry $registry)
     {
@@ -31,5 +31,10 @@ class AccountRepository extends ServiceEntityRepository
         $entityManager->flush($account);
 
         return $account;
+    }
+
+    public function get(string $uuid): ?Account
+    {
+        return $this->find($uuid);
     }
 }

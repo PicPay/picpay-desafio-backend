@@ -10,7 +10,7 @@ use Predis\Client;
 use function is_null;
 use function sprintf;
 
-class TransactionCache
+class TransactionCache implements TransactionCacheInterface
 {
     private Client $client;
     private int $balanceRollbackExpiration;

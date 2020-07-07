@@ -8,7 +8,7 @@ use App\Infrastructure\ORM\Entity\Operation;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
-class OperationRepository extends ServiceEntityRepository
+class OperationRepository extends ServiceEntityRepository implements OperationRepositoryInterface
 {
     public function __construct(ManagerRegistry $registry)
     {

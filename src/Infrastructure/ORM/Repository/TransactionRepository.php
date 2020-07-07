@@ -8,7 +8,7 @@ use App\Infrastructure\ORM\Entity\Transaction;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
-class TransactionRepository extends ServiceEntityRepository
+class TransactionRepository extends ServiceEntityRepository implements TransactionRepositoryInterface
 {
     public function __construct(ManagerRegistry $registry)
     {
@@ -22,5 +22,15 @@ class TransactionRepository extends ServiceEntityRepository
         $entityManager->flush();
 
         return $transaction;
+    }
+
+    public function getList(): array
+    {
+        return $this->findBy([], ['createdAt' => 'desc']);
+    }
+
+    public function get(string $uuid): ?Transaction
+    {
+        return $this->find($uuid);
     }
 }

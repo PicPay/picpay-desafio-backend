@@ -14,26 +14,26 @@ use App\Domain\Transaction\Entity\Transfer\Operation\Type\OperationInterface as 
 use App\Domain\Transaction\Entity\Transfer\PayeeAccount;
 use App\Domain\Transaction\Entity\Transfer\PayerAccount;
 use App\Domain\Transaction\Repository\AccountRepositoryInterface;
-use App\Infrastructure\Domain\Transaction\Cache\TransactionCache;
+use App\Infrastructure\Domain\Transaction\Cache\TransactionCacheInterface;
 use App\Infrastructure\ORM\Builder\OperationBuilder;
 use App\Infrastructure\ORM\Entity\Account as AccountORM;
 use App\Infrastructure\ORM\Entity\Transaction as TransactionORM;
-use App\Infrastructure\ORM\Repository\AccountRepository as AccountRepositoryORM;
-use App\Infrastructure\ORM\Repository\OperationRepository as OperationRepositoryORM;
-use App\Infrastructure\ORM\Repository\TransactionRepository as TransactionRepositoryORM;
+use App\Infrastructure\ORM\Repository\AccountRepositoryInterface as AccountRepositoryORMInterface;
+use App\Infrastructure\ORM\Repository\OperationRepositoryInterface as OperationRepositoryORMInterface;
+use App\Infrastructure\ORM\Repository\TransactionRepositoryInterface as TransactionRepositoryORMInterface;
 
 class AccountRepository implements AccountRepositoryInterface
 {
-    private AccountRepositoryORM $accountRepositoryORM;
-    private OperationRepositoryORM $operationRepositoryORM;
-    private TransactionRepositoryORM $transactionRepositoryORM;
-    private TransactionCache $transactionCache;
+    private AccountRepositoryORMInterface $accountRepositoryORM;
+    private OperationRepositoryORMInterface $operationRepositoryORM;
+    private TransactionRepositoryORMInterface $transactionRepositoryORM;
+    private TransactionCacheInterface $transactionCache;
 
     public function __construct(
-        AccountRepositoryORM $accountRepositoryORM,
-        OperationRepositoryORM $operationRepositoryORM,
-        TransactionRepositoryORM $transactionRepositoryORM,
-        TransactionCache $transactionCache
+        AccountRepositoryORMInterface $accountRepositoryORM,
+        OperationRepositoryORMInterface $operationRepositoryORM,
+        TransactionRepositoryORMInterface $transactionRepositoryORM,
+        TransactionCacheInterface $transactionCache
     ) {
         $this->accountRepositoryORM = $accountRepositoryORM;
         $this->operationRepositoryORM = $operationRepositoryORM;
@@ -45,7 +45,7 @@ class AccountRepository implements AccountRepositoryInterface
     {
         $accountORM = $this
             ->accountRepositoryORM
-            ->find(
+            ->get(
                 $payerAccount
                     ->getUuid()
                     ->getValue()
@@ -71,7 +71,7 @@ class AccountRepository implements AccountRepositoryInterface
     {
         $accountORM = $this
             ->accountRepositoryORM
-            ->find(
+            ->get(
                 $payeeAccount
                     ->getUuid()
                     ->getValue()
@@ -180,7 +180,7 @@ class AccountRepository implements AccountRepositoryInterface
     {
         return $this
             ->accountRepositoryORM
-            ->find(
+            ->get(
                 $account
                     ->getUuid()
                     ->getValue()
@@ -192,7 +192,7 @@ class AccountRepository implements AccountRepositoryInterface
     {
         return $this
             ->transactionRepositoryORM
-            ->find(
+            ->get(
                 $transaction
                     ->getUuid()
                     ->getValue()
