@@ -62,7 +62,7 @@ A correção qualitativa será durante a entrevista e levará em conta os seguin
 
 ## O que será avaliado
 - Arquitetura
-- Domínio do Framework
+- Domínio do Framework Escolhido
 - Domínio da Linguagem
 - Modelagem de Dados
 - Legibilidade do Código
