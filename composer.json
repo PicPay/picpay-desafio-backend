@@ -5,6 +5,8 @@
         "php": ">=7.4",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "eightpoints/guzzle-bundle": "^8.1",
+        "guzzlehttp/guzzle": "^6.0",
         "ramsey/uuid": "^4.0",
         "redrat/api-helper-bundle": "^0.2.0",
         "redrat/entity-datetime": "^0.2.0",
