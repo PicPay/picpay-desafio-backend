@@ -31,4 +31,12 @@ final class PayerAccount extends AbstractAccount
     {
         $this->balance = $balance;
     }
+
+    public function isCommercialEstablishment(): bool
+    {
+        return $this
+            ->getDocument()
+            ->isTypeCnpj()
+        ;
+    }
 }

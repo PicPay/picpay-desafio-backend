@@ -7,6 +7,7 @@ namespace App\Domain\Transaction\Service\MoneyTransfer;
 use App\Domain\Transaction\Entity\Transfer\MoneyTransfer;
 use App\Domain\Transaction\Exception\Service\MoneyTransfer\TransactionValidatorService\AccountNotFoundException;
 use App\Domain\Transaction\Exception\Service\MoneyTransfer\TransactionValidatorService\InsufficientBalanceException;
+use App\Domain\Transaction\Exception\Service\MoneyTransfer\TransactionValidatorService\InvalidPayerAccountException;
 use App\Domain\Transaction\Repository\AccountRepositoryInterface;
 use App\Domain\Transaction\Service\MoneyTransfer\Validator\ExternalValidatorInterface;
 
@@ -57,6 +58,10 @@ class TransactionValidatorService implements TransactionValidatorServiceInterfac
 
         if (is_null($payerAccount)) {
             throw AccountNotFoundException::handle('payer', $moneyTransfer->getPayerAccount());
+        }
+
+        if ($payerAccount->isCommercialEstablishment()) {
+            throw InvalidPayerAccountException::handleNew($payerAccount);
         }
 
         $moneyTransferAmount = $moneyTransfer->getTransferAmount();
