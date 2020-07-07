@@ -92,6 +92,7 @@ services:
 
     App\Infrastructure\Domain\Transaction\Repository\TransactionRepository:
         arguments:
+            $accountRepositoryORM: '@App\Infrastructure\ORM\Repository\AccountRepository'
             $transactionRepositoryORM: '@App\Infrastructure\ORM\Repository\TransactionRepository'
 
     App\Infrastructure\Domain\UserAccount\Repository\AccountRepository:

@@ -48,8 +48,19 @@ final class TransferService extends AbstractService
     public function handleTransfer(MoneyTransfer $moneyTransfer): Transaction
     {
         $this->handleValidations($moneyTransfer);
+        $this->doTransfer($moneyTransfer);
 
         dd($moneyTransfer);
+    }
+
+    private function doTransfer(MoneyTransfer $moneyTransfer): Transaction
+    {
+        $transaction = $this
+            ->getTransactionRepository()
+            ->create($moneyTransfer)
+        ;
+
+        dd($transaction);
     }
 
     private function handleValidations(MoneyTransfer $moneyTransfer): void
