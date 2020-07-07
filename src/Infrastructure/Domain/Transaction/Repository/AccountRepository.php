@@ -14,6 +14,7 @@ use App\Domain\Transaction\Entity\Transfer\Operation\Type\OperationInterface as 
 use App\Domain\Transaction\Entity\Transfer\PayeeAccount;
 use App\Domain\Transaction\Entity\Transfer\PayerAccount;
 use App\Domain\Transaction\Repository\AccountRepositoryInterface;
+use App\Infrastructure\Domain\Transaction\Cache\TransactionCache;
 use App\Infrastructure\ORM\Builder\OperationBuilder;
 use App\Infrastructure\ORM\Entity\Account as AccountORM;
 use App\Infrastructure\ORM\Entity\Transaction as TransactionORM;
@@ -26,15 +27,18 @@ class AccountRepository implements AccountRepositoryInterface
     private AccountRepositoryORM $accountRepositoryORM;
     private OperationRepositoryORM $operationRepositoryORM;
     private TransactionRepositoryORM $transactionRepositoryORM;
+    private TransactionCache $transactionCache;
 
     public function __construct(
         AccountRepositoryORM $accountRepositoryORM,
         OperationRepositoryORM $operationRepositoryORM,
-        TransactionRepositoryORM $transactionRepositoryORM
+        TransactionRepositoryORM $transactionRepositoryORM,
+        TransactionCache $transactionCache
     ) {
         $this->accountRepositoryORM = $accountRepositoryORM;
         $this->operationRepositoryORM = $operationRepositoryORM;
         $this->transactionRepositoryORM = $transactionRepositoryORM;
+        $this->transactionCache = $transactionCache;
     }
 
     public function getPayerAccount(PayerAccount $payerAccount): ?PayerAccount
@@ -104,6 +108,12 @@ class AccountRepository implements AccountRepositoryInterface
         BalanceOperationInterface $operation
     ): void {
         $accountORM = $this->getAccountORM($account);
+
+        $this
+            ->transactionCache
+            ->registerBalance($accountORM)
+        ;
+
         $newBalance = $operation->getBalance(
             $transferAmount,
             new Amount($accountORM->getBalance())
@@ -114,6 +124,36 @@ class AccountRepository implements AccountRepositoryInterface
         $this
             ->accountRepositoryORM
             ->update($accountORM)
+        ;
+    }
+
+    public function rollbackBalance(
+        AbstractAccount $payerAccount,
+        AbstractAccount $payeeAccount
+    ): void {
+        $payerAccountORM = $this->getAccountORM($payerAccount);
+        $payerAccountORM->setBalance(
+            $this
+                ->transactionCache
+                ->getBalance($payerAccountORM)
+        );
+
+        $this
+            ->accountRepositoryORM
+            ->update($payerAccountORM)
+        ;
+
+
+        $payeeAccountORM = $this->getAccountORM($payeeAccount);
+        $payeeAccountORM->setBalance(
+            $this
+                ->transactionCache
+                ->getBalance($payeeAccountORM)
+        );
+
+        $this
+            ->accountRepositoryORM
+            ->update($payeeAccountORM)
         ;
     }
 

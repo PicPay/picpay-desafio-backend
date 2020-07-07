@@ -55,12 +55,30 @@ services:
         arguments:
             $transactionRepository: '@App\Infrastructure\Domain\Transaction\Repository\TransactionRepository'
 
-    App\Domain\Transaction\Service\MoneyTransfer\TransferService:
+    App\Domain\Transaction\Service\MoneyTransfer\AccountTransactionBalanceService:
         arguments:
             $accountRepository: '@App\Infrastructure\Domain\Transaction\Repository\AccountRepository'
+
+    App\Domain\Transaction\Service\MoneyTransfer\AccountTransactionOperationService:
+        arguments:
+            $accountRepository: '@App\Infrastructure\Domain\Transaction\Repository\AccountRepository'
+
+    App\Domain\Transaction\Service\MoneyTransfer\TransactionService:
+        arguments:
             $transactionRepository: '@App\Infrastructure\Domain\Transaction\Repository\TransactionRepository'
+
+    App\Domain\Transaction\Service\MoneyTransfer\TransactionValidatorService:
+        arguments:
+            $accountRepository: '@App\Infrastructure\Domain\Transaction\Repository\AccountRepository'
         calls:
             - [addExternalValidator, ['@App\Domain\Transaction\Service\MoneyTransfer\Validator\ExternalAuthorizerFooBarValidator']]
+
+    App\Domain\Transaction\Service\MoneyTransfer\TransferService:
+        arguments:
+            $accountTransactionBalanceServiceInterface: '@App\Domain\Transaction\Service\MoneyTransfer\AccountTransactionBalanceService'
+            $accountTransactionOperationService: '@App\Domain\Transaction\Service\MoneyTransfer\AccountTransactionOperationService'
+            $transactionService: '@App\Domain\Transaction\Service\MoneyTransfer\TransactionService'
+            $transactionValidatorService: '@App\Domain\Transaction\Service\MoneyTransfer\TransactionValidatorService'
 
     App\Domain\Transaction\Service\MoneyTransfer\Validator\ExternalAuthorizerFooBarValidator:
         arguments:
@@ -82,6 +100,11 @@ services:
         arguments:
             $accountRepository: '@App\Infrastructure\Domain\UserAccount\Repository\AccountRepository'
 
+    App\Infrastructure\Domain\Transaction\Cache\TransactionCache:
+        arguments:
+            $client: '@app.cache.client.redis'
+            $balanceRollbackExpiration: '%env(int:ACCOUNT_BALANCE_ROLLBACK_EXPIRATION_SECONDS)%'
+
     App\Infrastructure\Domain\Transaction\Component\Vendor\AuthorizerFooBar\ApiClient\ApiClient:
         arguments:
             $client: '@eight_points_guzzle.client.foobar'
@@ -91,6 +114,7 @@ services:
             $accountRepositoryORM: '@App\Infrastructure\ORM\Repository\AccountRepository'
             $operationRepositoryORM: '@App\Infrastructure\ORM\Repository\OperationRepository'
             $transactionRepositoryORM: '@App\Infrastructure\ORM\Repository\TransactionRepository'
+            $transactionCache: '@App\Infrastructure\Domain\Transaction\Cache\TransactionCache'
 
     App\Infrastructure\Domain\Transaction\Repository\TransactionRepository:
         arguments:
@@ -113,3 +137,13 @@ services:
     App\Infrastructure\ORM\Repository\TransactionRepository:
         autowire: true
         public: true
+
+    app.cache.client.redis:
+        class: Predis\Client
+        public: false
+        autowire: false
+        arguments:
+            $parameters: {
+                scheme: 'tcp',
+                host: '%env(resolve:CACHE_REDIS_HOST)%',
+                port: '%env(resolve:CACHE_REDIS_PORT)%'}

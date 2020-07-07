@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Domain\Transaction\Exception\Service\MoneyTransfer\TransferService;
+namespace App\Domain\Transaction\Exception\Service\MoneyTransfer\TransactionValidatorService;
 
 use App\Domain\Transaction\Entity\Transfer\AbstractAccount;
 use RuntimeException;

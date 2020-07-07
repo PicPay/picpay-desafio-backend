@@ -9,19 +9,19 @@ use App\Domain\Transaction\Entity\Transfer\Account\Balance\Sum;
 use App\Domain\Transaction\Entity\Transfer\MoneyTransfer;
 use App\Domain\Transaction\Repository\AccountRepositoryInterface;
 
-class AccountTransactionBalanceService
+class AccountTransactionBalanceService implements AccountTransactionBalanceServiceInterface
 {
-    private AccountRepositoryInterface $accountRepository;
+    use AccountRepositoryHelperTrait;
 
     public function __construct(AccountRepositoryInterface $accountRepository)
     {
-        $this->accountRepository = $accountRepository;
+        $this->setAccountRepository($accountRepository);
     }
 
     public function updateBalance(MoneyTransfer $moneyTransfer): void
     {
         $this
-            ->accountRepository
+            ->getAccountRepository()
             ->updateBalance(
                 $moneyTransfer->getPayerAccount(),
                 $moneyTransfer->getTransferAmount(),
@@ -30,11 +30,22 @@ class AccountTransactionBalanceService
         ;
 
         $this
-            ->accountRepository
+            ->getAccountRepository()
             ->updateBalance(
                 $moneyTransfer->getPayeeAccount(),
                 $moneyTransfer->getTransferAmount(),
                 new Sum()
+            )
+        ;
+    }
+
+    public function rollbackBalance(MoneyTransfer $moneyTransfer): void
+    {
+        $this
+            ->accountRepository
+            ->rollbackBalance(
+                $moneyTransfer->getPayerAccount(),
+                $moneyTransfer->getPayeeAccount()
             )
         ;
     }

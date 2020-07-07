@@ -6,8 +6,8 @@ namespace App\Infrastructure\Controller\Api\V1;
 
 use App\Application\Command\Transaction\MoneyTransfer\ListCommand;
 use App\Application\Command\Transaction\MoneyTransfer\TransferCommand;
-use App\Domain\Transaction\Exception\Service\MoneyTransfer\TransferService\AccountNotFoundException;
-use App\Domain\Transaction\Exception\Service\MoneyTransfer\TransferService\InsufficientBalanceException;
+use App\Domain\Transaction\Exception\Service\MoneyTransfer\TransactionValidatorService\AccountNotFoundException;
+use App\Domain\Transaction\Exception\Service\MoneyTransfer\TransactionValidatorService\InsufficientBalanceException;
 use App\Domain\Transaction\Exception\Service\MoneyTransfer\Validator\ExternalValidatorValidationException;
 use App\Infrastructure\Controller\Api\ApiController;
 use App\Infrastructure\Domain\Transaction\DTO\TransactionDTO;

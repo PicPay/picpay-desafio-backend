@@ -10,19 +10,19 @@ use App\Domain\Transaction\Entity\Transfer\Operation\Type\TransactionIn;
 use App\Domain\Transaction\Entity\Transfer\Operation\Type\TransactionOut;
 use App\Domain\Transaction\Repository\AccountRepositoryInterface;
 
-final class AccountTransactionOperationService
+final class AccountTransactionOperationService implements AccountTransactionOperationServiceInterface
 {
-    private AccountRepositoryInterface $accountRepository;
+    use AccountRepositoryHelperTrait;
 
     public function __construct(AccountRepositoryInterface $accountRepository)
     {
-        $this->accountRepository = $accountRepository;
+        $this->setAccountRepository($accountRepository);
     }
 
     public function createTransactionOperation(MoneyTransfer $moneyTransfer, Transaction $transaction): void
     {
         $this
-            ->accountRepository
+            ->getAccountRepository()
             ->createTransactionOperation(
                 $transaction,
                 $moneyTransfer->getPayerAccount(),
@@ -31,12 +31,16 @@ final class AccountTransactionOperationService
         ;
 
         $this
-            ->accountRepository
+            ->getAccountRepository()
             ->createTransactionOperation(
                 $transaction,
                 $moneyTransfer->getPayeeAccount(),
                 new TransactionIn()
             )
         ;
+    }
+
+    public function createTransactionRefundOperation(MoneyTransfer $moneyTransfer, Transaction $transaction): void
+    {
     }
 }

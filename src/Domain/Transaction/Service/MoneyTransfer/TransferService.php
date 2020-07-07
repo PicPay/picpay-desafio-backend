@@ -6,48 +6,37 @@ namespace App\Domain\Transaction\Service\MoneyTransfer;
 
 use App\Domain\Transaction\Entity\Transaction\Transaction;
 use App\Domain\Transaction\Entity\Transfer\MoneyTransfer;
-use App\Domain\Transaction\Exception\Service\MoneyTransfer\TransferService\AccountNotFoundException;
-use App\Domain\Transaction\Exception\Service\MoneyTransfer\TransferService\InsufficientBalanceException;
-use App\Domain\Transaction\Repository\AccountRepositoryInterface;
-use App\Domain\Transaction\Repository\TransactionRepositoryInterface;
-use App\Domain\Transaction\Service\MoneyTransfer\Validator\ExternalValidatorInterface;
+use Throwable;
 
 use function in_array;
 use function is_null;
 
-final class TransferService extends AbstractService
+final class TransferService
 {
-    private AccountRepositoryInterface $accountRepository;
-    /** @var ExternalValidatorInterface[]  */
-    private array $externalValidators;
+    private AccountTransactionBalanceServiceInterface $accountTransactionBalanceServiceInterface;
+    private AccountTransactionOperationServiceInterface $accountTransactionOperationService;
+    private TransactionServiceInterface $transactionService;
+    private TransactionValidatorServiceInterface $transactionValidatorService;
 
     public function __construct(
-        AccountRepositoryInterface $accountRepository,
-        TransactionRepositoryInterface $transactionRepository
+        AccountTransactionBalanceServiceInterface $accountTransactionBalanceServiceInterface,
+        AccountTransactionOperationServiceInterface $accountTransactionOperationService,
+        TransactionServiceInterface $transactionService,
+        TransactionValidatorServiceInterface $transactionValidatorService
     ) {
-        parent::__construct($transactionRepository);
-        $this->accountRepository = $accountRepository;
-        $this->externalValidators = [];
-    }
-
-    public function addExternalValidator(ExternalValidatorInterface $externalValidator): bool
-    {
-        if ($this->hasExternalValidator($externalValidator)) {
-            return false;
-        }
-
-        $this->externalValidators[] = $externalValidator;
-        return true;
-    }
-
-    public function hasExternalValidator(ExternalValidatorInterface $externalValidator): bool
-    {
-        return in_array($externalValidator, $this->externalValidators);
+        $this->accountTransactionBalanceServiceInterface = $accountTransactionBalanceServiceInterface;
+        $this->accountTransactionOperationService = $accountTransactionOperationService;
+        $this->transactionService = $transactionService;
+        $this->transactionValidatorService = $transactionValidatorService;
     }
 
     public function handleTransfer(MoneyTransfer $moneyTransfer): Transaction
     {
-        $this->handleValidations($moneyTransfer);
+        $this
+            ->transactionValidatorService
+            ->handleValidate($moneyTransfer)
+        ;
+
         return $this->doTransfer($moneyTransfer);
     }
 
@@ -62,62 +51,32 @@ final class TransferService extends AbstractService
 
     private function doTransferCreateTransaction(MoneyTransfer $moneyTransfer): Transaction
     {
-        $transactionService = new TransactionService($this->getTransactionRepository());
-        return $transactionService->createTransaction($moneyTransfer);
+        return $this
+            ->transactionService
+            ->createTransaction($moneyTransfer)
+        ;
     }
 
     private function doTransferCreateTransactionOperation(MoneyTransfer $moneyTransfer, Transaction $transaction): void
     {
-        $accountTransactionOperationService = new AccountTransactionOperationService($this->accountRepository);
-        $accountTransactionOperationService->createTransactionOperation($moneyTransfer, $transaction);
+        $this
+            ->accountTransactionOperationService
+            ->createTransactionOperation($moneyTransfer, $transaction)
+        ;
     }
 
     private function doTransferUpdateBalance(MoneyTransfer $moneyTransfer): void
     {
-        $accountTransactionBalanceService = new AccountTransactionBalanceService($this->accountRepository);
-        $accountTransactionBalanceService->updateBalance($moneyTransfer);
-    }
-
-    private function handleValidations(MoneyTransfer $moneyTransfer): void
-    {
-        $this->validatePayerAccount($moneyTransfer);
-        $this->validatePayeeAccount($moneyTransfer);
-        $this->handleExternalValidations($moneyTransfer);
-    }
-
-    private function handleExternalValidations(MoneyTransfer $moneyTransfer): void
-    {
-        foreach ($this->externalValidators as $externalValidator) {
-            $externalValidator->handleValidation($moneyTransfer);
-        }
-    }
-
-    private function validatePayerAccount(MoneyTransfer $moneyTransfer): void
-    {
-        $payerAccount = $this
-            ->accountRepository
-            ->getPayerAccount($moneyTransfer->getPayerAccount())
-        ;
-
-        if (is_null($payerAccount)) {
-            throw AccountNotFoundException::handle('payer', $moneyTransfer->getPayerAccount());
-        }
-
-        $moneyTransferAmount = $moneyTransfer->getTransferAmount();
-        $payerAccountBalance = $payerAccount->getBalance();
-
-        if ($moneyTransferAmount->getValue() > $payerAccountBalance->getValue()) {
-            throw InsufficientBalanceException::handle($payerAccountBalance, $moneyTransferAmount);
-        }
-    }
-
-    private function validatePayeeAccount(MoneyTransfer $moneyTransfer): void
-    {
-        if (!$this
-            ->accountRepository
-            ->hasPayeeAccount($moneyTransfer->getPayeeAccount())
-        ) {
-            throw AccountNotFoundException::handle('payee', $moneyTransfer->getPayeeAccount());
+        try {
+            $this
+                ->accountTransactionBalanceServiceInterface
+                ->updateBalance($moneyTransfer)
+            ;
+        } catch (Throwable $e) {
+            $this
+                ->accountTransactionBalanceServiceInterface
+                ->rollbackBalance($moneyTransfer)
+            ;
         }
     }
 }

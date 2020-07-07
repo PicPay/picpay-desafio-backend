@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Domain\Transaction\Repository;
 
-use App\Domain\Shared\ValueObject\AmountInterface;
 use App\Domain\Shared\ValueObject\TransactionAmountInterface;
 use App\Domain\Transaction\Entity\Transaction\Transaction;
 use App\Domain\Transaction\Entity\Transfer\AbstractAccount;
@@ -29,5 +28,10 @@ interface AccountRepositoryInterface
         AbstractAccount $account,
         TransactionAmountInterface $transferAmount,
         BalanceOperationInterface $operation
+    ): void;
+
+    public function rollbackBalance(
+        AbstractAccount $payerAccount,
+        AbstractAccount $payeeAccount
     ): void;
 }
