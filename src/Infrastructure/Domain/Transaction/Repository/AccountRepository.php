@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Infrastructure\Domain\Transaction\Repository;
 
 use App\Domain\Shared\ValueObject\Amount;
+use App\Domain\Shared\ValueObject\Document;
 use App\Domain\Transaction\Entity\Transfer\PayeeAccount;
 use App\Domain\Transaction\Entity\Transfer\PayerAccount;
 use App\Domain\Transaction\Repository\AccountRepositoryInterface;
@@ -34,6 +35,10 @@ class AccountRepository implements AccountRepositoryInterface
         if (!$accountORM instanceof AccountORM) {
             return null;
         }
+
+        $payerAccount->setDocument(
+            new Document($accountORM->getDocumentNumber())
+        );
 
         $payerAccount->setBalance(
             new Amount($accountORM->getBalance())

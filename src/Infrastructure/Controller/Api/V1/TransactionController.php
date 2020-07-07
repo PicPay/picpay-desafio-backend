@@ -8,6 +8,7 @@ use App\Application\Command\Transaction\MoneyTransfer\ListCommand;
 use App\Application\Command\Transaction\MoneyTransfer\TransferCommand;
 use App\Domain\Transaction\Exception\Service\MoneyTransfer\TransferService\AccountNotFoundException;
 use App\Domain\Transaction\Exception\Service\MoneyTransfer\TransferService\InsufficientBalanceException;
+use App\Domain\Transaction\Exception\Service\MoneyTransfer\Validator\ExternalValidatorValidationException;
 use App\Infrastructure\Controller\Api\ApiController;
 use App\Infrastructure\Domain\Transaction\DTO\TransactionDTO;
 use App\Infrastructure\DTO\Collection;
@@ -38,7 +39,7 @@ class TransactionController extends ApiController
 
             return $this->responseCreated($transactionDTO->toArray());
 
-        } catch (AccountNotFoundException|InsufficientBalanceException $e) {
+        } catch (AccountNotFoundException|InsufficientBalanceException|ExternalValidatorValidationException $e) {
             return $this->responsePreconditionFailed([$e->getMessage()]);
         } catch (Throwable $e) {
             return $this->responseInternalServerError([$e->getMessage()]);

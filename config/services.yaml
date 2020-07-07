@@ -59,6 +59,12 @@ services:
         arguments:
             $accountRepository: '@App\Infrastructure\Domain\Transaction\Repository\AccountRepository'
             $transactionRepository: '@App\Infrastructure\Domain\Transaction\Repository\TransactionRepository'
+        calls:
+            - [addExternalValidator, ['@App\Domain\Transaction\Service\MoneyTransfer\Validator\ExternalAuthorizerFooBarValidator']]
+
+    App\Domain\Transaction\Service\MoneyTransfer\Validator\ExternalAuthorizerFooBarValidator:
+        arguments:
+            $apiClient: '@App\Infrastructure\Domain\Transaction\Component\Vendor\AuthorizerFooBar\ApiClient\ApiClient'
 
     App\Domain\UserAccount\Service\CreateService:
         arguments:
@@ -75,6 +81,8 @@ services:
     App\Domain\UserAccount\Service\TransactionOperationListService:
         arguments:
             $accountRepository: '@App\Infrastructure\Domain\UserAccount\Repository\AccountRepository'
+
+    App\Infrastructure\Domain\Transaction\Component\Vendor\AuthorizerFooBar\ApiClient\ApiClient:
 
     App\Infrastructure\Domain\Transaction\Repository\AccountRepository:
         arguments:
