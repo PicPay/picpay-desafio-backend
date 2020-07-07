@@ -83,6 +83,8 @@ services:
             $accountRepository: '@App\Infrastructure\Domain\UserAccount\Repository\AccountRepository'
 
     App\Infrastructure\Domain\Transaction\Component\Vendor\AuthorizerFooBar\ApiClient\ApiClient:
+        arguments:
+            $client: '@eight_points_guzzle.client.foobar'
 
     App\Infrastructure\Domain\Transaction\Repository\AccountRepository:
         arguments:

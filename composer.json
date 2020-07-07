@@ -5,6 +5,7 @@
         "php": ">=7.4",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "ext-json": "*",
         "eightpoints/guzzle-bundle": "^8.1",
         "guzzlehttp/guzzle": "^6.0",
         "ramsey/uuid": "^4.0",
