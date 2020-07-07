@@ -41,6 +41,9 @@ services:
         arguments:
             $transactionOperationListService: '@App\Domain\UserAccount\Service\TransactionOperationListService'
 
+    App\Application\Command\Transaction\MoneyTransferCommand:
+        public: true
+
     App\Domain\UserAccount\Service\CreateService:
         arguments:
             $accountRepository: '@App\Infrastructure\Domain\UserAccount\Repository\AccountRepository'
