@@ -41,8 +41,8 @@ class TransactionRepository implements TransactionRepositoryInterface
 
     public function create(MoneyTransfer $moneyTransfer): Transaction
     {
-        $payerAccountORM = $this->getAccount($moneyTransfer->getPayerAccount());
-        $payeeAccountORM = $this->getAccount($moneyTransfer->getPayeeAccount());
+        $payerAccountORM = $this->getAccountORM($moneyTransfer->getPayerAccount());
+        $payeeAccountORM = $this->getAccountORM($moneyTransfer->getPayeeAccount());
 
         $transactionORM = (new TransactionBuilder())
             ->addAmount(
@@ -66,7 +66,7 @@ class TransactionRepository implements TransactionRepositoryInterface
         return TransactionFactory::createFromORM($transactionORM);
     }
 
-    private function getAccount(AbstractAccount $account): AccountORM
+    private function getAccountORM(AbstractAccount $account): AccountORM
     {
         return $this
             ->accountRepositoryORM

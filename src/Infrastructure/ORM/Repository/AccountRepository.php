@@ -23,4 +23,13 @@ class AccountRepository extends ServiceEntityRepository
 
         return $account;
     }
+
+    public function update(Account $account): Account
+    {
+        $entityManager = $this->getEntityManager();
+        $entityManager->persist($account);
+        $entityManager->flush($account);
+
+        return $account;
+    }
 }
