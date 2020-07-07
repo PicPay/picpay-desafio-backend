@@ -41,7 +41,8 @@ docker inspect [NOME_DO_CONTAINER]
 docker inspect web_wallet
 
 # Ativar Plugin RabbitMQ Management
-acessar container: winpty docker exec -it rabbitmq bash
+acessar container: winpty docker exec -it rabbitmq_core bash
+acessar container: winpty docker exec -it rabbitmq_wallet bash
 
 rodar comando: rabbitmq-plugins enable rabbitmq_management
 
