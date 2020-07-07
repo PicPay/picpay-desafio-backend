@@ -21,6 +21,11 @@ services:
         autowire: true
         autoconfigure: true
 
+    App\Application\Command\Transaction\MoneyTransferCommand:
+        public: true
+        arguments:
+            $moneyTransferService: '@App\Domain\Transaction\Service\MoneyTransferService'
+
     App\Application\Command\UserAccount\CreateCommand:
         public: true
         arguments:
@@ -41,8 +46,7 @@ services:
         arguments:
             $transactionOperationListService: '@App\Domain\UserAccount\Service\TransactionOperationListService'
 
-    App\Application\Command\Transaction\MoneyTransferCommand:
-        public: true
+    App\Domain\Transaction\Service\MoneyTransferService:
 
     App\Domain\UserAccount\Service\CreateService:
         arguments:

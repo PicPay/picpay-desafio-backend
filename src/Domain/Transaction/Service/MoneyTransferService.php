@@ -10,6 +10,7 @@ class MoneyTransferService
 {
     public function handleTransfer(MoneyTransfer $moneyTransfer): MoneyTransfer
     {
+        dd($moneyTransfer);
         return $moneyTransfer;
     }
 }

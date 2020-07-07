@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\Domain\Transaction\Entity;
 
-use App\Domain\Shared\ValueObject\Amount;
+use App\Domain\Shared\ValueObject\TransactionAmountInterface;
 
 final class MoneyTransfer
 {
     private AccountPayer $accountPayer;
     private AccountPayee $accountPayee;
-    private Amount $transferAmount;
+    private TransactionAmountInterface $transferAmount;
 
     public function getAccountPayer(): AccountPayer
     {
@@ -32,12 +32,12 @@ final class MoneyTransfer
         $this->accountPayee = $accountPayee;
     }
 
-    public function getTransferAmount(): Amount
+    public function getTransferAmount(): TransactionAmountInterface
     {
         return $this->transferAmount;
     }
 
-    public function setTransferAmount(Amount $transferAmount): void
+    public function setTransferAmount(TransactionAmountInterface $transferAmount): void
     {
         $this->transferAmount = $transferAmount;
     }
