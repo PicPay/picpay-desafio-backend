@@ -7,6 +7,8 @@ namespace App\Infrastructure\Controller\Api\V1;
 use App\Application\Command\Transaction\MoneyTransfer\ListCommand;
 use App\Application\Command\Transaction\MoneyTransferCommand;
 use App\Infrastructure\Controller\Api\ApiController;
+use App\Infrastructure\Domain\Transaction\DTO\TransactionDTO;
+use App\Infrastructure\DTO\Collection;
 use App\Infrastructure\Validator\TransactionValidator;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -42,7 +44,14 @@ class TransactionController extends ApiController
         try {
             $listCommand = $this->get(ListCommand::class);
             $transactionCollection = $listCommand->execute();
-            return $this->responseOk(['aa' => 'ererer']);
+            $dtoCollection = new Collection();
+            foreach ($transactionCollection->get() as $transaction) {
+                $dtoCollection->addItem(
+                    new TransactionDTO($transaction)
+                );
+            }
+
+            return $this->responseOk($dtoCollection->toArray());
         } catch (Throwable $e) {
             return $this->responseInternalServerError([$e->getMessage()]);
         }

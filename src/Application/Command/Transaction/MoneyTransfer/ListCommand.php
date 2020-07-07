@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Application\Command\Transaction\MoneyTransfer;
 
-use App\Domain\Transaction\Entity\TransactionCollection;
+use App\Domain\Transaction\Entity\Transaction\TransactionCollection;
 use App\Domain\Transaction\Service\MoneyTransfer\ListService;
 
 class ListCommand

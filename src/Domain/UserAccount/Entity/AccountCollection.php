@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Domain\UserAccount\Entity;
 
+use function array_search;
 use function in_array;
 
 final class AccountCollection
