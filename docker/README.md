@@ -80,3 +80,20 @@ composer
 
 # Instalar Mysql no PHP
 apt-get install php-mysql
+
+
+
+
+
+# instalar amqp
+# https://github.com/php-amqplib/php-amqplib/issues/521
+apt-get update
+apt-get install -y librabbitmq-dev
+apt-get install -y libssh-dev
+pecl install amqp
+
+composer require php-amqplib/php-amqplib
+composer require vladimir-yuldashev/laravel-queue-rabbitmq
+
+# instalar socker
+apt-get install -y socket

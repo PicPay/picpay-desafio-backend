@@ -36,4 +36,9 @@ class Person extends Model
     {
         return $this->hasOne(User::class, 'person_id', 'id');
     }
+
+    public function account()
+    {
+        return $this->hasOne(Account::class, 'account_id', 'id');
+    }
 }

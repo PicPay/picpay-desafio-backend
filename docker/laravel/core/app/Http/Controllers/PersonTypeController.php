@@ -58,7 +58,7 @@ class PersonTypeController extends Controller
     {
         try {
             $personType = $this->personTypeRepository->create($request->all());
-            PersonTypeJob::dispatch($personType->toArray())->onConnection('rabbitmq');
+            // PersonTypeJob::dispatch($personType->toArray())->onConnection('rabbitmq');
             return response()->json($personType, Response::HTTP_CREATED);
         } catch(\Exception $e) {
             return response()->json([

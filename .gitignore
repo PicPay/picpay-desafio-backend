@@ -27,3 +27,23 @@ docker/laravel/wallet/Homestead.yaml
 docker/laravel/wallet/npm-debug.log
 docker/laravel/wallet/yarn-error.log
 docker/laravel/wallet/.idea/*
+
+# transaction
+docker/laravel/transaction/node_modules
+docker/laravel/transaction/public/hot
+docker/laravel/transaction/public/storage
+docker/laravel/transaction/storage/*.key
+docker/laravel/transaction/vendor
+docker/laravel/transaction/.env
+docker/laravel/transaction/.env.backup
+docker/laravel/transaction/.phpunit.result.cache
+docker/laravel/transaction/Homestead.json
+docker/laravel/transaction/Homestead.yaml
+docker/laravel/transaction/npm-debug.log
+docker/laravel/transaction/yarn-error.log
+docker/laravel/transaction/.idea/*
+
+# mysql
+docker/mysql/core/data
+docker/mysql/wallet/data
+docker/mysql/transaction/data

@@ -9,3 +9,24 @@ AH00558: apache2: Could not reliably determine the server's fully qualified doma
 AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.28.0.3. Set the 'ServerName' directive globally to suppress this message
 [Tue Jul 07 00:41:43.371573 2020] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.38 (Debian) PHP/7.4.7 configured -- resuming normal operations
 [Tue Jul 07 00:41:43.372799 2020] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[Tue Jul 07 02:07:44.544232 2020] [mpm_prefork:notice] [pid 1] AH00170: caught SIGWINCH, shutting down gracefully
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 192.168.0.3. Set the 'ServerName' directive globally to suppress this message
+[Tue Jul 07 02:09:13.128475 2020] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.38 (Debian) PHP/7.4.7 configured -- resuming normal operations
+[Tue Jul 07 02:09:13.129409 2020] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[Tue Jul 07 02:09:36.542367 2020] [mpm_prefork:notice] [pid 1] AH00170: caught SIGWINCH, shutting down gracefully
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 192.168.80.2. Set the 'ServerName' directive globally to suppress this message
+[Tue Jul 07 02:38:40.401616 2020] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.38 (Debian) PHP/7.4.7 configured -- resuming normal operations
+[Tue Jul 07 02:38:40.406893 2020] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[Tue Jul 07 03:18:43.507196 2020] [mpm_prefork:notice] [pid 1] AH00170: caught SIGWINCH, shutting down gracefully
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 192.168.144.3. Set the 'ServerName' directive globally to suppress this message
+[Tue Jul 07 03:20:10.728382 2020] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.38 (Debian) PHP/7.4.7 configured -- resuming normal operations
+[Tue Jul 07 03:20:10.729473 2020] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[Tue Jul 07 04:09:49.974433 2020] [core:warn] [pid 1] AH00045: child process 16 still did not exit, sending a SIGTERM
+[Tue Jul 07 04:09:49.997938 2020] [core:warn] [pid 1] AH00045: child process 17 still did not exit, sending a SIGTERM
+[Tue Jul 07 04:09:49.998950 2020] [core:warn] [pid 1] AH00045: child process 18 still did not exit, sending a SIGTERM
+[Tue Jul 07 04:09:49.999761 2020] [core:warn] [pid 1] AH00045: child process 19 still did not exit, sending a SIGTERM
+[Tue Jul 07 04:09:50.000958 2020] [core:warn] [pid 1] AH00045: child process 20 still did not exit, sending a SIGTERM
+[Tue Jul 07 04:09:51.048167 2020] [mpm_prefork:notice] [pid 1] AH00169: caught SIGTERM, shutting down
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 192.168.144.3. Set the 'ServerName' directive globally to suppress this message
+[Tue Jul 07 04:10:02.489173 2020] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.38 (Debian) PHP/7.4.7 configured -- resuming normal operations
+[Tue Jul 07 04:10:02.502096 2020] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'

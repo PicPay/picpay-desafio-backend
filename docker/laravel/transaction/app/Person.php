@@ -36,4 +36,14 @@ class Person extends Model
     {
         return $this->hasOne(User::class, 'person_id', 'id');
     }
+
+    public function transferPayer()
+    {
+        return $this->hasMany(Transfer::class, 'payer', 'id');
+    }
+
+    public function transferPayee()
+    {
+        return $this->hasMany(Transfer::class, 'payee', 'id');
+    }
 }

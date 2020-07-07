@@ -5,7 +5,11 @@ web/wallet/apache/log
 #web/wallet/apache/sites-available
 #web/core/php/conf
 #web/wallet/php/conf
+mysql/core/data
+mysql/wallet/data
+mysql/transaction/data
 rabbitmq/core/etc
 rabbitmq/wallet/etc
 rabbitmq/core/logs
 rabbitmq/wallet/logs
+
