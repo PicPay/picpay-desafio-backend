@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Infrastructure\Controller\Api\V1;
 
 use App\Application\Command\Transaction\MoneyTransfer\ListCommand;
+use App\Application\Command\Transaction\MoneyTransfer\TransferCommand;
 use App\Application\Command\Transaction\MoneyTransferCommand;
 use App\Infrastructure\Controller\Api\ApiController;
 use App\Infrastructure\Domain\Transaction\DTO\TransactionDTO;
@@ -30,10 +31,11 @@ class TransactionController extends ApiController
                 ->all()
             ;
 
-            $moneyTransferCommand = $this->get(MoneyTransferCommand::class);
-            $response = $moneyTransferCommand->execute($requestData);
+            $transferCommand = $this->get(TransferCommand::class);
+            $transaction = $transferCommand->execute($requestData);
+            $transactionDTO = new TransactionDTO($transaction);
 
-            return $this->responseOk($response);
+            return $this->responseCreated($transactionDTO->toArray());
         } catch (Throwable $e) {
             return $this->responseInternalServerError([$e->getMessage()]);
         }

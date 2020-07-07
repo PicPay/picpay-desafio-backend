@@ -4,9 +4,12 @@ declare(strict_types=1);
 
 namespace App\Domain\Transaction\Repository;
 
-use App\Domain\Transaction\Entity\Transfer\AbstractAccount;
+use App\Domain\Transaction\Entity\Transfer\PayeeAccount;
+use App\Domain\Transaction\Entity\Transfer\PayerAccount;
 
 interface AccountRepositoryInterface
 {
-    public function get(AbstractAccount $account): AbstractAccount;
+    public function getPayerAccount(PayerAccount $payerAccount): PayerAccount;
+
+    public function hasPayeeAccount(PayeeAccount $payeeAccount): bool;
 }

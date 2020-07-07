@@ -21,15 +21,15 @@ services:
         autowire: true
         autoconfigure: true
 
-    App\Application\Command\Transaction\MoneyTransferCommand:
-        public: true
-        arguments:
-            $moneyTransferService: '@App\Domain\Transaction\Service\MoneyTransferService'
-
     App\Application\Command\Transaction\MoneyTransfer\ListCommand:
         public: true
         arguments:
             $listService: '@App\Domain\Transaction\Service\MoneyTransfer\ListService'
+
+    App\Application\Command\Transaction\MoneyTransfer\TransferCommand:
+        public: true
+        arguments:
+            $transferService: '@App\Domain\Transaction\Service\MoneyTransfer\TransferService'
 
     App\Application\Command\UserAccount\CreateCommand:
         public: true
@@ -51,10 +51,13 @@ services:
         arguments:
             $transactionOperationListService: '@App\Domain\UserAccount\Service\TransactionOperationListService'
 
-    App\Domain\Transaction\Service\MoneyTransferService:
-
     App\Domain\Transaction\Service\MoneyTransfer\ListService:
         arguments:
+            $transactionRepository: '@App\Infrastructure\Domain\Transaction\Repository\TransactionRepository'
+
+    App\Domain\Transaction\Service\MoneyTransfer\TransferService:
+        arguments:
+            $accountRepository: '@App\Infrastructure\Domain\Transaction\Repository\AccountRepository'
             $transactionRepository: '@App\Infrastructure\Domain\Transaction\Repository\TransactionRepository'
 
     App\Domain\UserAccount\Service\CreateService:
@@ -72,6 +75,10 @@ services:
     App\Domain\UserAccount\Service\TransactionOperationListService:
         arguments:
             $accountRepository: '@App\Infrastructure\Domain\UserAccount\Repository\AccountRepository'
+
+    App\Infrastructure\Domain\Transaction\Repository\AccountRepository:
+        arguments:
+            $accountRepositoryORM: '@App\Infrastructure\ORM\Repository\AccountRepository'
 
     App\Infrastructure\Domain\Transaction\Repository\TransactionRepository:
         arguments:
