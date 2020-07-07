@@ -25,31 +25,37 @@ services:
         public: true
         arguments:
             $listService: '@App\Domain\Transaction\Service\MoneyTransfer\ListService'
+            $logger: '@logger'
 
     App\Application\Command\Transaction\MoneyTransfer\TransferCommand:
         public: true
         arguments:
             $transferService: '@App\Domain\Transaction\Service\MoneyTransfer\TransferService'
+            $logger: '@logger'
 
     App\Application\Command\UserAccount\CreateCommand:
         public: true
         arguments:
             $createService: '@App\Domain\UserAccount\Service\CreateService'
+            $logger: '@logger'
 
     App\Application\Command\UserAccount\GetCommand:
         public: true
         arguments:
             $getService: '@App\Domain\UserAccount\Service\GetService'
+            $logger: '@logger'
 
     App\Application\Command\UserAccount\ListCommand:
         public: true
         arguments:
             $listService: '@App\Domain\UserAccount\Service\ListService'
+            $logger: '@logger'
 
     App\Application\Command\UserAccount\TransactionOperationListCommand:
         public: true
         arguments:
             $transactionOperationListService: '@App\Domain\UserAccount\Service\TransactionOperationListService'
+            $logger: '@logger'
 
     App\Domain\Transaction\Service\MoneyTransfer\ListService:
         arguments:

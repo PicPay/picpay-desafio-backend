@@ -4,23 +4,32 @@ declare(strict_types=1);
 
 namespace App\Application\Command\UserAccount;
 
+use App\Application\Command\AbstractCommand;
 use App\Domain\UserAccount\Entity\Account;
 use App\Domain\UserAccount\Service\GetService;
+use Psr\Log\LoggerInterface;
+use Throwable;
 
-class GetCommand
+class GetCommand extends AbstractCommand
 {
     private GetService $getService;
 
-    public function __construct(GetService $getService)
+    public function __construct(GetService $getService, LoggerInterface $logger)
     {
+        parent::__construct($logger);
         $this->getService = $getService;
     }
 
     public function execute(string $accountUuid): Account
     {
-        return $this
-            ->getService
-            ->handleGet($accountUuid)
-        ;
+        try {
+            return $this
+                ->getService
+                ->handleGet($accountUuid)
+            ;
+        } catch (Throwable $e) {
+            $this->logException($e);
+            throw $e;
+        }
     }
 }
