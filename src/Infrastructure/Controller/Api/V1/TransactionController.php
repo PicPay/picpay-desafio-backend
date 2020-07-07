@@ -39,7 +39,6 @@ class TransactionController extends ApiController
             $transactionDTO = new TransactionDTO($transaction);
 
             return $this->responseCreated($transactionDTO->toArray());
-
         } catch (AccountNotFoundException $e) {
             return $this->responsePreconditionFailed([$e->getMessage()]);
         } catch (InsufficientBalanceException $e) {
