@@ -25,9 +25,11 @@ interface AccountRepositoryInterface
     ): void;
 
     public function updateBalance(
-        AbstractAccount $account,
         TransactionAmountInterface $transferAmount,
-        BalanceOperationInterface $operation
+        AbstractAccount $payerAccount,
+        BalanceOperationInterface $payerBalanceOperation,
+        AbstractAccount $payeeAccount,
+        BalanceOperationInterface $payeeBalanceOperation
     ): void;
 
     public function rollbackBalance(

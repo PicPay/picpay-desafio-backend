@@ -23,17 +23,10 @@ class AccountTransactionBalanceService implements AccountTransactionBalanceServi
         $this
             ->getAccountRepository()
             ->updateBalance(
+                $moneyTransfer->getTransferAmount(),
                 $moneyTransfer->getPayerAccount(),
-                $moneyTransfer->getTransferAmount(),
-                new Subtract()
-            )
-        ;
-
-        $this
-            ->getAccountRepository()
-            ->updateBalance(
+                new Subtract(),
                 $moneyTransfer->getPayeeAccount(),
-                $moneyTransfer->getTransferAmount(),
                 new Sum()
             )
         ;

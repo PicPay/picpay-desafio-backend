@@ -8,9 +8,6 @@ use App\Domain\Transaction\Entity\Transaction\Transaction;
 use App\Domain\Transaction\Entity\Transfer\MoneyTransfer;
 use Throwable;
 
-use function in_array;
-use function is_null;
-
 final class TransferService
 {
     private AccountTransactionBalanceServiceInterface $accountTransactionBalanceServiceInterface;

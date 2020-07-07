@@ -103,27 +103,46 @@ class AccountRepository implements AccountRepositoryInterface
     }
 
     public function updateBalance(
-        AbstractAccount $account,
         TransactionAmountInterface $transferAmount,
-        BalanceOperationInterface $operation
+        AbstractAccount $payerAccount,
+        BalanceOperationInterface $payerBalanceOperation,
+        AbstractAccount $payeeAccount,
+        BalanceOperationInterface $payeeBalanceOperation
     ): void {
-        $accountORM = $this->getAccountORM($account);
+        $payerAccountORM = $this->getAccountORM($payerAccount);
+        $payeeAccountORM = $this->getAccountORM($payeeAccount);
 
         $this
             ->transactionCache
-            ->registerBalance($accountORM)
+            ->registerBalance($payerAccountORM)
         ;
 
-        $newBalance = $operation->getBalance(
+        $this
+            ->transactionCache
+            ->registerBalance($payeeAccountORM)
+        ;
+
+        $payerNewBalance = $payerBalanceOperation->getBalance(
             $transferAmount,
-            new Amount($accountORM->getBalance())
+            new Amount($payerAccountORM->getBalance())
         );
 
-        $accountORM->setBalance($newBalance->getValue());
+        $payeeNewBalance = $payeeBalanceOperation->getBalance(
+            $transferAmount,
+            new Amount($payeeAccountORM->getBalance())
+        );
+
+        $payerAccountORM->setBalance($payerNewBalance->getValue());
+        $payeeAccountORM->setBalance($payeeNewBalance->getValue());
 
         $this
             ->accountRepositoryORM
-            ->update($accountORM)
+            ->update($payerAccountORM)
+        ;
+
+        $this
+            ->accountRepositoryORM
+            ->update($payeeAccountORM)
         ;
     }
 
