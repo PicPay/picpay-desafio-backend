@@ -22,3 +22,8 @@ api_v1_transaction:
     path: /api/v1/transactions
     controller: App\Infrastructure\Controller\Api\V1\TransactionController::handleTransaction
     methods: [POST]
+
+api_v1_transactions_list:
+    path: /api/v1/transactions
+    controller: App\Infrastructure\Controller\Api\V1\TransactionController::handleList
+    methods: [GET]

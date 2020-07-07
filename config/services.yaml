@@ -26,6 +26,11 @@ services:
         arguments:
             $moneyTransferService: '@App\Domain\Transaction\Service\MoneyTransferService'
 
+    App\Application\Command\Transaction\MoneyTransfer\ListCommand:
+        public: true
+        arguments:
+            $listService: '@App\Domain\Transaction\Service\MoneyTransfer\ListService'
+
     App\Application\Command\UserAccount\CreateCommand:
         public: true
         arguments:
@@ -48,6 +53,10 @@ services:
 
     App\Domain\Transaction\Service\MoneyTransferService:
 
+    App\Domain\Transaction\Service\MoneyTransfer\ListService:
+        arguments:
+            $transactionRepository: '@App\Infrastructure\Domain\Transaction\Repository\TransactionRepository'
+
     App\Domain\UserAccount\Service\CreateService:
         arguments:
             $accountRepository: '@App\Infrastructure\Domain\UserAccount\Repository\AccountRepository'
@@ -63,6 +72,10 @@ services:
     App\Domain\UserAccount\Service\TransactionOperationListService:
         arguments:
             $accountRepository: '@App\Infrastructure\Domain\UserAccount\Repository\AccountRepository'
+
+    App\Infrastructure\Domain\Transaction\Repository\TransactionRepository:
+        arguments:
+            $transactionRepositoryORM: '@App\Infrastructure\ORM\Repository\TransactionRepository'
 
     App\Infrastructure\Domain\UserAccount\Repository\AccountRepository:
         arguments:

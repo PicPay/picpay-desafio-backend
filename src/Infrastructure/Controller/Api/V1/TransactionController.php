@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Controller\Api\V1;
 
+use App\Application\Command\Transaction\MoneyTransfer\ListCommand;
 use App\Application\Command\Transaction\MoneyTransferCommand;
 use App\Infrastructure\Controller\Api\ApiController;
 use App\Infrastructure\Validator\TransactionValidator;
@@ -31,6 +32,17 @@ class TransactionController extends ApiController
             $response = $moneyTransferCommand->execute($requestData);
 
             return $this->responseOk($response);
+        } catch (Throwable $e) {
+            return $this->responseInternalServerError([$e->getMessage()]);
+        }
+    }
+
+    public function handleList(): JsonResponse
+    {
+        try {
+            $listCommand = $this->get(ListCommand::class);
+            $transactionCollection = $listCommand->execute();
+            return $this->responseOk(['aa' => 'ererer']);
         } catch (Throwable $e) {
             return $this->responseInternalServerError([$e->getMessage()]);
         }
