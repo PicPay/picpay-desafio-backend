@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Domain\Transaction\Repository;
 
+use App\Domain\Shared\ValueObject\Amount;
 use App\Domain\Transaction\Entity\Transfer\PayeeAccount;
 use App\Domain\Transaction\Entity\Transfer\PayerAccount;
 use App\Domain\Transaction\Repository\AccountRepositoryInterface;
+use App\Infrastructure\ORM\Entity\Account as AccountORM;
 use App\Infrastructure\ORM\Repository\AccountRepository as AccountRepositoryORM;
 
 class AccountRepository implements AccountRepositoryInterface
@@ -18,13 +20,39 @@ class AccountRepository implements AccountRepositoryInterface
         $this->accountRepositoryORM = $accountRepositoryORM;
     }
 
-    public function getPayerAccount(PayerAccount $payerAccount): PayerAccount
+    public function getPayerAccount(PayerAccount $payerAccount): ?PayerAccount
     {
-        return new PayerAccount();
+        $accountORM = $this
+            ->accountRepositoryORM
+            ->find(
+                $payerAccount
+                    ->getUuid()
+                    ->getValue()
+            )
+        ;
+
+        if (!$accountORM instanceof AccountORM) {
+            return null;
+        }
+
+        $payerAccount->setBalance(
+            new Amount($accountORM->getBalance())
+        );
+
+        return $payerAccount;
     }
 
     public function hasPayeeAccount(PayeeAccount $payeeAccount): bool
     {
-        return true;
+        $accountORM = $this
+            ->accountRepositoryORM
+            ->find(
+                $payeeAccount
+                    ->getUuid()
+                    ->getValue()
+            )
+        ;
+
+        return $accountORM instanceof AccountORM;
     }
 }
