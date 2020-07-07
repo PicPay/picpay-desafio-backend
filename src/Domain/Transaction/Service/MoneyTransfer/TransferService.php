@@ -17,6 +17,7 @@ final class TransferService
     private AccountTransactionOperationServiceInterface $accountTransactionOperationService;
     private TransactionServiceInterface $transactionService;
     private TransactionValidatorServiceInterface $transactionValidatorService;
+    private Transaction $transaction;
 
     public function __construct(
         AccountTransactionBalanceServiceInterface $accountTransactionBalanceServiceInterface,
@@ -40,29 +41,37 @@ final class TransferService
         return $this->doTransfer($moneyTransfer);
     }
 
+    private function getTransaction(): Transaction
+    {
+        return $this->transaction;
+    }
+
+    private function setTransaction(Transaction $transaction): void
+    {
+        $this->transaction = $transaction;
+    }
+
     private function doTransfer(MoneyTransfer $moneyTransfer): Transaction
     {
-        $transaction = $this->doTransferCreateTransaction($moneyTransfer);
-        $this->doTransferCreateTransactionOperation($moneyTransfer, $transaction);
+        try {
+            $transaction = $this
+                ->transactionService
+                ->createTransaction($moneyTransfer)
+            ;
+
+            $this->setTransaction($transaction);
+
+            $this
+                ->accountTransactionOperationService
+                ->createTransactionOperation($moneyTransfer, $this->getTransaction())
+            ;
+        } catch (Throwable $e) {
+            throw $e;
+        }
+
         $this->doTransferUpdateBalance($moneyTransfer);
 
-        return $transaction;
-    }
-
-    private function doTransferCreateTransaction(MoneyTransfer $moneyTransfer): Transaction
-    {
-        return $this
-            ->transactionService
-            ->createTransaction($moneyTransfer)
-        ;
-    }
-
-    private function doTransferCreateTransactionOperation(MoneyTransfer $moneyTransfer, Transaction $transaction): void
-    {
-        $this
-            ->accountTransactionOperationService
-            ->createTransactionOperation($moneyTransfer, $transaction)
-        ;
+        return $this->getTransaction();
     }
 
     private function doTransferUpdateBalance(MoneyTransfer $moneyTransfer): void
@@ -77,6 +86,16 @@ final class TransferService
                 ->accountTransactionBalanceServiceInterface
                 ->rollbackBalance($moneyTransfer)
             ;
+
+            $this
+                ->accountTransactionOperationService
+                ->createTransactionRefundOperation(
+                    $moneyTransfer,
+                    $this->getTransaction()
+                )
+            ;
+
+            throw $e;
         }
     }
 }

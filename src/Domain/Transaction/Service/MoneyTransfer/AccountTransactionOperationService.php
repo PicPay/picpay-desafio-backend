@@ -6,6 +6,8 @@ namespace App\Domain\Transaction\Service\MoneyTransfer;
 
 use App\Domain\Transaction\Entity\Transaction\Transaction;
 use App\Domain\Transaction\Entity\Transfer\MoneyTransfer;
+use App\Domain\Transaction\Entity\Transfer\Operation\Type\RefundIn;
+use App\Domain\Transaction\Entity\Transfer\Operation\Type\RefundOut;
 use App\Domain\Transaction\Entity\Transfer\Operation\Type\TransactionIn;
 use App\Domain\Transaction\Entity\Transfer\Operation\Type\TransactionOut;
 use App\Domain\Transaction\Repository\AccountRepositoryInterface;
@@ -42,5 +44,22 @@ final class AccountTransactionOperationService implements AccountTransactionOper
 
     public function createTransactionRefundOperation(MoneyTransfer $moneyTransfer, Transaction $transaction): void
     {
+        $this
+            ->getAccountRepository()
+            ->createTransactionOperation(
+                $transaction,
+                $moneyTransfer->getPayerAccount(),
+                new RefundIn()
+            )
+        ;
+
+        $this
+            ->getAccountRepository()
+            ->createTransactionOperation(
+                $transaction,
+                $moneyTransfer->getPayeeAccount(),
+                new RefundOut()
+            )
+        ;
     }
 }
