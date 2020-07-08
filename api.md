@@ -151,7 +151,7 @@
 
 ## Error Responses
 
-**Code** : `422 Unprocessable Entity`
+**Code** : `404 Not Found`
 
 ```json
 {
@@ -197,6 +197,18 @@
     }
   }
 ]
+```
+
+## Error Responses
+
+**Code** : `404 Not Found`
+
+```json
+{
+  "errors": [
+    "Account with uuid [ 7c480526-7f03-4699-ac9e-c9adab069af6 ] not found"
+  ]
+}
 ```
 
 ## Criação de uma transferência 
