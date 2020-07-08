@@ -13,7 +13,7 @@ class TestMoneyTransfer extends TestCase
      */
     public function testMoneyTransfer()
     {
-
+        
         $this->assertTrue(true);
     }
 }

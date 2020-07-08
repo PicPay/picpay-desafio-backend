@@ -15,8 +15,8 @@ class CreateTableTransfer extends Migration
     {
         Schema::create('transfer', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('payer_id');
-            $table->foreignId('payee_id');
+            $table->foreignId('payer_id')->constrained('users');
+            $table->foreignId('payee_id')->constrained('users');
             $table->float('value', 20, 2);
             $table->boolean('authorization_status')->default(false);
             $table->timestamps();
