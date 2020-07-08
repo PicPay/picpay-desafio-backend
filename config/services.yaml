@@ -85,10 +85,15 @@ services:
             $accountTransactionOperationService: '@App\Domain\Transaction\Service\MoneyTransfer\AccountTransactionOperationService'
             $transactionService: '@App\Domain\Transaction\Service\MoneyTransfer\TransactionService'
             $transactionValidatorService: '@App\Domain\Transaction\Service\MoneyTransfer\TransactionValidatorService'
+            $notificationService: '@App\Domain\Transaction\Service\NotificationService'
 
     App\Domain\Transaction\Service\MoneyTransfer\Validator\ExternalAuthorizerFooBarValidator:
         arguments:
             $apiClient: '@App\Infrastructure\Domain\Transaction\Component\Vendor\AuthorizerFooBar\ApiClient\ApiClient'
+
+    App\Domain\Transaction\Service\NotificationService:
+        arguments:
+            $apiClient: '@App\Infrastructure\Domain\Transaction\Component\Vendor\NotificationBazQux\ApiClient\ApiClient'
 
     App\Domain\UserAccount\Service\CreateService:
         arguments:
@@ -114,6 +119,10 @@ services:
     App\Infrastructure\Domain\Transaction\Component\Vendor\AuthorizerFooBar\ApiClient\ApiClient:
         arguments:
             $client: '@eight_points_guzzle.client.foobar'
+
+    App\Infrastructure\Domain\Transaction\Component\Vendor\NotificationBazQux\ApiClient\ApiClient:
+        arguments:
+            $client: '@eight_points_guzzle.client.bazqux'
 
     App\Infrastructure\Domain\Transaction\Repository\AccountRepository:
         arguments:

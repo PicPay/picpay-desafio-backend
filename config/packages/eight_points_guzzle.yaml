@@ -2,3 +2,5 @@ eight_points_guzzle:
     clients:
         foobar:
             base_url: '%env(VENDOR_FOOBAR_API_URL)%'
+        bazqux:
+            base_url: '%env(VENDOR_BAZQUX_API_URL)%'

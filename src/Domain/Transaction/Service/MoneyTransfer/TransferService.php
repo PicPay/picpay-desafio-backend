@@ -6,6 +6,7 @@ namespace App\Domain\Transaction\Service\MoneyTransfer;
 
 use App\Domain\Transaction\Entity\Transaction\Transaction;
 use App\Domain\Transaction\Entity\Transfer\MoneyTransfer;
+use App\Domain\Transaction\Service\NotificationServiceInterface;
 use Throwable;
 
 final class TransferService implements TransferServiceInterface
@@ -15,17 +16,20 @@ final class TransferService implements TransferServiceInterface
     private TransactionServiceInterface $transactionService;
     private TransactionValidatorServiceInterface $transactionValidatorService;
     private Transaction $transaction;
+    private NotificationServiceInterface $notificationService;
 
     public function __construct(
         AccountTransactionBalanceServiceInterface $accountTransactionBalanceServiceInterface,
         AccountTransactionOperationServiceInterface $accountTransactionOperationService,
         TransactionServiceInterface $transactionService,
-        TransactionValidatorServiceInterface $transactionValidatorService
+        TransactionValidatorServiceInterface $transactionValidatorService,
+        NotificationServiceInterface $notificationService
     ) {
         $this->accountTransactionBalanceServiceInterface = $accountTransactionBalanceServiceInterface;
         $this->accountTransactionOperationService = $accountTransactionOperationService;
         $this->transactionService = $transactionService;
         $this->transactionValidatorService = $transactionValidatorService;
+        $this->notificationService = $notificationService;
     }
 
     public function handleTransfer(MoneyTransfer $moneyTransfer): Transaction
@@ -67,6 +71,11 @@ final class TransferService implements TransferServiceInterface
         }
 
         $this->doTransferUpdateBalance($moneyTransfer);
+
+        $this
+            ->notificationService
+            ->handleNotificationNewTransaction($this->getTransaction())
+        ;
 
         return $this->getTransaction();
     }
