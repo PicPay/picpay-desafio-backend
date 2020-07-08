@@ -32,7 +32,9 @@
         <whitelist>
             <directory>../src</directory>
             <exclude>
+                <directory>../src/Infrastructure/Controller</directory>
                 <directory>../src/Infrastructure/Fixtures</directory>
+                <directory>../src/Infrastructure/ORM/Repository</directory>
                 <file>../src/Kernel.php</file>
             </exclude>
         </whitelist>
