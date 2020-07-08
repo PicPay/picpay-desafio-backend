@@ -10,7 +10,7 @@ use App\Domain\Shared\ValueObject\Amount\TransactionAmountInterface;
 use App\Domain\Transaction\Entity\Transaction\Transaction;
 use App\Domain\Transaction\Entity\Transfer\AbstractAccount;
 use App\Domain\Transaction\Entity\Transfer\Account\Balance\OperationInterface as BalanceOperationInterface;
-use App\Domain\Transaction\Entity\Transfer\Operation\Type\OperationInterface as TypeOperationInterface;
+use App\Domain\Transaction\Entity\Transfer\Account\Operation\Type\OperationInterface as TypeOperationInterface;
 use App\Domain\Transaction\Entity\Transfer\PayeeAccount;
 use App\Domain\Transaction\Entity\Transfer\PayerAccount;
 use App\Domain\Transaction\Repository\AccountRepositoryInterface;

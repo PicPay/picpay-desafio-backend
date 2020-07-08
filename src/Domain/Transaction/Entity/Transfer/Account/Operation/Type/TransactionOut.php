@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Domain\Transaction\Entity\Transfer\Operation\Type;
+namespace App\Domain\Transaction\Entity\Transfer\Account\Operation\Type;
 
 class TransactionOut implements OperationInterface
 {
