@@ -21,6 +21,7 @@ class CreateTableUser extends Migration
             $table->integer('document_identifier');
             $table->char('email', 45);
             $table->char('password', 100);
+            $table->float('wallet_amount', 30, 2);
             $table->boolean('status');
             $table->timestamps();
         });
