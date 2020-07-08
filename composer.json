@@ -66,10 +66,10 @@
             "vendor/squizlabs/php_codesniffer/bin/phpcs --standard=PSR2 --extensions=php,inc,lib --ignore=*/Migrations/* src/",
             "vendor/squizlabs/php_codesniffer/bin/phpcs --standard=PSR2 --extensions=php,inc,lib tests/"
         ],
-        "tests-unit": "vendor/phpunit/phpunit/phpunit -c tests/phpunit.unit.xml --no-coverage",
-        "coverage-unit": "vendor/phpunit/phpunit/phpunit -c tests/phpunit.unit.xml",
-        "coverage-unit-show": [
-            "@coverage-unit",
+        "tests": "vendor/phpunit/phpunit/phpunit -c tests/phpunit.unit.xml --no-coverage",
+        "coverage": "vendor/phpunit/phpunit/phpunit -c tests/phpunit.unit.xml",
+        "coverage-show": [
+            "@coverage",
             "xdg-open tests/_reports/unit/coverage/index.html"
         ]
     },

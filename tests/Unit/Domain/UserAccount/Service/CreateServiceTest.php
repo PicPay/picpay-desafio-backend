@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\Domain\UserAccount\Service;
 
-use App\Domain\Shared\ValueObject\Amount;
+use App\Domain\Shared\ValueObject\Amount\BalanceAmount;
 use App\Domain\Shared\ValueObject\Document;
 use App\Domain\Shared\ValueObject\Email;
 use App\Domain\Shared\ValueObject\Name;
@@ -25,7 +25,7 @@ class CreateServiceTest extends TestCase
         $account = $this->getAccount($document);
 
         $uuidExpected = new UuidV4('fa24ccc6-26eb-48c1-8ceb-b9356dfca98e');
-        $balanceExpected = new Amount(0);
+        $balanceExpected = new BalanceAmount(0);
         $createdAtExpected = new DateTime('2020-07-05');
         $accountExpected = clone $account;
         $accountExpected->setUuid($uuidExpected);

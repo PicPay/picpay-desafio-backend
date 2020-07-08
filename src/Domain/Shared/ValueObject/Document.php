@@ -57,18 +57,14 @@ final class Document implements DocumentInterface
             );
         }
 
-        if ($this->isTypeCnpj()) {
-            return sprintf(
-                '%s.%s.%s/%s-%s',
-                substr($this->getNumber(), 0, 2),
-                substr($this->getNumber(), 2, 3),
-                substr($this->getNumber(), 5, 3),
-                substr($this->getNumber(), 8, 4),
-                substr($this->getNumber(), 12, 2)
-            );
-        }
-
-        return $this->getNumber();
+        return sprintf(
+            '%s.%s.%s/%s-%s',
+            substr($this->getNumber(), 0, 2),
+            substr($this->getNumber(), 2, 3),
+            substr($this->getNumber(), 5, 3),
+            substr($this->getNumber(), 8, 4),
+            substr($this->getNumber(), 12, 2)
+        );
     }
 
     private function setNumber(string $number): void
