@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Unit\Application\Factory\UserAccount;
+namespace App\Tests\Unit\Application\Command\UserAccount;
 
 use App\Application\Command\UserAccount\GetCommand;
 use App\Domain\UserAccount\Entity\Account;
