@@ -18,6 +18,7 @@ use App\Domain\Transaction\Service\MoneyTransfer\AccountTransactionOperationServ
 use App\Domain\Transaction\Service\MoneyTransfer\TransactionServiceInterface;
 use App\Domain\Transaction\Service\MoneyTransfer\TransactionValidatorServiceInterface;
 use App\Domain\Transaction\Service\MoneyTransfer\TransferService;
+use App\Domain\Transaction\Service\NotificationServiceInterface;
 use DateTime;
 use Exception;
 use Mockery;
@@ -60,11 +61,19 @@ class TransferServiceTest extends TestCase
             ->andReturn(null)
         ;
 
+        $notificationService = Mockery::mock(NotificationServiceInterface::class);
+        $notificationService
+            ->shouldReceive('handleNotificationNewTransaction')
+            ->withArgs([$transactionExpected])
+            ->andReturn(null)
+        ;
+
         $transferService = new TransferService(
             $accountTransactionBalanceService,
             $accountTransactionOperationService,
             $transactionService,
-            $transactionValidatorService
+            $transactionValidatorService,
+            $notificationService
         );
 
         $transactionGot = $transferService->handleTransfer($moneyTransfer);
@@ -95,11 +104,14 @@ class TransferServiceTest extends TestCase
             ->andReturn(null)
         ;
 
+        $notificationService = Mockery::mock(NotificationServiceInterface::class);
+
         $transferService = new TransferService(
             $accountTransactionBalanceService,
             $accountTransactionOperationService,
             $transactionService,
-            $transactionValidatorService
+            $transactionValidatorService,
+            $notificationService
         );
 
         $transferService->handleTransfer($moneyTransfer);
@@ -150,11 +162,14 @@ class TransferServiceTest extends TestCase
             ->andReturn(null)
         ;
 
+        $notificationService = Mockery::mock(NotificationServiceInterface::class);
+
         $transferService = new TransferService(
             $accountTransactionBalanceService,
             $accountTransactionOperationService,
             $transactionService,
-            $transactionValidatorService
+            $transactionValidatorService,
+            $notificationService
         );
 
         $transferService->handleTransfer($moneyTransfer);
