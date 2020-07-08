@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9a23eb03a9dce06e8ff0f6b20abe6f8d",
+    "content-hash": "7dd65ff2469a83cc507381a3036eec40",
     "packages": [
         {
             "name": "brick/math",
@@ -2640,16 +2640,16 @@
         },
         {
             "name": "redrat/api-helper-bundle",
-            "version": "0.2.0",
+            "version": "0.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/joubertredrat/ApiHelperBundle.git",
-                "reference": "90827aaeda54c3e40b1f33cbe5acc86bd1e05643"
+                "reference": "0ae55f5814af0f8f17507c913d41eac4e5c28298"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/joubertredrat/ApiHelperBundle/zipball/90827aaeda54c3e40b1f33cbe5acc86bd1e05643",
-                "reference": "90827aaeda54c3e40b1f33cbe5acc86bd1e05643",
+                "url": "https://api.github.com/repos/joubertredrat/ApiHelperBundle/zipball/0ae55f5814af0f8f17507c913d41eac4e5c28298",
+                "reference": "0ae55f5814af0f8f17507c913d41eac4e5c28298",
                 "shasum": ""
             },
             "require": {
@@ -2681,7 +2681,7 @@
                 }
             ],
             "homepage": "https://github.com/joubertredrat/ApiHelperBundle",
-            "time": "2020-07-04T01:03:05+00:00"
+            "time": "2020-07-08T17:13:35+00:00"
         },
         {
             "name": "redrat/entity-datetime",
