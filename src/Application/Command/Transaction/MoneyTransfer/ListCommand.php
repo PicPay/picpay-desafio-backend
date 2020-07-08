@@ -10,7 +10,7 @@ use App\Domain\Transaction\Service\MoneyTransfer\ListServiceInterface;
 use Psr\Log\LoggerInterface;
 use Throwable;
 
-class ListCommand extends AbstractCommand
+final class ListCommand extends AbstractCommand
 {
     private ListServiceInterface $listService;
 

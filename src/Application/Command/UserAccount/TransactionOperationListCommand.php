@@ -10,7 +10,7 @@ use App\Domain\UserAccount\Service\TransactionOperationListServiceInterface;
 use Psr\Log\LoggerInterface;
 use Throwable;
 
-class TransactionOperationListCommand extends AbstractCommand
+final class TransactionOperationListCommand extends AbstractCommand
 {
     private TransactionOperationListServiceInterface $transactionOperationListService;
 

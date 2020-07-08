@@ -11,7 +11,7 @@ use App\Domain\UserAccount\Service\CreateServiceInterface;
 use Psr\Log\LoggerInterface;
 use Throwable;
 
-class CreateCommand extends AbstractCommand
+final class CreateCommand extends AbstractCommand
 {
     private CreateServiceInterface $createService;
 

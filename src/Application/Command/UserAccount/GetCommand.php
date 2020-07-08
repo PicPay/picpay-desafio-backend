@@ -10,7 +10,7 @@ use App\Domain\UserAccount\Service\GetServiceInterface;
 use Psr\Log\LoggerInterface;
 use Throwable;
 
-class GetCommand extends AbstractCommand
+final class GetCommand extends AbstractCommand
 {
     private GetServiceInterface $getService;
 

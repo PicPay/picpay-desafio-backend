@@ -27,7 +27,7 @@ abstract class AbstractCommand
     protected function logException(Throwable $e): void
     {
         $this
-            ->logger
+            ->getLogger()
             ->error($e->getMessage())
         ;
     }

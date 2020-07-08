@@ -10,7 +10,7 @@ use App\Domain\UserAccount\Service\ListServiceInterface;
 use Psr\Log\LoggerInterface;
 use Throwable;
 
-class ListCommand extends AbstractCommand
+final class ListCommand extends AbstractCommand
 {
     private ListServiceInterface $listService;
 

@@ -11,7 +11,7 @@ use App\Domain\Transaction\Service\MoneyTransfer\TransferServiceInterface;
 use Psr\Log\LoggerInterface;
 use Throwable;
 
-class TransferCommand extends AbstractCommand
+final class TransferCommand extends AbstractCommand
 {
     private TransferServiceInterface $transferService;
 
