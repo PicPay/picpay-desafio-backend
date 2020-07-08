@@ -8,7 +8,7 @@ use App\Domain\UserAccount\Entity\Account;
 use App\Domain\UserAccount\Entity\TransactionOperationCollection;
 use App\Domain\UserAccount\Exception\Service\GetService\AccountNotFoundException;
 
-final class TransactionOperationListService extends AbstractService
+final class TransactionOperationListService extends AbstractService implements TransactionOperationListServiceInterface
 {
     public function handleList(string $accountUuid): TransactionOperationCollection
     {

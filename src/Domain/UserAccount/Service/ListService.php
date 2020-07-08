@@ -6,7 +6,7 @@ namespace App\Domain\UserAccount\Service;
 
 use App\Domain\UserAccount\Entity\AccountCollection;
 
-final class ListService extends AbstractService
+final class ListService extends AbstractService implements ListServiceInterface
 {
     public function handleList(): AccountCollection
     {

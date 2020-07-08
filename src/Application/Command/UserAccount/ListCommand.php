@@ -6,16 +6,18 @@ namespace App\Application\Command\UserAccount;
 
 use App\Application\Command\AbstractCommand;
 use App\Domain\UserAccount\Entity\AccountCollection;
-use App\Domain\UserAccount\Service\ListService;
+use App\Domain\UserAccount\Service\ListServiceInterface;
 use Psr\Log\LoggerInterface;
 use Throwable;
 
 class ListCommand extends AbstractCommand
 {
-    private ListService $listService;
+    private ListServiceInterface $listService;
 
-    public function __construct(ListService $listService, LoggerInterface $logger)
-    {
+    public function __construct(
+        ListServiceInterface $listService,
+        LoggerInterface $logger
+    ) {
         parent::__construct($logger);
         $this->listService = $listService;
     }

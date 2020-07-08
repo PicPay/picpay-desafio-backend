@@ -14,7 +14,7 @@ use App\Domain\Transaction\Service\MoneyTransfer\Validator\ExternalValidatorInte
 use function in_array;
 use function is_null;
 
-class TransactionValidatorService implements TransactionValidatorServiceInterface
+final class TransactionValidatorService implements TransactionValidatorServiceInterface
 {
     use AccountRepositoryHelperTrait;
 

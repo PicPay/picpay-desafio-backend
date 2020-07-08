@@ -7,16 +7,18 @@ namespace App\Application\Command\UserAccount;
 use App\Application\Command\AbstractCommand;
 use App\Application\Factory\UserAccount\CreateFactory;
 use App\Domain\UserAccount\Entity\Account;
-use App\Domain\UserAccount\Service\CreateService;
+use App\Domain\UserAccount\Service\CreateServiceInterface;
 use Psr\Log\LoggerInterface;
 use Throwable;
 
 class CreateCommand extends AbstractCommand
 {
-    private CreateService $createService;
+    private CreateServiceInterface $createService;
 
-    public function __construct(CreateService $createService, LoggerInterface $logger)
-    {
+    public function __construct(
+        CreateServiceInterface $createService,
+        LoggerInterface $logger
+    ) {
         parent::__construct($logger);
         $this->createService = $createService;
     }

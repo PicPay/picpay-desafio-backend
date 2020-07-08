@@ -8,7 +8,7 @@ use App\Domain\Transaction\Entity\Transaction\Transaction;
 use App\Domain\Transaction\Entity\Transfer\MoneyTransfer;
 use Throwable;
 
-final class TransferService
+final class TransferService implements TransferServiceInterface
 {
     private AccountTransactionBalanceServiceInterface $accountTransactionBalanceServiceInterface;
     private AccountTransactionOperationServiceInterface $accountTransactionOperationService;

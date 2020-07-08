@@ -8,7 +8,7 @@ use App\Domain\Shared\ValueObject\Amount\BalanceAmount;
 use App\Domain\UserAccount\Entity\Account;
 use App\Domain\UserAccount\Exception\Service\CreateService\AccountFoundException;
 
-final class CreateService extends AbstractService
+final class CreateService extends AbstractService implements CreateServiceInterface
 {
     public function handleCreate(Account $account): Account
     {

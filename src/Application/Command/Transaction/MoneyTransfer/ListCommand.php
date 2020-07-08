@@ -6,15 +6,15 @@ namespace App\Application\Command\Transaction\MoneyTransfer;
 
 use App\Application\Command\AbstractCommand;
 use App\Domain\Transaction\Entity\Transaction\TransactionCollection;
-use App\Domain\Transaction\Service\MoneyTransfer\ListService;
+use App\Domain\Transaction\Service\MoneyTransfer\ListServiceInterface;
 use Psr\Log\LoggerInterface;
 use Throwable;
 
 class ListCommand extends AbstractCommand
 {
-    private ListService $listService;
+    private ListServiceInterface $listService;
 
-    public function __construct(ListService $listService, LoggerInterface $logger)
+    public function __construct(ListServiceInterface $listService, LoggerInterface $logger)
     {
         parent::__construct($logger);
         $this->listService = $listService;

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\ORM\Builder;
 
-use App\Domain\Shared\ValueObject\AmountInterface;
+use App\Domain\Shared\ValueObject\Amount\BalanceAmountInterface;
 use App\Domain\Shared\ValueObject\DocumentInterface;
 use App\Domain\Shared\ValueObject\EmailInterface;
 use App\Domain\Shared\ValueObject\NameInterface;
@@ -74,7 +74,7 @@ class AccountBuilder
         return $this;
     }
 
-    public function addBalance(AmountInterface $amount): self
+    public function addBalance(BalanceAmountInterface $amount): self
     {
         $this
             ->account

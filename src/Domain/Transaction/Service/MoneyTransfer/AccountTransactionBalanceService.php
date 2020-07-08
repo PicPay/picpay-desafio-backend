@@ -9,7 +9,7 @@ use App\Domain\Transaction\Entity\Transfer\Account\Balance\Sum;
 use App\Domain\Transaction\Entity\Transfer\MoneyTransfer;
 use App\Domain\Transaction\Repository\AccountRepositoryInterface;
 
-class AccountTransactionBalanceService implements AccountTransactionBalanceServiceInterface
+final class AccountTransactionBalanceService implements AccountTransactionBalanceServiceInterface
 {
     use AccountRepositoryHelperTrait;
 

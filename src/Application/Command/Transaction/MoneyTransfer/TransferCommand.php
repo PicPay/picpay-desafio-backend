@@ -7,15 +7,15 @@ namespace App\Application\Command\Transaction\MoneyTransfer;
 use App\Application\Command\AbstractCommand;
 use App\Application\Factory\Transaction\Transfer\MoneyTransferFactory;
 use App\Domain\Transaction\Entity\Transaction\Transaction;
-use App\Domain\Transaction\Service\MoneyTransfer\TransferService;
+use App\Domain\Transaction\Service\MoneyTransfer\TransferServiceInterface;
 use Psr\Log\LoggerInterface;
 use Throwable;
 
 class TransferCommand extends AbstractCommand
 {
-    private TransferService $transferService;
+    private TransferServiceInterface $transferService;
 
-    public function __construct(TransferService $transferService, LoggerInterface $logger)
+    public function __construct(TransferServiceInterface $transferService, LoggerInterface $logger)
     {
         parent::__construct($logger);
         $this->transferService = $transferService;

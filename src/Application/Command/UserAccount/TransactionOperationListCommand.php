@@ -6,16 +6,16 @@ namespace App\Application\Command\UserAccount;
 
 use App\Application\Command\AbstractCommand;
 use App\Domain\UserAccount\Entity\TransactionOperationCollection;
-use App\Domain\UserAccount\Service\TransactionOperationListService;
+use App\Domain\UserAccount\Service\TransactionOperationListServiceInterface;
 use Psr\Log\LoggerInterface;
 use Throwable;
 
 class TransactionOperationListCommand extends AbstractCommand
 {
-    private TransactionOperationListService $transactionOperationListService;
+    private TransactionOperationListServiceInterface $transactionOperationListService;
 
     public function __construct(
-        TransactionOperationListService $transactionOperationListService,
+        TransactionOperationListServiceInterface $transactionOperationListService,
         LoggerInterface $logger
     ) {
         parent::__construct($logger);

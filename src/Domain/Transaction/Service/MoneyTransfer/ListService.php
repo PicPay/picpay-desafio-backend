@@ -7,7 +7,7 @@ namespace App\Domain\Transaction\Service\MoneyTransfer;
 use App\Domain\Transaction\Entity\Transaction\TransactionCollection;
 use App\Domain\Transaction\Repository\TransactionRepositoryInterface;
 
-final class ListService
+final class ListService implements ListServiceInterface
 {
     use TransactionRepositoryHelperTrait;
 

@@ -6,16 +6,18 @@ namespace App\Application\Command\UserAccount;
 
 use App\Application\Command\AbstractCommand;
 use App\Domain\UserAccount\Entity\Account;
-use App\Domain\UserAccount\Service\GetService;
+use App\Domain\UserAccount\Service\GetServiceInterface;
 use Psr\Log\LoggerInterface;
 use Throwable;
 
 class GetCommand extends AbstractCommand
 {
-    private GetService $getService;
+    private GetServiceInterface $getService;
 
-    public function __construct(GetService $getService, LoggerInterface $logger)
-    {
+    public function __construct(
+        GetServiceInterface $getService,
+        LoggerInterface $logger
+    ) {
         parent::__construct($logger);
         $this->getService = $getService;
     }

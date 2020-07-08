@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Domain\UserAccount\Entity;
 
 use App\Domain\Shared\Helper\TimestampHelperTrait;
-use App\Domain\Shared\ValueObject\AmountInterface;
+use App\Domain\Shared\ValueObject\Amount\TransactionAmountInterface;
 use App\Domain\Shared\ValueObject\DocumentInterface;
 use App\Domain\Shared\ValueObject\Uuid\UuidInterface as UuidV4Interface;
 
@@ -16,7 +16,7 @@ final class TransactionOperation
     private UuidV4Interface $uuid;
     private string $type;
     private string $authentication;
-    private AmountInterface $amount;
+    private TransactionAmountInterface $amount;
     private DocumentInterface $payerDocument;
     private DocumentInterface $payeeDocument;
 
@@ -50,12 +50,12 @@ final class TransactionOperation
         $this->authentication = $authentication;
     }
 
-    public function getAmount(): AmountInterface
+    public function getAmount(): TransactionAmountInterface
     {
         return $this->amount;
     }
 
-    public function setAmount(AmountInterface $amount): void
+    public function setAmount(TransactionAmountInterface $amount): void
     {
         $this->amount = $amount;
     }

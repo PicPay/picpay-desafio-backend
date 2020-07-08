@@ -7,7 +7,7 @@ namespace App\Domain\UserAccount\Service;
 use App\Domain\UserAccount\Entity\Account;
 use App\Domain\UserAccount\Exception\Service\GetService\AccountNotFoundException;
 
-final class GetService extends AbstractService
+final class GetService extends AbstractService implements GetServiceInterface
 {
     public function handleGet(string $accountUuid): Account
     {

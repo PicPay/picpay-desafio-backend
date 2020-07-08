@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Domain\UserAccount\Factory;
 
-use App\Domain\Shared\ValueObject\Amount;
+use App\Domain\Shared\ValueObject\Amount\TransactionAmount;
 use App\Domain\Shared\ValueObject\Document;
 use App\Domain\Shared\ValueObject\Uuid\V4 as UuidV4;
 use App\Domain\UserAccount\Entity\TransactionOperation;
@@ -29,7 +29,7 @@ class TransactionOperationFactory
             $transactionORM->getAuthentication()
         );
         $transactionOperation->setAmount(
-            new Amount($transactionORM->getAmount())
+            new TransactionAmount($transactionORM->getAmount())
         );
         $transactionOperation->setPayerDocument(
             new Document($payerAccount->getDocumentNumber())
