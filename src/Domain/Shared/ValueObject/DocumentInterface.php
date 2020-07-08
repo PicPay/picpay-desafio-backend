@@ -8,6 +8,8 @@ interface DocumentInterface
 {
     public function getNumber(): string;
 
+    public function getNumberMasked(): string;
+
     public function getType(): string;
 
     public function isTypeCpf(): bool;

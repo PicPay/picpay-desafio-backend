@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Infrastructure\Domain\UserAccount\DTO;
 
 use App\Domain\UserAccount\Entity\Account;
+use App\Infrastructure\DTO\DTOHelperTrait;
 use App\Infrastructure\DTO\ItemInterface;
 
 class AccountDTO implements ItemInterface
@@ -36,18 +37,11 @@ class AccountDTO implements ItemInterface
                 ->getLastName()
                 ->getValue()
             ,
-            'document' => [
-                'number' => $this
+            'document' => $this->getDocumentFragment(
+                $this
                     ->account
                     ->getDocument()
-                    ->getNumber()
-                ,
-                'type' => $this
-                    ->account
-                    ->getDocument()
-                    ->getType()
-                ,
-            ],
+            ),
             'email' => $this
                 ->account
                 ->getEmail()

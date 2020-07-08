@@ -4,16 +4,15 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Domain\Transaction\DTO;
 
-use App\Domain\Shared\ValueObject\Amount\AmountInterface;
 use App\Domain\Transaction\Entity\Transaction\Account;
 use App\Domain\Transaction\Entity\Transaction\Transaction;
+use App\Infrastructure\DTO\DTOHelperTrait;
 use App\Infrastructure\DTO\ItemInterface;
-use DateTimeInterface;
-
-use function is_null;
 
 class TransactionDTO implements ItemInterface
 {
+    use DTOHelperTrait;
+
     private Transaction $transaction;
 
     public function __construct(Transaction $transaction)
@@ -53,33 +52,9 @@ class TransactionDTO implements ItemInterface
                 ->getUuid()
                 ->getValue()
             ,
-            'document' => [
-                'number' => $account
-                    ->getDocument()
-                    ->getNumber()
-                ,
-                'type' => $account
-                    ->getDocument()
-                    ->getType()
-                ,
-            ],
+            'document' => $this->getDocumentFragment(
+                $account->getDocument()
+            ),
         ];
-    }
-
-    private function getAmountFragment(AmountInterface $transactionAmount): array
-    {
-        return [
-            'integer' => $transactionAmount->getValue(),
-            'decimal' => $transactionAmount->getValueDecimal(),
-        ];
-    }
-
-    private function getDateTimeFragment(?DateTimeInterface $dateTime): ?string
-    {
-        if (is_null($dateTime)) {
-            return null;
-        }
-
-        return $dateTime->format('Y-m-d H:i:s');
     }
 }

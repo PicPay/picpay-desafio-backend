@@ -6,6 +6,7 @@ namespace App\Infrastructure\Domain\UserAccount\DTO;
 
 use App\Domain\Shared\ValueObject\DocumentInterface;
 use App\Domain\UserAccount\Entity\TransactionOperation;
+use App\Infrastructure\DTO\DTOHelperTrait;
 use App\Infrastructure\DTO\ItemInterface;
 
 class TransactionOperationDTO implements ItemInterface
@@ -39,14 +40,6 @@ class TransactionOperationDTO implements ItemInterface
             'payee' => $this->getDocumentFragment(
                 $transactionOperation->getPayeeDocument()
             ),
-        ];
-    }
-
-    private function getDocumentFragment(DocumentInterface $document): array
-    {
-        return [
-            'number' => $document->getNumber(),
-            'type' => $document->getType(),
         ];
     }
 }

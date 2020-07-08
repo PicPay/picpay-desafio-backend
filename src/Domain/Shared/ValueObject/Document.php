@@ -9,7 +9,9 @@ use App\Domain\Shared\Exception\ValueObject\Document\InvalidNumberException;
 use function filter_var;
 use function is_null;
 use function preg_replace;
+use function sprintf;
 use function strlen;
+use function substr;
 
 final class Document implements DocumentInterface
 {
@@ -38,10 +40,35 @@ final class Document implements DocumentInterface
         throw InvalidNumberException::handle($number);
     }
 
-
     public function getNumber(): string
     {
         return $this->number;
+    }
+
+    public function getNumberMasked(): string
+    {
+        if ($this->isTypeCpf()) {
+            return sprintf(
+                '%s.%s.%s-%s',
+                substr($this->getNumber(), 0, 3),
+                substr($this->getNumber(), 3, 3),
+                substr($this->getNumber(), 6, 3),
+                substr($this->getNumber(), 9, 2)
+            );
+        }
+
+        if ($this->isTypeCnpj()) {
+            return sprintf(
+                '%s.%s.%s/%s-%s',
+                substr($this->getNumber(), 0, 2),
+                substr($this->getNumber(), 2, 3),
+                substr($this->getNumber(), 5, 3),
+                substr($this->getNumber(), 8, 4),
+                substr($this->getNumber(), 12, 2)
+            );
+        }
+
+        return $this->getNumber();
     }
 
     private function setNumber(string $number): void

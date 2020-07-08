@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace App\Domain\Shared\ValueObject\Amount;
 
+use function sprintf;
+use function substr;
+
 abstract class AbstractAmount
 {
     protected int $value;
@@ -17,6 +20,16 @@ abstract class AbstractAmount
 
     public function getValueDecimal(): string
     {
-        return 'xyz';
+        if (100 > $this->getValue()) {
+            return sprintf('0.%d', $this->getValue());
+        }
+
+        $valueString = (string) $this->getValue();
+
+        return sprintf(
+            '%s.%s',
+            substr($valueString, 0, -2),
+            substr($valueString, -2)
+        );
     }
 }
