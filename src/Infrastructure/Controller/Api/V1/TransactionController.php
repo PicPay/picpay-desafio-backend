@@ -7,6 +7,7 @@ namespace App\Infrastructure\Controller\Api\V1;
 use App\Application\Command\Transaction\MoneyTransfer\ListCommand;
 use App\Application\Command\Transaction\MoneyTransfer\TransferCommand;
 use App\Domain\Transaction\Exception\Service\MoneyTransfer\TransactionValidatorService\AccountNotFoundException;
+use App\Domain\Transaction\Exception\Service\MoneyTransfer\TransactionValidatorService\CuteEasterEggException;
 use App\Domain\Transaction\Exception\Service\MoneyTransfer\TransactionValidatorService\InsufficientBalanceException;
 use App\Domain\Transaction\Exception\Service\MoneyTransfer\TransactionValidatorService\InvalidPayerAccountException;
 use App\Domain\Transaction\Exception\Service\MoneyTransfer\Validator\ExternalValidatorValidationException;
@@ -47,6 +48,8 @@ class TransactionController extends ApiController
             return $this->responsePreconditionFailed([$e->getMessage()]);
         } catch (InvalidPayerAccountException $e) {
             return $this->responsePreconditionFailed([$e->getMessage()]);
+        } catch (CuteEasterEggException $e) {
+            return $this->responseImATeapot([$e->getMessage()]);
         } catch (Throwable $e) {
             return $this->responseInternalServerError([$e->getMessage()]);
         }

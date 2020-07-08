@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Domain\Transaction\Exception\Service\MoneyTransfer\TransactionValidatorService;
 
-use App\Domain\Shared\ValueObject\AmountInterface;
-use App\Domain\Shared\ValueObject\TransactionAmountInterface;
+use App\Domain\Shared\ValueObject\Amount\BalanceAmountInterface;
+use App\Domain\Shared\ValueObject\Amount\TransactionAmountInterface;
 use RuntimeException;
 
 use function sprintf;
@@ -13,7 +13,7 @@ use function sprintf;
 class InsufficientBalanceException extends RuntimeException
 {
     public static function handle(
-        AmountInterface $payerAccountBalance,
+        BalanceAmountInterface $payerAccountBalance,
         TransactionAmountInterface $moneyTransferAmount
     ): self {
         return new self(

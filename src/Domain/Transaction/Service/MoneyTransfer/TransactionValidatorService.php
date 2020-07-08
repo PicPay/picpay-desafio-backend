@@ -6,6 +6,7 @@ namespace App\Domain\Transaction\Service\MoneyTransfer;
 
 use App\Domain\Transaction\Entity\Transfer\MoneyTransfer;
 use App\Domain\Transaction\Exception\Service\MoneyTransfer\TransactionValidatorService\AccountNotFoundException;
+use App\Domain\Transaction\Exception\Service\MoneyTransfer\TransactionValidatorService\CuteEasterEggException;
 use App\Domain\Transaction\Exception\Service\MoneyTransfer\TransactionValidatorService\InsufficientBalanceException;
 use App\Domain\Transaction\Exception\Service\MoneyTransfer\TransactionValidatorService\InvalidPayerAccountException;
 use App\Domain\Transaction\Repository\AccountRepositoryInterface;
@@ -46,6 +47,7 @@ final class TransactionValidatorService implements TransactionValidatorServiceIn
     {
         $this->validatePayerAccount($moneyTransfer);
         $this->validatePayeeAccount($moneyTransfer);
+        $this->validateSameAccount($moneyTransfer);
         $this->handleExternalValidations($moneyTransfer);
     }
 
@@ -79,6 +81,16 @@ final class TransactionValidatorService implements TransactionValidatorServiceIn
             ->hasPayeeAccount($moneyTransfer->getPayeeAccount())
         ) {
             throw AccountNotFoundException::handle('payee', $moneyTransfer->getPayeeAccount());
+        }
+    }
+
+    private function validateSameAccount(MoneyTransfer $moneyTransfer): void
+    {
+        $payerAccountUuid = $moneyTransfer->getPayerAccount()->getUuid();
+        $payeeAccountUuid = $moneyTransfer->getPayeeAccount()->getUuid();
+
+        if ($payerAccountUuid->getValue() === $payeeAccountUuid->getValue()) {
+            throw CuteEasterEggException::handle();
         }
     }
 

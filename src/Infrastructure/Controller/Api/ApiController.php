@@ -35,6 +35,11 @@ abstract class ApiController extends AbstractController
         return $this->json(['errors' => $responseData], Response::HTTP_PRECONDITION_FAILED);
     }
 
+    public function responseImATeapot(array $responseData): JsonResponse
+    {
+        return $this->json(['errors' => $responseData], Response::HTTP_I_AM_A_TEAPOT);
+    }
+
     public function responseUnprocessableEntity(array $responseData): JsonResponse
     {
         return $this->json(['errors' => $responseData], Response::HTTP_UNPROCESSABLE_ENTITY);
