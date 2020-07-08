@@ -10,8 +10,6 @@ services:
       POSTGRES_PASSWORD: "password"
     ports:
       - 35432:5432
-#    volumes:
-#      - db-volume:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 10s
@@ -61,5 +59,3 @@ services:
 
 volumes:
   app-volume:
-#  db-volume:
-#    driver: local
