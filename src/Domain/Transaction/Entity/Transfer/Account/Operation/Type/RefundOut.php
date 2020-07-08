@@ -8,6 +8,6 @@ class RefundOut implements OperationInterface
 {
     public function getType(): string
     {
-        return 'refund_in';
+        return 'refund_out';
     }
 }
