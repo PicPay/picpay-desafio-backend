@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Domain\UserAccount\Entity;
 
 use App\Domain\Shared\Helper\TimestampHelperTrait;
-use App\Domain\Shared\ValueObject\AmountInterface;
+use App\Domain\Shared\ValueObject\Amount\BalanceAmountInterface;
 use App\Domain\Shared\ValueObject\DocumentInterface;
 use App\Domain\Shared\ValueObject\EmailInterface;
 use App\Domain\Shared\ValueObject\NameInterface;
@@ -21,7 +21,7 @@ final class Account
     private DocumentInterface $document;
     private EmailInterface $email;
     private string $password;
-    private AmountInterface $balance;
+    private BalanceAmountInterface $balance;
 
     public function getUuid(): UuidV4Interface
     {
@@ -83,12 +83,12 @@ final class Account
         $this->password = $password;
     }
 
-    public function getBalance(): AmountInterface
+    public function getBalance(): BalanceAmountInterface
     {
         return $this->balance;
     }
 
-    public function setBalance(AmountInterface $balance): void
+    public function setBalance(BalanceAmountInterface $balance): void
     {
         $this->balance = $balance;
     }

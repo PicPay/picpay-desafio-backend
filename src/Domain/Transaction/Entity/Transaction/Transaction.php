@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Domain\Transaction\Entity\Transaction;
 
-use App\Domain\Shared\ValueObject\TransactionAmountInterface;
+use App\Domain\Shared\ValueObject\Amount\TransactionAmountInterface;
 use App\Domain\Shared\ValueObject\Uuid\UuidInterface as UuidV4Interface;
 use DateTimeInterface;
 

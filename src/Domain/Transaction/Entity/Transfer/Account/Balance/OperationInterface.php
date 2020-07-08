@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\Domain\Transaction\Entity\Transfer\Account\Balance;
 
-use App\Domain\Shared\ValueObject\AmountInterface;
-use App\Domain\Shared\ValueObject\TransactionAmountInterface;
+use App\Domain\Shared\ValueObject\Amount\BalanceAmountInterface;
+use App\Domain\Shared\ValueObject\Amount\TransactionAmountInterface;
 
 interface OperationInterface
 {
     public function getBalance(
         TransactionAmountInterface $transactionAmount,
-        AmountInterface $balance
-    ): AmountInterface;
+        BalanceAmountInterface $balance
+    ): BalanceAmountInterface;
 }

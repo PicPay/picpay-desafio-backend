@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Domain\Transaction\DTO;
 
-use App\Domain\Shared\ValueObject\TransactionAmountInterface;
+use App\Domain\Shared\ValueObject\Amount\AmountInterface;
 use App\Domain\Transaction\Entity\Transaction\Account;
 use App\Domain\Transaction\Entity\Transaction\Transaction;
 use App\Infrastructure\DTO\ItemInterface;
@@ -66,7 +66,7 @@ class TransactionDTO implements ItemInterface
         ];
     }
 
-    private function getAmountFragment(TransactionAmountInterface $transactionAmount): array
+    private function getAmountFragment(AmountInterface $transactionAmount): array
     {
         return [
             'integer' => $transactionAmount->getValue(),

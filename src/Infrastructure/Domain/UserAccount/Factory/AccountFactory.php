@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Domain\UserAccount\Factory;
 
-use App\Domain\Shared\ValueObject\Amount;
+use App\Domain\Shared\ValueObject\Amount\BalanceAmount;
 use App\Domain\Shared\ValueObject\Document;
 use App\Domain\Shared\ValueObject\Email;
 use App\Domain\Shared\ValueObject\Name;
@@ -35,7 +35,7 @@ class AccountFactory
         );
         $account->setPassword($accountORM->getPassword());
         $account->setBalance(
-            new Amount($accountORM->getBalance())
+            new BalanceAmount($accountORM->getBalance())
         );
         $account->setCreatedAt($accountORM->getCreatedAt());
         $account->setUpdatedAt($accountORM->getUpdatedAt());

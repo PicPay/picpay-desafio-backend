@@ -2,15 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Domain\Shared\ValueObject;
+namespace App\Domain\Shared\ValueObject\Amount;
 
-use App\Domain\Shared\Exception\ValueObject\TransactionAmount\InvalidValueException;
+use App\Domain\Shared\Exception\ValueObject\Amount\TransactionAmount\InvalidValueException;
 
-final class TransactionAmount implements TransactionAmountInterface
+final class TransactionAmount extends AbstractAmount implements TransactionAmountInterface
 {
     const VALUE_MINIMUM = 1;
-
-    protected int $value;
 
     public function __construct(int $value)
     {
@@ -19,16 +17,6 @@ final class TransactionAmount implements TransactionAmountInterface
         }
 
         $this->value = $value;
-    }
-
-    public function getValue(): int
-    {
-        return $this->value;
-    }
-
-    public function getValueDecimal(): float
-    {
-        return $this->getValue() / 100;
     }
 
     public static function isValid(int $value): bool

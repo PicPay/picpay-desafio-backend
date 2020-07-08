@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\Domain\Transaction\Entity\Transfer;
 
-use App\Domain\Shared\ValueObject\AmountInterface;
+use App\Domain\Shared\ValueObject\Amount\BalanceAmountInterface;
 use App\Domain\Shared\ValueObject\Document;
 
 final class PayerAccount extends AbstractAccount
 {
     private Document $document;
-    private AmountInterface $balance;
+    private BalanceAmountInterface $balance;
 
     public function getDocument(): Document
     {
@@ -22,12 +22,12 @@ final class PayerAccount extends AbstractAccount
         $this->document = $document;
     }
 
-    public function getBalance(): AmountInterface
+    public function getBalance(): BalanceAmountInterface
     {
         return $this->balance;
     }
 
-    public function setBalance(AmountInterface $balance): void
+    public function setBalance(BalanceAmountInterface $balance): void
     {
         $this->balance = $balance;
     }

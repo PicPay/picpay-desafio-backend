@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Domain\Transaction\Repository;
 
-use App\Domain\Shared\ValueObject\Amount;
+use App\Domain\Shared\ValueObject\Amount\BalanceAmount;
 use App\Domain\Shared\ValueObject\Document;
-use App\Domain\Shared\ValueObject\TransactionAmountInterface;
+use App\Domain\Shared\ValueObject\Amount\TransactionAmountInterface;
 use App\Domain\Transaction\Entity\Transaction\Transaction;
 use App\Domain\Transaction\Entity\Transfer\AbstractAccount;
 use App\Domain\Transaction\Entity\Transfer\Account\Balance\OperationInterface as BalanceOperationInterface;
@@ -61,7 +61,7 @@ class AccountRepository implements AccountRepositoryInterface
         );
 
         $payerAccount->setBalance(
-            new Amount($accountORM->getBalance())
+            new BalanceAmount($accountORM->getBalance())
         );
 
         return $payerAccount;
@@ -124,12 +124,12 @@ class AccountRepository implements AccountRepositoryInterface
 
         $payerNewBalance = $payerBalanceOperation->getBalance(
             $transferAmount,
-            new Amount($payerAccountORM->getBalance())
+            new BalanceAmount($payerAccountORM->getBalance())
         );
 
         $payeeNewBalance = $payeeBalanceOperation->getBalance(
             $transferAmount,
-            new Amount($payeeAccountORM->getBalance())
+            new BalanceAmount($payeeAccountORM->getBalance())
         );
 
         $payerAccountORM->setBalance($payerNewBalance->getValue());

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Validator;
 
-use App\Domain\Shared\ValueObject\TransactionAmount;
+use App\Domain\Shared\ValueObject\Amount\TransactionAmount;
 use App\Domain\Shared\ValueObject\Uuid\V4 as UuidV4;
 
 use function sprintf;

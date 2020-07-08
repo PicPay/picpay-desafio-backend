@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Domain\UserAccount\DTO;
 
-use App\Domain\Shared\ValueObject\AmountInterface;
+use App\Domain\Shared\ValueObject\Amount\AmountInterface;
 use DateTimeInterface;
+
+use function is_null;
 
 trait DTOHelperTrait
 {

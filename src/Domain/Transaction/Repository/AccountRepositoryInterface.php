@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Domain\Transaction\Repository;
 
-use App\Domain\Shared\ValueObject\TransactionAmountInterface;
+use App\Domain\Shared\ValueObject\Amount\TransactionAmountInterface;
 use App\Domain\Transaction\Entity\Transaction\Transaction;
 use App\Domain\Transaction\Entity\Transfer\AbstractAccount;
 use App\Domain\Transaction\Entity\Transfer\Account\Balance\OperationInterface as BalanceOperationInterface;
