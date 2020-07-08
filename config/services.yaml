@@ -1,0 +1,164 @@
+parameters:
+
+services:
+    _defaults:
+        autowire: false
+        autoconfigure: false
+
+    App\:
+        resource: '../src/*'
+        exclude: '../src/{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
+
+    App\Infrastructure\:
+        resource: '../src/Infrastructure/*'
+        exclude: '../src/Infrastructure/{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
+
+    App\Infrastructure\Controller\:
+        resource: '../src/Infrastructure/Controller'
+        tags: ['controller.service_arguments']
+
+    App\Infrastructure\Fixtures\AccountFixtures:
+        autowire: true
+        autoconfigure: true
+
+    App\Application\Command\Transaction\MoneyTransfer\ListCommand:
+        public: true
+        arguments:
+            $listService: '@App\Domain\Transaction\Service\MoneyTransfer\ListService'
+            $logger: '@logger'
+
+    App\Application\Command\Transaction\MoneyTransfer\TransferCommand:
+        public: true
+        arguments:
+            $transferService: '@App\Domain\Transaction\Service\MoneyTransfer\TransferService'
+            $logger: '@logger'
+
+    App\Application\Command\UserAccount\CreateCommand:
+        public: true
+        arguments:
+            $createService: '@App\Domain\UserAccount\Service\CreateService'
+            $logger: '@logger'
+
+    App\Application\Command\UserAccount\GetCommand:
+        public: true
+        arguments:
+            $getService: '@App\Domain\UserAccount\Service\GetService'
+            $logger: '@logger'
+
+    App\Application\Command\UserAccount\ListCommand:
+        public: true
+        arguments:
+            $listService: '@App\Domain\UserAccount\Service\ListService'
+            $logger: '@logger'
+
+    App\Application\Command\UserAccount\TransactionOperationListCommand:
+        public: true
+        arguments:
+            $transactionOperationListService: '@App\Domain\UserAccount\Service\TransactionOperationListService'
+            $logger: '@logger'
+
+    App\Domain\Transaction\Service\MoneyTransfer\ListService:
+        arguments:
+            $transactionRepository: '@App\Infrastructure\Domain\Transaction\Repository\TransactionRepository'
+
+    App\Domain\Transaction\Service\MoneyTransfer\AccountTransactionBalanceService:
+        arguments:
+            $accountRepository: '@App\Infrastructure\Domain\Transaction\Repository\AccountRepository'
+
+    App\Domain\Transaction\Service\MoneyTransfer\AccountTransactionOperationService:
+        arguments:
+            $accountRepository: '@App\Infrastructure\Domain\Transaction\Repository\AccountRepository'
+
+    App\Domain\Transaction\Service\MoneyTransfer\TransactionService:
+        arguments:
+            $transactionRepository: '@App\Infrastructure\Domain\Transaction\Repository\TransactionRepository'
+
+    App\Domain\Transaction\Service\MoneyTransfer\TransactionValidatorService:
+        arguments:
+            $accountRepository: '@App\Infrastructure\Domain\Transaction\Repository\AccountRepository'
+        calls:
+            - [addExternalValidator, ['@App\Domain\Transaction\Service\MoneyTransfer\Validator\ExternalAuthorizerFooBarValidator']]
+
+    App\Domain\Transaction\Service\MoneyTransfer\TransferService:
+        arguments:
+            $accountTransactionBalanceServiceInterface: '@App\Domain\Transaction\Service\MoneyTransfer\AccountTransactionBalanceService'
+            $accountTransactionOperationService: '@App\Domain\Transaction\Service\MoneyTransfer\AccountTransactionOperationService'
+            $transactionService: '@App\Domain\Transaction\Service\MoneyTransfer\TransactionService'
+            $transactionValidatorService: '@App\Domain\Transaction\Service\MoneyTransfer\TransactionValidatorService'
+            $notificationService: '@App\Domain\Transaction\Service\NotificationService'
+
+    App\Domain\Transaction\Service\MoneyTransfer\Validator\ExternalAuthorizerFooBarValidator:
+        arguments:
+            $apiClient: '@App\Infrastructure\Domain\Transaction\Component\Vendor\AuthorizerFooBar\ApiClient\ApiClient'
+
+    App\Domain\Transaction\Service\NotificationService:
+        arguments:
+            $apiClient: '@App\Infrastructure\Domain\Transaction\Component\Vendor\NotificationBazQux\ApiClient\ApiClient'
+
+    App\Domain\UserAccount\Service\CreateService:
+        arguments:
+            $accountRepository: '@App\Infrastructure\Domain\UserAccount\Repository\AccountRepository'
+
+    App\Domain\UserAccount\Service\GetService:
+        arguments:
+            $accountRepository: '@App\Infrastructure\Domain\UserAccount\Repository\AccountRepository'
+
+    App\Domain\UserAccount\Service\ListService:
+        arguments:
+            $accountRepository: '@App\Infrastructure\Domain\UserAccount\Repository\AccountRepository'
+
+    App\Domain\UserAccount\Service\TransactionOperationListService:
+        arguments:
+            $accountRepository: '@App\Infrastructure\Domain\UserAccount\Repository\AccountRepository'
+
+    App\Infrastructure\Domain\Transaction\Cache\TransactionCache:
+        arguments:
+            $client: '@app.cache.client.redis'
+            $balanceRollbackExpiration: '%env(int:ACCOUNT_BALANCE_ROLLBACK_EXPIRATION_SECONDS)%'
+
+    App\Infrastructure\Domain\Transaction\Component\Vendor\AuthorizerFooBar\ApiClient\ApiClient:
+        arguments:
+            $client: '@eight_points_guzzle.client.foobar'
+
+    App\Infrastructure\Domain\Transaction\Component\Vendor\NotificationBazQux\ApiClient\ApiClient:
+        arguments:
+            $client: '@eight_points_guzzle.client.bazqux'
+
+    App\Infrastructure\Domain\Transaction\Repository\AccountRepository:
+        arguments:
+            $accountRepositoryORM: '@App\Infrastructure\ORM\Repository\AccountRepository'
+            $operationRepositoryORM: '@App\Infrastructure\ORM\Repository\OperationRepository'
+            $transactionRepositoryORM: '@App\Infrastructure\ORM\Repository\TransactionRepository'
+            $transactionCache: '@App\Infrastructure\Domain\Transaction\Cache\TransactionCache'
+
+    App\Infrastructure\Domain\Transaction\Repository\TransactionRepository:
+        arguments:
+            $accountRepositoryORM: '@App\Infrastructure\ORM\Repository\AccountRepository'
+            $transactionRepositoryORM: '@App\Infrastructure\ORM\Repository\TransactionRepository'
+
+    App\Infrastructure\Domain\UserAccount\Repository\AccountRepository:
+        arguments:
+            $accountRepositoryORM: '@App\Infrastructure\ORM\Repository\AccountRepository'
+            $operationRepositoryORM: '@App\Infrastructure\ORM\Repository\OperationRepository'
+
+    App\Infrastructure\ORM\Repository\AccountRepository:
+        autowire: true
+        public: true
+
+    App\Infrastructure\ORM\Repository\OperationRepository:
+        autowire: true
+        public: true
+
+    App\Infrastructure\ORM\Repository\TransactionRepository:
+        autowire: true
+        public: true
+
+    app.cache.client.redis:
+        class: Predis\Client
+        public: false
+        autowire: false
+        arguments:
+            $parameters: {
+                scheme: 'tcp',
+                host: '%env(resolve:CACHE_REDIS_HOST)%',
+                port: '%env(resolve:CACHE_REDIS_PORT)%'}

@@ -1,0 +1,27 @@
+App\Infrastructure\ORM\Entity\Operation:
+  type: entity
+  table: operations
+  repositoryClass: App\Infrastructure\ORM\Repository\OperationRepository
+  id:
+    uuid:
+      type: guid
+      generator:
+        strategy: none
+  fields:
+    type:
+      type: string
+    createdAt:
+      type: datetimetz
+  lifecycleCallbacks:
+    prePersist: [ forgeCreatedAt, forgeUuid ]
+  manyToOne:
+    account:
+      targetEntity: App\Infrastructure\ORM\Entity\Account
+      joinColumn:
+        name: account_uuid
+        referencedColumnName: uuid
+    transaction:
+      targetEntity: App\Infrastructure\ORM\Entity\Transaction
+      joinColumn:
+        name: transaction_uuid
+        referencedColumnName: uuid

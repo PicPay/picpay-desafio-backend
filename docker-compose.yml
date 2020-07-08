@@ -1,0 +1,61 @@
+version: '3'
+
+services:
+  picpay-test-postgres:
+    image: postgres:11-alpine
+    container_name: picpay-test-postgres
+    environment:
+      POSTGRES_DB: "dev"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "password"
+    ports:
+      - 35432:5432
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 10s
+      retries: 3
+  picpay-test-redis:
+    image: redis
+    container_name: picpay-test-redis
+    command: redis-server
+    ports:
+      - 16379:6379
+  picpay-test-symfony-nginx:
+    container_name: picpay-test-symfony-nginx
+    build:
+      context: .
+      dockerfile: ./scripts/docker/nginx/Dockerfile
+    ports:
+      - 14000:4000
+    depends_on:
+      - picpay-test-symfony-php-fpm
+    volumes:
+      - app-volume:/var/www/html
+  picpay-test-symfony-php-fpm:
+    container_name: picpay-test-symfony-php-fpm
+    build:
+      context: .
+      dockerfile: ./scripts/docker/php-fpm/Dockerfile
+    depends_on:
+      - picpay-test-postgres
+      - picpay-test-redis
+    links:
+      - picpay-test-postgres
+      - picpay-test-redis
+    volumes:
+      - app-volume:/var/www/html
+  picpay-test-symfony-app-init:
+    container_name: picpay-test-symfony-app-init
+    build:
+      context: .
+      dockerfile: scripts/docker/app-init/Dockerfile
+    depends_on:
+      - picpay-test-symfony-php-fpm
+    links:
+      - picpay-test-symfony-php-fpm
+    volumes:
+      - app-volume:/var/www/html
+
+volumes:
+  app-volume:

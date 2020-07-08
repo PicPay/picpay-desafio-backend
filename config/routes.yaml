@@ -1,0 +1,29 @@
+api_v1_user_accounts_create:
+    path: /api/v1/user-accounts
+    controller: App\Infrastructure\Controller\Api\V1\UserAccountController::handleCreate
+    methods: [POST]
+
+api_v1_user_accounts_list:
+    path: /api/v1/user-accounts
+    controller: App\Infrastructure\Controller\Api\V1\UserAccountController::handleList
+    methods: [GET]
+
+api_v1_user_accounts_get:
+    path: /api/v1/user-accounts/{uuid}
+    controller: App\Infrastructure\Controller\Api\V1\UserAccountController::handleGet
+    methods: [GET]
+
+api_v1_user_accounts_transcation_operations_list:
+    path: /api/v1/user-accounts/{uuid}/transaction-operations
+    controller: App\Infrastructure\Controller\Api\V1\UserAccountTransactionOperationController::handleList
+    methods: [GET]
+
+api_v1_transaction:
+    path: /api/v1/transactions
+    controller: App\Infrastructure\Controller\Api\V1\TransactionController::handleTransaction
+    methods: [POST]
+
+api_v1_transactions_list:
+    path: /api/v1/transactions
+    controller: App\Infrastructure\Controller\Api\V1\TransactionController::handleList
+    methods: [GET]

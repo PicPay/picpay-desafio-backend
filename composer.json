@@ -1,0 +1,85 @@
+{
+    "type": "project",
+    "license": "proprietary",
+    "require": {
+        "php": ">=7.4",
+        "ext-ctype": "*",
+        "ext-iconv": "*",
+        "ext-json": "*",
+        "eightpoints/guzzle-bundle": "^8.1",
+        "fzaninotto/faker": "^1.9",
+        "guzzlehttp/guzzle": "^6.0",
+        "predis/predis": "^1.1",
+        "ramsey/uuid": "^4.0",
+        "redrat/api-helper-bundle": "^0.2.0",
+        "redrat/entity-datetime": "^0.2.0",
+        "symfony/console": "4.4.*",
+        "symfony/dotenv": "4.4.*",
+        "symfony/flex": "^1.3.1",
+        "symfony/framework-bundle": "4.4.*",
+        "symfony/monolog-bundle": "^3.5",
+        "symfony/orm-pack": "^1.0",
+        "symfony/yaml": "4.4.*"
+    },
+    "require-dev": {
+        "doctrine/doctrine-fixtures-bundle": "^3.3",
+        "mockery/mockery": "^1.4",
+        "phpunit/phpunit": "^9.2",
+        "squizlabs/php_codesniffer": "^3.5"
+    },
+    "config": {
+        "preferred-install": {
+            "*": "dist"
+        },
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "App\\Tests\\": "tests/"
+        }
+    },
+    "replace": {
+        "paragonie/random_compat": "2.*",
+        "symfony/polyfill-ctype": "*",
+        "symfony/polyfill-iconv": "*",
+        "symfony/polyfill-php71": "*",
+        "symfony/polyfill-php70": "*",
+        "symfony/polyfill-php56": "*"
+    },
+    "scripts": {
+        "auto-scripts": {
+            "cache:clear": "symfony-cmd",
+            "assets:install %PUBLIC_DIR%": "symfony-cmd"
+        },
+        "post-install-cmd": [
+            "@auto-scripts"
+        ],
+        "post-update-cmd": [
+            "@auto-scripts"
+        ],
+        "psr2":[
+            "vendor/squizlabs/php_codesniffer/bin/phpcs --standard=PSR2 --extensions=php,inc,lib --ignore=*/Migrations/* src/",
+            "vendor/squizlabs/php_codesniffer/bin/phpcs --standard=PSR2 --extensions=php,inc,lib tests/"
+        ],
+        "tests": "vendor/phpunit/phpunit/phpunit -c tests/phpunit.unit.xml --no-coverage",
+        "coverage": "vendor/phpunit/phpunit/phpunit -c tests/phpunit.unit.xml",
+        "coverage-show": [
+            "@coverage",
+            "xdg-open tests/_reports/unit/coverage/index.html"
+        ]
+    },
+    "conflict": {
+        "symfony/symfony": "*"
+    },
+    "extra": {
+        "symfony": {
+            "allow-contrib": false,
+            "require": "4.4.*"
+        }
+    }
+}

@@ -1,0 +1,37 @@
+App\Infrastructure\ORM\Entity\Account:
+  type: entity
+  table: accounts
+  repositoryClass: App\Infrastructure\ORM\Repository\AccountRepository
+  id:
+    uuid:
+      type: guid
+      generator:
+        strategy: none
+  fields:
+    firstName:
+      type: string
+      length: 255
+    lastName:
+      type: string
+      length: 255
+    documentNumber:
+      type: string
+      length: 16
+    documentType:
+      type: string
+      length: 5
+    email:
+      type: string
+      length: 100
+    password:
+      type: text
+    balance:
+      type: integer
+    createdAt:
+      type: datetimetz
+    updatedAt:
+      type: datetimetz
+      nullable: true
+  lifecycleCallbacks:
+    prePersist: [ forgeCreatedAt, forgeUuid ]
+    preUpdate: [ forgeUpdatedAt ]
