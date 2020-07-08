@@ -41,6 +41,4 @@ class TransactionOperationFactory
 
         return $transactionOperation;
     }
-
-
 }
