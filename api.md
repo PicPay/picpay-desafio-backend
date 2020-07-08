@@ -209,9 +209,9 @@
 
 ```json
 {
-	"payerUuid": "86d3af70-7ed8-4882-84b4-ef02ef0dc6c7",
-	"payeeUuid": "9ddc63b1-2996-43be-af9f-4bb67d3cb670",
-	"amount": 1250
+  "payerUuid": "86d3af70-7ed8-4882-84b4-ef02ef0dc6c7",
+  "payeeUuid": "9ddc63b1-2996-43be-af9f-4bb67d3cb670",
+  "amount": 1250
 }
 ```
 
