@@ -26,9 +26,8 @@ class TransferRepository implements TransferRepositoryContract
     public function setTransferAsAuthorized($transfer_id)
     {
         $transfer = $this->model->find($transfer_id);
-        if($transfer)
-        {
-            $transfer->authorization_status=1;
+        if ($transfer) {
+            $transfer->authorization_status = 1;
             $transfer->save();
             return $transfer;
         }
