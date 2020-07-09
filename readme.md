@@ -53,24 +53,21 @@ POST /transaction
 # Avaliação
 
 Caso você não se sinta à vontade com a arquitetura proposta, você pode apresentar sua solução utilizando frameworks diferentes.
-
 Atente-se a cumprir a maioria dos requisitos, pois você pode cumprir-los parcialmente e durante a avaliação vamos bater um papo a respeito do que faltou.
 
 Teremos 2 partes da avaliação:
 A correção objetiva será realizada através da utilização de um script de correção automatizada.
 A correção qualitativa será durante a entrevista e levará em conta os seguintes critérios:
 
-## O que será avaliado
-- Arquitetura
-- Domínio do Framework Escolhido
-- Domínio da Linguagem
+## O que será avaliado e valorizamos
+- Código limpo e organizado
+- Ser consistente em suas escolhas
+- Apresentar soluções que domina
 - Modelagem de Dados
-- Legibilidade do Código
-- Estrutura do Código
-- Organização do Código
 - Manutenibilidade do Código
 - Tratamento de erros
 - Cuidado com itens de segurança
+- Arquitetura (estruturar o pensamento antes de escrever)
 - Esboço da arquitetura usando o diagrama da sua escolha
 
 ## O que NÃO será avaliado
@@ -82,6 +79,7 @@ A correção qualitativa será durante a entrevista e levará em conta os seguin
 - Testes de [integração](https://www.atlassian.com/continuous-delivery/software-testing/types-of-software-testing)
 - Testes [unitários](https://www.atlassian.com/continuous-delivery/software-testing/types-of-software-testing)
 - Uso de Design Patters
+- Documentação
 - Proposta de melhoria na arquitetura
 
 
@@ -89,8 +87,9 @@ A correção qualitativa será durante a entrevista e levará em conta os seguin
 Na data marcada pelo recrutador tenha sua aplicação rodando na sua máquina local **ou** em algum serviço ne web (Ex: [Heroku](https://www.heroku.com/)).
 
 
-## Sugestões de estudo
+## Materiais úteis
 - https://www.php-fig.org/psr/psr-12/
 - https://www.atlassian.com/continuous-delivery/software-testing/types-of-software-testing
 - https://github.com/exakat/php-static-analysis-tools
+- https://martinfowler.com/articles/microservices.html
 
