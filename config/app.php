@@ -176,6 +176,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\Transfer\TransferRepositoryServiceProvider::class,
         App\Providers\Transfer\TransferServiceProvider::class,
+        App\Providers\Users\UsersRepositoryServiceProvider::class,
         App\Providers\Authorization\AuthorizationServiceProvider::class,
 
     ],
