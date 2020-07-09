@@ -19,6 +19,7 @@ class CreateTableTransfer extends Migration
             $table->foreignId('payee_id')->constrained('users');
             $table->float('value', 20, 2);
             $table->boolean('authorization_status')->default(false);
+            $table->boolean('cancelled')->default(false);
             $table->timestamps();
         });
     }
