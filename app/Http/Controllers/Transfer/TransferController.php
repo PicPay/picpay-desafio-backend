@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Transfer;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Transfer\ValidateTransferRequest;
 use App\Services\Contracts\Transfer\TransferServiceContract;
-use Illuminate\Http\Request;
 
 class TransferController extends Controller
 {
@@ -20,7 +20,7 @@ class TransferController extends Controller
         $this->transferService = $transferService;
     }
 
-    public function __invoke(Request $request)
+    public function __invoke(ValidateTransferRequest $request)
     {
         $this->transferService->processTransfer($request->payer_id, $request->payee_id, $request->value);
         return [];
