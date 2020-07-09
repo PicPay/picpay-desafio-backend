@@ -54,4 +54,3 @@ https://github.com/vitorapaiva/docker-laravel
 * php artisan key:generate
 * chown -R www-data:www-data storage (para consertar erro ocasional de permissao na pasta storage. Caso nao ocorra no seu ambiente, nao precisa utilizar)
 * php artisan migrate
-* php artisan db:seed --class=UserTypeSeeder
