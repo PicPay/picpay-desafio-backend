@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\Transfer;
+namespace Tests\Integration\Transfer;
 
 use Tests\TestCase;
 

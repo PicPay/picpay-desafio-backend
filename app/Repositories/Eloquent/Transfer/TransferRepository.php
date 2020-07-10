@@ -29,6 +29,18 @@ class TransferRepository implements TransferRepositoryContract
         if ($transfer) {
             $transfer->authorization_status = 1;
             $transfer->save();
+            $transfer->authorized();
+            return $transfer;
+        }
+        return false;
+    }
+
+    public function markAsProcessed($transfer_id)
+    {
+        $transfer = $this->model->find($transfer_id);
+        if ($transfer) {
+            $transfer->processed = 1;
+            $transfer->save();
             return $transfer;
         }
         return false;
