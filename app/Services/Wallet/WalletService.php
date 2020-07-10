@@ -4,6 +4,7 @@ namespace App\Services\Wallet;
 
 use App\Repositories\Contracts\Users\UsersRepositoryContract;
 use App\Services\Contracts\Wallet\WalletServiceContract;
+use Illuminate\Support\Facades\DB;
 
 class WalletService implements WalletServiceContract
 {
@@ -20,10 +21,17 @@ class WalletService implements WalletServiceContract
 
     public function applyTransfer($payer_id, $payee_id, $value): void
     {
-        $payer = $this->userRepository->findUser($payer_id);
-        $payee = $this->userRepository->findUser($payee_id);
-        $this->userRepository->updateUser($payer_id, ['wallet_amount' => $payer->wallet_amount -= $value]);
-        $this->userRepository->updateUser($payee_id, ['wallet_amount' => $payee->wallet_amount += $value]);
+        DB::beginTransaction();
+        try {
+            $payer = $this->userRepository->findUser($payer_id);
+            $payee = $this->userRepository->findUser($payee_id);
+            $this->userRepository->updateUser($payer_id, ['wallet_amount' => $payer->wallet_amount -= $value]);
+            $this->userRepository->updateUser($payee_id, ['wallet_amount' => $payee->wallet_amount += $value]);
+            DB::commit();
+        }
+        catch (Exception $e) {
+            DB::rollback();
+        }
     }
 
     public function revertTransfer($payer_id, $payee_id, $value): void
