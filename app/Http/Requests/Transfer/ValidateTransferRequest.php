@@ -27,10 +27,11 @@ class ValidateTransferRequest extends FormRequest
     public function rules()
     {
         $userRepository = new UsersRepository();
+
         return [
-            'payer_id' => ['required','exists:users,id', new IsCommonUser($userRepository)],
-            'payee_id' => ['required','exists:users,id'],
-            'value' => ['required','numeric','min:0.01', new HasBalance($userRepository, $this->input('payer_id'))],
+            'payer_id' => ['bail', 'required','exists:users,id', new IsCommonUser($userRepository)],
+            'payee_id' => ['bail', 'required','exists:users,id'],
+            'value' => ['bail', 'required','numeric','min:0.01', new HasBalance($userRepository, $this->input('payer_id'))],
         ];
     }
 }
