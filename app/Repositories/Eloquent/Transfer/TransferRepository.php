@@ -7,6 +7,11 @@ use App\Repositories\Contracts\Transfer\TransferRepositoryContract;
 
 class TransferRepository implements TransferRepositoryContract
 {
+    /**
+     * @var Transfer
+     */
+    private $model;
+
     public function __construct()
     {
         $this->model = new Transfer;
