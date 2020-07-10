@@ -5,7 +5,6 @@ namespace App\Observers;
 use App\Events\Transfer\TransferAuthorized;
 use App\Events\Transfer\TransferCancelled;
 use App\Models\Transfer\Transfer;
-use Log;
 
 class TransferObserver
 {
@@ -31,8 +30,7 @@ class TransferObserver
      */
     public function authorized(Transfer $transfer)
     {
-        Log::info("Observer event authorized chamado".json_encode($transfer));
-        event(new TransferAuthorized($transfer));
+       event(new TransferAuthorized($transfer));
     }
 
     public function cancelled(Transfer $transfer)
