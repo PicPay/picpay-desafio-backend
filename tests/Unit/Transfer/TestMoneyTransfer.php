@@ -95,7 +95,7 @@ class TestMoneyTransfer extends TestCase
         $data = [
             "payer_id" => 1,
             "payee_id" => 2,
-            "value" => 100.40,
+            "value" => 2000.40,
         ];
         $response = $this->postJson('/api/transfer', $data);
         $response->assertStatus(422);
