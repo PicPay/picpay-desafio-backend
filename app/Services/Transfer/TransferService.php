@@ -38,4 +38,9 @@ class TransferService implements TransferServiceContract
         }
         return $transfer;
     }
+
+    public function markAsProcessed($transfer_id)
+    {
+        return $this->transferRepository->markAsProcessed($transfer_id);
+    }
 }
