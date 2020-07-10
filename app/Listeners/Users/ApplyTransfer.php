@@ -5,7 +5,6 @@ namespace App\Listeners\Users;
 use App\Events\Transfer\TransferAuthorized;
 use App\Services\Contracts\Transfer\TransferServiceContract;
 use App\Services\Contracts\Wallet\WalletServiceContract;
-use Log;
 
 class ApplyTransfer
 {
@@ -38,11 +37,9 @@ class ApplyTransfer
      */
     public function handle(TransferAuthorized $event)
     {
-        Log::info("Event listener authorized chamado".json_encode($event->transfer));
         if($event->transfer->authorization_status===1 && $event->transfer->cancelled===0)
         {
-            Log::info("Autorizacao confirmada ".json_encode($event));
-            $this->walletService->applyTransfer(
+           $this->walletService->applyTransfer(
                 $event->transfer->payer_id,
                 $event->transfer->payee_id,
                 $event->transfer->value
