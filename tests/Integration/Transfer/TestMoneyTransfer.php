@@ -14,7 +14,7 @@ class TestMoneyTransfer extends TestCase
             "payer_id" => 1,
             "payee_id" => 2
         ];
-        $response = $this->postJson('/api/transfer', $data);
+        $response = $this->postJson(route('transfer'), $data);
         $response->assertOk();
         $data['authorization_status']=1;
         $this->assertDatabaseHas('transfer', $data);
@@ -27,7 +27,7 @@ class TestMoneyTransfer extends TestCase
             "payer_id" => 1,
             "payee_id" => 2
         ];
-        $response = $this->postJson('/api/transfer', $data);
+        $response = $this->postJson(route('transfer'), $data);
         $response->assertStatus(422);
 
         //no payer
@@ -35,7 +35,7 @@ class TestMoneyTransfer extends TestCase
             "value" => 100.00,
             "payee_id" => 2
         ];
-        $response = $this->postJson('/api/transfer', $data);
+        $response = $this->postJson(route('transfer'), $data);
         $response->assertStatus(422);
 
         //no payee
@@ -43,7 +43,7 @@ class TestMoneyTransfer extends TestCase
             "value" => 100.00,
             "payer_id" => 1,
         ];
-        $response = $this->postJson('/api/transfer', $data);
+        $response = $this->postJson(route('transfer'), $data);
         $response->assertStatus(422);
 
         //payer does not exist
@@ -52,7 +52,7 @@ class TestMoneyTransfer extends TestCase
             "payee_id" => 2,
             "value" => 100.00,
         ];
-        $response = $this->postJson('/api/transfer', $data);
+        $response = $this->postJson(route('transfer'), $data);
         $response->assertStatus(422);
 
         //payee does not exist
@@ -61,7 +61,7 @@ class TestMoneyTransfer extends TestCase
             "payee_id" => 200,
             "value" => 100.00,
         ];
-        $response = $this->postJson('/api/transfer', $data);
+        $response = $this->postJson(route('transfer'), $data);
         $response->assertStatus(422);
 
         //value is not a valid number
@@ -70,7 +70,7 @@ class TestMoneyTransfer extends TestCase
             "payee_id" => 2,
             "value" => "100,10",
         ];
-        $response = $this->postJson('/api/transfer', $data);
+        $response = $this->postJson(route('transfer'), $data);
         $response->assertStatus(422);
 
         //no amount being transferred
@@ -79,7 +79,7 @@ class TestMoneyTransfer extends TestCase
             "payee_id" => 2,
             "value" => 0,
         ];
-        $response = $this->postJson('/api/transfer', $data);
+        $response = $this->postJson(route('transfer'), $data);
         $response->assertStatus(422);
 
         //payer is not a common user
@@ -88,7 +88,7 @@ class TestMoneyTransfer extends TestCase
             "payee_id" => 1,
             "value" => 100,
         ];
-        $response = $this->postJson('/api/transfer', $data);
+        $response = $this->postJson(route('transfer'), $data);
         $response->assertStatus(422);
 
         //payer is trying to transfer a larger amount than what is available is his wallet
@@ -97,7 +97,7 @@ class TestMoneyTransfer extends TestCase
             "payee_id" => 2,
             "value" => 2000.40,
         ];
-        $response = $this->postJson('/api/transfer', $data);
+        $response = $this->postJson(route('transfer'), $data);
         $response->assertStatus(422);
     }
 
