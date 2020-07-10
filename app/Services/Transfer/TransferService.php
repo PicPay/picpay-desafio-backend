@@ -2,6 +2,7 @@
 
 namespace App\Services\Transfer;
 
+use App\Jobs\Transfer\CheckForAuthorization;
 use App\Repositories\Contracts\Transfer\TransferRepositoryContract;
 use App\Services\Contracts\Authorization\AuthorizationServiceContract;
 use App\Services\Contracts\Transfer\TransferServiceContract;
@@ -29,13 +30,7 @@ class TransferService implements TransferServiceContract
     public function registerTransfer($payer_id, $payee_id, $value)
     {
         $transfer = $this->transferRepository->createTransfer($payer_id, $payee_id, $value);
-        if ($this->authorizationService->isTransferAuthorized(
-            $payer_id,
-            $payee_id,
-            $value
-        )) {
-            $this->transferRepository->setTransferAsAuthorized($transfer->id);
-        }
+        CheckForAuthorization::dispatch($transfer, $this->authorizationService, $this->transferRepository);
         return $transfer;
     }
 
