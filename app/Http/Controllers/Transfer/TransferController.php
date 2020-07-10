@@ -8,21 +8,9 @@ use App\Services\Contracts\Transfer\TransferServiceContract;
 
 class TransferController extends Controller
 {
-
-    /**
-     * @var TransferServiceContract
-     */
-    private $transferService;
-
-    public function __construct(
-        TransferServiceContract $transferService
-    ) {
-        $this->transferService = $transferService;
-    }
-
-    public function __invoke(ValidateTransferRequest $request)
+    public function __invoke(ValidateTransferRequest $request, TransferServiceContract $transferService)
     {
-        $this->transferService->processTransfer($request->payer_id, $request->payee_id, $request->value);
+        $transferService->processTransfer($request->payer_id, $request->payee_id, $request->value);
         return [];
     }
 }
