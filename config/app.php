@@ -178,6 +178,8 @@ return [
         App\Providers\Transfer\TransferRepositoryServiceProvider::class,
         App\Providers\Transfer\TransferServiceProvider::class,
         App\Providers\Users\UsersRepositoryServiceProvider::class,
+        App\Providers\Notification\NotificationServiceProvider::class,
+        App\Providers\Notification\NotificationRepositoryServiceProvider::class,
         App\Providers\Authorization\AuthorizationServiceProvider::class,
         App\Providers\Wallet\WalletServiceProvider::class,
 
