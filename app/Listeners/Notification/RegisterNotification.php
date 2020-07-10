@@ -3,19 +3,24 @@
 namespace App\Listeners\Notification;
 
 use App\Events\Transfer\TransferAuthorized;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
+use App\Jobs\Notification\SendNotification;
+use App\Services\Contracts\Notification\NotificationServiceContract;
 
 class RegisterNotification
 {
     /**
+     * @var NotificationServiceContract
+     */
+    private $notificationService;
+
+    /**
      * Create the event listener.
      *
-     * @return void
+     * @param  NotificationServiceContract  $notificationService
      */
-    public function __construct()
+    public function __construct(NotificationServiceContract $notificationService)
     {
-        //
+        $this->notificationService=$notificationService;
     }
 
     /**
@@ -26,6 +31,7 @@ class RegisterNotification
      */
     public function handle(TransferAuthorized $event)
     {
-        //
+        $notification=$this->notificationService->createNotification($event->transfer->id);
+        SendNotification::dispatch($notification, $this->notificationService);
     }
 }
