@@ -18,6 +18,8 @@ class Users extends Authenticatable
         'name',
         'email',
         'password',
+        'wallet_amount',
+        'status'
     ];
 
     /**
