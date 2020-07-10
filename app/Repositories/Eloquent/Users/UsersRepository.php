@@ -29,9 +29,21 @@ class UsersRepository implements UsersRepositoryContract
     public function isCommonUser($user_id)
     {
         $user = $this->model->where('id', $user_id)->first();
-        if($user) {
+        if ($user) {
             return $user->is_common === 1; //true
         }
         return false;
+    }
+
+    public function findUser($user_id)
+    {
+        return $this->model->find($user_id);
+    }
+
+    public function updateUser($user_id, array $data)
+    {
+        $user = $this->findUser($user_id);
+        $user->update($data);
+        return $user;
     }
 }
