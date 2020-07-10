@@ -26,7 +26,7 @@ class TransferService implements TransferServiceContract
         $this->authorizationService = $authorizationService;
     }
 
-    public function processTransfer($payer_id, $payee_id, $value)
+    public function registerTransfer($payer_id, $payee_id, $value)
     {
         $transfer = $this->transferRepository->createTransfer($payer_id, $payee_id, $value);
         if ($this->authorizationService->isTransferAuthorized(

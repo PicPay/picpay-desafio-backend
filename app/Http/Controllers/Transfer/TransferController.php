@@ -10,7 +10,7 @@ class TransferController extends Controller
 {
     public function __invoke(ValidateTransferRequest $request, TransferServiceContract $transferService)
     {
-        $transferService->processTransfer($request->payer_id, $request->payee_id, $request->value);
+        $transferService->registerTransfer($request->payer_id, $request->payee_id, $request->value);
         return [];
     }
 }
