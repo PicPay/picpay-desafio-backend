@@ -6,13 +6,20 @@ use App\DocumentModels\Cnpj;
 use App\DocumentModels\Cpf;
 use App\DocumentModels\Email;
 use App\Enums\PersonIdentityTypeEnum;
+use App\Enums\PersonTypeEnum;
 use App\Exceptions\InvalidEmailException;
 use App\Exceptions\InvalidIdentityException;
+use App\Exceptions\InvalidPersonTypeException;
+use App\Shopkeeper;
+use App\Transaction;
+use App\User;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
 
-abstract class Person extends Authenticatable
+class Person extends Authenticatable
 {
     use Notifiable;
 
@@ -97,5 +104,78 @@ abstract class Person extends Authenticatable
     public function setPassword(string $password): void
     {
         $this->password = Hash::make($password);
+    }
+
+    public function wallet(): ?Wallet
+    {
+        return Wallet::getPersonWallet($this);
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function purchaseTransactions(): HasMany
+    {
+        return $this->hasMany(Transaction::class, 'payer_id');
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function saleTransactions(): HasMany
+    {
+        return $this->hasMany(Transaction::class, 'payee_id');
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function transactions(): HasMany
+    {
+        return $this->purchaseTransactions->merge($this->saleTransactions);
+    }
+
+    /**
+     * @return $this|null
+     * @throws InvalidPersonTypeException
+     */
+    private function getRightBuild(): ?self
+    {
+        if (!$this->type) {
+            return null;
+        }
+        if (get_class($this) !== self::class) {
+            return $this;
+        }
+        switch ($this->type) {
+            case PersonTypeEnum::USER:
+                $user = new User();
+                $user->setRawAttributes($this->getAttributes(), true);
+                return $user;
+                break;
+            case PersonTypeEnum::SHOPKEEPER:
+                $shopkeeper = new Shopkeeper();
+                $shopkeeper->setRawAttributes($this->getAttributes(), true);
+                return $shopkeeper;
+                break;
+        }
+        throw new InvalidPersonTypeException();
+    }
+
+    /**
+     * @param Model $model
+     * @param string $foreignKey
+     * @return static|null
+     * @throws InvalidPersonTypeException
+     */
+    public static function getBelongedPerson(Model $model, string $foreignKey = "person_id"): ?self
+    {
+        $personModel = $model->belongsTo(self::class, $foreignKey);
+        if (!$personModel->exists()) {
+            return null;
+        }
+        /** @var self $person */
+        $person = $personModel->first();
+        return $person->getRightBuild();
     }
 }
