@@ -60,7 +60,7 @@ class Cnpj extends MaskedDocument
         $value = $this->getUnmaskedValue();
         if ($value) {
             $pattern = "/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$/";
-            $replacement = "$1.$2/$3-$4";
+            $replacement = "$1.$2.$3/$4-$5";
             return preg_replace($pattern, $replacement, $value);
         }
         return null;
