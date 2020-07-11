@@ -24,12 +24,31 @@ abstract class Enum
     }
 
     /**
+     * @return mixed
+     */
+    public function getValue()
+    {
+        return $this->value;
+    }
+
+    /**
      * @return array
      */
     private static function getConstants(): array
     {
         $reflection = new ReflectionClass(static::class);
         return $reflection->getConstants();
+    }
+
+    /**
+     * @param $constantValue
+     * @return string|null
+     */
+    public static function getConstantName($constantValue): ?string
+    {
+        $constants = static::getConstants();
+        $constantName = array_search($constantValue, $constants);
+        return $constantName ? $constantName : null;
     }
 
     /**
@@ -43,6 +62,10 @@ abstract class Enum
         return new static($name);
     }
 
+    /**
+     * @param $constantValue
+     * @return bool
+     */
     public static function isValid($constantValue): bool
     {
         $constants = static::getConstants();
