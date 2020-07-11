@@ -34,3 +34,7 @@ docker-compose exec app php artisan migrate
 ```
 http://127.0.0.1:81
 ```
+
+## Fluxo de transferência
+
+![image](fluxo_de_transferencia.png)
