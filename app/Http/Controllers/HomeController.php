@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Transaction;
 
 class HomeController extends Controller
 {
@@ -23,8 +23,16 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $balance = float_to_money(auth()->user()->balance());
+        $user_id = auth()->id();
 
-        return view('home', compact('balance'));
+        $balance = auth()->user()->balance();
+
+        $transactions = Transaction::with(['payer', 'payee'])
+            ->where('payer_id', $user_id)
+            ->orWhere('payee_id', $user_id)
+            ->orderBy('created_at', 'DESC')
+            ->paginate(10);
+
+        return view('home', compact('user_id', 'balance', 'transactions'));
     }
 }

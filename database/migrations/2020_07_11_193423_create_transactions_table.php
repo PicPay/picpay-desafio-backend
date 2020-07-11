@@ -17,6 +17,7 @@ class CreateTransactionsTable extends Migration
             $table->id();
             $table->foreignId('payer_id')->constrained('users');
             $table->foreignId('payee_id')->constrained('users');
+            $table->text('message')->nullable();
             $table->decimal('value', 10, 2);
             $table->timestamps();
         });

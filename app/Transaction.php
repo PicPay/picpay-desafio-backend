@@ -19,6 +19,7 @@ class Transaction extends Model
     protected $fillable = [
         'payer_id',
         'payee_id',
+        'message',
         'value',
     ];
 
@@ -27,9 +28,7 @@ class Transaction extends Model
      *
      * @var array
      */
-    protected $casts = [
-        'value' => 'decimal',
-    ];
+    protected $casts = [];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
