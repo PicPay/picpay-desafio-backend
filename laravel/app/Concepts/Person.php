@@ -10,9 +10,9 @@ use App\Enums\PersonTypeEnum;
 use App\Exceptions\InvalidEmailException;
 use App\Exceptions\InvalidIdentityException;
 use App\Exceptions\InvalidPersonTypeException;
+use App\Models\User;
 use App\Shopkeeper;
 use App\Transaction;
-use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -30,10 +30,7 @@ class Person extends Authenticatable
         "email",
         "password",
     ];
-    protected $hidden = [
-        "password",
-        "remember_token",
-    ];
+    protected $hidden = ["password"];
 
     /**
      * @param string $password
