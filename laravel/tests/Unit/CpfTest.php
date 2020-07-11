@@ -3,13 +3,22 @@
 namespace Tests\Unit;
 
 use App\DocumentModels\Cpf;
+use Faker\Generator as Faker;
+use Faker\Provider\pt_BR\Person as FakePersonProvider;
 use Tests\TestCase;
 
 class CpfTest extends TestCase
 {
+    private function getFaker(): Faker
+    {
+        $faker = new Faker();
+        $faker->addProvider(new FakePersonProvider($faker));
+        return $faker;
+    }
+
     public function testValid(): void
     {
-        $validCpf = "589.677.850-38";
+        $validCpf = $this->getFaker()->cpf;
         $cpf = new Cpf($validCpf);
         $this->assertTrue($cpf->isValid(), "CPF inválido.");
         $this->assertIsString($cpf->getValue(), "O CPF não é uma String");
@@ -19,7 +28,7 @@ class CpfTest extends TestCase
         );
         $this->assertTrue(
             boolval(preg_match("/^(\d{3}).(\d{3}).(\d{3})-(\d{2})$/", $cpf->getMaskedValue())),
-            "A classe não conseguiu mascarar o valor."
+            "A classe não conseguiu mascarar o valor"
         );
         $this->assertTrue(
             $cpf->getMaskedValue() === $validCpf,
@@ -31,7 +40,7 @@ class CpfTest extends TestCase
     {
         $invalidCpf = "111.111.111-11";
         $cpf = new Cpf($invalidCpf);
-        $this->assertFalse($cpf->isValid(), "CPF válido quando não deveria ser.");
-        $this->assertNull($cpf->getValue(), "O CPF não está nulo quando deveria estar.");
+        $this->assertFalse($cpf->isValid(), "CPF válido quando não deveria ser");
+        $this->assertNull($cpf->getValue(), "O CPF não está nulo quando deveria estar");
     }
 }

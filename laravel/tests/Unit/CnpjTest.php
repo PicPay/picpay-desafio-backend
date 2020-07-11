@@ -3,13 +3,22 @@
 namespace Tests\Unit;
 
 use App\DocumentModels\Cnpj;
+use Faker\Generator as Faker;
+use Faker\Provider\pt_BR\Company as FakeCompanyProvider;
 use Tests\TestCase;
 
 class CnpjTest extends TestCase
 {
+    private function getFaker(): Faker
+    {
+        $faker = new Faker();
+        $faker->addProvider(new FakeCompanyProvider($faker));
+        return $faker;
+    }
+
     public function testValid(): void
     {
-        $validCnpj = "48.569.503/8499-02";
+        $validCnpj = $this->getFaker()->cnpj;
         $cnpj = new Cnpj($validCnpj);
         $this->assertTrue($cnpj->isValid(), "CNPJ inválido.");
         $this->assertIsString($cnpj->getValue(), "O CNPJ não é uma String");
