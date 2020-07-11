@@ -20,12 +20,6 @@ abstract class Person extends Authenticatable
 
     protected $table = "persons";
 
-    protected $attributes = [
-        "identity_type" => PersonIdentityTypeEnum::CPF,
-        "status" => PersonStatusEnum::ACTIVE,
-        "type" => PersonTypeEnum::USER,
-    ];
-
     protected $fillable = [
         "name",
         "email",
