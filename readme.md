@@ -1,10 +1,5 @@
 # Desafio PP
 
-- Execute as dependências
-```
-docker run --rm -v $(pwd):/app composer install
-```
-
 - Criei o arquivo .env
 ```
 cp .env.example .env
@@ -13,6 +8,15 @@ cp .env.example .env
 - Inicie os containers
 ```
 docker-compose up -d
+```
+
+- Execute as dependências
+```
+docker-compose exec app composer install
+```
+
+```
+docker-compose exec app npm install && npm run dev
 ```
 
 - Gere a chave da aplicação

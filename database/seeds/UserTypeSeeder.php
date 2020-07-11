@@ -15,13 +15,13 @@ class UserTypeSeeder extends Seeder
         UserType::insert([
             [
                 'id' => 1,
-                'name' => 'common',
+                'name' => 'Comum',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [
                 'id' => 2,
-                'name' => 'shopkeeper',
+                'name' => 'Lojista',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ]
