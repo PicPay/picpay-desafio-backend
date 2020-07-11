@@ -5,20 +5,36 @@ namespace App\Concepts;
 use App\DocumentModels\Cnpj;
 use App\DocumentModels\Cpf;
 use App\DocumentModels\Email;
+use App\Enums\PersonIdentityTypeEnum;
+use App\Enums\PersonStatusEnum;
+use App\Enums\PersonTypeEnum;
 use App\Exceptions\InvalidEmailException;
 use App\Exceptions\InvalidIdentityException;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
 
-abstract class Person
+abstract class Person extends Authenticatable
 {
-    /** @var string $name */
-    protected $name;
-    /** @var MaskedDocument $identity */
-    protected $identity;
-    /** @var Email $email */
-    protected $email;
-    /** @var string $password */
-    protected $password;
+    use Notifiable;
+
+    protected $table = "persons";
+
+    protected $attributes = [
+        "identity_type" => PersonIdentityTypeEnum::CPF,
+        "status" => PersonStatusEnum::ACTIVE,
+        "type" => PersonTypeEnum::USER,
+    ];
+
+    protected $fillable = [
+        "name",
+        "email",
+        "password",
+    ];
+    protected $hidden = [
+        "password",
+        "remember_token",
+    ];
 
     /**
      * @param string $password
@@ -30,43 +46,24 @@ abstract class Person
     }
 
     /**
-     * @return string|null
+     * @param MaskedDocument $identity
+     * @param string $errorMessage
+     * @throws InvalidIdentityException
      */
-    public function getName(): ?string
+    private function setIdentity(MaskedDocument $identity, string $errorMessage): void
     {
-        return $this->name;
+        if (!$identity->isValid()) {
+            throw new InvalidIdentityException($errorMessage);
+        }
+        $this->identity = $identity->getUnmaskedValue();
     }
 
     /**
-     * @return MaskedDocument|null
+     * @param PersonIdentityTypeEnum $identityType
      */
-    public function getIdentity(): ?MaskedDocument
+    private function setIdentityType(PersonIdentityTypeEnum $identityType): void
     {
-        return $this->identity;
-    }
-
-    /**
-     * @return Email|null
-     */
-    public function getEmail(): ?Email
-    {
-        return $this->email;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getPassword(): ?string
-    {
-        return $this->password;
-    }
-
-    /**
-     * @param string $name
-     */
-    public function setName(string $name): void
-    {
-        $this->name = $name;
+        $this->identity_type = $identityType->getValue();
     }
 
     /**
@@ -75,11 +72,8 @@ abstract class Person
      */
     public function setCpf(string $cpf): void
     {
-        $identity = new Cpf($cpf);
-        if (!$identity->isValid()) {
-            throw new InvalidIdentityException("'$cpf' não é um CPF válido.");
-        }
-        $this->identity = $identity;
+        $this->setIdentity(new Cpf($cpf), "'$cpf' não é um CPF válido.");
+        $this->setIdentityType(PersonIdentityTypeEnum::CPF());
     }
 
     /**
@@ -88,11 +82,8 @@ abstract class Person
      */
     public function setCnpj(string $cnpj): void
     {
-        $identity = new Cnpj($cnpj);
-        if (!$identity->isValid()) {
-            throw new InvalidIdentityException("'$cnpj' não é um CNPJ válido.");
-        }
-        $this->identity = $identity;
+        $this->setIdentity(new Cnpj($cnpj), "'$cnpj' não é um CNPJ válido.");
+        $this->setIdentityType(PersonIdentityTypeEnum::CNPJ());
     }
 
     /**
@@ -105,7 +96,7 @@ abstract class Person
         if (!$email->isValid()) {
             throw new InvalidEmailException("'$emailString' não é um e-mail válido.");
         }
-        $this->email = $email;
+        $this->email = $email->getValue();
     }
 
     /**
@@ -114,28 +105,5 @@ abstract class Person
     public function setPassword(string $password): void
     {
         $this->password = Hash::make($password);
-    }
-
-    /**
-     * @return array
-     */
-    public function toArray(): array
-    {
-        return [
-            "name" => $this->name,
-            "identity" => $this->identity->getMaskedValue(),
-            "email" => $this->email->getValue(),
-            "password" => $this->password,
-        ];
-    }
-
-    /**
-     * @param array $personArray
-     * @return Person
-     */
-    public static function instanceFromArray(array $personArray): self
-    {
-        $person = new static();
-        $person->setName($personArray["name"]);
     }
 }
