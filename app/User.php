@@ -48,4 +48,20 @@ class User extends Authenticatable
     {
         return $this->belongsTo(\App\UserType::class);
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     **/
+    public function payer()
+    {
+        return $this->hasMany(\App\Transaction::class, 'payer_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     **/
+    public function payee()
+    {
+        return $this->hasMany(\App\Transaction::class, 'payee_id');
+    }
 }
