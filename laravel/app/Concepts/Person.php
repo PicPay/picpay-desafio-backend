@@ -6,8 +6,6 @@ use App\DocumentModels\Cnpj;
 use App\DocumentModels\Cpf;
 use App\DocumentModels\Email;
 use App\Enums\PersonIdentityTypeEnum;
-use App\Enums\PersonStatusEnum;
-use App\Enums\PersonTypeEnum;
 use App\Exceptions\InvalidEmailException;
 use App\Exceptions\InvalidIdentityException;
 use Illuminate\Foundation\Auth\User as Authenticatable;
