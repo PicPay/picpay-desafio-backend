@@ -30,6 +30,11 @@ docker-compose exec app php artisan config:cache
 docker-compose exec app php artisan migrate
 ```
 
+- Insira os registros já configurados
+```
+docker-compose exec app php artisan db:seed
+```
+
 - Acesse o link
 ```
 http://127.0.0.1:81
