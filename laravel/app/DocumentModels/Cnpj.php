@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Documents;
+namespace App\DocumentModels;
 
 use App\Concepts\MaskedDocument;
 
-class Cpf extends MaskedDocument
+class Cnpj extends MaskedDocument
 {
     /**
      * @return bool
@@ -12,16 +12,14 @@ class Cpf extends MaskedDocument
     private function isFirstDigitValid(): bool
     {
         $sum = 0;
-        $firstMultiplier = 10;
-        for ($index = 0; $index <= 8; $index++) {
-            $sum += $this->value[$index] * ($firstMultiplier - $index);
+        for ($index = 0; $index < 4; $index++) {
+            $sum += (5 - $index) * ($this->value[$index] + $this->value[8 + $index]) + ((9 - $index) * $this->value[4 + $index]);
         }
-        if (($sum % 11) < 2) {
+        $calculatedDigit = 11 - ($sum % 11);
+        if ($calculatedDigit >= 10) {
             $calculatedDigit = 0;
-        } else {
-            $calculatedDigit = 11 - ($sum % 11);
         }
-        return $calculatedDigit == $this->value[9];
+        return $calculatedDigit == $this->value[12];
     }
 
     /**
@@ -30,19 +28,18 @@ class Cpf extends MaskedDocument
     private function isSecondDigitValid(): bool
     {
         $sum = 0;
-        $firstMultiplier = 11;
-        for ($index = 0; $index <= 9; $index++) {
-            if (str_repeat($index, 11) == $this->value) {
-                return false;
-            }
-            $sum += $this->value[$index] * ($firstMultiplier - $index);
+        for ($index = 0; $index < 4; $index++) {
+            $sum += (6 - $index) * ($this->value[$index] + $this->value[8 + $index]);
         }
-        if (($sum % 11) < 2) {
+        $sum += 2 * ($this->value[4] + $this->value[12]);
+        for ($index = 5; $index < 8; $index++) {
+            $sum += (14 - $index) * $this->value[$index];
+        }
+        $calculatedDigit = 11 - ($sum % 11);
+        if ($calculatedDigit >= 10) {
             $calculatedDigit = 0;
-        } else {
-            $calculatedDigit = 11 - ($sum % 11);
         }
-        return $calculatedDigit == $this->value[10];
+        return $calculatedDigit == $this->value[13];
     }
 
     /**
@@ -50,7 +47,7 @@ class Cpf extends MaskedDocument
      */
     public function isValid(): bool
     {
-        return strlen($this->value) == 11
+        return strlen($this->value) == 14
             && $this->isFirstDigitValid()
             && $this->isSecondDigitValid();
     }
@@ -62,8 +59,8 @@ class Cpf extends MaskedDocument
     {
         $value = $this->getUnmaskedValue();
         if ($value) {
-            $pattern = "/^(\d{3})(\d{3})(\d{3})(\d{2})$/";
-            $replacement = "$1.$2.$3-$4";
+            $pattern = "/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$/";
+            $replacement = "$1.$2/$3-$4";
             return preg_replace($pattern, $replacement, $value);
         }
         return null;

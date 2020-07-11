@@ -2,9 +2,9 @@
 
 namespace App\Concepts;
 
-use App\Documents\Cnpj;
-use App\Documents\Cpf;
-use App\Documents\Email;
+use App\DocumentModels\Cnpj;
+use App\DocumentModels\Cpf;
+use App\DocumentModels\Email;
 use App\Exceptions\InvalidEmailException;
 use App\Exceptions\InvalidIdentityException;
 use Illuminate\Support\Facades\Hash;
