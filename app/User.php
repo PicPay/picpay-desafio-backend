@@ -65,4 +65,17 @@ class User extends Authenticatable
     {
         return $this->hasMany(\App\Transaction::class, 'payee_id');
     }
+
+    public function balance()
+    {
+        try {
+            $payer = auth()->user()->payer()->sum('value');
+            $payee = auth()->user()->payee()->sum('value');
+
+            return $payee - $payer;
+        } catch (\Exception $e) {
+            logger()->error((string)$e);
+            return 0;
+        }
+    }
 }

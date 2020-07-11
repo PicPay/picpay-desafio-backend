@@ -23,6 +23,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $balance = float_to_money(auth()->user()->balance());
+
+        return view('home', compact('balance'));
     }
 }
