@@ -7,6 +7,7 @@ use App\Enums\UserStatusEnum;
 use App\Enums\WalletTypeEnum;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Model
@@ -19,6 +20,8 @@ class User extends Model
         "name",
         "email",
         "password",
+        "identity_type",
+        "identity",
     ];
 
     protected $attributes = [
@@ -28,18 +31,11 @@ class User extends Model
 
     protected $hidden = ["password"];
 
-    public function wallets(): HasMany
+    /**
+     * @return HasOne
+     */
+    public function wallet(): HasOne
     {
-        return $this->hasMany(Wallet::class);
-    }
-
-    public function userWallets(): HasMany
-    {
-        return $this->wallets->where("type", WalletTypeEnum::USER_WALLET);
-    }
-
-    public function shopkeeperWallets(): HasMany
-    {
-        return $this->wallets->where("type", WalletTypeEnum::SHOPKEEPER_WALLET);
+        return $this->hasOne(Wallet::class);
     }
 }

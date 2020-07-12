@@ -2,84 +2,62 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\WalletRequest;
+use App\Http\Resources\WalletResource;
+use App\Models\User;
 use App\Models\Wallet;
-use Illuminate\Http\Request;
+use Exception;
+use Illuminate\Http\JsonResponse;
+use Symfony\Component\Console\Exception\MissingInputException;
+use Throwable;
 
 class WalletController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
 
     /**
-     * Show the form for creating a new resource.
+     * Display the specified resource.
      *
-     * @return \Illuminate\Http\Response
+     * @param Wallet $wallet
+     * @param User $user
+     * @return WalletResource|JsonResponse
      */
-    public function create()
+    public function show(Wallet $wallet, User $user)
     {
-        //
+        try {
+            $resource = new WalletResource($user->wallet);
+        } catch (Throwable $error) {
+            return response()->json(["message" => $error->getMessage()], 500);
+        }
+        return $resource;
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param WalletRequest $request
+     * @param User $user
+     * @return WalletResource|JsonResponse
      */
-    public function store(Request $request)
+    public function update(WalletRequest $request, User $user)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Wallet  $wallet
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Wallet $wallet)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Wallet  $wallet
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Wallet $wallet)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Wallet  $wallet
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Wallet $wallet)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Wallet  $wallet
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Wallet $wallet)
-    {
-        //
+        try {
+            $wallet = $user->wallet;
+            $hadChanges = false;
+            if ($request->exists("balance")) {
+                $wallet->balance = $request->get("balance");
+                $hadChanges = true;
+            }
+            if ($request->exists("type")) {
+                $wallet->type = $request->get("type");
+                $hadChanges = true;
+            }
+            if (!$hadChanges) {
+                throw new Exception("Não houve alteração de dados.");
+            }
+            $wallet->saveOrFail();
+        } catch (Throwable $error) {
+            return response()->json(["message" => $error->getMessage()], 500);
+        }
+        return new WalletResource($wallet);
     }
 }
