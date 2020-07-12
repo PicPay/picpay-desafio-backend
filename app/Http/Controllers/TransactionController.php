@@ -32,6 +32,42 @@ class TransactionController extends Controller
      */
     public function execute(Request $request)
     {
-       
+        try {
+            $jsonReponse = [
+                'status' => 'error',
+                'message' => ""
+            ];
+            $code = Response::HTTP_OK;
+            
+            $this->validateRequest($request);
+
+            $jsonReponse['data'] = $this->transactionRepository->create($request->all());
+            $jsonReponse['status'] = "success";
+        } catch (ValidationException $exception) {
+            $jsonReponse["message"] = $exception->getMessage();
+            $code = Response::HTTP_UNPROCESSABLE_ENTITY;
+        } catch (Exception $exception) {
+            dd($exception);
+            $jsonReponse["message"] = $exception->getMessage();
+            $code = Response::HTTP_INTERNAL_SERVER_ERROR;
+        }
+
+        return response()->json($jsonReponse, $code);
+    }
+    /**
+     * Enforce challenge rules
+     *
+     * @param Request $request
+     * @return void
+     */
+    private function validateRequest(Request $request)
+    {
+        $transactionRequest = new TransactionRequest;
+
+        $this->validate(
+            $request,
+            $transactionRequest->getRules(),
+            $transactionRequest->getMessages()
+        );
     }
 }

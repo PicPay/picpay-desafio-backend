@@ -3,7 +3,10 @@
 namespace App\Providers;
 
 use Laravel\Lumen\Providers\EventServiceProvider as ServiceProvider;
-
+use App\Events\Transaction\Validation;
+use App\Listeners\Transaction\Authorization;
+use App\Listeners\Transaction\Monetization;
+use App\Listeners\Transaction\Notification;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -12,5 +15,11 @@ class EventServiceProvider extends ServiceProvider
      *
      * @var array
      */
-    protected $listen = [];
+    protected $listen = [
+        Validation::class => [
+            Authorization::class,
+            Monetization::class,
+            Notification::class,
+        ],
+    ];
 }
