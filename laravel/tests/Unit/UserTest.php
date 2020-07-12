@@ -13,9 +13,8 @@ class UserTest extends TestCase
 {
     use DatabaseMigrations;
 
-    public function testUserFactory(): void
+    private function assertInstance($user): void
     {
-        $user = factory(User::class)->make();
         $this->assertTrue($user instanceof User, "O objeto gerado não é uma instância da classe User");
         $this->assertIsString($user->name, "O nome gerado não é String.");
         $this->assertIsString($user->email, "O e-mail gerado não é String");
@@ -28,6 +27,11 @@ class UserTest extends TestCase
             UserIdentityTypeEnum::isValid($user->identity_type),
             "identity_type inválido: {$user->identity_type}"
         );
+    }
+
+    public function testUserFactory(): void
+    {
+        $this->assertInstance(factory(User::class)->make());
     }
 
     public function testUserSave(): void
@@ -41,18 +45,7 @@ class UserTest extends TestCase
         $this->testUserSave();
         $userId = DB::getPdo()->lastInsertId();
         $user = User::findOrFail($userId);
-        $this->assertTrue($user instanceof User, "O objeto gerado não é uma instância da classe User");
-        $this->assertIsString($user->name, "O nome gerado não é String.");
-        $this->assertIsString($user->email, "O e-mail gerado não é String");
-        $this->assertIsString($user->identity, "A identificação não é String");
-        $this->assertTrue(
-            UserStatusEnum::isValid($user->status),
-            "status inválido: {$user->status}"
-        );
-        $this->assertTrue(
-            UserIdentityTypeEnum::isValid($user->identity_type),
-            "identity_type inválido: {$user->identity_type}"
-        );
+        $this->assertInstance($user);
     }
 
     public function testUserDelete(): void

@@ -12,11 +12,12 @@ class TransactionTest extends TestCase
 {
     use DatabaseMigrations;
 
-    public function testTransactionFactory(): void
+    private function assertInstance($transaction): void
     {
-        $transaction = factory(Transaction::class)->make();
-        $this->assertTrue($transaction instanceof Transaction,
-            "O objeto gerado não é uma instância da classe Transaction");
+        $this->assertTrue(
+            $transaction instanceof Transaction,
+            "O objeto gerado não é uma instância da classe Transaction"
+        );
         $this->assertIsFloat($transaction->value, "O valor gerado não é Float.");
         $this->assertIsInt($transaction->payer_wallet_id, "O payer_wallet_id gerado não é Int.");
         $this->assertIsInt($transaction->payee_wallet_id, "O payee_wallet_id gerado não é Int.");
@@ -25,6 +26,11 @@ class TransactionTest extends TestCase
         $this->assertTrue($payer instanceof User, "O pagante não é uma instância da classe User");
         $payee = $transaction->payeeWallet->user;
         $this->assertNotNull($payee, "O receptor retornou NULL");
+    }
+
+    public function testTransactionFactory(): void
+    {
+        $this->assertInstance(factory(Transaction::class)->make());
     }
 
     public function testTransactionSave(): void
@@ -38,16 +44,7 @@ class TransactionTest extends TestCase
         $this->testTransactionSave();
         $transactionId = DB::getPdo()->lastInsertId();
         $transaction = Transaction::findOrFail($transactionId);
-        $this->assertTrue($transaction instanceof Transaction,
-            "O objeto gerado não é uma instância da classe Transaction");
-        $this->assertIsFloat($transaction->value, "O valor gerado não é Float.");
-        $this->assertIsInt($transaction->payer_wallet_id, "O payer_wallet_id gerado não é Int.");
-        $this->assertIsInt($transaction->payee_wallet_id, "O payee_wallet_id gerado não é Int.");
-        $payer = $transaction->payerWallet->user;
-        $this->assertNotNull($payer, "O pagante retornou NULL");
-        $this->assertTrue($payer instanceof User, "O pagante não é uma instância da classe User");
-        $payee = $transaction->payeeWallet->user;
-        $this->assertNotNull($payee, "O receptor retornou NULL");
+        $this->assertInstance($transaction);
     }
 
     public function testTransactionDelete(): void
