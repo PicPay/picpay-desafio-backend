@@ -11,7 +11,7 @@ use App\Exceptions\InvalidEmailException;
 use App\Exceptions\InvalidIdentityException;
 use App\Exceptions\InvalidPersonTypeException;
 use App\Models\User;
-use App\Shopkeeper;
+use App\Models\Shopkeeper;
 use App\Transaction;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
