@@ -15,8 +15,10 @@ class TransactionResource extends JsonResource
             'value' => $this->value,
             'payer' => $payerWallet->user,
             'payer_wallet' => $payerWallet,
+            'payer_wallet_id' => $payerWallet->id,
             'payee' => $payeeWallet->user,
             'payee_wallet' => $payeeWallet,
+            "payee_wallet_id" => $payeeWallet->id,
         ];
     }
 }
