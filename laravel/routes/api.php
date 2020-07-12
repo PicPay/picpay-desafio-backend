@@ -23,11 +23,11 @@ Route::group(['middleware' => 'api'], function () {
     Route::group(['prefix' => 'user'], function () {
         Route::get("{user}", "UserController@show");
         Route::post("", "UserController@store");
-        Route::post("{user}", "UserController@update");
+        Route::put("{user}", "UserController@update");
         Route::delete("{user}", "UserController@destroy");
 
         Route::get("{user}/wallet", "WalletController@show");
-        Route::post("{user}/wallet", "WalletController@update");
+        Route::put("{user}/wallet", "WalletController@update");
     });
 
     Route::get("transactions", "TransactionController@index");
