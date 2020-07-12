@@ -21,10 +21,8 @@ class ApiRepository
 
         try {
             $result = $client->post($uri, [
-                'headers' => [
-                    'Content-Type' => 'application/json'
-                ],
-                'form_params' => $params,
+                'headers' => ['Accept' => 'application/json'],
+                'json' => $params,
                 'timeout' => 10,
                 'connect_timeout' => 10,
             ]);
