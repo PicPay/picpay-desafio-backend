@@ -37,7 +37,11 @@ abstract class Enum
     public static function getConstants(): array
     {
         $reflection = new ReflectionClass(static::class);
-        return $reflection->getConstants();
+        $constants = $reflection->getConstants();
+        if (isset($constants["LABELS"])) {
+            unset($constants["LABELS"]);
+        }
+        return $constants;
     }
 
     /**
