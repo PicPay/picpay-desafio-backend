@@ -1,0 +1,35 @@
+version: '3.2'
+networks:
+  backend:
+    
+services:
+  api.desafio.dev:
+    container_name: api.desafio.dev
+    build:
+      context: .
+      dockerfile: api.Dockerfile
+    ports:
+      - "8000:80"
+    volumes:
+      - "./:/app"
+      - "./vendor:/app/vendor"
+    networks: 
+      - backend
+  mysql.desafio.dev:
+    container_name: mysql.desafio.dev
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: desafio
+    command: mysqld --innodb-buffer-pool-size=64M
+    ports:
+      - "3407:3306"
+    networks:
+      - backend
+  mongo.desafio.dev:
+    container_name: mongo.desafio.dev
+    image: mongo
+    ports:
+      - "27017:27017"
+    networks:
+      - backend
