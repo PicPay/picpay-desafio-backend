@@ -77,7 +77,9 @@ class Wallet extends Model
 
     private function isPayerAuthorized(): bool
     {
-        return true;
+        if (!env("APP_USE_MOCK", false)) {
+            return true;
+        }
         // não consegui abrir o mock, portanto não sei a estrutra nem o que retorna
         // todo: revisar padrão do mock
         return !empty($this->getAuthorization("https://run.mocky.io/v3/8fafdd68-a090-496f-8c9a-3442cf30dae6"));
@@ -85,7 +87,9 @@ class Wallet extends Model
 
     private function isPayeeAuthorized(): bool
     {
-        return true;
+        if (!env("APP_USE_MOCK", false)) {
+            return true;
+        }
         // não consegui abrir o mock, portanto não sei a estrutra nem o que retorna
         // todo: revisar padrão do mock
         return !empty($this->getAuthorization("https://run.mocky.io/v3/b19f7b9f-9cbf-4fc6-ad22-dc30601aec04"));
