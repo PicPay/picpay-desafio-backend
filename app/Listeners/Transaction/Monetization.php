@@ -55,8 +55,6 @@ class Monetization implements ShouldQueue
      */
     public function hasntBeenAuthorized(Validation $event): bool
     {
-        dump(date("Y-m-d h:i:s"));
-        dump($this->transactionRepository->findById($event->transaction["id"])["status"]);
         return $this->transactionRepository->findById($event->transaction["id"])["status"] != Transaction::AUTHORIZED;
     }
 

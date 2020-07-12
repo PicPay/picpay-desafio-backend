@@ -52,9 +52,7 @@ class Authorization implements ShouldQueue
     private function requestAuthorization(Validation &$event): void
     {
         try {
-            Log::info(config("external.authorization"));
             $response = Http::post(config("external.authorization"), $event->payload);
-            dump($response->getStatusCode());
             if ($response->getStatusCode() != Response::HTTP_OK) {
                 $event->status = Transaction::INCONSISTENCY;
             }
@@ -77,9 +75,6 @@ class Authorization implements ShouldQueue
      */
     private function updateTransactionStatus(Validation $event): void
     {
-        dump(__CLASS__);
-        dump(date("Y-m-d h:i:s"));
-        dump($event->status);
         $this->transactionRepository->updateStatus($event->status, $event->transaction["id"]);
     }
 }
