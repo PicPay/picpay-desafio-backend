@@ -10,7 +10,6 @@ use Illuminate\Database\Eloquent\Factory;
 
 $factory->define(Wallet::class, function (Faker $faker) {
     $user = factory(User::class)->create();
-    $user->save();
     return [
         "balance" => $faker->randomFloat(2, 300, 800),
         "type" => $faker->randomElement(WalletTypeEnum::getConstants()),

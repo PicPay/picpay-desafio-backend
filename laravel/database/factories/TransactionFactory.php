@@ -10,8 +10,6 @@ use Illuminate\Database\Eloquent\Factory;
 $factory->define(Transaction::class, function (Faker $faker) {
     $payerWallet = factory(Wallet::class)->create();
     $payeeWallet = factory(Wallet::class)->create();
-    $payerWallet->save();
-    $payeeWallet->save();
     return [
         "value" => $faker->randomFloat(2, 35, 899),
         "payer_wallet_id" => $payerWallet->id,
