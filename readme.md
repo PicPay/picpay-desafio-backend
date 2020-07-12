@@ -24,10 +24,22 @@ Agora rodar as migrações e seeds
 ```
 docker-compose exec api.desafio.dev php artisan migrate:fresh --seed
 ```
+(opcional) Para fazer a gestão da fila pelo banco de dados
+```
+alterar o .env queue_connection para database
+docker-compose exec api.desafio.dev php artisan queue:work
+```
 ## Como testar ?
 
 ### Postman
-Através da url definida no docker http://localhost:8000
+Através da url definida no docker http://localhost:8000/api/v1/transaction
+
+Payload:
+{
+    "payer": "1",
+    "payee": "2",
+    "value": "12"
+}
 
 ### PHPUnit
 docker-compose exec api.desafio.dev vendor/bin/phpunit -c ./phpunit.xml

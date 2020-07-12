@@ -36,7 +36,7 @@ class Monetization implements ShouldQueue
      */
     public function handle(Validation $event): bool
     {
-        dump(__CLASS__);
+        Log::info(__CLASS__);
         if ($this->hasntBeenAuthorized($event)) {
             return false;
         }
@@ -68,7 +68,6 @@ class Monetization implements ShouldQueue
     {
         #request, verificar fundos e numeros nao negativos
         try {
-            Log::info(__CLASS__);
             $payerWallet = $this->userWalletRepository->findByUserId($event->transaction["payer"]);
             $payeeWallet = $this->userWalletRepository->findByUserId($event->transaction["payee"]);
 
