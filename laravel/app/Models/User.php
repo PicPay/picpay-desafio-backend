@@ -4,9 +4,7 @@ namespace App\Models;
 
 use App\Enums\UserIdentityTypeEnum;
 use App\Enums\UserStatusEnum;
-use App\Enums\WalletTypeEnum;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Notifications\Notifiable;
 
@@ -37,5 +35,25 @@ class User extends Model
     public function wallet(): HasOne
     {
         return $this->hasOne(Wallet::class);
+    }
+
+    public function hasCpf(): bool
+    {
+        return $this->identity_type === UserIdentityTypeEnum::CPF;
+    }
+
+    public function hasCnpj(): bool
+    {
+        return $this->identity_type === UserIdentityTypeEnum::CNPJ;
+    }
+
+    public function isActive(): bool
+    {
+        return $this->status === UserStatusEnum::ACTIVE;
+    }
+
+    public function isBanned(): bool
+    {
+        return $this->status === UserStatusEnum::BANNED;
     }
 }

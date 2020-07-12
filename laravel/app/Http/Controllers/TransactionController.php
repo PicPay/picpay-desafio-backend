@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Enums\WalletTypeEnum;
 use App\Http\Requests\TransactionRequest;
 use App\Http\Resources\TransactionResource;
+use App\Jobs\SendPaymentNotification;
 use App\Models\Transaction;
 use App\Models\User;
 use App\Models\Wallet;
@@ -77,6 +78,12 @@ class TransactionController extends Controller
                 $transaction->payer_wallet_id = $payerWallet->id;
                 $transaction->payee_wallet_id = $payeeWallet->id;
                 $transaction->saveOrFail();
+
+                try {
+                    SendPaymentNotification::dispatch($payer, $payee, $value)->onQueue("paymentNotifications");
+                } catch (Exception $exception) {
+                    // todo: log
+                }
             });
         } catch (Throwable $error) {
             return response()->json(["message" => $error->getMessage()], 500);
