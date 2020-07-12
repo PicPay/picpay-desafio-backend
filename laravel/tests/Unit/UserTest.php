@@ -2,9 +2,8 @@
 
 namespace Tests\Unit;
 
-use App\Enums\PersonIdentityTypeEnum;
-use App\Enums\PersonStatusEnum;
-use App\Enums\PersonTypeEnum;
+use App\Enums\UserIdentityTypeEnum;
+use App\Enums\UserStatusEnum;
 use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\DB;
@@ -22,15 +21,11 @@ class UserTest extends TestCase
         $this->assertIsString($user->email, "O e-mail gerado não é String");
         $this->assertIsString($user->identity, "A identificação não é String");
         $this->assertTrue(
-            PersonTypeEnum::isValid($user->type),
-            "type inválido: {$user->type}"
-        );
-        $this->assertTrue(
-            PersonStatusEnum::isValid($user->status),
+            UserStatusEnum::isValid($user->status),
             "status inválido: {$user->status}"
         );
         $this->assertTrue(
-            PersonIdentityTypeEnum::isValid($user->identity_type),
+            UserIdentityTypeEnum::isValid($user->identity_type),
             "identity_type inválido: {$user->identity_type}"
         );
     }
@@ -51,15 +46,11 @@ class UserTest extends TestCase
         $this->assertIsString($user->email, "O e-mail gerado não é String");
         $this->assertIsString($user->identity, "A identificação não é String");
         $this->assertTrue(
-            PersonTypeEnum::isValid($user->type),
-            "type inválido: {$user->type}"
-        );
-        $this->assertTrue(
-            PersonStatusEnum::isValid($user->status),
+            UserStatusEnum::isValid($user->status),
             "status inválido: {$user->status}"
         );
         $this->assertTrue(
-            PersonIdentityTypeEnum::isValid($user->identity_type),
+            UserIdentityTypeEnum::isValid($user->identity_type),
             "identity_type inválido: {$user->identity_type}"
         );
     }

@@ -8,10 +8,10 @@ use App\Concepts\Enum;
  * Class PersonIdentityTypeEnum
  * @package App\Enums
  *
- * @method static PersonIdentityTypeEnum CPF()
- * @method static PersonIdentityTypeEnum CNPJ()
+ * @method static UserIdentityTypeEnum CPF()
+ * @method static UserIdentityTypeEnum CNPJ()
  */
-class PersonIdentityTypeEnum extends Enum
+class UserIdentityTypeEnum extends Enum
 {
     public const CPF = "cpf";
     public const CNPJ = "cnpj";

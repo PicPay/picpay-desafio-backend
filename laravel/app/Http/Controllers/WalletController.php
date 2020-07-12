@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Shopkeeper;
+use App\Models\Wallet;
 use Illuminate\Http\Request;
 
-class ShopkeeperController extends Controller
+class WalletController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class ShopkeeperController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Shopkeeper  $shopkeeper
+     * @param  \App\Models\Wallet  $wallet
      * @return \Illuminate\Http\Response
      */
-    public function show(Shopkeeper $shopkeeper)
+    public function show(Wallet $wallet)
     {
         //
     }
@@ -52,10 +52,10 @@ class ShopkeeperController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Shopkeeper  $shopkeeper
+     * @param  \App\Models\Wallet  $wallet
      * @return \Illuminate\Http\Response
      */
-    public function edit(Shopkeeper $shopkeeper)
+    public function edit(Wallet $wallet)
     {
         //
     }
@@ -64,10 +64,10 @@ class ShopkeeperController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Shopkeeper  $shopkeeper
+     * @param  \App\Models\Wallet  $wallet
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Shopkeeper $shopkeeper)
+    public function update(Request $request, Wallet $wallet)
     {
         //
     }
@@ -75,10 +75,10 @@ class ShopkeeperController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Shopkeeper  $shopkeeper
+     * @param  \App\Models\Wallet  $wallet
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Shopkeeper $shopkeeper)
+    public function destroy(Wallet $wallet)
     {
         //
     }

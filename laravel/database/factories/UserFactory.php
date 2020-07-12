@@ -2,9 +2,8 @@
 
 /** @var Factory $factory */
 
-use App\Enums\PersonIdentityTypeEnum;
-use App\Enums\PersonStatusEnum;
-use App\Enums\PersonTypeEnum;
+use App\Enums\UserIdentityTypeEnum;
+use App\Enums\UserStatusEnum;
 use App\Models\User;
 use Faker\Generator as Faker;
 use Faker\Provider\pt_BR\Person as FakerPersonProvider;
@@ -17,8 +16,7 @@ $factory->define(User::class, function (Faker $faker) {
         "email" => $faker->safeEmail,
         "password" => $faker->password,
         "identity" => $faker->cpf,
-        "identity_type" => PersonIdentityTypeEnum::CPF,
-        "status" => PersonStatusEnum::ACTIVE,
-        "type" => PersonTypeEnum::USER,
+        "identity_type" => UserIdentityTypeEnum::CPF,
+        "status" => UserStatusEnum::ACTIVE,
     ];
 });

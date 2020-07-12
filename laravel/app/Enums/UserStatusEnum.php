@@ -8,10 +8,10 @@ use App\Concepts\Enum;
  * Class PersonStatusEnum
  * @package App\Enums
  *
- * @method static PersonStatusEnum BANNED()
- * @method static PersonStatusEnum ACTIVE()
+ * @method static UserStatusEnum BANNED()
+ * @method static UserStatusEnum ACTIVE()
  */
-class PersonStatusEnum extends Enum
+class UserStatusEnum extends Enum
 {
     public const BANNED = "banned";
     public const ACTIVE = "active";

@@ -2,26 +2,44 @@
 
 namespace App\Models;
 
-use App\Concepts\Person;
-use App\Enums\PersonIdentityTypeEnum;
-use App\Enums\PersonStatusEnum;
-use App\Enums\PersonTypeEnum;
+use App\Enums\UserIdentityTypeEnum;
+use App\Enums\UserStatusEnum;
+use App\Enums\WalletTypeEnum;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Notifications\Notifiable;
 
-class User extends Person
+class User extends Model
 {
+    use Notifiable;
 
-    protected $attributes = [
-        "identity_type" => PersonIdentityTypeEnum::CPF,
-        "status" => PersonStatusEnum::ACTIVE,
-        "type" => PersonTypeEnum::USER,
+    protected $table = "users";
+
+    protected $fillable = [
+        "name",
+        "email",
+        "password",
     ];
 
-    public static function boot()
-    {
-        parent::boot();
+    protected $attributes = [
+        "identity_type" => UserIdentityTypeEnum::CPF,
+        "status" => UserStatusEnum::ACTIVE,
+    ];
 
-        static::addGlobalScope(function ($query) {
-            $query->where("type", PersonTypeEnum::USER);
-        });
+    protected $hidden = ["password"];
+
+    public function wallets(): HasMany
+    {
+        return $this->hasMany(Wallet::class);
+    }
+
+    public function userWallets(): HasMany
+    {
+        return $this->wallets->where("type", WalletTypeEnum::USER_WALLET);
+    }
+
+    public function shopkeeperWallets(): HasMany
+    {
+        return $this->wallets->where("type", WalletTypeEnum::SHOPKEEPER_WALLET);
     }
 }
