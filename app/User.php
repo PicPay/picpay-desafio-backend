@@ -69,13 +69,29 @@ class User extends Authenticatable
     public function balance()
     {
         try {
-            $payer = auth()->user()->payer()->sum('value');
-            $payee = auth()->user()->payee()->sum('value');
+            $user = auth()->user();
+
+            $payer = $user->payer()->sum('value');
+            $payee = $user->payee()->sum('value');
 
             return $payee - $payer;
         } catch (\Exception $e) {
             logger()->error((string)$e);
             return 0;
+        }
+    }
+
+    public function canPay()
+    {
+        try {
+            if (auth()->user()->user_type_id == UserType::COMMON) {
+                return true;
+            }
+
+            return false;
+        } catch (\Exception $e) {
+            logger()->error((string)$e);
+            return false;
         }
     }
 }

@@ -13,13 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+$router->get('/', function () {
     return view('welcome');
 });
 
 Auth::routes();
 
 // Registration Routes...
-Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+$router->get('register', 'Auth\RegisterController@showRegistrationForm');
 
-Route::get('/home', 'HomeController@index')->name('home');
+$router->get('/home', 'HomeController@index');
+$router->get('/transaction', 'TransactionController@index');

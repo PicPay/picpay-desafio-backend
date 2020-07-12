@@ -23,16 +23,18 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $user_id = auth()->id();
+        $user = auth()->user();
 
-        $balance = auth()->user()->balance();
+        $balance = $user->balance();
+
+        $can_pay = $user->canPay();
 
         $transactions = Transaction::with(['payer', 'payee'])
-            ->where('payer_id', $user_id)
-            ->orWhere('payee_id', $user_id)
+            ->where('payer_id', $user->id)
+            ->orWhere('payee_id', $user->id)
             ->orderBy('created_at', 'DESC')
             ->paginate(10);
 
-        return view('home', compact('user_id', 'balance', 'transactions'));
+        return view('home', compact('user', 'balance', 'can_pay', 'transactions'));
     }
 }
