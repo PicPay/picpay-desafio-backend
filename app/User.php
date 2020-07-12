@@ -66,6 +66,11 @@ class User extends Authenticatable
         return $this->hasMany(\App\Transaction::class, 'payee_id');
     }
 
+    /**
+     * Calculates the balance.
+     *
+     * @return int
+     */
     public function balance()
     {
         try {
@@ -81,14 +86,23 @@ class User extends Authenticatable
         }
     }
 
+    /**
+     * Valid if you can pay
+     *
+     * @return bool
+     */
     public function canPay()
     {
         try {
-            if (auth()->user()->user_type_id == UserType::COMMON) {
-                return true;
+            if (auth()->user()->user_type_id != UserType::COMMON) {
+                return false;
             }
 
-            return false;
+            if ($this->balance() <= 0) {
+                return false;
+            }
+
+            return true;
         } catch (\Exception $e) {
             logger()->error((string)$e);
             return false;

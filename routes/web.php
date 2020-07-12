@@ -24,3 +24,4 @@ $router->get('register', 'Auth\RegisterController@showRegistrationForm');
 
 $router->get('/home', 'HomeController@index');
 $router->get('/transaction', 'TransactionController@index');
+$router->post('/transaction/store', 'TransactionController@store');

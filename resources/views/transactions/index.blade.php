@@ -45,19 +45,22 @@
                                                 <div class="input-group-prepend">
                                                     <div class="input-group-text">R$</div>
                                                 </div>
-                                                <input type="text" class="form-control money to_clean"
+                                                <input type="text" id="user-pay-value-{{ $user->id }}"
+                                                       class="form-control money to_clean"
                                                        placeholder="Informe o valor" maxlength="13">
                                             </div>
                                         </div>
                                         <div class="col-md-2">
                                             <button type="button" class="btn btn-success"
+                                                    onclick="saveTransaction('{{ $user->id }}')"
                                                     style="float: right;color: #fff;">
                                                 Pagar
                                             </button>
                                         </div>
                                         <div class="col-md-12">
-                                            <textarea class="form-control to_clean" placeholder="Digite uma mensagem"
-                                                      rows="1"></textarea>
+                                            <textarea id="user-pay-message-{{ $user->id }}" rows="1"
+                                                      class="form-control to_clean" placeholder="Digite uma mensagem"
+                                            ></textarea>
                                         </div>
                                     </div>
                                 </li>
@@ -85,5 +88,52 @@
 
             $('#div-info-pay-' + id).show();
         });
+
+        function saveTransaction(payee_id) {
+            startLoading();
+            value = $('#user-pay-value-' + payee_id).val();
+
+            if (!value) {
+                sendMessage('info', 'Informe o valor para transferência');
+
+                return false;
+            }
+
+            $.ajax({
+                type: 'POST',
+                url: '/transaction/store',
+                data: {
+                    '_token': '{{ csrf_token() }}',
+                    'payee_id': payee_id,
+                    'message': $('#user-pay-message-' + payee_id).val(),
+                    'value': value,
+                }
+            }).done(function (res) {
+                sendMessage('success', res.message);
+
+                setTimeout(function () {
+                    startLoading();
+                    window.location.href = "/home";
+                }, 2000);
+            }).fail(function (res) {
+                message = res.message;
+
+                if (!message) {
+                    message = res.responseJSON.message;
+                }
+                sendMessage('warning', message);
+            });
+        }
+
+        function sendMessage(icon, title) {
+            stopLoading();
+
+            Swal.fire({
+                icon: icon,
+                title: title,
+                showConfirmButton: false,
+                timer: 2000
+            });
+        }
     </script>
 @endsection

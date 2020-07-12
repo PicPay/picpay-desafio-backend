@@ -1,0 +1,9 @@
+.loader {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 99990;
+    background: url('/img/loading.svg') 50% 50% no-repeat rgba(10, 10, 10, 0.5);
+}

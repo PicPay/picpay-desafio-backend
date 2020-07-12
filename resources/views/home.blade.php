@@ -8,7 +8,10 @@
                     <div class="card-header">
                         {{ __('Saldo: ') . float_to_money($balance)}}
                         @if($can_pay)
-                            <a href="/transaction" class="btn btn-success" style="float: right;color: #fff;">Pagar</a>
+                            <a href="/transaction" onclick="startLoading();"
+                               class="btn btn-success" style="float: right;color: #fff;">
+                                Pagar
+                            </a>
                         @endif
                     </div>
                     <div class="card-body">
