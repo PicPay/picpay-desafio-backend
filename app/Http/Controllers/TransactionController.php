@@ -49,7 +49,9 @@ class TransactionController extends Controller
     {
         DB::beginTransaction();
         try {
-            $can_pay = auth()->user()->canPay();
+            $value = money_to_float($request->value);
+
+            $can_pay = auth()->user()->canPay($value);
 
             if (!$can_pay) {
                 return response()->json(['message' => 'Operação não permitada'], 401);
@@ -59,7 +61,7 @@ class TransactionController extends Controller
                 'payer_id' => auth()->id(),
                 'payee_id' => $request->payee_id,
                 'message' => $request->message,
-                'value' => money_to_float($request->value),
+                'value' => $value,
             ];
 
             if(!$this->authorizationService($params)) {

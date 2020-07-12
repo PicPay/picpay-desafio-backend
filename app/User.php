@@ -91,14 +91,24 @@ class User extends Authenticatable
      *
      * @return bool
      */
-    public function canPay()
+    public function canPay($transaction_value = null)
     {
         try {
             if (auth()->user()->user_type_id != UserType::COMMON) {
                 return false;
             }
 
-            if ($this->balance() <= 0) {
+            $balance = $this->balance();
+
+            $validade = $balance <= 0;
+
+            if ($transaction_value) {
+                $balance -= $transaction_value;
+
+                $validade = $balance < 0;
+            }
+
+            if ($validade) {
                 return false;
             }
 
