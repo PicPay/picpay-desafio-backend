@@ -19,14 +19,4 @@ class Transaction extends Model
     protected $attributes = [
         'status' => self::PENDING
     ];
-
-    public function payer()
-    {
-        return $this->belongsTo('App\Models\User', "users_payer_id_foreign", "payer");
-    }
-
-    public function payee()
-    {
-        return $this->belongsTo('App\Models\User', "users_payer_id_foreign", "payee");
-    }
 }

@@ -19,20 +19,8 @@ class Validation extends Event
      */
     public function __construct(array $transaction, array $payload)
     {
-        Log::info(__CLASS__);
         $this->transaction = $transaction;
         $this->payload = $payload;
         $this->status = Transaction::AUTHORIZED;
-    }
-
-
-    public function setStatus($status): void
-    {
-        $this->status = $status;
-    }
-
-    public function getStatus(): string
-    {
-        return $this->status;
     }
 }

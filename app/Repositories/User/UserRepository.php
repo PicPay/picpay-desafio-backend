@@ -10,6 +10,11 @@ class UserRepository implements UserInterface
 {
     protected $model;
 
+    /**
+     * Handle __construct
+     *
+     * @param User $user
+     */
     public function __construct(User $user)
     {
         $this->model = $user;

@@ -12,21 +12,17 @@
 
 ## Como iniciar o projeto
 
-Buildar as imagens do docker
-```
-docker-compose build
-```
-Pronto, agora voce pode subir as imagens
+Vamos subir as imagens
 ```
 docker-compose up -d
 ```
-Agora rodar as migrações e seeds
+e rodar as migrações e seeds
 ```
 docker-compose exec api.desafio.dev php artisan migrate:fresh --seed
 ```
-(opcional) Para fazer a gestão da fila pelo banco de dados
+Para fazer a gestão da fila pelo banco de dados
 ```
-alterar o .env queue_connection para database
+cp .env.example .env
 docker-compose exec api.desafio.dev php artisan queue:work
 ```
 ## Como testar ?

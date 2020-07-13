@@ -4,6 +4,11 @@ namespace App\Http\Requests\Transaction;
 
 class TransactionRequest {
 
+    /**
+     * Rules for validation
+     *
+     * @return array
+     */
     public function getRules(): array
     {
         return [
@@ -13,6 +18,11 @@ class TransactionRequest {
         ];
     }
 
+    /**
+     * Message to help users problem solving
+     *
+     * @return array
+     */
     public function getMessages(): array
     {
         return [

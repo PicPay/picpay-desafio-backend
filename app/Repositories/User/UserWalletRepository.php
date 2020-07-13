@@ -10,6 +10,11 @@ class UserWalletRepository implements UserWalletInterface
 {
     protected $model;
 
+    /**
+     * Handle __construct
+     *
+     * @param UsersWallet $userWallet
+     */
     public function __construct(UsersWallet $userWallet)
     {
         $this->model = $userWallet;

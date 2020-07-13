@@ -68,7 +68,7 @@ class Authorization implements ShouldQueue
     }
 
     /**
-     * Undocumented function
+     * Updating transaction status
      *
      * @param Validation $event
      * @return void

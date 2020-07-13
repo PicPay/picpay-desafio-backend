@@ -8,6 +8,7 @@ use App\Interfaces\Transaction\TransactionInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Exception;
 use Illuminate\Validation\ValidationException;
+use Log;
 
 class TransactionController extends Controller
 {
@@ -39,35 +40,20 @@ class TransactionController extends Controller
             ];
             $code = Response::HTTP_OK;
             
-            $this->validateRequest($request);
+            $this->validateRequest($request, TransactionRequest::class);
 
             $jsonReponse['data'] = $this->transactionRepository->create($request->all());
             $jsonReponse['status'] = "success";
         } catch (ValidationException $exception) {
-            $jsonReponse["message"] = $exception->getMessage();
+            Log::error($exception);
+            $jsonReponse["message"] = $exception->validator->errors();
             $code = Response::HTTP_UNPROCESSABLE_ENTITY;
         } catch (Exception $exception) {
-            dd($exception);
+            Log::error($exception);
             $jsonReponse["message"] = $exception->getMessage();
             $code = Response::HTTP_INTERNAL_SERVER_ERROR;
         }
 
         return response()->json($jsonReponse, $code);
-    }
-    /**
-     * Enforce challenge rules
-     *
-     * @param Request $request
-     * @return void
-     */
-    private function validateRequest(Request $request)
-    {
-        $transactionRequest = new TransactionRequest;
-
-        $this->validate(
-            $request,
-            $transactionRequest->getRules(),
-            $transactionRequest->getMessages()
-        );
     }
 }

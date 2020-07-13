@@ -10,6 +10,11 @@ class TransactionRepository implements TransactionInterface
 {
     protected $model;
 
+    /**
+     * Handle __construct
+     *
+     * @param Transaction $transaction
+     */
     public function __construct(Transaction $transaction)
     {
         $this->model = $transaction;

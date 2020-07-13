@@ -34,7 +34,7 @@ class RequestTest extends TestCase
     }
 
     /**
-     * A basic test example.
+     * Sending an prohibited method.
      *
      * @return void
      */
@@ -46,7 +46,7 @@ class RequestTest extends TestCase
     }
 
     /**
-     * A basic test example.
+     * A basic validation test.
      *
      * @return void
      */
@@ -58,7 +58,7 @@ class RequestTest extends TestCase
     }
 
     /**
-     * A basic test example.
+     * Validating Payer beein Common user
      *
      * @return void
      */
@@ -73,7 +73,7 @@ class RequestTest extends TestCase
     }
 
     /**
-     * 
+     * Verifiyng user register
      * 
      * @return void
      */
@@ -88,7 +88,7 @@ class RequestTest extends TestCase
     }
 
     /**
-     * 
+     * Validate negative numbers
      * 
      * @return void
      */
@@ -104,7 +104,7 @@ class RequestTest extends TestCase
     }
 
     /**
-     * 
+     * Validating values not numeric
      * 
      * @return void
      */

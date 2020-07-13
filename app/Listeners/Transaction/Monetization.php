@@ -66,7 +66,6 @@ class Monetization implements ShouldQueue
      */
     private function transferFunds(Validation &$event): void
     {
-        #request, verificar fundos e numeros nao negativos
         try {
             $payerWallet = $this->userWalletRepository->findByUserId($event->transaction["payer"]);
             $payeeWallet = $this->userWalletRepository->findByUserId($event->transaction["payee"]);
@@ -89,6 +88,12 @@ class Monetization implements ShouldQueue
         }
     }
 
+    /**
+     * Updating transaction status
+     *
+     * @param Validation $event
+     * @return void
+     */
     private function updateTransactionStatus(Validation $event): void
     {
         $this->transactionRepository->updateStatus($event->status, $event->transaction["id"]);
