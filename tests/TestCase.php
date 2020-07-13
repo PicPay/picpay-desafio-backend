@@ -5,6 +5,7 @@ namespace Tests;
 use Laravel\Lumen\Testing\TestCase as BaseTestCase;
 use App\Models\User\CommonUser;
 use App\Models\User\ShopkeeperUser;
+use App\Exceptions\Handler;
 
 abstract class TestCase extends BaseTestCase
 {
@@ -48,5 +49,17 @@ abstract class TestCase extends BaseTestCase
     {
         unset($data["created_at"]);
         unset($data["updated_at"]);
+    }
+
+    /**
+     * Function to tourn on foreign keys constraints checks.
+     * By default, on sqlite it's off.
+     *
+     * @return void
+     */
+    public function enableForeignKeys(): void
+    {
+        $db = app()->make('db');
+        $db->getSchemaBuilder()->enableForeignKeyConstraints();
     }
 }
