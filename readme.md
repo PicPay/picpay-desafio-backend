@@ -1,6 +1,6 @@
 # Desafio PP
 
-- Criei o arquivo .env
+- Crie o arquivo .env
 ```
 cp .env.example .env
 ```
