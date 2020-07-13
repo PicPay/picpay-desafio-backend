@@ -15,18 +15,9 @@ docker-compose up -d
 docker-compose exec app composer install
 ```
 
-```
-docker-compose exec app npm install && npm run dev
-```
-
 - Gere a chave da aplicação
 ```
 docker-compose exec app php artisan key:generate
-```
-
-- Coloque as configurações em cache
-```
-docker-compose exec app php artisan config:cache
 ```
 
 - Crie as tabelas
