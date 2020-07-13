@@ -71,9 +71,10 @@ $app->configure('transfer');
 | route or middleware that'll be assigned to some specific routes.
 |
 */
-$app->register(App\Providers\TransferServiceProvider::class);
-$app->register(Illuminate\Notifications\NotificationServiceProvider::class);
 
+$app->routeMiddleware([
+    'transfer' => App\Http\Middleware\TransferMiddleware::class
+]);
 // $app->middleware([
 //     App\Http\Middleware\ExampleMiddleware::class
 // ]);
@@ -92,7 +93,8 @@ $app->register(Illuminate\Notifications\NotificationServiceProvider::class);
 | totally optional, so you are not required to uncomment this line.
 |
 */
-
+$app->register(App\Providers\TransferServiceProvider::class);
+$app->register(Illuminate\Notifications\NotificationServiceProvider::class);
 // $app->register(App\Providers\AppServiceProvider::class);
 // $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
