@@ -18,7 +18,7 @@
                         @csrf
 
                         <div class="form-group">
-                            <input type="text" name="sender" placeholder="Receber a transferência (Nome ou E-mail)" class="form-control">
+                            <input type="text" name="sender" placeholder="Nome, E-mail, CPF ou CNPJ" class="form-control">
                         </div>
 
                         <div class="form-group">
