@@ -59,6 +59,10 @@ class TransactionRepository implements TransactionInterface
      */
     public function findById(int $id): array
     {
-        return $this->model::find($id)->toArray();
+        $transaction = $this->model::find($id);
+        if (is_null($transaction)) {
+            return [];
+        }
+        return $transaction->toArray();
     }
 }

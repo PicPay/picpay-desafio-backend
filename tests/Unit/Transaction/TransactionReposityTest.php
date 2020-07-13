@@ -7,12 +7,10 @@ use Laravel\Lumen\Testing\DatabaseMigrations;
 use App\Repositories\Transaction\TransactionRepository;
 use App\Models\Transaction\Transaction;
 use Faker\Generator as Faker;
-use Tests\InteractsWithExceptionHandling;
 
 class TransactionReposityTest extends TestCase
 {
     use DatabaseMigrations;
-    use InteractsWithExceptionHandling;
 
     const TRANSACTION_TABLE = "transactions";
 
@@ -87,5 +85,45 @@ class TransactionReposityTest extends TestCase
         $this->removeDateFields($transactionFound);
 
         $this->assertEquals($transactionRecord, $transactionFound);
+    }
+
+    /**
+     *  Testing transaction findById method that couldnt find
+     *
+     * @return void
+     */
+    public function test_cant_find_by_id(): void
+    {
+        $transactionRecord = $this->transcationRepository->create($this->payload);
+
+        $faker = app(Faker::class);
+
+        $fakeTransactionId = $faker->numberBetween($transactionRecord["id"] + 1, 10);
+        
+        $transactionFound = $this->transcationRepository->findById($fakeTransactionId);
+
+        $this->assertEquals([], $transactionFound);
+    }
+
+    /**
+     *  Testing transaction findById method that couldnt find
+     *
+     * @return void
+     */
+    public function test_cant_update_with_id(): void
+    {
+        $faker = app(Faker::class);
+        
+        $transactionRecord = $this->transcationRepository->create($this->payload);
+        
+        $transactionRecord["status"] = $newStatus = Transaction::AUTHORIZED;
+
+        $transactionRecord["id"] = $faker->numberBetween($transactionRecord["id"] + 1, 10);
+
+        $this->transcationRepository->updateStatus($newStatus, $transactionRecord["id"]);
+        
+        $this->removeDateFields($transactionRecord);
+
+        $this->notSeeInDatabase(self::TRANSACTION_TABLE, $transactionRecord);
     }
 }
