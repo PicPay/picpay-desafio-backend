@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Http;
 
 class MockyNotificationService
 {
-    private const MESSAGE_DELIVERED = 'Recebido';
+    private const MESSAGE_DELIVERED = 'Enviado';
 
     protected $url;
     protected $data;
@@ -18,8 +18,7 @@ class MockyNotificationService
 
     public function send($message)
     {
-//        $this->data = Http::post(env('MOCKY_NOTIFICATION_URL'), $message)->json();
-        $this->data = ['message' => 'Recebido'];
+        $this->data = Http::post(env('MOCKY_NOTIFICATION_URL'), $message)->json();
     }
 
     public function isSucess()

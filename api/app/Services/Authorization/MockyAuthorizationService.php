@@ -31,8 +31,7 @@ class MockyAuthorizationService implements AuthorizationServiceInterface
     public function authorize(Transfer $transfer): AuthorizationResultInterface
     {
         try {
-//            return new MockyAuthorizationResult(Http::get($this->url)->json());
-            return new MockyAuthorizationResult(['message' => 'Autorizado']);
+            return new MockyAuthorizationResult(Http::get($this->url)->json());
 		} catch(Throwable $e) {
             return new Exception($e);
         }
