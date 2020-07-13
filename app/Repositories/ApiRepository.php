@@ -35,11 +35,15 @@ class ApiRepository
                 }
             }
 
-            return [];
+            return [
+                'message' => 'Sem resultados da API'
+            ];
         } catch (RequestException $e) {
             logger()->error((string)$e);
 
-            return [];
+            return [
+                'message' => 'Erro ao conectar com a API'
+            ];
         }
     }
 }

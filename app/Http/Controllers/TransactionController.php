@@ -64,7 +64,7 @@ class TransactionController extends Controller
                 'value' => $value,
             ];
 
-            if(!$this->authorizationService($params)) {
+            if (!$this->authorizationService($params)) {
                 return response()->json(['message' => 'Operação não permitada'], 401);
             }
 
@@ -93,10 +93,7 @@ class TransactionController extends Controller
 
         $response_api = $this->apiRepository->connect($uri, $params);
 
-        if (
-            isset($response_api['success']) &&
-            $response_api['success']
-        ) {
+        if ($response_api['message'] == 'Autorizado') {
             return true;
         }
 
@@ -111,15 +108,8 @@ class TransactionController extends Controller
     {
         $uri = 'https://run.mocky.io/v3/b19f7b9f-9cbf-4fc6-ad22-dc30601aec04';
 
-        $response_api = $this->apiRepository->connect($uri, $params);
+        $this->apiRepository->connect($uri, $params);
 
-        if (
-            isset($response_api['success']) &&
-            $response_api['success']
-        ) {
-            return true;
-        }
-
-        return false;
+        return true;
     }
 }
