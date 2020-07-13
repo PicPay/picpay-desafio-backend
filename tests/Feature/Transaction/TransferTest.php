@@ -26,9 +26,6 @@ class TransferTest extends TestCase
 
     private $payload;
 
-    private $commonUser;
-    private $shopKeeper;
-
     private $transcationRepository;
     private $walletRepository;
 
@@ -56,7 +53,7 @@ class TransferTest extends TestCase
      *
      * @return void
      */
-    public function testTransactionIntent(): void
+    public function test_transaction_intent(): void
     {
         $response = $this->call(self::DEFAULT_METHOD,self::TRANSACTION_API_URL, $this->payload);
 
@@ -68,7 +65,7 @@ class TransferTest extends TestCase
      *
      * @return void
      */
-    public function testTransactionEvent(): void
+    public function test_transaction_event(): void
     {
         $this->expectsEvents(Validation::class);
         
@@ -81,7 +78,7 @@ class TransferTest extends TestCase
      *
      * @return void
      */
-    public function testTransactionSucessful(): void
+    public function test_transaction_sucessful(): void
     {
         $response = $this->call(self::DEFAULT_METHOD,self::TRANSACTION_API_URL, $this->payload);
 
@@ -95,7 +92,7 @@ class TransferTest extends TestCase
      *
      * @return void
      */
-    public function testImproveUserWallet(): void
+    public function test_improve_user_wallet(): void
     {
         $payerWalletBefore = $this->walletRepository->findByUserId($this->payload["payer"]);
         $payeeWalletBefore = $this->walletRepository->findByUserId($this->payload["payee"]);
@@ -114,7 +111,7 @@ class TransferTest extends TestCase
      *
      * @return void
      */
-    public function testDescreaseUserWalletAmount(): void
+    public function test_descrease_user_wallet_amount(): void
     {
         $payerWalletBefore = $this->walletRepository->findByUserId($this->payload["payer"]);
         
@@ -132,7 +129,7 @@ class TransferTest extends TestCase
      *
      * @return void
      */
-    public function testDeclinedTransaction(): void
+    public function test_declined_transaction(): void
     {
         $this->changeAuthorizationService();
 

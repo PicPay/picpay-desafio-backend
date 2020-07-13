@@ -38,7 +38,7 @@ class RequestTest extends TestCase
      *
      * @return void
      */
-    public function testProhibitedMethodValidation(): void
+    public function test_prohibited_method_validation(): void
     {
         $response = $this->call("PUT",self::TRANSACTION_API_URL, $this->payload);
 
@@ -50,7 +50,7 @@ class RequestTest extends TestCase
      *
      * @return void
      */
-    public function testGeneralValidation(): void
+    public function test_general_validation(): void
     {
         $response = $this->call(self::DEFAULT_METHOD,self::TRANSACTION_API_URL, $this->payload);
 
@@ -62,7 +62,7 @@ class RequestTest extends TestCase
      *
      * @return void
      */
-    public function testOnlyCommonUserPayer(): void
+    public function test_only_common_user_payer(): void
     {
         $this->payload["payer"] = $this->createShopkeeper()->id;
         $this->payload["payee"] = $this->createCommonUser()->id;
@@ -77,7 +77,7 @@ class RequestTest extends TestCase
      * 
      * @return void
      */
-    public function testExistsPayeeId(): void
+    public function test_exists_payee_id(): void
     {
         $this->payload["payer"] = $this->createCommonUser()->id;
         $this->payload["payee"] = 0;
@@ -92,7 +92,7 @@ class RequestTest extends TestCase
      * 
      * @return void
      */
-    public function testNegativeValue(): void
+    public function test_negative_value(): void
     {
         $this->payload["payer"] = $this->createCommonUser()->id;
         $this->payload["payee"] = $this->createShopkeeper()->id;
@@ -108,7 +108,7 @@ class RequestTest extends TestCase
      * 
      * @return void
      */
-    public function testNotNumberValue(): void
+    public function test_not_number_value(): void
     {
         $this->payload["payer"] = $this->createCommonUser()->id;
         $this->payload["payee"] = $this->createCommonUser()->id;
