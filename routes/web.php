@@ -20,8 +20,8 @@ $router->get('/', function () {
 Auth::routes();
 
 // Registration Routes...
-$router->get('register', 'Auth\RegisterController@showRegistrationForm');
+$router->get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 
-$router->get('/home', 'HomeController@index');
-$router->get('/transaction', 'TransactionController@index');
-$router->post('/transaction/store', 'TransactionController@store');
+$router->get('/home', 'HomeController@index')->name('home');
+$router->get('/transaction', 'TransactionController@index')->name('transaction');
+$router->post('/transaction/store', 'TransactionController@store')->name('transaction.store');

@@ -25,7 +25,10 @@
                                 <li class="list-group-item">
                                     <div class="d-flex w-100 justify-content-between">
                                         <h5 class="mb-1">
-                                            @if($transaction->payer_id == $user->id)
+                                            @if(!$transaction->payer_id)
+                                                Você recebeu um depósito
+                                                @php($color = '#38c172')
+                                            @elseif($transaction->payer_id == $user->id)
                                                 Você pagou a {{ $transaction->payee->name }}
                                                 @php($color = '#e3342f')
                                             @else

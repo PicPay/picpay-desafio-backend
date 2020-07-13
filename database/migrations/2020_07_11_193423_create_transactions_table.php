@@ -15,7 +15,7 @@ class CreateTransactionsTable extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('payer_id')->constrained('users');
+            $table->foreignId('payer_id')->nullable()->constrained('users');
             $table->foreignId('payee_id')->constrained('users');
             $table->text('message')->nullable();
             $table->decimal('value', 10, 2);
