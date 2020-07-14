@@ -2,6 +2,7 @@ version: '3.2'
 services:
   app:
     build: .
+    image: picpay-desafio-backend:latest
     container_name: picpay-desafio-backend_esdras
     environment:
       - OPCACHE_DISABLED=true

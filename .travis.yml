@@ -1,0 +1,24 @@
+os:
+  - linux
+
+language: php
+
+php:
+  - '7.4'
+
+before_script:
+  - cd ./api
+  - composer self-update
+  - composer install -n
+  - cp .env.travis .env
+  - touch ./database/database.sqlite
+
+script:
+  - php artisan migrate
+  - ./vendor/bin/phpunit
+
+after_success:
+  - cd ..
+  - docker login -u $DOCKER_USER -p $DOCKER_PASS
+  - docker-compose build
+  - docker push $REPO:latest
