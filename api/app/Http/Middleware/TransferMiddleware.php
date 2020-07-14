@@ -21,7 +21,7 @@ class TransferMiddleware
             [
                 'payee' => 'required|int|min:1|exists:App\Models\User,id',
                 'payer' => 'required|int|min:1|exists:App\Models\User,id',
-                'value' => 'required|min:1',
+                'value' => 'required|numeric|min:1',
             ]
         );
 
