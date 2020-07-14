@@ -1,0 +1,24 @@
+version: '3.2'
+services:
+  app:
+    build: .
+    container_name: picpay-desafio-backend_esdras
+    environment:
+      - OPCACHE_DISABLED=true
+      - APP_NAME=Picpay
+      - APP_ENV=local
+      - APP_KEY=
+      - APP_DEBUG=true
+      - APP_URL=http://localhost:8001
+      - APP_TIMEZONE=UTC
+      - LOG_CHANNEL=single
+      - LOG_SLACK_WEBHOOK_URL=
+      - DB_CONNECTION=sqlite
+      - DB_DATABASE=/api/database/database.sqlite
+      - CACHE_DRIVER=file
+      - QUEUE_CONNECTION=database
+      - QUEUE_DRIVER=database
+      - MOCKY_AUTHORIZATION_URL=https://run.mocky.io/v3/8fafdd68-a090-496f-8c9a-3442cf30dae6
+      - MOCKY_NOTIFICATION_URL=https://run.mocky.io/v3/b19f7b9f-9cbf-4fc6-ad22-dc30601aec04
+    ports:
+      - 8001:80
