@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="f5497a8c-901d-4458-a772-e659cf987d22" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/messenger.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/messenger.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+    <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
+    <execution />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration">
+    <include_path>
+      <path value="$PROJECT_DIR$/vendor/symfony/property-info" />
+      <path value="$PROJECT_DIR$/vendor/twig/twig" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-icu" />
+      <path value="$PROJECT_DIR$/vendor/symfony/intl" />
+      <path value="$PROJECT_DIR$/vendor/symfony/property-access" />
+      <path value="$PROJECT_DIR$/vendor/symfony/form" />
+      <path value="$PROJECT_DIR$/vendor/symfony/options-resolver" />
+      <path value="$PROJECT_DIR$/vendor/symfony/var-exporter" />
+      <path value="$PROJECT_DIR$/vendor/symfony/error-handler" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-normalizer" />
+      <path value="$PROJECT_DIR$/vendor/symfony/event-dispatcher" />
+      <path value="$PROJECT_DIR$/vendor/symfony/css-selector" />
+      <path value="$PROJECT_DIR$/vendor/symfony/deprecation-contracts" />
+      <path value="$PROJECT_DIR$/vendor/symfony/config" />
+      <path value="$PROJECT_DIR$/vendor/symfony/dom-crawler" />
+      <path value="$PROJECT_DIR$/vendor/symfony/service-contracts" />
+      <path value="$PROJECT_DIR$/vendor/symfony/twig-bridge" />
+      <path value="$PROJECT_DIR$/vendor/symfony/phpunit-bridge" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php80" />
+      <path value="$PROJECT_DIR$/vendor/symfony/twig-bundle" />
+      <path value="$PROJECT_DIR$/vendor/symfony/dependency-injection" />
+      <path value="$PROJECT_DIR$/vendor/symfony/framework-bundle" />
+      <path value="$PROJECT_DIR$/vendor/symfony/finder" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-grapheme" />
+      <path value="$PROJECT_DIR$/vendor/symfony/dotenv" />
+      <path value="$PROJECT_DIR$/vendor/symfony/browser-kit" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/vendor/symfony/cache-contracts" />
+      <path value="$PROJECT_DIR$/vendor/symfony/routing" />
+      <path value="$PROJECT_DIR$/vendor/symfony/string" />
+      <path value="$PROJECT_DIR$/vendor/symfony/var-dumper" />
+      <path value="$PROJECT_DIR$/vendor/symfony/event-dispatcher-contracts" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php73" />
+      <path value="$PROJECT_DIR$/vendor/symfony/filesystem" />
+      <path value="$PROJECT_DIR$/vendor/symfony/console" />
+      <path value="$PROJECT_DIR$/vendor/symfony/cache" />
+      <path value="$PROJECT_DIR$/vendor/symfony/profiler-pack" />
+      <path value="$PROJECT_DIR$/vendor/symfony/web-profiler-bundle" />
+      <path value="$PROJECT_DIR$/vendor/symfony/stopwatch" />
+      <path value="$PROJECT_DIR$/vendor/laminas/laminas-eventmanager" />
+      <path value="$PROJECT_DIR$/vendor/symfony/test-pack" />
+      <path value="$PROJECT_DIR$/vendor/symfony/http-kernel" />
+      <path value="$PROJECT_DIR$/vendor/laminas/laminas-zendframework-bridge" />
+      <path value="$PROJECT_DIR$/vendor/symfony/translation-contracts" />
+      <path value="$PROJECT_DIR$/vendor/laminas/laminas-code" />
+      <path value="$PROJECT_DIR$/vendor/symfony/flex" />
+      <path value="$PROJECT_DIR$/vendor/symfony/yaml" />
+      <path value="$PROJECT_DIR$/vendor/symfony/http-foundation" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/sql-formatter" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/cache" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/inflector" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/data-fixtures" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/dbal" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/doctrine-bundle" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/doctrine-migrations-bundle" />
+      <path value="$PROJECT_DIR$/vendor/symfony/validator" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/reflection" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/event-manager" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/instantiator" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/collections" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/migrations" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/common" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/persistence" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/orm" />
+      <path value="$PROJECT_DIR$/vendor/sensio/framework-extra-bundle" />
+      <path value="$PROJECT_DIR$/vendor/composer" />
+      <path value="$PROJECT_DIR$/vendor/webimpress/safe-writer" />
+      <path value="$PROJECT_DIR$/vendor/ocramius/proxy-manager" />
+      <path value="$PROJECT_DIR$/vendor/psr/container" />
+      <path value="$PROJECT_DIR$/vendor/psr/log" />
+      <path value="$PROJECT_DIR$/vendor/psr/event-dispatcher" />
+      <path value="$PROJECT_DIR$/vendor/psr/cache" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/lexer" />
+      <path value="$PROJECT_DIR$/vendor/symfony/orm-pack" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/annotations" />
+      <path value="$PROJECT_DIR$/vendor/symfony/doctrine-bridge" />
+      <path value="$PROJECT_DIR$/vendor/nikic/php-parser" />
+      <path value="$PROJECT_DIR$/vendor/symfony/maker-bundle" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/doctrine-fixtures-bundle" />
+      <path value="$PROJECT_DIR$/vendor/symfony/inflector" />
+      <path value="$PROJECT_DIR$/vendor/mockery/mockery" />
+      <path value="$PROJECT_DIR$/vendor/hamcrest/hamcrest-php" />
+      <path value="$PROJECT_DIR$/vendor/symfony/http-client" />
+      <path value="$PROJECT_DIR$/vendor/symfony/http-client-contracts" />
+      <path value="$PROJECT_DIR$/vendor/symfony/amqp-messenger" />
+      <path value="$PROJECT_DIR$/vendor/symfony/messenger" />
+      <path value="$PROJECT_DIR$/vendor/symfony/doctrine-messenger" />
+      <path value="$PROJECT_DIR$/vendor/symfony/redis-messenger" />
+    </include_path>
+  </component>
+  <component name="ProjectId" id="1ej05nJ3S5CPEvPEL8gQ1Rm4cWl" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/Wallet" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="preferences.intentionPowerPack" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="\\wsl$\Ubuntu-20.04\home\ahenrique\Projects\picpay\src\Wallet" />
+      <recent name="\\wsl$\Ubuntu-20.04\home\ahenrique\Projects\picpay\src\PaymentTransactions" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="\\wsl$\Ubuntu-20.04\home\ahenrique\Projects\picpay\src\PaymentTransactions\Exceptions" />
+      <recent name="\\wsl$\Ubuntu-20.04\home\ahenrique\Projects\picpay\src\PaymentTransactions" />
+      <recent name="\\wsl$\Ubuntu-20.04\home\ahenrique\Projects\picpay\src" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="PaymentTransactionCreateHandlerTest.testHandleExceptions" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="App\Tests\PaymentTransactions\PaymentTransactionCreateHandlerTest" file="$PROJECT_DIR$/tests/PaymentTransactions/PaymentTransactionCreateHandlerTest.php" method="testHandleExceptions" scope="Method" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="PHPUnit.PaymentTransactionCreateHandlerTest.testHandleExceptions" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f5497a8c-901d-4458-a772-e659cf987d22" name="Default Changelist" comment="" />
+      <created>1594819513783</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1594819513783</updated>
+      <workItem from="1594819514861" duration="15221000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="1280" y="-755" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1594822539766">
+      <screen x="-326" y="-1080" width="2560" height="1040" />
+    </state>
+    <state x="1280" y="-755" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.824/-326.-1080.2560.1040@-326.-1080.2560.1040" timestamp="1594822539766" />
+    <state x="1387" y="-848" key="#com.intellij.ide.util.MemberChooser" timestamp="1594827033568">
+      <screen x="-326" y="-1080" width="2560" height="1040" />
+    </state>
+    <state x="1387" y="-848" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824/-326.-1080.2560.1040@-326.-1080.2560.1040" timestamp="1594827033568" />
+    <state x="1281" y="-767" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1594833960743">
+      <screen x="-326" y="-1080" width="2560" height="1040" />
+    </state>
+    <state x="1281" y="-767" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1536.824/-326.-1080.2560.1040@-326.-1080.2560.1040" timestamp="1594833960743" />
+    <state x="1435" y="-813" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1594829081915">
+      <screen x="-326" y="-1080" width="2560" height="1040" />
+    </state>
+    <state x="1435" y="-813" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.824/-326.-1080.2560.1040@-326.-1080.2560.1040" timestamp="1594829081915" />
+    <state x="1340" y="-713" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1594819971245">
+      <screen x="-326" y="-1080" width="2560" height="1040" />
+    </state>
+    <state x="1340" y="-713" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1536.824/-326.-1080.2560.1040@-326.-1080.2560.1040" timestamp="1594819971245" />
+    <state x="1256" y="-834" key="NewPhpClassDialog" timestamp="1594833962335">
+      <screen x="-326" y="-1080" width="2560" height="1040" />
+    </state>
+    <state x="1256" y="-834" key="NewPhpClassDialog/0.0.1536.824/-326.-1080.2560.1040@-326.-1080.2560.1040" timestamp="1594833962335" />
+    <state x="1428" y="-634" key="NewPhpFileDialog" timestamp="1594819756415">
+      <screen x="-326" y="-1080" width="2560" height="1040" />
+    </state>
+    <state x="1428" y="-634" key="NewPhpFileDialog/0.0.1536.824/-326.-1080.2560.1040@-326.-1080.2560.1040" timestamp="1594819756415" />
+    <state x="1095" y="-912" key="SettingsEditor" timestamp="1594822528811">
+      <screen x="-326" y="-1080" width="2560" height="1040" />
+    </state>
+    <state x="1095" y="-912" key="SettingsEditor/0.0.1536.824/-326.-1080.2560.1040@-326.-1080.2560.1040" timestamp="1594822528811" />
+    <state x="1198" y="-947" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1594836522610">
+      <screen x="-326" y="-1080" width="2560" height="1040" />
+    </state>
+    <state x="1198" y="-947" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1536.824/-326.-1080.2560.1040@-326.-1080.2560.1040" timestamp="1594836522610" />
+    <state x="1300" y="-957" width="599" height="801" key="find.popup" timestamp="1594826202384">
+      <screen x="-326" y="-1080" width="2560" height="1040" />
+    </state>
+    <state x="1300" y="-957" width="599" height="801" key="find.popup/0.0.1536.824/-326.-1080.2560.1040@-326.-1080.2560.1040" timestamp="1594826202384" />
+    <state x="1250" y="-295" key="run.anything.popup" timestamp="1594820633900">
+      <screen x="-326" y="-1080" width="2560" height="1040" />
+    </state>
+    <state x="1250" y="-295" key="run.anything.popup/0.0.1536.824/-326.-1080.2560.1040@-326.-1080.2560.1040" timestamp="1594820633900" />
+    <state x="1257" y="-850" width="672" height="678" key="search.everywhere.popup" timestamp="1594827030904">
+      <screen x="-326" y="-1080" width="2560" height="1040" />
+    </state>
+    <state x="1257" y="-850" width="672" height="678" key="search.everywhere.popup/0.0.1536.824/-326.-1080.2560.1040@-326.-1080.2560.1040" timestamp="1594827030904" />
+  </component>
+</project>
