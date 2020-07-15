@@ -21,8 +21,9 @@ sudo docker-compose up -d --build
 >When the container is built, some sample data is imported into the database.
 
 ## Testing
-
-Inside /api folder run `./vendor/bin/phpunit `
+```shell script
+docker exec -it picpay-desafio-backend_esdras ./vendor/bin/phpunit
+```
 
 #### Database
 ![Relationship Entity Diagram](/DER.jpg)

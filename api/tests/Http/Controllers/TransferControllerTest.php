@@ -37,7 +37,7 @@ class TransferControllerTest extends TestCase
     }
 
     /**
-     * Should return 200 with status succeeded
+     * Should return 201 with status succeeded
      *
      * @return void
      */
@@ -47,7 +47,7 @@ class TransferControllerTest extends TestCase
             self::URI,
             ["payer" => $this->payer->id, "payee" => $this->payee->id, "value" => $this->amount]
         );
-        $response->assertResponseStatus(200);
+        $response->assertResponseStatus(201);
         $response->seeJsonContains(['status' => 'succeeded']);
         $response->seeJsonContains(['payer_id' => $this->payer->id]);
         $response->seeJsonContains(['payee_id' => $this->payee->id]);
@@ -70,7 +70,7 @@ class TransferControllerTest extends TestCase
     }
 
     /**
-     * Should return 200 with status invalid for company
+     * Should return 201 with status invalid for company
      *
      * @return void
      */
@@ -80,14 +80,14 @@ class TransferControllerTest extends TestCase
             self::URI,
             ["payer" => $this->company->id, "payee" => $this->payee->id, "value" => $this->amount]
         );
-        $response->assertResponseStatus(200);
+        $response->assertResponseStatus(201);
         $response->seeJsonContains(['status' => 'invalid']);
         $response->seeJsonContains(['message' => 'Company user is not allowed to transfer']);
     }
 
 
     /**
-     * Should return 200 with status succeeded
+     * Should return 201 with status succeeded
      *
      * @return void
      */
@@ -97,12 +97,12 @@ class TransferControllerTest extends TestCase
             self::URI,
             ["payer" => $this->payer->id, "payee" => $this->company->id, "value" => $this->amount]
         );
-        $response->assertResponseStatus(200);
+        $response->assertResponseStatus(201);
         $response->seeJsonContains(['status' => 'succeeded']);
     }
 
     /**
-     * Should return 200 with status invalid insuficient balance
+     * Should return 201 with status invalid insuficient balance
      *
      * @return void
      */
@@ -113,7 +113,7 @@ class TransferControllerTest extends TestCase
             self::URI,
             ["payer" => $payerWithZeroBalance->id, "payee" => $this->payee->id, "value" => $this->amount]
         );
-        $response->assertResponseStatus(200);
+        $response->assertResponseStatus(201);
         $response->seeJsonContains(['status' => 'invalid']);
         $response->seeJsonContains(['message' => 'Insufficient balance']);
     }

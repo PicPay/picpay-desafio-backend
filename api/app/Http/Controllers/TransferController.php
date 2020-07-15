@@ -11,13 +11,14 @@ class TransferController extends Controller
 {
     /**
      * @param Request $request
-     * @return Transfer
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function store(Request $request): Transfer
+    public function store(Request $request)
     {
         $payer = User::find($request->payer);
         $payee = User::find($request->payee);
+        $transfer = TransferFacade::transfer($payer, $payee, $request->value);
 
-        return TransferFacade::transfer($payer, $payee, $request->value);
+        return response()->json($transfer, 201);
     }
 }

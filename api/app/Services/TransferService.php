@@ -55,17 +55,16 @@ class TransferService
         try {
             $payer->removeBalance($amount);
             $payee->addBalance($amount);
+            $transfer->succeed();
             DB::commit();
+
+            Log::info("Notification create: transfer $transfer->id");
+            $payee->notify(new TransferReceiptNotification($transfer->toArray()));
         } catch (\Throwable $e) {
-            $transfer->fail('Fail to send money');
             Log::error("Transfer error: transfer $transfer->id rolling back");
             DB::rollBack();
-            return $transfer;
-        }
-
-        $transfer->succeed();
-        Log::info("Notification create: transfer $transfer->id");
-        $payee->notify(new TransferReceiptNotification($transfer->toArray()));
+            $transfer->fail('Fail to send money');
+        };
 
         return $transfer;
     }
