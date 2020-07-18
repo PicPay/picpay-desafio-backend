@@ -11,3 +11,9 @@ Homestead.yaml
 npm-debug.log
 yarn-error.log
 ./.idea/*
+
+# exclude everything
+docker/mysql-data/*
+
+# exception to the rule
+!docker/mysql-data/.gitkeep

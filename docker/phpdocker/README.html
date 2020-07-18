@@ -1,0 +1,121 @@
+<html>
+<head>
+    <title>PHPDocker.io Readme</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+
+    <style>
+        code {
+            background-color : #ddd;
+            padding          : 2px 5px;
+            font-family      : monospace;
+            font-size        : 16px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="pure-g">
+    <div class="pure-u-1-24"></div>
+    <div class="pure-u-22-24">
+        <h1>PHPDocker.io generated environment</h1>
+
+<h1>Add to your project</h1>
+
+<p>Simply, unzip the file into your project, this will create <code>docker-compose.yml</code> on the root of your project and a folder named <code>phpdocker</code> containing nginx and php-fpm config for it.</p>
+
+<p>Ensure the webserver config on <code>docker\nginx.conf</code> is correct for your project. PHPDocker.io will have customised this file according to the application type you chose on the generator, for instance <code>web/app|app_dev.php</code> on a Symfony project, or <code>public/index.php</code> on generic apps.</p>
+
+<p>Note: you may place the files elsewhere in your project. Make sure you modify the locations for the php-fpm dockerfile, the php.ini overrides and nginx config on <code>docker-compose.yml</code> if you do so.</p>
+
+<h1>How to run</h1>
+
+<p>Dependencies:</p>
+
+<ul>
+<li>Docker engine v1.13 or higher. Your OS provided package might be a little old, if you encounter problems, do upgrade. See <a href="https://docs.docker.com/engine/installation">https://docs.docker.com/engine/installation</a></li>
+<li>Docker compose v1.12 or higher. See <a href="https://docs.docker.com/compose/install/">docs.docker.com/compose/install</a></li>
+</ul>
+
+<p>Once you're done, simply <code>cd</code> to your project and run <code>docker-compose up -d</code>. This will initialise and start all the containers, then leave them running in the background.</p>
+
+<h2>Services exposed outside your environment</h2>
+
+<p>You can access your application via <strong><code>localhost</code></strong>, if you're running the containers directly, or through <strong>``</strong> when run on a vm. nginx and mailhog both respond to any hostname, in case you want to add your own hostname on your <code>/etc/hosts</code></p>
+
+<table>
+<thead>
+<tr>
+  <th>Service</th>
+  <th>Address outside containers</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Webserver</td>
+  <td><a href="http://localhost:8080">localhost:8080</a></td>
+</tr>
+</tbody>
+</table>
+
+<h2>Hosts within your environment</h2>
+
+<p>You'll need to configure your application to use any services you enabled:</p>
+
+<table>
+<thead>
+<tr>
+  <th>Service</th>
+  <th>Hostname</th>
+  <th>Port number</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>php-fpm</td>
+  <td>php-fpm</td>
+  <td>9000</td>
+</tr>
+<tr>
+  <td>Memcached</td>
+  <td>memcached</td>
+  <td>11211 (default)</td>
+</tr>
+</tbody>
+</table>
+
+<h1>Docker compose cheatsheet</h1>
+
+<p><strong>Note:</strong> you need to cd first to where your docker-compose.yml file lives.</p>
+
+<ul>
+<li>Start containers in the background: <code>docker-compose up -d</code></li>
+<li>Start containers on the foreground: <code>docker-compose up</code>. You will see a stream of logs for every container running.</li>
+<li>Stop containers: <code>docker-compose stop</code></li>
+<li>Kill containers: <code>docker-compose kill</code></li>
+<li>View container logs: <code>docker-compose logs</code></li>
+<li>Execute command inside of container: <code>docker-compose exec SERVICE_NAME COMMAND</code> where <code>COMMAND</code> is whatever you want to run. Examples:
+    * Shell into the PHP container, <code>docker-compose exec php-fpm bash</code>
+    * Run symfony console, <code>docker-compose exec php-fpm bin/console</code>
+    * Open a mysql shell, <code>docker-compose exec mysql mysql -uroot -pCHOSEN_ROOT_PASSWORD</code></li>
+</ul>
+
+<h1>Recommendations</h1>
+
+<p>It's hard to avoid file permission issues when fiddling about with containers due to the fact that, from your OS point of view, any files created within the container are owned by the process that runs the docker engine (this is usually root). Different OS will also have different problems, for instance you can run stuff in containers using <code>docker exec -it -u $(id -u):$(id -g) CONTAINER_NAME COMMAND</code> to force your current user ID into the process, but this will only work if your host OS is Linux, not mac. Follow a couple of simple rules and save yourself a world of hurt.</p>
+
+<ul>
+<li>Run composer outside of the php container, as doing so would install all your dependencies owned by <code>root</code> within your vendor folder.</li>
+<li>Run commands (ie Symfony's console, or Laravel's artisan) straight inside of your container. You can easily open a shell as described above and do your thing from there.</li>
+</ul>
+    </div>
+    <div class="pure-u-1-24"></div>
+</div>
+
+<script>
+    var tables = document.getElementsByTagName('table');
+    for (var i = 0; i < tables.length; i++) {
+        tables[i].className = "pure-table";
+    }
+</script>
+</body>
+</html>
