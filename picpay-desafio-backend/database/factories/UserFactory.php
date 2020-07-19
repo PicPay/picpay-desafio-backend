@@ -3,15 +3,14 @@
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
 use App\Enums\UserType;
-use App\User;
+use App\Models\User;
 use Faker\Generator as Faker;
 use Faker\Provider\pt_BR\Person as FakerPersonProvider;
 
-require_once 'vendor/autoload.php';
 
 /*
 |--------------------------------------------------------------------------
-| Model Factories
+| User Model Factories
 |--------------------------------------------------------------------------
 */
 
