@@ -13,14 +13,6 @@ abstract class BaseController extends Controller
         return $this->classModel::paginate($request->per_page);
     }
 
-    public function store(Request $request)
-    {
-        return response()
-            ->json($this->classModel::create($request->all()),
-                201
-            );
-    }
-
     public function show(int $id)
     {
         $resource = $this->classModel::find($id);

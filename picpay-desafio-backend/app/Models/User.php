@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class User extends Model
 {
     protected $fillable = ['name', 'email', 'type', 'document', 'password'];
+    protected $appends  = ['id'];
 
     protected $hidden = ['password'];
 
@@ -14,4 +15,5 @@ class User extends Model
     {
         return $this->hasOne('App\Models\Wallet');
     }
+
 }
