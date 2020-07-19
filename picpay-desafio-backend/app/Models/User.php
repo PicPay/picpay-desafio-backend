@@ -9,4 +9,9 @@ class User extends Model
     protected $fillable = ['name', 'email', 'type', 'document', 'password'];
 
     protected $hidden = ['password'];
+
+    public function wallet()
+    {
+        return $this->hasOne('App\Models\Wallet');
+    }
 }
