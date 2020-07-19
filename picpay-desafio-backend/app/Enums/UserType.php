@@ -10,6 +10,6 @@ use BenSampo\Enum\Enum;
  */
 final class UserType extends Enum
 {
-    const Regular     =   0;
-    const SalesPerson =   1;
+    const Regular     =   'regular';
+    const SalesPerson =   'salesPerson';
 }
