@@ -1,0 +1,47 @@
+version: "2"
+services:
+  app:
+    user: ${HOST_USER}
+    build:
+      context: ./
+      dockerfile: docker/php/Dockerfile
+      args:
+        - HOST_UID=${HOST_UID}
+        - HOST_USER=${HOST_USER}
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+      - ~/.ssh/id_rsa:/home/${HOST_USER}/.ssh/id_rsa
+    environment:
+      - UID=${HOST_UID}
+
+  web:
+    build:
+      context: ./
+      dockerfile: docker/nginx/Dockerfile
+    working_dir: /var/www
+    links:
+      - database
+      - cache
+      - app
+    ports:
+      - "80:80"
+
+  database:
+    image: mysql:5.7
+    volumes:
+      - /var/lib/mysql
+    environment:
+      - "MYSQL_DATABASE=picpay"
+      - "MYSQL_USER=picpay"
+      - "MYSQL_PASSWORD=secret"
+      - "MYSQL_ROOT_PASSWORD=secret"
+    ports:
+      - "3306:3306"
+
+  cache:
+    image: redis
+    volumes:
+      - /var/lib/redis
+    ports:
+      - "6379:6379"
