@@ -8,6 +8,6 @@ class WalletController extends BaseController
 {
     public function __construct()
     {
-        $this->classe = Wallet::class;
+        $this->classModel = Wallet::class;
     }
 }

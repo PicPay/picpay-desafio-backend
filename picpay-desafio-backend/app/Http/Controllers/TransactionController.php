@@ -8,6 +8,6 @@ class TransactionController extends BaseController
 {
     public function __construct()
     {
-        $this->classe = Transaction::class;
+        $this->classModel = Transaction::class;
     }
 }
