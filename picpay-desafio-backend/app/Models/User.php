@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
+use App\Enums\UserType;
 use Illuminate\Database\Eloquent\Model;
 
 class User extends Model
 {
     protected $fillable = ['name', 'email', 'type', 'document', 'password'];
-    protected $appends  = ['id'];
 
     protected $hidden = ['password'];
 
@@ -15,5 +15,11 @@ class User extends Model
     {
         return $this->hasOne('App\Models\Wallet');
     }
+
+    public function isSalesPerson()
+    {
+        return $this->type == UserType::SalesPerson ? true : false;
+    }
+
 
 }

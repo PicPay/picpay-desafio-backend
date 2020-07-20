@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use \App\Models\Wallet;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
@@ -21,7 +22,7 @@ class UserController extends BaseController
             $userInput['password'] = Hash::make($request->get('password'));
             $user = User::create($userInput);
 
-            $wallet = new WalletController();
+            $wallet = new Wallet();
             $wallet->createWallet($user, $request);
             return response()->json($userInput,201);
 
