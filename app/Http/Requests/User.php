@@ -6,9 +6,8 @@ use Illuminate\Validation\ValidationException;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
-class Transaction extends FormRequest
+class User extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,9 +27,10 @@ class Transaction extends FormRequest
     public function rules()
     {
         return [
-            'payer' => 'required|exists:users,id',
-            'payee' => 'required|exists:users,id',
-            'value' => 'required|regex:/^\d+(\.\d{1,2})?$/',
+            'name' => 'required|string',
+            'email' => 'required|email|unique:users,email',
+            'document' => 'required|unique:users,document',
+            'type' => 'required|in:PERSON,COMPANY',
         ];
     }
 
