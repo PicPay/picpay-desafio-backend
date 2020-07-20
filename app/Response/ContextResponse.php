@@ -14,6 +14,7 @@ class ContextResponse extends BaseResponse
     public function __construct(User $user)
     {
         $this->payload = [
+            'id' => $user->id,
             'fullName' => $user->fullName,
             'email' => $user->email,
             'document' => $user->document,

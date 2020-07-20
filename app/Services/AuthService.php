@@ -4,12 +4,13 @@ namespace App\Services;
 
 use App\Exceptions\UserAuthenticationError;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class AuthService
 {
-    public function auth(string $email, $password): array
+    public function auth(string $email, string $password): array
     {
-        $token = auth()->attempt(['email' => $email, 'password' => $password]);
+        $token = Auth::attempt(['email' => $email, 'password' => $password]);
 
         throw_if(! $token, UserAuthenticationError::class);
 
@@ -18,17 +19,17 @@ class AuthService
 
     public function context(): User
     {
-        return auth()->user();
+        return Auth::user();
     }
 
     public function logout(): void
     {
-        auth()->logout();
+        Auth::logout();
     }
 
     public function refresh(): array
     {
-        $newToken = auth()->refresh();
+        $newToken = Auth::refresh();
 
         return $this->authTokenSanitizer($newToken);
     }
@@ -38,7 +39,7 @@ class AuthService
         return [
             'token' => $token,
             'type' => 'bearer',
-            'expirationDate' => auth()->factory()->getTTL() * 60,
+            'expirationDate' => Auth::factory()->getTTL() * 60,
         ];
     }
 }

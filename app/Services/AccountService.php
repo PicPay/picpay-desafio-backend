@@ -21,4 +21,9 @@ class AccountService
 
         return $this->accountRepository->create($attributes);
     }
+
+    public function getUserById(int $id): User
+    {
+        return $this->accountRepository->getById($id);
+    }
 }

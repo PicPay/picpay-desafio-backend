@@ -21,4 +21,9 @@ return [
     'cipher' => 'AES-256-CBC',
 
     'enable_query_log' => env('ENABLE_QUERY_LOG', false),
+
+    'queue_listener' => env('QUEUE_LISTENER', 'listeners'),
+
+    'url_transaction_authorization' => env('URL_TRANSACTION_AUTHORIZATION', 'https://run.mocky.io/v3'),
+
 ];

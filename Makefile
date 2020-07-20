@@ -40,14 +40,6 @@ stop:
 tests: up
 	docker-compose exec app vendor/bin/phpunit --filter $(filter)
 
-.PHONY: unit-tests
-unit-tests: up
-	docker-compose exec app vendor/bin/phpunit  --testsuite Unit --filter $(filter)
-
-.PHONY: acceptance-tests
-acceptance-tests: up
-	docker-compose exec app vendor/bin/phpunit  --testsuite Acceptance
-
 .PHONY: check-test-coverage
 check-test-coverage: tests
 	docker-compose exec app php artisan tests:check-coverage
@@ -75,3 +67,8 @@ code-quality: up
 .PHONY: server-tests-coverage
 server-tests-coverage:
 	php -S localhost:8081 --docroot=tests/_reports/coverage/
+
+
+.PHONY: queue-listeners
+queue-listeners: up
+	docker-compose exec app php artisan queue:listen redis --queue=listeners --timeout=60 --sleep=3  --tries=3

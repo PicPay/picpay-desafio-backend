@@ -10,5 +10,9 @@ $router->group(['prefix' => 'v1'], function ($router) {
             $router->post('refresh', 'AuthController@refresh');
             $router->get('context', 'AuthController@context');
         });
+
+        $router->group(['prefix' => 'transaction'], function ($router) {
+            $router->post('/', 'TransactionController@create');
+        });
     });
 });

@@ -1,12 +1,17 @@
 {
     "name": "laravel/lumen",
     "description": "The Laravel Lumen Framework.",
-    "keywords": ["framework", "laravel", "lumen"],
+    "keywords": [
+        "framework",
+        "laravel",
+        "lumen"
+    ],
     "license": "MIT",
     "type": "project",
     "require": {
         "php": "^7.2.5",
         "geekcom/validator-docs": "^3.4",
+        "guzzlehttp/guzzle": "^7.0",
         "illuminate/redis": "^7.20",
         "laravel/lumen-framework": "^7.0",
         "tymon/jwt-auth": "^1.0"
@@ -27,8 +32,13 @@
     },
     "autoload-dev": {
         "classmap": [
-            "tests/"
-        ]
+            "database/",
+            "tests/TestCase.php",
+            "tests/AcceptanceTestCase.php"
+        ],
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
     },
     "config": {
         "preferred-install": "dist",

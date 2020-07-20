@@ -6,12 +6,15 @@ use App\Models\User;
 
 class AccountRepository extends BaseRepository
 {
-    public function create(array $attributes): User
+    protected $model;
+
+    public function __construct()
     {
-        $user = new User($attributes);
+        $this->model = User::class;
+    }
 
-        $user->save();
-
-        return $user;
+    public function getById(int $id): User
+    {
+        return $this->findBy('id', $id);
     }
 }

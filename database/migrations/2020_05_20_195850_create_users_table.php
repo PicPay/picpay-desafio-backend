@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
 
             $table->index(['email']);
             $table->index(['document']);
+            $table->index(['id', 'type']);
         });
     }
 

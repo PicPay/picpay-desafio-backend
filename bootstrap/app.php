@@ -61,6 +61,7 @@ $app->singleton(
 
 $app->configure('app');
 $app->configure('database');
+$app->configure('queue');
 $app->configure('auth');
 $app->configure('jwt');
 
