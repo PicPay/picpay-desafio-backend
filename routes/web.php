@@ -11,7 +11,7 @@ $router->group(['prefix' => 'v1'], function ($router) {
             $router->get('context', 'AuthController@context');
         });
 
-        $router->group(['prefix' => 'transaction'], function ($router) {
+        $router->group(['prefix' => 'transactions'], function ($router) {
             $router->post('/', 'TransactionController@create');
         });
     });

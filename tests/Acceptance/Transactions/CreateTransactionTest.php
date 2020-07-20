@@ -37,7 +37,7 @@ class CreateTransactionTest extends AcceptanceTestCase
             'payee' => $user->id,
         ];
 
-        $response = $this->actingAs($user)->call('POST', 'v1/transaction', $payload);
+        $response = $this->actingAs($user)->call('POST', 'v1/transactions', $payload);
 
         $this->assertEquals(400, $response->status());
 
@@ -69,7 +69,7 @@ class CreateTransactionTest extends AcceptanceTestCase
             'payee' => $user->id,
         ];
 
-        $response = $this->actingAs($userSeller)->call('POST', 'v1/transaction', $payload);
+        $response = $this->actingAs($userSeller)->call('POST', 'v1/transactions', $payload);
 
         $this->assertEquals(400, $response->status());
 
@@ -100,7 +100,7 @@ class CreateTransactionTest extends AcceptanceTestCase
             'payee' => $user->id,
         ];
 
-        $response = $this->actingAs($user)->call('POST', 'v1/transaction', $payload);
+        $response = $this->actingAs($user)->call('POST', 'v1/transactions', $payload);
 
         $this->assertEquals(400, $response->status());
 
@@ -133,7 +133,7 @@ class CreateTransactionTest extends AcceptanceTestCase
             'payee' => $userPayee->id,
         ];
 
-        $response = $this->actingAs($user)->call('POST', 'v1/transaction', $payload);
+        $response = $this->actingAs($user)->call('POST', 'v1/transactions', $payload);
 
         Event::assertDispatched(CreateTransaction::class, function ($event) use ($user, $userPayee) {
             $transaction = $event->getTransaction();
@@ -155,7 +155,7 @@ class CreateTransactionTest extends AcceptanceTestCase
             'payee' => $userPayee->id,
         ];
 
-        $response = $this->actingAs($user)->call('POST', 'v1/transaction', $payload);
+        $response = $this->actingAs($user)->call('POST', 'v1/transactions', $payload);
 
         $this->assertEquals(201, $response->status());
 
