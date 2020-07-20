@@ -48,6 +48,11 @@ Seeds (criar baseado no banco): https://github.com/orangehill/iseed
 
 Migrations (criar baseado no banco) : https://github.com/oscarafdev/migrations-generator
 
+## Banco de dados
+
+![alt text](https://github.com/edu-lourenco/picpay-desafio-backend/blob/17-07-20/eduardo-lourenco/utils/database/modeloER.png?raw=true)
+
+-------------------------------------------------------------------------
 
 # Desafio Back-end PicPay
 
