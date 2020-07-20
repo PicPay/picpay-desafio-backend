@@ -48,15 +48,26 @@ Executar na raíz do projeto:
 
 Referência: https://laracasts.com/discuss/channels/general-discussion/laravel-framework-file-permission-security
 
-## Laravel
+## Acesso e testes
 
-Utilizei a versão 7.0 com php 7.4.
+A url principal disponível é: http://127.0.0.1:8080/transaction .
+
+Ao executá-la um dos jobs de autorização é síncrono e fará a autorização em tempo real, mas o job de disparo de e-mails é assíncrono e para rodá-lo (envio de emails) basta executar a fila do laravel:
+
+* php artisan queue:work
+
+Esse processo fará a autorização externa e atualizará a tabela **message_queue**
 
 #### Postman
 
 Existe um arquivo de collection do postman na pasta ****utils/postman** já com algumas sugestões de requisição e o payload pronto.
 
 Referência: https://learning.postman.com/docs/postman/collection-runs/working-with-data-files/
+
+
+## Laravel
+
+Utilizei a versão 7.0 com php 7.4.
 
 #### Bibliotecas usadas
 
