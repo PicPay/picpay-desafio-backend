@@ -59,6 +59,11 @@ docker-compose exec app php artisan queue:work --queue=transactions
 docker-compose exec app php artisan queue:work --queue=notification
 ```
 
+### Endpoint da api
+```
+/api/transaction
+```
+
 ### References
 * https://laravel.com/docs/7.x/
 * https://redis.io/
