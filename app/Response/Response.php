@@ -10,6 +10,11 @@ abstract class Response
 
     protected $status;
 
+    public function toArray(): array
+    {
+        return (array) $this->payload;
+    }
+
     public function response(): JsonResponse
     {
         return response()->json(['data' => $this->payload], $this->status);

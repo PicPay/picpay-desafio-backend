@@ -2,14 +2,16 @@
 
 namespace App\Services;
 
-use App\Enum\TransactionStatus;
 use App\Models\User;
 use App\Enum\UserType;
 use App\Models\Transaction;
+use App\Enum\TransactionStatus;
 use App\Events\CreateTransaction;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 use App\Exceptions\InvalidPayerException;
 use App\Repositories\TransactionRepository;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class TransactionService
 {
@@ -91,5 +93,10 @@ class TransactionService
 
         $this->transactionRepository->update($transaction, ['status' => TransactionStatus::UNAUTHORIZED]);
         Log::info('PROCESSING_TRANSACTION_UNAUTHORIZED', $log);
+    }
+
+    public function list(array $status, int $pearPage = 15): LengthAwarePaginator
+    {
+        return $this->transactionRepository->listPaginate(Auth::user(), $status, $pearPage);
     }
 }

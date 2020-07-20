@@ -12,6 +12,7 @@ $router->group(['prefix' => 'v1'], function ($router) {
         });
 
         $router->group(['prefix' => 'transactions'], function ($router) {
+            $router->get('/', 'TransactionController@list');
             $router->post('/', 'TransactionController@create');
         });
     });

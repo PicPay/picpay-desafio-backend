@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\TransactionService;
+use App\Response\TransactionsResponse;
 
 class TransactionController extends Controller
 {
@@ -12,6 +13,17 @@ class TransactionController extends Controller
     public function __construct(TransactionService $transactionService)
     {
         $this->transactionService = $transactionService;
+    }
+
+    public function list(Request $request)
+    {
+        $status = $request->query('status', ['UNPROCESSED', 'PROCESSED', 'UNAUTHORIZED']);
+        $pearPage = $request->query('pearPage', 15);
+
+
+        $transactionList = $this->transactionService->list($status, $pearPage);
+
+        return (new TransactionsResponse($transactionList))->response();
     }
 
     public function create(Request $request)

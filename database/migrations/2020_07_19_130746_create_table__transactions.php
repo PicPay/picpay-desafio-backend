@@ -17,7 +17,7 @@ class CreateTableTransactions extends Migration
             $table->id();
 
             $table->decimal('value');
-            $table->decimal('status', 30);
+            $table->string('status', 30);
 
             $table->bigInteger('payer_id')->unsigned();
             $table->foreign('payer_id')->references('id')->on('users')->onDelete('cascade');
@@ -26,6 +26,10 @@ class CreateTableTransactions extends Migration
             $table->foreign('payee_id')->references('id')->on('users')->onDelete('cascade');
 
             $table->timestamps();
+
+            $table->index(['payer_id', 'status'], 'payer_id_status');
+            $table->index(['payee_id', 'status'], 'payee_id_status');
+            $table->index(['payer_id', 'payee_id', 'status'], 'payer_id_payee_id_status');
         });
     }
 

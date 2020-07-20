@@ -50,7 +50,7 @@ migrate: up
 
 .PHONY: mysql-client
 mysql-client: up
-	docker-compose exec app mysql -u root -h database -psecret --database supra
+	docker-compose exec app mysql -u root -h database -psecret --database picpay
 
 .PHONY: style-check
 style-check: up
