@@ -1,16 +1,21 @@
-## Instruções para implementação do desafio
+## Desafio Back-end PicPay - Instruções para instalação
 
 ### Dependências
 
 Docker e docker-compose instalados.
 
-### Iniciar os containers do docker através do docker-compose
+Referências 
+1. https://docs.docker.com/get-docker/
+2. https://docs.docker.com/compose/install/
 
-Para permitir persitência de dados do mysql existe uma pasta mysql-data dentro do diretório docker.
+### Iniciar os containers do docker através do docker-compose
 
 Em seguida, também na raíz do projeto executar:
 
-**docker-compose up --build**
+1. **cd docker**
+
+2. **docker-compose up --build**
+
 
 ### Realizar o composer install para receber todas as dependências de pacotes
 
@@ -18,8 +23,11 @@ Nao raiz do projeto executar **composer install**
 
 ### Copiar configurações
 
-Copiar arquivo **.env.example** para **.env**
-As configurações de acesso ao banco e queue já estão prontas para os dados do docker.
+Copiar arquivo **.env.example** para **.env** .
+
+As configurações de acesso ao banco de dados já estão prontas para os dados do docker.
+
+Após o arquivo .env pronto, executar **php artisan key:generate** para gerar a chave do app.
 
 ### Executar comando para criar banco de dados
 
@@ -40,9 +48,17 @@ Executar na raíz do projeto:
 
 Referência: https://laracasts.com/discuss/channels/general-discussion/laravel-framework-file-permission-security
 
-## Bibliotecas usadas
+## Laravel
 
-#### Migrations
+Utilizei a versão 7.0 com php 7.4.
+
+#### Postman
+
+Existe um arquivo de collection do postman na pasta ****utils/postman** já com algumas sugestões de requisição e o payload pronto.
+
+Referência: https://learning.postman.com/docs/postman/collection-runs/working-with-data-files/
+
+#### Bibliotecas usadas
 
 Seeds (criar baseado no banco): https://github.com/orangehill/iseed
 
@@ -50,7 +66,27 @@ Migrations (criar baseado no banco) : https://github.com/oscarafdev/migrations-g
 
 ## Banco de dados
 
+Utilizei o Mysql 5.7.31
+
 ![alt text](https://github.com/edu-lourenco/picpay-desafio-backend/blob/17-07-20/eduardo-lourenco/utils/database/modeloER.png?raw=true)
+
+#### Dados
+
+O projeto já contém seeds para usuários iniciais, 2 comuns e 1 lojista, além da tabela de status.
+
+## Docker
+
+Todo conteúdo está localizado na pasta **docker** na raíz do projeto.
+Para permitir persitência de dados do mysql existe uma pasta **mysql-data** dentro do diretório **docker**.
+Para o ambiente de desenvolvimento utilizei o docker-compose para controlar os containers. Segue alguns comandos úteis para acessá-los:
+
+* **docker exec -it php7-pp /bin/bash** para acessar o php como ssh.
+* **docker exec -it web-pp /bin/bash** para acessar o nginx como ssh.
+
+## Melhorias pendentes 
+
+* Testes unitários e de integração
+* Envio de mensagem ao usuário em caso de cancelamento de transação , sugerindo refazê-la.
 
 -------------------------------------------------------------------------
 
