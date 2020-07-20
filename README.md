@@ -1,79 +1,146 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+## Instruções para implementação do desafio
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+### Dependências
 
-## About Laravel
+Docker e docker-compose instalados.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### Iniciar os containers do docker através do docker-compose
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Para permitir persitência de dados do mysql existe uma pasta mysql-data dentro do diretório docker.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Em seguida, também na raíz do projeto executar:
 
-## Learning Laravel
+**docker-compose up --build**
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Realizar o composer install para receber todas as dependências de pacotes
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Nao raiz do projeto executar **composer install**
 
-## Laravel Sponsors
+### Copiar configurações
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+Copiar arquivo **.env.example** para **.env**
+As configurações de acesso ao banco e queue já estão prontas para os dados do docker.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
-- [Appoly](https://www.appoly.co.uk)
-- [OP.GG](https://op.gg)
-- [云软科技](http://www.yunruan.ltd/)
+### Executar comando para criar banco de dados
 
-## Contributing
+Existe um comando customizado para criar o banco de dados inicial:
+**php artisan db:create** que pega as informações do .env e cria o banco.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Executar migrations e seeds para criar o banco de dados
 
-## Code of Conduct
+Executar **php artisan migrate:fresh --seed**
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Corrigir permissões de pastas iniciais
 
-## Security Vulnerabilities
+Executar na raíz do projeto:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+>sudo chgrp -R www-data storage bootstrap/cache
+>
+>sudo chmod -R ug+rwx storage bootstrap/cache
 
-## License
+Referência: https://laracasts.com/discuss/channels/general-discussion/laravel-framework-file-permission-security
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Bibliotecas usadas
+
+#### Migrations
+
+Seeds (criar baseado no banco): https://github.com/orangehill/iseed
+
+Migrations (criar baseado no banco) : https://github.com/oscarafdev/migrations-generator
+
+
+# Desafio Back-end PicPay
+
+Primeiramente, obrigado pelo seu interesse em trabalhar na melhor plataforma de pagamentos do mundo!
+Abaixo você encontrará todos as informações necessárias para iniciar o seu teste.
+
+## Avisos antes de começar
+
+- Faça um fork desse repositório para seu usuário
+- Crie uma branch a partir da `master` nesse padrão de nomenclatura: dd-mm-yy/nome-sobrenome (por exemplo, 30-04-20/meu-nome)
+- Abra o Pull Request até 1 dia antes da entrevista
+- Você poderá consultar o Google, Stackoverflow ou algum projeto particular na sua máquina.
+- Fique à vontade para perguntar qualquer dúvida aos recrutadores.
+- Fique tranquilo, respire, assim como você, também já passamos por essa etapa. Boa sorte! :)
+
+## Setup do projeto
+
+- Framework: Fique a vontade pra usar o framework que quiser
+- Subir local ou Docker
+
+
+## Objetivo - PicPay Simplificado
+
+Temos 2 tipos de usuários, os comuns e lojistas, ambos têm carteira com dinheiro e realizam transferências entre eles. Vamos nos atentar **somente** ao fluxo de transferência entre dois usuários.
+
+Requisitos:
+
+- Para ambos tipos de usuário, precisamos do Nome Completo, CPF, e-mail e Senha. CPF/CNPJ e e-mails devem ser únicos no sistema. Sendo assim, seu sistema deve permitir apenas um cadastro com o mesmo CPF ou endereço de e-mail.
+
+- Usuários podem enviar dinheiro (efetuar transferência) para lojistas e entre usuários. 
+
+- Lojistas **só recebem** transferências, não enviam dinheiro para ninguém.
+
+- Antes de finalizar a transferência, deve-se consultar um serviço autorizador externo, use este mock para simular (https://run.mocky.io/v3/8fafdd68-a090-496f-8c9a-3442cf30dae6).
+
+- A operação de transferência deve ser uma transação (ou seja, revertida em qualquer caso de inconsistência) e o dinheiro deve voltar para a carteira do usuário que envia. 
+
+- No recebimento de pagamento, o usuário ou lojista precisa receber notificação enviada por um serviço de terceiro e eventualmente este serviço pode estar indisponível/instável. Use este mock para simular o envio (https://run.mocky.io/v3/b19f7b9f-9cbf-4fc6-ad22-dc30601aec04). 
+
+
+
+### Payload
+
+POST /transaction
+
+```json
+{
+    "value" : 100.00,
+    "payer" : 4,
+    "payee" : 15
+}
+```
+
+
+# Avaliação
+
+Caso você não se sinta à vontade com a arquitetura proposta, você pode apresentar sua solução utilizando frameworks diferentes.
+Atente-se a cumprir a maioria dos requisitos, pois você pode cumprir-los parcialmente e durante a avaliação vamos bater um papo a respeito do que faltou.
+
+Teremos 2 partes da avaliação:
+A correção objetiva será realizada através da utilização de um script de correção automatizada.
+A correção qualitativa será durante a entrevista e levará em conta os seguintes critérios:
+
+## O que será avaliado e valorizamos
+- Código limpo e organizado
+- Ser consistente em suas escolhas
+- Apresentar soluções que domina
+- Modelagem de Dados
+- Manutenibilidade do Código
+- Tratamento de erros
+- Cuidado com itens de segurança
+- Arquitetura (estruturar o pensamento antes de escrever)
+- Esboço da arquitetura usando o diagrama da sua escolha
+
+## O que NÃO será avaliado
+- Fluxo de cadastro de usuários e lojistas
+- Autenticação
+
+## O que será um diferencial
+- Uso de Docker
+- Testes de [integração](https://www.atlassian.com/continuous-delivery/software-testing/types-of-software-testing)
+- Testes [unitários](https://www.atlassian.com/continuous-delivery/software-testing/types-of-software-testing)
+- Uso de Design Patters
+- Documentação
+- Proposta de melhoria na arquitetura
+
+
+## Para o dia da avaliação
+Na data marcada pelo recrutador tenha sua aplicação rodando na sua máquina local **ou** em algum serviço ne web (Ex: [Heroku](https://www.heroku.com/)).
+
+
+## Materiais úteis
+- https://www.php-fig.org/psr/psr-12/
+- https://www.atlassian.com/continuous-delivery/software-testing/types-of-software-testing
+- https://github.com/exakat/php-static-analysis-tools
+- https://martinfowler.com/articles/microservices.html
