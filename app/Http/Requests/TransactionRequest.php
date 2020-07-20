@@ -22,9 +22,9 @@ class TransactionRequest extends FormRequest
     public function rules()
     {
         return [
-            'payer' => 'required|integer|exists:users,user_id|is_shopkeeper|user_has_credit',
-            'payee' => 'required|integer|exists:users,user_id|different:payer',
-            'value' => 'required|numeric',
+            'payer' => 'bail|required|integer|exists:users,user_id|is_shopkeeper|user_has_credit',
+            'payee' => 'bail|required|integer|exists:users,user_id|different:payer',
+            'value' => 'bail|required|numeric|min:1',
         ];
     }
 }
