@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUsersTable extends Migration
+class CreateUserHistoryTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('user_history', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('document')->unique();
-            $table->string('email')->unique();
-            $table->enum("type", ['PERSON', 'COMPANY'])->default('PERSON');
+            $table->integer('user_id');
+            $table->decimal("amount");
+            $table->datetime("date");
         });
     }
 
@@ -29,6 +28,8 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::table('user_history', function (Blueprint $table) {
+            Schema::dropIfExists('user_history');
+        });
     }
 }
