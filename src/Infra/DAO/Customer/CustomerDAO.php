@@ -41,6 +41,10 @@ class CustomerDAO implements CustomerDAOInterface
             ->execute();
     }
 
+    /**
+     * @param int $id
+     * @return CustomerBalanceDTO|null
+     */
     public function findById(int $id): ?CustomerBalanceDTO
     {
         $query = $this->database->createQueryBuilder()
@@ -105,6 +109,9 @@ class CustomerDAO implements CustomerDAOInterface
         return $customer ? $customer : null;
     }
 
+    /**
+     * @param CustomerBalanceDTO $customerBalanceDTO
+     */
     public function updateCustomerBalanceById(CustomerBalanceDTO $customerBalanceDTO): void
     {
         $a = $this->database->createQueryBuilder()
