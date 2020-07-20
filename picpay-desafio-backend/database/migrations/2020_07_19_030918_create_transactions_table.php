@@ -10,18 +10,18 @@ class CreateTransactionsTable extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('payer_id')->unsigned();
-            $table->bigInteger('payee_id')->unsigned();
+            $table->bigInteger('payer_wallet_id')->unsigned();
+            $table->bigInteger('payee_wallet_id')->unsigned();
             $table->decimal('value', 6, 2);
             $table->timestamps();
 
-            $table->foreign('payer_id')
+            $table->foreign('payer_wallet_id')
                 ->references('id')
                 ->on('wallets')
                 ->onUpdate('CASCADE')
                 ->onDelete('NO ACTION');
 
-            $table->foreign('payee_id')
+            $table->foreign('payee_wallet_id')
                 ->references('id')
                 ->on('wallets')
                 ->onUpdate('CASCADE')
@@ -32,10 +32,10 @@ class CreateTransactionsTable extends Migration
     public function down()
     {
         Schema::table('transactions', function(Blueprint $table) {
-           $table->dropForeign(['payer_id']);
-           $table->dropColumn(['payee_id']);
-           $table->dropForeign(['payer_id']);
-           $table->dropColumn(['payee_id']);
+           $table->dropForeign(['payer_wallet_id']);
+           $table->dropColumn(['payee_wallet_id']);
+           $table->dropForeign(['payer_wallet_id']);
+           $table->dropColumn(['payee_wallet_id']);
         });
         Schema::dropIfExists('transactions');
     }
