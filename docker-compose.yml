@@ -1,0 +1,69 @@
+version: '3'
+services:
+  
+   #PHP Service
+  app:
+    build:
+      context: ./docker
+      dockerfile: php.Dockerfile
+    container_name: app
+    restart: unless-stopped
+    tty: true
+    environment:
+      SERVICE_NAME: app
+      SERVICE_TAGS: dev
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+    networks:
+      - app-network
+
+  #Nginx Service
+  webserver:
+    build:
+      context: ./docker
+      dockerfile: nginx.Dockerfile
+    container_name: webserver
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./:/var/www
+      - ./docker/config/nginx/conf.d/:/etc/nginx/conf.d/
+    networks:
+      - app-network
+
+  redis:
+    image: "redis:6.0"
+    container_name: redis
+    restart: unless-stopped
+    tty: true
+    ports:
+     - "6379:6379"
+    networks:
+      - app-network
+
+  # MariaDB
+  db:
+    image: "mariadb:10.2"
+    container_name: db
+    command: --lower_case_table_names=1 --sql_mode=NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION
+    restart: unless-stopped
+    tty: true
+    environment:
+     - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+    ports:
+     - "3306:3306"
+    volumes:
+      - dbdata:/var/lib/mysql
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+volumes:
+  dbdata:
+    driver: local
