@@ -19,4 +19,12 @@ class TransactionRepository extends BaseRepository
     {
         return $this->newQuery()->where('payer_id', $user->id)->whereIn('status', $status)->paginate($pearPage);
     }
+
+    public function findByUserAndId(User $user, int $id): Transaction
+    {
+        return $this->newQuery()->where([
+            ['payer_id', $user->id],
+            ['id', $id],
+        ])->firstOrFail();
+    }
 }

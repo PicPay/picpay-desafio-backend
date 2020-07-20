@@ -99,4 +99,9 @@ class TransactionService
     {
         return $this->transactionRepository->listPaginate(Auth::user(), $status, $pearPage);
     }
+
+    public function single(int $id): Transaction
+    {
+        return $this->transactionRepository->findByUserAndId(Auth::user(), $id);
+    }
 }
