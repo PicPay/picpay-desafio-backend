@@ -114,10 +114,10 @@ final class CustomerService implements CustomerInterface
 
     /**
      * @param array $customerList
-     * @param string $value
+     * @param float $value
      * @throws \Exception
      */
-    public function updateCustomerBalanceById(array $customerList, string $value): void
+    public function updateCustomerBalanceById(array $customerList, float $value): void
     {
         foreach ($customerList as $key => $customer) {
 
@@ -125,13 +125,13 @@ final class CustomerService implements CustomerInterface
                 $this->customerDAO->getDatabase()->beginTransaction();
 
                 if ($key === 'payer') {
-                    $customer->substractValue((float)$value);
+                    $customer->substractValue($value);
                     $this->customerDAO->updateCustomerBalanceById($customer);
                     $this->customerDAO->getDatabase()->commit();
                     continue;
                 }
 
-                $customer->addBalance((float) $value);
+                $customer->addBalance($value);
 
                 $this->customerDAO->updateCustomerBalanceById($customer);
                 $this->customerDAO->getDatabase()->commit();

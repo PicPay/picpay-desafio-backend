@@ -12,5 +12,5 @@ interface CustomerInterface
 {
     public function register(CustomerRegisterDTO $customer): void;
     public function findById(int $id): CustomerBalanceDTO;
-    public function updateCustomerBalanceById(array $customerList, string $value): void;
+    public function updateCustomerBalanceById(array $customerList, float $value): void;
 }

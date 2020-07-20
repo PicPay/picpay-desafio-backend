@@ -173,10 +173,10 @@ final class TransactionService
     }
 
     /**
-     * @param string $value
+     * @param float $value
      * @return bool
      */
-    private function checkPayerFunds(string $value): bool
+    private function checkPayerFunds(float $value): bool
     {
         return $this->customers['payer']->getBalance() > $value;
     }
@@ -198,10 +198,9 @@ final class TransactionService
     }
 
     /**
-     * @param string $value
-     * @throws \Exception
+     * @param float $value
      */
-    private function updateCustomerBalance(string $value): void
+    private function updateCustomerBalance(float $value): void
     {
         $this->customerService->updateCustomerBalanceById($this->customers, $value);
     }

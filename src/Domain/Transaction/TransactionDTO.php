@@ -21,17 +21,17 @@ class TransactionDTO
     private int $payeeId;
 
     /**
-     * @var string
+     * @var float
      */
-    private string $value;
+    private float $value;
 
     /**
      * TransactionDTO constructor.
      * @param int $payerId
      * @param int $payeeId
-     * @param string $value
+     * @param float $value
      */
-    public function __construct(int $payerId, int $payeeId, string $value)
+    public function __construct(int $payerId, int $payeeId, float $value)
     {
         $this->payerId = $payerId;
         $this->payeeId = $payeeId;
@@ -55,9 +55,9 @@ class TransactionDTO
     }
 
     /**
-     * @return string
+     * @return float
      */
-    public function getValue(): string
+    public function getValue(): float
     {
         return $this->value;
     }
