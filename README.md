@@ -61,7 +61,25 @@ docker-compose exec app php artisan queue:work --queue=notification
 
 ### Endpoint da api
 ```
+POST
 /api/transaction
+{
+    "value" : 1,
+    "payer" : 3,
+    "payee" : 5
+}
+
+```
+
+```
+POST
+/api/user
+{
+    "name" : "Teste",
+    "email" : "teste@example.org",
+    "document" : "12345678900",
+    "type" : "PERSON"
+}
 ```
 
 ### References
