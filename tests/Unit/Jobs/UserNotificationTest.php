@@ -1,5 +1,5 @@
 <?php
-namespace Tests\Unit\Http\Controllers;
+namespace Tests\Unit\Jobs;
 
 use Tests\TestCase;
 use App\Jobs\UserNotification;
