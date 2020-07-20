@@ -179,7 +179,10 @@ return [
         * Custom Service Providers...
         */
         \App\Providers\Repositories\TransactionsRepositoryServiceProvider::class,
-        \App\Providers\Services\Transfer\TransferServiceServiceProvider::class
+        \App\Providers\Repositories\MessageQueueRepositoryServiceProvider::class,
+        \App\Providers\Services\Transfer\TransferServiceServiceProvider::class,
+        \App\Providers\Repositories\UsersRepositoryServiceProvider::class,
+        \App\Providers\Validators\TransactionValidatorsServiceProvider::class
     ],
 
     /*

@@ -20,6 +20,8 @@
         "fzaninotto/faker": "^1.9.1",
         "mockery/mockery": "^1.3.1",
         "nunomaduro/collision": "^4.1",
+        "orangehill/iseed": "^2.6",
+        "oscarafdev/migrations-generator": "^2.0",
         "phpunit/phpunit": "^8.5"
     },
     "config": {

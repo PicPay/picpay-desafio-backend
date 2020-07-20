@@ -17,8 +17,12 @@ class TransactionController extends Controller
         $payee_id = $request->get('payee');
         $amount   = $request->get('value');
 
-        $transfer = $service->executeTransferTransaction($payer_id,$payee_id,$amount);
+        $transaction = $service->executeTransferTransaction($payer_id,$payee_id,$amount);
 
-        return $this->successResponse($transfer);
+        return $this->successResponse([
+            'transaction_id' => $transaction->transaction_id,
+            'amount'         => $transaction->amount,
+            'status'         => $transaction->status->description
+        ]);
     }
 }

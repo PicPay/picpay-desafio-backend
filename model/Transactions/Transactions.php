@@ -19,4 +19,9 @@ class Transactions extends Model
     {
         return $this->hasOne(\Model\Users\Users::class,'user_id','payee_id');
     }
+
+    public function status()
+    {
+        return $this->belongsTo(\Model\TransactionStatus\TransactionStatus::class,'transaction_status_id','transaction_status_id');
+    }
 }

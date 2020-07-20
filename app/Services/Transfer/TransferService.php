@@ -17,19 +17,9 @@ class TransferService implements TransferServiceInterface
 
     public function executeTransferTransaction($payer_id, $payee_id, $amount)
     {
-        DB::beginTransaction();
-        try{
-            $transaction = $this->transactionRepository->add($payer_id,$payee_id,$amount);
-            TransferAuthorization::dispatchNow($transaction->transaction_id);
-            DB::commit();
-        }catch (\Exception $e){
-            dump($e->getMessage());
-            DB::rollBack();
-        }
-
-
-
-        // TODO: Implement executeTransferTransaction() method.
+        $transaction = $this->transactionRepository->add($payer_id,$payee_id,$amount);
+        TransferAuthorization::dispatchNow($transaction->transaction_id);
+        return $transaction->fresh();
     }
 
 

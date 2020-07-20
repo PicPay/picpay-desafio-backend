@@ -9,6 +9,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Http;
 use Model\Transactions\Repositories\TransactionsRepositoryInterface;
+use Log;
 
 class TransferAuthorization implements ShouldQueue
 {
@@ -36,13 +37,22 @@ class TransferAuthorization implements ShouldQueue
      */
     public function handle(TransactionsRepositoryInterface $transactionsRepository)
     {
-        $response = Http::get('https://run.mocky.io/v3/8fafdd68-a090-496f-8c9a-3442cf30dae6');
+        try{
+            $response = Http::retry(3, 100)
+                ->timeout(20)
+                ->get('https://run.mocky.io/v3/8fafdd68-a090-496f-8c9a-3442cf30dae6');
+        }catch(\Exception $e){
+            Log::debug($e->getMessage());
+        }
+
         if($response->successful()){
-            if($response['message'] == 'Autorizado'){
+            if($response['message'] == 'Autorizado') {
                 $transactionsRepository->setAuthorized($this->transfer_id);
-            }else{
-                throw new \Exception("Não autorizado");
+                return true;
             }
         }
+
+        $transactionsRepository->setNotAuthorized($this->transfer_id);
+        return false;
     }
 }
