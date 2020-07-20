@@ -13,9 +13,14 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::get('users', 'Api\UserController@index');
+// Route::post('user', 'Api\UserController@show');
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::post('login', 'Api\AuthController@login');
+Route::post('register',  'Api\UserController@store');
 
-Route::post('exchange', ['as' => 'exchange', 'uses' => 'TransactionController@exchange']);
+Route::post('wallet', 'Api\WalletController@show');
+Route::post('addfunds', 'Api\WalletController@addFunds');
+
+
+Route::post('exchange', ['as' => 'exchange', 'uses' => 'Api\TransactionController@exchange']);

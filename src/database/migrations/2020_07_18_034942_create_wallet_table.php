@@ -17,7 +17,7 @@ class CreateWalletTable extends Migration
             $table->id();
             $table->biginteger('user_id');
             $table->integer('wallet_type')->comment('1 - common, 2 - shopkeeper');
-            $table->decimal('amount', 13, 2)->default(0);
+            $table->decimal('balance', 13, 2)->default(0);
             $table->timestamps();
         });
     }

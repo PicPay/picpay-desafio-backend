@@ -18,7 +18,6 @@ class CreateTransactionTable extends Migration
             $table->bigInteger('payer_id');
             $table->bigInteger('payee_id');
             $table->decimal('value', 13, 2);
-            $table->char('status', 1)->comment('A - Approved; D - Denied; E - Executing;');;
             $table->timestamps();
         });
     }
