@@ -19,6 +19,7 @@ class TransactionController extends Controller
 
     public function receive(Request $request){
 
+        Log::info('Received transaction', $request->all());
         try{
             $transaction = $this->transaction->create($request->all());
             event(new ReceiveTransactions($transaction));
@@ -26,6 +27,7 @@ class TransactionController extends Controller
         }catch(Exception $e){
             $transaction->status = "FAILED";
             $transaction->save();
+            Log::error('Error on validate transaction');
             return response()->json(['message' => $e->getMessage()], 400);
         }
 
