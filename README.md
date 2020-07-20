@@ -19,6 +19,10 @@ Disponíveis na pasta DOCS na raiz da aplicação
 ```
 docker-compose up -d --build
 ```
+### Arquivo de variaveis do ambiente
+```
+docker-compose exec app cp .env.example .env
+```
 
 ### Generate key do laravel
 ```
