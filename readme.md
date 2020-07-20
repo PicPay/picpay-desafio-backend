@@ -94,3 +94,20 @@ Na data marcada pelo recrutador tenha sua aplicação rodando na sua máquina lo
 - https://github.com/exakat/php-static-analysis-tools
 - https://martinfowler.com/articles/microservices.html
 
+#####################################################################################################################################################################
+
+Pré-requisitos
+
+    Docker
+
+Instalação
+
+    Clonar projeto
+    Executar comando "docker-compose up -d"
+    Api disponivel no endereço "http://localhost:8088/api"
+
+Autor
+
+    Lucas Tetsuo Takagi - lucastetsuo
+
+#####################################################################################################################################################################
