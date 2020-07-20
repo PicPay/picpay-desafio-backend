@@ -1,14 +1,10 @@
 <?php
 
-namespace Tests\Unit;
+namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-
 use Tests\TestCase;
 use Faker\Factory as Faker;
-
-use App\Models\User;
-use App\Models\Wallet;
 
 class UserTest extends TestCase
 {

@@ -22,23 +22,6 @@ class UserController extends Controller
         return response()->json(['message' => 'No Content'], 204);
     }
 
-    // public function show(Request $request)
-    // {
-
-    //     $request->validate([
-    //         'user_id' => 'required | numeric'
-    //     ]);
-
-    //     $user = User::with('wallet')->find($request->user_id);
-
-    //     if($user){
-    //         return response()->json($user, 200);
-    //     }
-
-    //     return response()->json(['message' => 'No Content'], 204);
-    // }
-
-
     public function store(Request $request)
     {
         $request->validate([
