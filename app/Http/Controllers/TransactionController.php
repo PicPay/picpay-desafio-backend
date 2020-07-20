@@ -24,6 +24,16 @@ class TransactionController extends Controller
             $transaction = $this->transaction->create($request->all());
             event(new ReceiveTransactions($transaction));
 
+        }catch(App\Exceptions\UserWithNoBalanceException $e){
+            $transaction->status = "FAILED";
+            $transaction->save();
+            Log::error('Error on validate transaction');
+            return response()->json(['message' => $e->getMessage()], 400);
+        }catch(App\Exceptions\NotAllowedTransactionException $e){
+            $transaction->status = "FAILED";
+            $transaction->save();
+            Log::error('Error on validate transaction');
+            return response()->json(['message' => $e->getMessage()], 400);
         }catch(Exception $e){
             $transaction->status = "FAILED";
             $transaction->save();

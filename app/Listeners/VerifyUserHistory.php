@@ -4,7 +4,7 @@ namespace App\Listeners;
 
 use Log;
 use App\Exceptions\UserWithNoBalanceException;
-use App\Exceptions\NotAllowerTransactionException;
+use App\Exceptions\NotAllowedTransactionException;
 use App\Models\User;
 use App\Models\UserHistory;
 use App\Events\ReceiveTransactions;
@@ -33,14 +33,15 @@ class VerifyUserHistory
 
         if( ($amount - $event->transaction()->value) <= 0){
             Log::error('User has no value to do transaction');
-            throw new UserWithNoBalanceException('Usuário não tem saldo para realizar transação');
+            throw new UserWithNoBalanceException();
+            return;
         }
 
         $payer = User::find($event->transaction()->payer);
-
         if($payer->type === 'COMPANY'){
             Log::error('Company is not allower to do transaction');
-            throw new NotAllowerTransactionException("Empresas não podem realizar transações");
+            throw new NotAllowedTransactionException();
+            return;
         }
     }
 }
