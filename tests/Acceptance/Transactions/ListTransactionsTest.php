@@ -60,6 +60,10 @@ class ListTransactionsTest extends AcceptanceTestCase
             ],
         ];
 
-        $this->assertEquals($expected, $transactionsList->json());
+        $data = $transactionsList->json();
+
+        unset($data['data']['data'][0]['id']);
+
+        $this->assertEquals($expected, $data);
     }
 }

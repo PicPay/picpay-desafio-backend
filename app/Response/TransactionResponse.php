@@ -13,7 +13,8 @@ class TransactionResponse extends Response
     public function __construct(Transaction $transaction)
     {
         $this->payload = [
-            'value' => $transaction->value,
+            'id' => $transaction->id,
+            'value' => (float) $transaction->value,
             'status' => $transaction->status,
             'created_at' => $transaction->created_at,
             'updated_at' => $transaction->updated_at,
