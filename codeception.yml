@@ -1,0 +1,31 @@
+suites:
+    unit:
+        path: unit
+
+actor_suffix: Tester
+
+coverage:
+    enabled: true
+    low_limit: 90
+    high_limit: 100
+    include:
+        - src/*
+    exclude:
+        - src/Api/*
+        - src/Infra/DAO/*
+        - src/Infra/Database/*
+extensions:
+    enabled:
+        - Codeception\Extension\RunFailed
+
+settings:
+    shuffle: true
+    lint: true
+
+
+paths:
+    tests: tests
+    output: tests/_output
+    data: tests/_data
+    support: tests/_support
+    envs: tests/_envs

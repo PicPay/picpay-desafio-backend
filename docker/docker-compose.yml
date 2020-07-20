@@ -1,0 +1,50 @@
+version: '3.3'
+
+services:
+    nginx:
+        image: nginx:latest
+        container_name: nginx
+        ports:
+            - "80:80"
+        networks:
+            - frontend
+        volumes:
+            - ../:/var/www/html
+            - ./nginx/conf:/etc/nginx/conf.d
+            - ./nginx/logs:/var/log/nginx/
+        depends_on:
+            - transfer
+
+    transfer:
+        build: ./php
+        container_name: transfer
+        networks:
+            - backend
+            - frontend
+        volumes:
+            - ../:/var/www/html
+        depends_on:
+            - db
+        links:
+            - db
+
+        env_file:
+            environment.env
+
+    db:
+        container_name: db
+        image: mysql:5.7
+        restart: always
+        expose:
+            - 3306
+        ports:
+            - "3306:3306"
+        networks:
+            - backend
+        environment:
+            - MYSQL_ROOT_PASSWORD=root
+            - MYSQL_DATABASE=transfer
+
+networks:
+    backend:
+    frontend:

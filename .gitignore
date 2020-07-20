@@ -11,3 +11,9 @@ Homestead.yaml
 npm-debug.log
 yarn-error.log
 ./.idea/*
+composer.lock
+docker/nginx/logs
+tests/_support
+tests/_output
+tests/_data
+docker/environment.env

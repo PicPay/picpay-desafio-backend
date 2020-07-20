@@ -1,0 +1,39 @@
+{
+    "name": "lorhanbozza/backend",
+    "description": "Desafio PicPay",
+    "authors": [
+        {
+            "name": "Lorhan Bozza",
+            "email": "lorhanbozza@gmail.com"
+        }
+    ],
+    "require": {
+        "slim/slim": "^4.0.0",
+        "slim/psr7": "^0.6.0",
+        "php-di/slim-bridge": "3.0.*",
+        "php-di/php-di": "^6.0",
+        "guzzlehttp/guzzle": "~6.0",
+        "doctrine/dbal": "^2.10",
+        "flynsarmy/slim-monolog": "^1.0.1",
+        "davidepastore/slim-validation": "^0.5.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Transfer\\": "src/",
+            "Transfer\\Unit\\": "tests/unit/",
+            "Transfer\\Stub\\": "tests/stub/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Transfer\\": "src/",
+            "Transfer\\Unit\\": "tests/unit/",
+            "Transfer\\Stub\\": "tests/stub/"
+        }
+    },
+    "require-dev": {
+        "codeception/codeception": "~4.0.0",
+        "codeception/module-asserts": "^1",
+        "codeception/module-phpbrowser": "^1.0.0"
+    }
+}
