@@ -24,6 +24,8 @@ class TransactionController extends Controller
             event(new ReceiveTransactions($transaction));
 
         }catch(Exception $e){
+            $transaction->status = "FAILED";
+            $transaction->save();
             return response()->json(['message' => $e->getMessage()], 400);
         }
 
