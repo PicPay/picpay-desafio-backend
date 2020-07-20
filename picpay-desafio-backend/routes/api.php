@@ -27,7 +27,6 @@ $router->group(['middleware' => 'api'], function () use ($router){
     $router->group(['prefix' => 'wallets'], function () use ($router) {
         $router->get('', 'WalletController@index');
         $router->get('{id}', 'WalletController@show');
-        $router->post('', 'WalletController@store');
         $router->put('{id}', 'WalletController@update');
         $router->delete('{id}', 'WalletController@destroy');
     });
@@ -35,8 +34,6 @@ $router->group(['middleware' => 'api'], function () use ($router){
     $router->group(['prefix' => 'transactions'], function () use ($router) {
         $router->get('', 'TransactionController@index');
         $router->get('{id}', 'TransactionController@show');
-        $router->post('', 'TransactionController@store');
-        $router->put('{id}', 'TransactionController@update');
-        $router->delete('{id}', 'TransactionController@destroy');
+        $router->post('', 'TransactionController@createTransfer');
     });
 });
