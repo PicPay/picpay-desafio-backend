@@ -32,8 +32,14 @@ docker-compose exec app artisan db:seed
 ### Teste Unitario
 docker-compose exec app php artisan test
 
-#Processa a fila das transações
+### Processa a fila das transações
 docker-compose exec app php artisan queue:work --queue=transactions
 
-#Processa a fila das notificações
+### Processa a fila das notificações
 docker-compose exec app php artisan queue:work --queue=notification
+
+
+### References
+https://laravel.com/docs/7.x/
+https://redis.io/
+https://github.com/phpredis/phpredis
