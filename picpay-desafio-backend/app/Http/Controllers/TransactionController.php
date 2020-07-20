@@ -24,7 +24,7 @@ class TransactionController extends BaseController
 
             return response()->json($transaction,201);
         } catch (Throwable $error){
-            return response()->json(['message' => $error->getMessage(), 400]);
+            return response()->json(['message' => $error->getMessage()], 400);
         }
     }
 }

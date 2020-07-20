@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 
 class Transaction extends Model
 {
-    protected $fillable = ['payer_id', 'payee_id', 'value'];
+    protected $fillable = ['payer_wallet_id', 'payee_wallet_id', 'value'];
 
     public function wallet()
     {
@@ -24,8 +24,8 @@ class Transaction extends Model
             throw new UnauthorizedException('Transação não autorizada');
         }
         DB::transaction(function () use ($transfer) {
-            $payer = User::findOrFail($transfer['payer_id']);
-            $payee = User::findOrFail($transfer['payee_id']);
+            $payer = User::findOrFail($transfer['payer_wallet_id']);
+            $payee = User::findOrFail($transfer['payee_wallet_id']);
             $value = floatval($transfer['value']);
 
             $payerWallet = Wallet::where('user_id', '=', $payer->id)->firstOrFail();
@@ -36,6 +36,9 @@ class Transaction extends Model
             }
             if (!$payerWallet->hasBalance($value)) {
                 throw new NotEnoughBalanceException("Saldo insuficiente.");
+            }
+            if ($payer->isSalesPerson()){
+                throw new InvalidTransactionException("Lojista não tem permissão para fazer transferências");
             }
             $payerWallet->debitBalance($value);
             $payerWallet->saveOrFail();

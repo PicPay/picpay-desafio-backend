@@ -15,13 +15,13 @@ class TransactionRequest extends FormRequest
     public function rules()
     {
         return [
-            'payer_id' => [
+            'payer_wallet_id' => [
                 'required',
-                Rule::exists('users', 'id')
+                Rule::exists('wallets', 'id')
             ],
-            'payee_id' => [
+            'payee_wallet_id' => [
                 'required',
-                Rule::exists('users', 'id')
+                Rule::exists('wallets', 'id')
             ]
         ];
     }
@@ -29,10 +29,10 @@ class TransactionRequest extends FormRequest
     public function messages()
     {
         return [
-            'payer_id.required' => 'ID do pagador é obrigatório',
-            'payee_id.required' => 'ID do receptor é obrigatório',
-            'payer_id.exists'   => 'ID do pagador não encontrado',
-            'payee_id.exists'   => 'ID do receptor não encontrado',
+            'payer_wallet_id.required' => 'ID do pagador é obrigatório',
+            'payee_wallet_id.required' => 'ID do receptor é obrigatório',
+            'payer_wallet_id.exists'   => 'ID do pagador não encontrado',
+            'payee_wallet_id.exists'   => 'ID do receptor não encontrado',
         ];
     }
 }
