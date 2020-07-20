@@ -17,7 +17,8 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         \App\Events\ReceiveTransactions::class => [
             \App\Listeners\VerifyUserHistory::class,
-            \App\Listeners\UpdateUserHistory::class
+            \App\Listeners\UpdateUserHistory::class,
+            \App\Listeners\QueueTransaction::class,
         ],
     ];
 

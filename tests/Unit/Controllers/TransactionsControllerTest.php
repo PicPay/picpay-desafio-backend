@@ -6,6 +6,7 @@ use Tests\TestCase;
 
 use App\Models\User;
 use App\Models\UserHistory;
+use Illuminate\Support\Facades\Queue;
 
 class TransactionsControllerTest extends TestCase
 {
@@ -16,6 +17,8 @@ class TransactionsControllerTest extends TestCase
      * @test
     */
     public function receiveValidData(){
+        Queue::fake();
+
         factory(User::class, 2)->create()->each(function ($user){
             $users[] = $user->id;
             $history = new UserHistory();
@@ -45,6 +48,7 @@ class TransactionsControllerTest extends TestCase
      * @test
     */
     public function receiveTransferFromCompany(){
+        Queue::fake();
 
         factory(User::class, 1)->state('company')->create()->each(function ($user) {
             $users[] = $user->id;
@@ -82,6 +86,7 @@ class TransactionsControllerTest extends TestCase
      * @test
     */
     public function receiveTransferFromUserWithoutAmount(){
+        Queue::fake();
 
         factory(User::class, 2)->create()->each(function ($user) {
             $users[] = $user->id;
