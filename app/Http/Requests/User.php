@@ -29,7 +29,7 @@ class User extends FormRequest
         return [
             'name' => 'required|string',
             'email' => 'required|email|unique:users,email',
-            'document' => 'required|unique:users,document',
+            'document' => 'required|unique:users,document|digits_between:11,14',
             'type' => 'required|in:PERSON,COMPANY',
         ];
     }

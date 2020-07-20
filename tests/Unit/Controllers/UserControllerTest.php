@@ -16,9 +16,9 @@ class UserControllerTest extends TestCase
     public function receiveValidData(){
 
         $payload = [
-            "name" => "micaela02",
-            "email" => "micaela02@example.org",
-            "document" => "11345677",
+            "name" => "teste",
+            "email" => "teste@example.org",
+            "document" => "12345678900",
             "type" => "PERSON"
         ];
 
