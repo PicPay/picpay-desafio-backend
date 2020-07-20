@@ -1,0 +1,133 @@
+{
+	"info": {
+		"_postman_id": "9e390eef-5944-4635-b77b-55aef90ee787",
+		"name": "PicPay - Backend",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Padrão sucesso",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "payer",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "payee",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "value",
+							"value": "20",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "127.0.0.1:8080/transaction",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"transaction"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Lojista não permitido",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "payer",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "payee",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "value",
+							"value": "20",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "127.0.0.1:8080/transaction",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"transaction"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Falta de saldo",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "payer",
+							"value": "3",
+							"type": "text"
+						},
+						{
+							"key": "payee",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "value",
+							"value": "10",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "127.0.0.1:8080/transaction",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"transaction"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
