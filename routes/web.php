@@ -16,5 +16,9 @@ $router->group(['prefix' => 'v1'], function ($router) {
             $router->post('/', 'TransactionController@create');
             $router->get('/{id}', 'TransactionController@single');
         });
+
+        $router->group(['prefix' => 'wallets'], function ($router) {
+            $router->post('/', 'WalletController@directWithdraw');
+        });
     });
 });

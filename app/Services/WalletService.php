@@ -2,17 +2,21 @@
 
 namespace App\Services;
 
-use App\Models\Transaction;
 use App\Models\Wallet;
+use App\Models\Transaction;
 use App\Repositories\WalletRepository;
 
 class WalletService
 {
     private $walletRepository;
 
-    public function __construct(WalletRepository $walletRepository)
+    private $authService;
+
+    public function __construct(WalletRepository $walletRepository, AuthService $authService)
     {
         $this->walletRepository = $walletRepository;
+
+        $this->authService = $authService;
     }
 
     public function create(array $attributes): Wallet
@@ -43,5 +47,14 @@ class WalletService
         $payeeWallet = $transaction->payee->wallet->refresh();
 
         $this->walletRepository->update($payeeWallet, ['amount' => bcsub($payeeWallet->amount, $transaction->value)]);
+    }
+
+    public function directWithdraw(float $value): Wallet
+    {
+        $user = $this->authService->context();
+
+        $value = bcadd($user->wallet->amount, $value);
+
+        return $this->walletRepository->update($user->wallet, ['amount' => $value]);
     }
 }
