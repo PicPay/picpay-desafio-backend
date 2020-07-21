@@ -50,4 +50,6 @@ Execute os comandos na sequencia
 1. `make up` para iniciar toda a aplicação
 2. `make install` para baixar as dependências composer
 3. `make migrate` para criar a estrutura do banco de dados
-4. `make jwt-token` para gerar um token jwt de criptografia
+4. `cp .env.example .env` para clonar as variáveis de ambiente
+5. Preencher as váriaveis com as devidas informações
+6. `make jwt-token` para gerar um token jwt de criptografia
