@@ -48,7 +48,7 @@ class TransactionService
 
         $newTransaction = $this->transactionRepository->createWithAssociations(
             ['value' => $payload['value']],
-            ['payer' => $user, 'payee' => $payee]
+            ['payer' => $user, 'payee' => $payee, 'wallet' => $user->wallet]
         );
 
         event(new CreateTransaction($newTransaction));
