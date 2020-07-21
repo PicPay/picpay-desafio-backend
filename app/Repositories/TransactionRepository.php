@@ -4,7 +4,7 @@ namespace App\Repositories;
 
 use App\Models\User;
 use App\Models\Transaction;
-use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\AbstractPaginator;
 
 class TransactionRepository extends BaseRepository
 {
@@ -15,7 +15,7 @@ class TransactionRepository extends BaseRepository
         $this->model = Transaction::class;
     }
 
-    public function listPaginate(User $user, array $status = [], $pearPage = 15): LengthAwarePaginator
+    public function listPaginate(User $user, array $status = [], $pearPage = 15): AbstractPaginator
     {
         return $this->newQuery()->where('payer_id', $user->id)->whereIn('status', $status)->paginate($pearPage);
     }

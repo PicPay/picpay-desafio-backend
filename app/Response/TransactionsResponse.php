@@ -2,7 +2,7 @@
 
 namespace App\Response;
 
-use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\AbstractPaginator;
 
 class TransactionsResponse extends Response
 {
@@ -10,7 +10,7 @@ class TransactionsResponse extends Response
 
     protected $status = 200;
 
-    public function __construct(LengthAwarePaginator $transactions)
+    public function __construct(AbstractPaginator $transactions)
     {
         $transactions->getCollection()->transform(function ($item) {
             return (new TransactionResponse($item))->toArray();

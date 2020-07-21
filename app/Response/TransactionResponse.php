@@ -14,7 +14,7 @@ class TransactionResponse extends Response
     {
         $this->payload = [
             'id' => $transaction->id,
-            'value' => (float) $transaction->value,
+            'value' => $transaction->value,
             'status' => $transaction->status,
             'created_at' => $transaction->created_at,
             'updated_at' => $transaction->updated_at,

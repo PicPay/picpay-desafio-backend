@@ -7,6 +7,8 @@ use App\Services\TransactionService;
 
 class ProcessTransaction extends Queue
 {
+    private $transactionService;
+
     /**
      * Create a new job instance.
      *

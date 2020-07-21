@@ -4,6 +4,7 @@ namespace App\Services;
 
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Http;
+use App\Exceptions\UnauthorizedTransaction;
 
 class AuthorizationService
 {
@@ -20,8 +21,13 @@ class AuthorizationService
 
         $body = $response->json();
 
-        return $response->status() === Response::HTTP_OK &&
-            isset($body['message']) &&
-            $body['message'] === 'Autorizado';
+        $allowed = $response->status() === Response::HTTP_OK && isset($body['message']) && $body['message'] === 'Autorizado';
+
+        throw_if(
+            ! $allowed,
+            UnauthorizedTransaction::class
+        );
+
+        return $allowed;
     }
 }
