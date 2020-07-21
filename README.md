@@ -23,6 +23,9 @@ Implementei uma carteira monetária simplificada, baseada em transações, a mes
 <img src="https://raw.githubusercontent.com/leandrodaf/picpay-desafio-backend/17-07-20/leandro-ferreira/mer.png" width="400">
 
 
+## Ambientes
+Homolog - http://ec2-18-207-140-143.compute-1.amazonaws.com
+
 
 ### Requisitos
 - Docker version => 19.03.12
