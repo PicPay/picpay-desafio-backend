@@ -5,6 +5,7 @@ namespace Tests\Acceptance\Transactions;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Enum\UserType;
+use App\Models\Wallet;
 use Tests\AcceptanceTestCase;
 
 class GetTransactionTest extends AcceptanceTestCase
@@ -13,8 +14,8 @@ class GetTransactionTest extends AcceptanceTestCase
     {
         Carbon::setTestNow('2020-07-20 00:00:00');
 
-        $user = factory(User::class)->create(['type' => UserType::CUSTUMER]);
-        $userPayee = factory(User::class)->create(['type' => UserType::SELLER]);
+        $user = factory(User::class)->create(['type' => UserType::CUSTUMER, 'wallet_id' => factory(Wallet::class)->create()->id]);
+        $userPayee = factory(User::class)->create(['type' => UserType::SELLER, 'wallet_id' => factory(Wallet::class)->create()->id]);
 
         $payload = [
             'value' => 250.00,

@@ -2,8 +2,9 @@
 
 namespace Tests\Acceptance\AuthAndRegister;
 
-use App\Enum\UserType;
 use App\Models\User;
+use App\Enum\UserType;
+use App\Models\Wallet;
 use Tests\AcceptanceTestCase;
 
 class CreateNewUserTest extends AcceptanceTestCase
@@ -103,7 +104,7 @@ class CreateNewUserTest extends AcceptanceTestCase
 
     public function testMustInformThatTheEmailAndDocumentAlreadyExists()
     {
-        $user = factory(User::class)->create();
+        $user = factory(User::class)->create(['wallet_id' => factory(Wallet::class)->create()->id]);
 
         $payload = [
             'fullName' => $user->fullName,

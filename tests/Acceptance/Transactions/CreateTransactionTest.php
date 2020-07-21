@@ -6,6 +6,7 @@ use Mockery;
 use stdClass;
 use App\Models\User;
 use App\Enum\UserType;
+use App\Models\Wallet;
 use Tests\AcceptanceTestCase;
 use App\Events\CreateTransaction;
 use Illuminate\Support\Facades\Event;
@@ -29,7 +30,7 @@ class CreateTransactionTest extends AcceptanceTestCase
 
     public function testYouCannotTransferToYourself()
     {
-        $user = factory(User::class)->create(['type' => UserType::CUSTUMER]);
+        $user = factory(User::class)->create(['type' => UserType::CUSTUMER, 'wallet_id' => factory(Wallet::class)->create()->id]);
 
         $payload = [
             'value' => 100.00,
@@ -60,8 +61,8 @@ class CreateTransactionTest extends AcceptanceTestCase
 
     public function testSellerCannotTransfer()
     {
-        $user = factory(User::class)->create(['type' => UserType::CUSTUMER]);
-        $userSeller = factory(User::class)->create(['type' => UserType::SELLER]);
+        $user = factory(User::class)->create(['type' => UserType::CUSTUMER, 'wallet_id' => factory(Wallet::class)->create()->id]);
+        $userSeller = factory(User::class)->create(['type' => UserType::SELLER, 'wallet_id' => factory(Wallet::class)->create()->id]);
 
         $payload = [
             'value' => 100.00,
@@ -91,8 +92,8 @@ class CreateTransactionTest extends AcceptanceTestCase
 
     public function testAuthenticatedUserMustBeTheSameUserWhoMakesTheTransfer()
     {
-        $user = factory(User::class)->create(['type' => UserType::CUSTUMER]);
-        $userPayee = factory(User::class)->create(['type' => UserType::CUSTUMER]);
+        $user = factory(User::class)->create(['type' => UserType::CUSTUMER, 'wallet_id' => factory(Wallet::class)->create()->id]);
+        $userPayee = factory(User::class)->create(['type' => UserType::SELLER, 'wallet_id' => factory(Wallet::class)->create()->id]);
 
         $payload = [
             'value' => 100.00,
@@ -124,8 +125,8 @@ class CreateTransactionTest extends AcceptanceTestCase
     {
         Event::fake();
 
-        $user = factory(User::class)->create(['type' => UserType::CUSTUMER]);
-        $userPayee = factory(User::class)->create(['type' => UserType::SELLER]);
+        $user = factory(User::class)->create(['type' => UserType::CUSTUMER, 'wallet_id' => factory(Wallet::class)->create()->id]);
+        $userPayee = factory(User::class)->create(['type' => UserType::SELLER, 'wallet_id' => factory(Wallet::class)->create()->id]);
 
         $payload = [
             'value' => 100.00,
@@ -146,8 +147,8 @@ class CreateTransactionTest extends AcceptanceTestCase
 
     public function testTransactionCreationWithAcceptedAuthorization()
     {
-        $user = factory(User::class)->create(['type' => UserType::CUSTUMER]);
-        $userPayee = factory(User::class)->create(['type' => UserType::SELLER]);
+        $user = factory(User::class)->create(['type' => UserType::CUSTUMER, 'wallet_id' => factory(Wallet::class)->create()->id]);
+        $userPayee = factory(User::class)->create(['type' => UserType::SELLER, 'wallet_id' => factory(Wallet::class)->create()->id]);
 
         $payload = [
             'value' => 250.00,

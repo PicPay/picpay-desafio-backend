@@ -3,13 +3,14 @@
 namespace Tests\Acceptance\AuthAndRegister;
 
 use App\Models\User;
+use App\Models\Wallet;
 use Tests\AcceptanceTestCase;
 
 class AuthUserTest extends AcceptanceTestCase
 {
     public function testMustReturnTheUserContext()
     {
-        $user = factory(User::class)->create();
+        $user = factory(User::class)->create(['wallet_id' => factory(Wallet::class)->create()->id]);
 
         $response = $this->actingAs($user)->call('GET', 'v1/accounts/context');
 
@@ -31,7 +32,7 @@ class AuthUserTest extends AcceptanceTestCase
 
     public function testMustDisqualifyAUser()
     {
-        $user = factory(User::class)->create();
+        $user = factory(User::class)->create(['wallet_id' => factory(Wallet::class)->create()->id]);
 
         $response = $this->actingAs($user)->call('POST', 'v1/accounts/logout');
 
@@ -40,7 +41,7 @@ class AuthUserTest extends AcceptanceTestCase
 
     public function testMustUpdateAUserToken()
     {
-        $user = factory(User::class)->create();
+        $user = factory(User::class)->create(['wallet_id' => factory(Wallet::class)->create()->id]);
 
         $response = $this->actingAs($user)->call('POST', 'v1/accounts/refresh');
 
