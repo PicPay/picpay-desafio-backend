@@ -1,5 +1,13 @@
 <?php
 
+$router->get('/', function () use ($router) {
+    return [
+        'application' => config('app.name'),
+        'version' => $router->app->version(),
+        'documentation' =>  'https://app.swaggerhub.com/apis/leandrodaf/PicpayDesafioBackendLeandroFerreira/1.0.0'
+    ];
+});
+
 $router->group(['prefix' => 'v1'], function ($router) {
     $router->post('login', 'AuthController@login');
     $router->post('register', 'AccountController@create');
