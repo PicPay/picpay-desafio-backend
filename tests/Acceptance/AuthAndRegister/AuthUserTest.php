@@ -2,6 +2,7 @@
 
 namespace Tests\Acceptance\AuthAndRegister;
 
+use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Wallet;
 use Tests\AcceptanceTestCase;
@@ -10,6 +11,8 @@ class AuthUserTest extends AcceptanceTestCase
 {
     public function testMustReturnTheUserContext()
     {
+        Carbon::setTestNow('2020-07-20 00:00:00');
+
         $user = factory(User::class)->create(['wallet_id' => factory(Wallet::class)->create()->id]);
 
         $response = $this->actingAs($user)->call('GET', 'v1/accounts/context');
@@ -23,6 +26,11 @@ class AuthUserTest extends AcceptanceTestCase
                 'email' => $user->email,
                 'document' => $user->document,
                 'type' => $user->type,
+                'wallet' => [
+                    'amount' => $user->wallet->amount,
+                    'created_at' => '2020-07-20T00:00:00.000000Z',
+                    'updated_at' => '2020-07-20T00:00:00.000000Z',
+                ],
             ],
         ];
 

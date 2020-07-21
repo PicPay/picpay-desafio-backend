@@ -19,6 +19,7 @@ class ContextResponse extends BaseResponse
             'email' => $user->email,
             'document' => $user->document,
             'type' => $user->type,
+            'wallet' => (new WalletResponse($user->wallet))->toArray(),
         ];
     }
 }
