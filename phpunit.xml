@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="./vendor/phpunit/phpunit/phpunit.xsd" bootstrap="./bootstrap/TestingApp.php" colors="true">
     <testsuites>
-        <testsuite name="Application Unit Test Suite">
+        <testsuite name="unit">
             <directory suffix="Test.php">./tests/Unit</directory>
         </testsuite>
-        <testsuite name="Application Acceptance Test Suite">
+        <testsuite name="acceptance">
             <directory suffix="Test.php">./tests/Acceptance</directory>
         </testsuite>
     </testsuites>
