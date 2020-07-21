@@ -10,16 +10,22 @@ class AccountService
 {
     private $accountRepository;
 
-    public function __construct(AccountRepository $accountRepository)
+    private $walletService;
+
+    public function __construct(AccountRepository $accountRepository, WalletService $walletService)
     {
         $this->accountRepository = $accountRepository;
+
+        $this->walletService = $walletService;
     }
 
     public function create(array $attributes): User
     {
         $attributes['password'] = Hash::make($attributes['password']);
 
-        return $this->accountRepository->create($attributes);
+        $wallet = $this->walletService->create([]);
+
+        return $this->accountRepository->createWithAssociations($attributes, ['wallet' => $wallet]);
     }
 
     public function getUserById(int $id): User
