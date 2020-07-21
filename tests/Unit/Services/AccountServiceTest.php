@@ -5,6 +5,8 @@ namespace Tests\Unit\Services;
 use Mockery;
 use Tests\TestCase;
 use App\Models\User;
+use App\Models\Wallet;
+use App\Services\WalletService;
 use App\Services\AccountService;
 use App\Repositories\AccountRepository;
 
@@ -13,8 +15,14 @@ class AccountServiceTest extends TestCase
     public function testfunctionMustRegisterAUser()
     {
         $accountRepository = Mockery::mock(AccountRepository::class);
+        $walletService = Mockery::mock(WalletService::class);
 
-        $accountService = new AccountService($accountRepository);
+        $walletService
+            ->shouldReceive('create')
+            ->with([])
+            ->once(factory(Wallet::class)->make());
+
+        $accountService = new AccountService($accountRepository, $walletService);
 
         $payload = [
             'fullName' => 'Simple PicPay User',
@@ -26,7 +34,7 @@ class AccountServiceTest extends TestCase
         ];
 
         $accountRepository
-            ->shouldReceive('create')
+            ->shouldReceive('createWithAssociations')
             ->once()
             ->andReturn(new User());
 
@@ -38,8 +46,9 @@ class AccountServiceTest extends TestCase
         $user = factory(User::class)->make();
 
         $accountRepository = Mockery::mock(AccountRepository::class);
+        $walletService = Mockery::mock(WalletService::class);
 
-        $accountService = new AccountService($accountRepository);
+        $accountService = new AccountService($accountRepository, $walletService);
 
         $accountRepository
             ->shouldReceive('getById')

@@ -15,6 +15,7 @@ use App\Services\TransactionService;
 use Illuminate\Support\Facades\Event;
 use App\Services\AuthorizationService;
 use App\Exceptions\InvalidPayerException;
+use App\Models\Wallet;
 use App\Repositories\TransactionRepository;
 
 class TransactionServiceTest extends TestCase
@@ -92,8 +93,11 @@ class TransactionServiceTest extends TestCase
     public function testTransactionCreation()
     {
         Event::fake();
+        $walletCustumer = factory(Wallet::class)->make();
 
         $custumer = factory(User::class)->make(['type' => UserType::CUSTUMER]);
+        $custumer->wallet = $walletCustumer;
+
         $seller = factory(User::class)->make(['type' => UserType::SELLER]);
 
         $transactionRepository = Mockery::mock(TransactionRepository::class);
@@ -101,16 +105,14 @@ class TransactionServiceTest extends TestCase
         $payeeService = Mockery::mock(PayeeService::class);
         $authorizationService = Mockery::mock(AuthorizationService::class);
 
-
         $authService->shouldReceive('context')->andReturn($custumer);
         $payeeService->shouldReceive('getById')->andReturn($seller);
-
 
         $expected = new Transaction();
 
         $transactionRepository->shouldReceive('createWithAssociations')->with(
             ['value' => 100],
-            ['payer' => $custumer, 'payee' => $seller]
+            ['payer' => $custumer, 'payee' => $seller, 'wallet' => $custumer->wallet]
         )->andReturn($expected);
 
         $this->expectsEvents(CreateTransaction::class);
