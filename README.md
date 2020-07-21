@@ -34,6 +34,7 @@ Homolog - http://ec2-18-207-140-143.compute-1.amazonaws.com
 ## Comandos make
 | Comando | Descrição |
 |--|--|
+| tests | Roda toda a suite de testes unitários e aceitação |
 | build | Builda a imagem base de desenvolvimento |
 | attach | Acessa o container App onde esta aplicação |
 | install | Roda o comando composer install, baixa as dependências do projeto |
