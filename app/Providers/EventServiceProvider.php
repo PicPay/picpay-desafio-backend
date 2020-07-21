@@ -16,9 +16,11 @@ class EventServiceProvider extends ServiceProvider
             \App\Jobs\ProcessTransaction::class,
             \App\Jobs\UpdatePayerWallet::class,
             \App\Jobs\UpdatePayeeWallet::class,
+            \App\Jobs\NotificationPaymentReceived::class,
         ],
         \App\Events\TransactionProcessedError::class => [
             \App\Jobs\TransactionRollback::class,
+            \App\Jobs\NotificationPaymentReversed::class,
         ],
     ];
 }
