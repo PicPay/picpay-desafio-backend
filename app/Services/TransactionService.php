@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use Exception;
 use App\Models\User;
 use App\Enum\UserType;
 use App\Models\Transaction;
@@ -9,9 +10,10 @@ use App\Enum\TransactionStatus;
 use App\Events\CreateTransaction;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
+use App\Events\TransactionProcessedError;
 use App\Exceptions\InvalidPayerException;
 use App\Repositories\TransactionRepository;
-use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\AbstractPaginator;
 
 class TransactionService
 {
@@ -74,28 +76,41 @@ class TransactionService
             InvalidPayerException::class,
             'Seller user cannot make transfers.'
         );
+
+        throw_if(
+            $user->wallet->amount < $payload['value'] && $user->wallet->amount !== 0,
+            InvalidPayerException::class,
+            'Payer must have money in account.'
+        );
     }
 
     public function process(Transaction $transaction): void
     {
-        $UUID = '8fafdd68-a090-496f-8c9a-3442cf30dae6';
+        try {
+            $UUID = '8fafdd68-a090-496f-8c9a-3442cf30dae6';
 
-        $log = ['transaction_id' => $transaction->id, 'uuid' => $UUID];
+            $log = ['transaction_id' => $transaction->id, 'uuid' => $UUID];
 
-        Log::info('PROCESSING_TRANSACTION', $log);
+            Log::info('PROCESSING_TRANSACTION', $log);
 
-        if ($this->authorizationService->isAuthorized($UUID)) {
+            $this->authorizationService->isAuthorized($UUID);
+
             $this->transactionRepository->update($transaction, ['status' => TransactionStatus::PROCESSED]);
+
             Log::info('PROCESSING_TRANSACTION_PROCESSED', $log);
 
             return;
-        }
+        } catch (Exception $exception) {
+            $transaction = $this->transactionRepository->update($transaction, ['status' => TransactionStatus::UNAUTHORIZED]);
+            $log['exception'] = $exception;
 
-        $this->transactionRepository->update($transaction, ['status' => TransactionStatus::UNAUTHORIZED]);
-        Log::info('PROCESSING_TRANSACTION_UNAUTHORIZED', $log);
+            Log::info('PROCESSING_TRANSACTION_UNAUTHORIZED', $log);
+
+            event(new TransactionProcessedError($transaction));
+        }
     }
 
-    public function list(array $status, int $pearPage = 15): LengthAwarePaginator
+    public function list(array $status, int $pearPage = 15): AbstractPaginator
     {
         return $this->transactionRepository->listPaginate(Auth::user(), $status, $pearPage);
     }

@@ -14,6 +14,11 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         \App\Events\CreateTransaction::class => [
             \App\Jobs\ProcessTransaction::class,
+            \App\Jobs\UpdatePayerWallet::class,
+            \App\Jobs\UpdatePayeeWallet::class,
+        ],
+        \App\Events\TransactionProcessedError::class => [
+            \App\Jobs\TransactionRollback::class,
         ],
     ];
 }
