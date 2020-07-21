@@ -42,7 +42,7 @@ class WalletServiceTest extends TestCase
 
         $transaction->payer = $payer;
 
-        $walletRepository->shouldReceive('update')->with($wallet, ['amount' => bcsub($wallet->amount, $transaction->value)])
+        $walletRepository->shouldReceive('update')->with($wallet, ['amount' => $wallet->amount - $transaction->value])
             ->once()
             ->andReturn(new Wallet());
 
@@ -66,7 +66,7 @@ class WalletServiceTest extends TestCase
 
         $transaction->payee = $payee;
 
-        $walletRepository->shouldReceive('update')->with($wallet, ['amount' => bcadd($wallet->amount, $transaction->value)])
+        $walletRepository->shouldReceive('update')->with($wallet, ['amount' => $wallet->amount + $transaction->value])
             ->once()
             ->andReturn(new Wallet());
 
@@ -109,7 +109,7 @@ class WalletServiceTest extends TestCase
 
         $walletRepository = Mockery::mock(WalletRepository::class);
 
-        $walletRepository->shouldReceive('update')->with($wallet, ['amount' => 20])->once()->andReturn($wallet);
+        $walletRepository->shouldReceive('update')->with($wallet, ['amount' => 20.1])->once()->andReturn($wallet);
 
         $authService = Mockery::mock(AuthService::class);
 

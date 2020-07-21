@@ -16,7 +16,7 @@ class CreateTableTransactions extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->bigIncrements('id');
 
-            $table->decimal('value');
+            $table->float('value', 16, 2);
             $table->string('status', 30);
 
             $table->bigInteger('payer_id')->unsigned();

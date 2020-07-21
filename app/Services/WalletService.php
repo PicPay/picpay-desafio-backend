@@ -28,33 +28,31 @@ class WalletService
     {
         $wallet = $transaction->payer->wallet;
 
-        return $this->walletRepository->update($wallet, ['amount' => bcsub($wallet->amount, $transaction->value)]);
+        return $this->walletRepository->update($wallet, ['amount' => $wallet->amount - $transaction->value]);
     }
 
     public function depositByTransaction(Transaction $transaction): Wallet
     {
         $wallet = $transaction->payee->wallet;
 
-        return $this->walletRepository->update($wallet, ['amount' => bcadd($wallet->amount, $transaction->value)]);
+        return $this->walletRepository->update($wallet, ['amount' => $wallet->amount + $transaction->value]);
     }
 
     public function rollbackByTransaction(Transaction $transaction): void
     {
         $payerWallet = $transaction->payer->wallet;
 
-        $this->walletRepository->update($payerWallet, ['amount' => bcadd($payerWallet->amount, $transaction->value)]);
+        $this->walletRepository->update($payerWallet, ['amount' => $payerWallet->amount + $transaction->value]);
 
         $payeeWallet = $transaction->payee->wallet->refresh();
 
-        $this->walletRepository->update($payeeWallet, ['amount' => bcsub($payeeWallet->amount, $transaction->value)]);
+        $this->walletRepository->update($payeeWallet, ['amount' => $payeeWallet->amount - $transaction->value]);
     }
 
     public function directWithdraw(float $value): Wallet
     {
         $user = $this->authService->context();
 
-        $value = bcadd($user->wallet->amount, $value);
-
-        return $this->walletRepository->update($user->wallet, ['amount' => $value]);
+        return $this->walletRepository->update($user->wallet, ['amount' => $user->wallet->amount + $value]);
     }
 }
