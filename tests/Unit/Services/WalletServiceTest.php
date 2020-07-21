@@ -7,6 +7,7 @@ use Tests\TestCase;
 use App\Models\User;
 use App\Models\Wallet;
 use App\Models\Transaction;
+use App\Services\AuthService;
 use App\Services\WalletService;
 use App\Repositories\WalletRepository;
 
@@ -15,12 +16,13 @@ class WalletServiceTest extends TestCase
     public function testYouMustCreateANewWallet()
     {
         $walletRepository = Mockery::mock(WalletRepository::class);
+        $authService = Mockery::mock(AuthService::class);
 
         $walletRepository->shouldReceive('create')->with(['amount' => 102.2])
             ->once()
             ->andReturn(new Wallet());
 
-        $walletService = new WalletService($walletRepository);
+        $walletService = new WalletService($walletRepository, $authService);
 
         $walletService->create(['amount' => 102.2]);
     }
@@ -28,6 +30,7 @@ class WalletServiceTest extends TestCase
     public function testMustWithdrawMoneyFromTheWalletUsingATransaction()
     {
         $walletRepository = Mockery::mock(WalletRepository::class);
+        $authService = Mockery::mock(AuthService::class);
 
         $transaction = factory(Transaction::class)->make();
 
@@ -43,7 +46,7 @@ class WalletServiceTest extends TestCase
             ->once()
             ->andReturn(new Wallet());
 
-        $walletService = new WalletService($walletRepository);
+        $walletService = new WalletService($walletRepository, $authService);
 
         $walletService->withdrawByTransaction($transaction);
     }
@@ -51,6 +54,7 @@ class WalletServiceTest extends TestCase
     public function testMustAddMoneyToTheWalletUsingATransaction()
     {
         $walletRepository = Mockery::mock(WalletRepository::class);
+        $authService = Mockery::mock(AuthService::class);
 
         $transaction = factory(Transaction::class)->make();
 
@@ -66,7 +70,7 @@ class WalletServiceTest extends TestCase
             ->once()
             ->andReturn(new Wallet());
 
-        $walletService = new WalletService($walletRepository);
+        $walletService = new WalletService($walletRepository, $authService);
 
         $walletService->depositByTransaction($transaction);
     }
@@ -74,6 +78,7 @@ class WalletServiceTest extends TestCase
     public function testMustReturnThePayerMoneyAndCancelThePayeeMoney()
     {
         $walletRepository = Mockery::mock(WalletRepository::class);
+        $authService = Mockery::mock(AuthService::class);
 
         $transaction = factory(Transaction::class)->make();
 
@@ -91,8 +96,27 @@ class WalletServiceTest extends TestCase
             ->twice()
             ->andReturn(new Wallet());
 
-        $walletService = new WalletService($walletRepository);
+        $walletService = new WalletService($walletRepository, $authService);
 
         $walletService->rollbackByTransaction($transaction);
+    }
+
+    public function testMustAddAValueSpecifiedInTheWallet()
+    {
+        $user = factory(User::class)->make();
+        $wallet = factory(Wallet::class)->make(['amount' => 10]);
+        $user->wallet = $wallet;
+
+        $walletRepository = Mockery::mock(WalletRepository::class);
+
+        $walletRepository->shouldReceive('update')->with($wallet, ['amount' => 20])->once()->andReturn($wallet);
+
+        $authService = Mockery::mock(AuthService::class);
+
+        $authService->shouldReceive('context')->once()->andReturn($user);
+
+        $walletService = new WalletService($walletRepository, $authService);
+
+        $walletService->directWithdraw(10.10);
     }
 }
