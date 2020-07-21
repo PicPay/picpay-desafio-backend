@@ -2,11 +2,12 @@
 
 namespace Tests\Unit\Services;
 
-use Tests\TestCase;
-use App\Services\AuthorizationService;
-use Illuminate\Support\Facades\Http;
 use Mockery;
 use stdClass;
+use Tests\TestCase;
+use Illuminate\Support\Facades\Http;
+use App\Services\AuthorizationService;
+use App\Exceptions\UnauthorizedTransaction;
 
 class AuthorizationServiceTest extends TestCase
 {
@@ -40,6 +41,8 @@ class AuthorizationServiceTest extends TestCase
 
     public function testYouShouldNotAuthorizeIfTheStatusCodeIsDifferentFromOK()
     {
+        $this->expectException(UnauthorizedTransaction::class);
+
         $fakeHttp = Mockery::mock(stdClass::class);
 
         $fakeHttp->shouldReceive('json')->andReturn(['message' => 'Autorizado'])->once();
@@ -57,6 +60,8 @@ class AuthorizationServiceTest extends TestCase
 
     public function testeYouShouldNotAuthorizeIfThePayloadIsDifferentThanExpected()
     {
+        $this->expectException(UnauthorizedTransaction::class);
+
         $fakeHttp = Mockery::mock(stdClass::class);
 
         $fakeHttp->shouldReceive('json')->andReturn(['message' => 'NotAuthorized'])->once();

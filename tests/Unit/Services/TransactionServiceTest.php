@@ -6,16 +6,19 @@ use Mockery;
 use Tests\TestCase;
 use App\Models\User;
 use App\Enum\UserType;
+use App\Models\Wallet;
 use App\Models\Transaction;
 use App\Services\AuthService;
 use App\Services\PayeeService;
 use App\Enum\TransactionStatus;
 use App\Events\CreateTransaction;
 use App\Services\TransactionService;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Event;
 use App\Services\AuthorizationService;
+use App\Events\TransactionProcessedError;
 use App\Exceptions\InvalidPayerException;
-use App\Models\Wallet;
 use App\Repositories\TransactionRepository;
 
 class TransactionServiceTest extends TestCase
@@ -155,6 +158,8 @@ class TransactionServiceTest extends TestCase
 
     public function testIfNotAuthorizedMarkAsUnauthorized()
     {
+        $this->expectsEvents(TransactionProcessedError::class);
+
         $transaction = factory(Transaction::class)->make();
 
         $transactionRepository = Mockery::mock(TransactionRepository::class);
@@ -175,5 +180,56 @@ class TransactionServiceTest extends TestCase
         $transactionService = new TransactionService($transactionRepository, $authService, $payeeService, $authorizationService);
 
         $transactionService->process($transaction);
+    }
+
+    public function testMustListAllTransactions()
+    {
+        $transactionRepository = Mockery::mock(TransactionRepository::class);
+        $authService = Mockery::mock(AuthService::class);
+        $payeeService = Mockery::mock(PayeeService::class);
+        $authorizationService = Mockery::mock(AuthorizationService::class);
+
+        $status = [];
+        $pearPage = 15;
+
+        $user = factory(User::class)->make(['type' => UserType::CUSTUMER]);
+
+        $transaction = factory(Transaction::class)->make();
+
+        Auth::shouldReceive('user')->andReturn($user)->once();
+
+        $transactionRepository
+            ->shouldReceive('listPaginate')
+            ->with($user, $status, $pearPage)
+            ->once()
+            ->andReturn(new Paginator([$transaction], $pearPage));
+
+        $transactionService = new TransactionService($transactionRepository, $authService, $payeeService, $authorizationService);
+
+        $transactionService->list($status, $pearPage);
+    }
+
+    public function testMustReturnATransaction()
+    {
+        $transactionRepository = Mockery::mock(TransactionRepository::class);
+        $authService = Mockery::mock(AuthService::class);
+        $payeeService = Mockery::mock(PayeeService::class);
+        $authorizationService = Mockery::mock(AuthorizationService::class);
+
+        $user = factory(User::class)->make(['type' => UserType::CUSTUMER]);
+
+        $transaction = factory(Transaction::class)->make();
+
+        Auth::shouldReceive('user')->andReturn($user)->once();
+
+        $transactionRepository
+            ->shouldReceive('findByUserAndId')
+            ->with($user, $transaction->id)
+            ->once()
+            ->andReturn($transaction);
+
+        $transactionService = new TransactionService($transactionRepository, $authService, $payeeService, $authorizationService);
+
+        $transactionService->single($transaction->id);
     }
 }
