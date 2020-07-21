@@ -112,7 +112,7 @@ class TransactionServiceTest extends TestCase
 
         $transactionRepository->shouldReceive('createWithAssociations')->with(
             ['value' => 100],
-            ['payer' => $custumer, 'payee' => $seller, 'wallet' => $custumer->wallet]
+            ['payer' => $custumer, 'payee' => $seller]
         )->andReturn($expected);
 
         $this->expectsEvents(CreateTransaction::class);

@@ -26,9 +26,4 @@ class Transaction extends Model
     {
         return $this->belongsTo(User::class, 'payee_id');
     }
-
-    public function wallet(): BelongsTo
-    {
-        return $this->belongsTo(Wallet::class);
-    }
 }

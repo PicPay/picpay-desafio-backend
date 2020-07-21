@@ -22,7 +22,7 @@ class AccountRepositoryTest extends TestCase
             ->andReturn($builderMock)
             ->shouldReceive('select')->with(['*'])->once()
             ->andReturn($builderMock)
-            ->shouldReceive('first')->once()
+            ->shouldReceive('firstOrFail')->once()
             ->andReturn($user);
 
         $user->shouldReceive('newQuery')->once()->andReturn($builderMock);

@@ -53,7 +53,7 @@ abstract class BaseRepository
             $this->newQuery();
         }
 
-        return $this->query->where($field, $value)->select($attributes)->first();
+        return $this->query->where($field, $value)->select($attributes)->firstOrFail();
     }
 
     public function update(Model $model, array $attributes): Model
