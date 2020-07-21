@@ -14,7 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('users', 'Api\UserController@index');
-// Route::post('user', 'Api\UserController@show');
 
 Route::post('login', 'Api\AuthController@login');
 Route::post('register',  'Api\UserController@store');

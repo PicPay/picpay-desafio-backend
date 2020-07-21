@@ -94,7 +94,7 @@ Na data marcada pelo recrutador tenha sua aplicação rodando na sua máquina lo
 - https://github.com/exakat/php-static-analysis-tools
 - https://martinfowler.com/articles/microservices.html
 
-#####################################################################################################################################################################
+#######################################################################################################################################################
 
 Pré-requisitos
 
@@ -104,10 +104,15 @@ Instalação
 
     Clonar projeto
     Executar comando "docker-compose up -d"
-    Api disponivel no endereço "http://localhost:8088/api"
+    Executar no diretorio "src" o comando "composer install"
+    Executar na raiz do projeto o comando "docker exec -it CONTAINER_ID sh", o id do container pode ser encontrado pelo comando docker ps, o 
+    nome do container é "picpay-desafio-backend_php"
+    Dentro do container executar o comando "php artisan migrate", se for utilizar seeds, execute o comando "php artisan db:seed"
+    
+    Api estará disponível no endereço "http://localhost:8088/api"
 
 Autor
 
     Lucas Tetsuo Takagi - lucastetsuo
 
-#####################################################################################################################################################################
+#######################################################################################################################################################
