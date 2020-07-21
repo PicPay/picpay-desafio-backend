@@ -4,6 +4,7 @@
 
 use App\Models\User;
 use App\Enum\UserType;
+use App\Models\Wallet;
 use Faker\Generator as Faker;
 use Faker\Provider\pt_BR\Person;
 use Faker\Provider\pt_BR\Company;
@@ -29,5 +30,6 @@ $factory->define(User::class, function (Faker $faker) {
         'document' => $document,
         'email' => $faker->email,
         'password' => (new BcryptHasher)->make($faker->email),
+        'wallet_id' => $faker->randomNumber()
     ];
 });
