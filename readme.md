@@ -5,9 +5,8 @@ Abaixo você encontrará todos as informações necessárias para iniciar o seu 
 
 ## Avisos antes de começar
 
-- Faça um fork desse repositório para seu usuário
-- Crie uma branch a partir da `master` nesse padrão de nomenclatura: dd-mm-yy/nome-sobrenome (por exemplo, 30-04-20/meu-nome)
-- Abra o Pull Request até 1 dia antes da entrevista
+- Crie um repositório no seu GitHub sem citar nada relacionado ao PicPay
+- Envie o link do seu repositório até 1 dia antes da entrevista
 - Você poderá consultar o Google, Stackoverflow ou algum projeto particular na sua máquina.
 - Fique à vontade para perguntar qualquer dúvida aos recrutadores.
 - Fique tranquilo, respire, assim como você, também já passamos por essa etapa. Boa sorte! :)
