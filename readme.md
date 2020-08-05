@@ -15,7 +15,9 @@ Abaixo você encontrará todos as informações necessárias para iniciar o seu 
 *Corpo do Email com o link do repositório do desafio*
 
 >Seu Nome
+>
 >Nome do recrutador
+>
 >Link do repositório
 
 ## Setup do projeto
