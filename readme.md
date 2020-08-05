@@ -12,6 +12,12 @@ Abaixo você encontrará todos as informações necessárias para iniciar o seu 
 - Fique à vontade para perguntar qualquer dúvida aos recrutadores.
 - Fique tranquilo, respire, assim como você, também já passamos por essa etapa. Boa sorte! :)
 
+*Corpo do Email com o link do repositório do desafio*
+
+>Seu Nome
+>Nome do recrutador
+>Link do repositório
+
 ## Setup do projeto
 
 - Framework: Fique a vontade pra usar o framework que quiser
