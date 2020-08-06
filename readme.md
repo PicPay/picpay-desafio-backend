@@ -71,7 +71,7 @@ A correção objetiva será realizada através da utilização de um script de c
 A correção qualitativa será durante a entrevista e levará em conta os seguintes critérios:
 
 ## O que será avaliado e valorizamos
-- Código limpo e organizado
+- Código limpo e organizado (Padrão de mercado PSRs)
 - Ser consistente em suas escolhas
 - Apresentar soluções que domina
 - Modelagem de Dados
