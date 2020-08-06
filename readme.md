@@ -44,7 +44,7 @@ Requisitos:
 
 - No recebimento de pagamento, o usuário ou lojista precisa receber notificação enviada por um serviço de terceiro e eventualmente este serviço pode estar indisponível/instável. Use este mock para simular o envio (https://run.mocky.io/v3/b19f7b9f-9cbf-4fc6-ad22-dc30601aec04). 
 
-
+- Este serviço deve ser RESTFul.
 
 ### Payload
 
