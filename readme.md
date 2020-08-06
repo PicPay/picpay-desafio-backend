@@ -65,7 +65,9 @@ Caso você não se sinta à vontade com a arquitetura proposta, você pode apres
 Atente-se a cumprir a maioria dos requisitos, pois você pode cumprir-los parcialmente e durante a avaliação vamos bater um papo a respeito do que faltou.
 
 Teremos 2 partes da avaliação:
+
 A correção objetiva será realizada através da utilização de um script de correção automatizada.
+
 A correção qualitativa será durante a entrevista e levará em conta os seguintes critérios:
 
 ## O que será avaliado e valorizamos
