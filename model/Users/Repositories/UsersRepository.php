@@ -18,4 +18,23 @@ class UsersRepository implements UsersRepositoryInterface
     {
         return $this->model->findOrFail($user_id);
     }
+
+    public function addCredit($user_id,$amount) : Users
+    {
+        $user = $this->get($user_id);
+        $user->credit_balance += $amount;
+        $user->save();
+        return $user;
+    }
+
+    public function withdrawCredit($user_id,$amount) : Users
+    {
+        $user = $this->get($user_id);
+        if($user->credit_balance < $amount){
+            throw new \Exception("User does not have enough credit");
+        }
+        $user->credit_balance -= $amount;
+        $user->save();
+        return $user;
+    }
 }

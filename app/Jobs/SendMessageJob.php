@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Services\Message\SendMessageService;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -11,7 +12,7 @@ use Illuminate\Support\Facades\Http;
 use Model\MessageQueue\MessageQueue;
 use Model\MessageQueue\Repositories\MessageQueueRepositoryInterface;
 
-class SendMessage implements ShouldQueue
+class SendMessageJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -32,15 +33,12 @@ class SendMessage implements ShouldQueue
      *
      * @return void
      */
-    public function handle(MessageQueueRepositoryInterface $messageQueueRepository)
+    public function handle(SendMessageService $sendMessageService,MessageQueueRepositoryInterface $messageQueueRepository)
     {
-        $response = Http::get('https://run.mocky.io/v3/b19f7b9f-9cbf-4fc6-ad22-dc30601aec04');
-        if($response->successful()){
-            if($response['message'] == 'Enviado') {
-                $messageQueueRepository->setSent($this->message_id);
-                return true;
-            }
+        if($sendMessageService->executeSendMessage($this->message_id)){
+            $messageQueueRepository->setSent($this->message_id);
+            return true;
         }
-        throw new\Exception("Erro ao enviar mensagem");
+        return false;
     }
 }

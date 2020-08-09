@@ -39,7 +39,7 @@ services:
       container_name: web-pp
       working_dir: /pp
       volumes:
-        - ../../pp:/pp
+        - ../:/pp
         - ./phpdocker/nginx/default.conf:/etc/nginx/conf.d/default.conf
       extra_hosts:
         - "php7-pp:172.30.128.4"
@@ -54,7 +54,7 @@ services:
       container_name: php7-pp
       working_dir: /pp
       volumes:
-        - ../../pp:/pp
+        - ../:/pp
       extra_hosts:
         - "web-pp:172.30.128.2"
         - "mysql:172.30.128.6"

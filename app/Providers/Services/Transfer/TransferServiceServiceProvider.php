@@ -2,8 +2,8 @@
 
 namespace App\Providers\Services\Transfer;
 
-use App\Services\Transfer\TransferService;
-use App\Services\Transfer\TransferServiceInterface;
+use App\Services\Transfer\AddTransferService;
+use App\Services\Transfer\AddTransferServiceInterface;
 use Illuminate\Support\ServiceProvider;
 
 
@@ -17,8 +17,8 @@ class TransferServiceServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind(
-            TransferServiceInterface::class,
-            TransferService::class
+            AddTransferServiceInterface::class,
+            AddTransferService::class
         );
     }
 

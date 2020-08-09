@@ -2,13 +2,13 @@
 
 namespace App\Listeners;
 
-use App\Events\TransactionAuthorizedAndCompleted;
-use App\Jobs\SendMessage;
+use App\Events\TransactionFailedAndRollbacked;
+use App\Jobs\SendMessageJob;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Model\MessageQueue\Repositories\MessageQueueRepositoryInterface;
 
-class SendPayerNotification
+class SendPayerFailureNotification
 {
     /**
      * Create the event listener.
@@ -25,17 +25,17 @@ class SendPayerNotification
     /**
      * Handle the event.
      *
-     * @param  TransactionAuthorizedAndCompleted  $event
+     * @param  TransactionFailedAndRollbacked  $event
      * @return void
      */
-    public function handle(TransactionAuthorizedAndCompleted $event)
+    public function handle(TransactionFailedAndRollbacked $event)
     {
         $payer_id = $event->transaction->payer_id;
         $amount = $event->transaction->amount;
         $payee_name = $event->transaction->payee->name;
-        $msg_content =  "Comprovante: Você pagou {$amount} para  {$payee_name}";
+        $msg_content =  "Sua transação falhou :(";
 
         $message = $this->messageQueueRepository->add($payer_id,$msg_content);
-        SendMessage::dispatch($message->message_id);
+        SendMessageJob::dispatch($message->message_id);
     }
 }

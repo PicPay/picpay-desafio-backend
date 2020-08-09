@@ -18,77 +18,38 @@ class TransactionsRepository implements TransactionsRepositoryInterface
 
     public function add($payer_id, $payee_id, $amount) : Transactions
     {
-        DB::beginTransaction();
-        try{
-            $transaction = $this->model->create([
-                'payer_id'                  => $payer_id,
-                'payee_id'                  => $payee_id,
-                'amount'                    => $amount,
-                'authorized'                => false,
-                'transaction_status_id'     => 1 // Pending
-            ])->fresh(['payer']);
-
-            // Já retira valor da carteira para cálculo de crédito de próximas requisições
-            $transaction->payer->credit_balance -= $amount;
-
-            $transaction->push();
-            DB::commit();
-            return $transaction;
-
-        }catch (QueryException $e){
-            DB::rollBack();
-        }
+        return $this->model->create([
+            'payer_id'                  => $payer_id,
+            'payee_id'                  => $payee_id,
+            'amount'                    => $amount,
+            'authorized'                => false,
+            'transaction_status_id'     => 1 // Pending
+        ]);
     }
 
     public function setAuthorized($transaction_id) : Transactions
     {
-        DB::beginTransaction();
-        try{
-            $transaction = $this->model
-                ->with('payee')
-                ->where('transaction_id',$transaction_id)
-                ->where('transaction_status_id',1)
-                ->first();
-
-            $transaction->authorized = true;
-            $transaction->transaction_status_id = 2; // OK
-
-            // Libera valor para a carteira do beneficiário
-            $transaction->payee->credit_balance += $transaction->amount;
-
-            $transaction->push();
-            DB::commit();
-
-            TransactionAuthorizedAndCompleted::dispatch($transaction);
-            return $transaction;
-
-        }catch (QueryException $e){
-            DB::rollBack();
-        }
+        $transaction = $this->model
+            ->where('transaction_id',$transaction_id)
+            ->where('transaction_status_id',1)
+            ->first();
+        $transaction->authorized = true;
+        $transaction->transaction_status_id = 2; // OK
+        $transaction->save();
+        return $transaction;
     }
 
     public function setNotAuthorized($transaction_id) : Transactions
     {
-        DB::beginTransaction();
-        try{
-            $transaction = $this->model
-                ->with('payee')
-                ->where('transaction_id',$transaction_id)
-                ->where('transaction_status_id',1)
-                ->first();
+        $transaction = $this->model
+            ->with('payee')
+            ->where('transaction_id',$transaction_id)
+            ->where('transaction_status_id',1)
+            ->first();
 
-            $transaction->authorized = false;
-            $transaction->transaction_status_id = 3; // Cancelled
-
-            // Devolve valor já retirado a carteira do pagador
-            $transaction->payer->credit_balance += $transaction->amount;
-
-            $transaction->push();
-            DB::commit();
-            return $transaction;
-
-        }catch (QueryException $e){
-            DB::rollBack();
-        }
+        $transaction->authorized = false;
+        $transaction->transaction_status_id = 3; // Cancelled
+        $transaction->save();
+        return $transaction;
     }
 }

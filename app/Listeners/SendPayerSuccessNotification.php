@@ -3,12 +3,12 @@
 namespace App\Listeners;
 
 use App\Events\TransactionAuthorizedAndCompleted;
-use App\Jobs\SendMessage;
+use App\Jobs\SendMessageJob;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Model\MessageQueue\Repositories\MessageQueueRepositoryInterface;
 
-class SendPayeeNotification
+class SendPayerSuccessNotification
 {
     /**
      * Create the event listener.
@@ -30,12 +30,12 @@ class SendPayeeNotification
      */
     public function handle(TransactionAuthorizedAndCompleted $event)
     {
-        $payee_id = $event->transaction->payee_id;
+        $payer_id = $event->transaction->payer_id;
         $amount = $event->transaction->amount;
-        $payer_name = $event->transaction->payer->name;
+        $payee_name = $event->transaction->payee->name;
+        $msg_content =  "Comprovante: Você pagou {$amount} para  {$payee_name}";
 
-        $msg_content = "Você recebeu {$amount} de  {$payer_name}";
-        $message = $this->messageQueueRepository->add($payee_id,$msg_content);
-        SendMessage::dispatch($message->message_id);
+        $message = $this->messageQueueRepository->add($payer_id,$msg_content);
+        SendMessageJob::dispatch($message->message_id);
     }
 }

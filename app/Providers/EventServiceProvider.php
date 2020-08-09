@@ -19,8 +19,11 @@ class EventServiceProvider extends ServiceProvider
             SendEmailVerificationNotification::class,
         ],
         'App\Events\TransactionAuthorizedAndCompleted' => [
-            'App\Listeners\SendPayerNotification',
-            'App\Listeners\SendPayeeNotification',
+            'App\Listeners\SendPayerSuccessNotification',
+            'App\Listeners\SendPayeeSuccessNotification',
+        ],
+        'App\Events\TransactionFailedAndRollbacked' => [
+            'App\Listeners\SendPayerFailureNotification',
         ],
     ];
 
