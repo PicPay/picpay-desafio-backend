@@ -12,13 +12,14 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Http;
 use Model\Transactions\Repositories\TransactionsRepositoryInterface;
 use Log;
+use App\Exceptions\Transaction\ErrorOnTransactionAuthorization;
 
 class TransferAuthorizationJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    public $tries = 1;
-    public $maxExceptions = 1;
+    public $tries = 3;
+    public $maxExceptions = 3;
 
     private $transaction_id;
 
@@ -47,7 +48,7 @@ class TransferAuthorizationJob implements ShouldQueue
             }
             return true;
         }catch (\Exception $e){
-            dd($e);
+            throw new ErrorOnTransactionAuthorization("Authorization service unavailable");
         }
         return false;
     }

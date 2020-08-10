@@ -4,6 +4,8 @@ namespace App\Services\Transfer;
 
 use App\Events\TransactionAuthorizedAndCompleted;
 use App\Events\TransactionFailedAndRollbacked;
+use App\Exceptions\Transaction\ErrorOnRollbackTransaction;
+use App\Exceptions\Transaction\ErrorOnUpdatingTransactionToAuthorized;
 use App\Jobs\TransferAuthorizationJob;
 use Illuminate\Database\QueryException;
 use Model\Transactions\Repositories\TransactionsRepositoryInterface;
@@ -33,9 +35,8 @@ UsersRepositoryInterface $userRepository)
             TransactionAuthorizedAndCompleted::dispatch($transaction);
             return true;
         }catch (\Exception $e){
-
             DB::rollBack();
-            dd($e);
+            throw new ErrorOnUpdatingTransactionToAuthorized("Error on updating database");
         }
         return false;
     }
@@ -51,8 +52,7 @@ UsersRepositoryInterface $userRepository)
             return true;
         }catch (\Exception $e){
             DB::rollBack();
-            dd($e);
-
+            throw new ErrorOnRollbackTransaction("Error on updating database");
         }
         return false;
     }

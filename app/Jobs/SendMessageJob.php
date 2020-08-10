@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Exceptions\Transaction\ErrorOnSendMessage;
 use App\Services\Message\SendMessageService;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -15,6 +16,9 @@ use Model\MessageQueue\Repositories\MessageQueueRepositoryInterface;
 class SendMessageJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+
+    public $tries = 3;
+    public $maxExceptions = 3;
 
     /**
      * Create a new job instance.
@@ -35,9 +39,14 @@ class SendMessageJob implements ShouldQueue
      */
     public function handle(SendMessageService $sendMessageService,MessageQueueRepositoryInterface $messageQueueRepository)
     {
-        if($sendMessageService->executeSendMessage($this->message_id)){
-            $messageQueueRepository->setSent($this->message_id);
+        try{
+            if($sendMessageService->executeSendMessage($this->message_id)){
+                $messageQueueRepository->setSent($this->message_id);
+                return true;
+            }
             return true;
+        }catch (\Exception $e){
+            throw new ErrorOnSendMessage("Send message service unavailable");
         }
         return false;
     }

@@ -4,7 +4,7 @@
 
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
-use Model\Users\Users;
+use Model\Transactions\Transactions;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,14 +17,11 @@ use Model\Users\Users;
 |
 */
 
-$factory->define(Users::class, function (Faker $faker) {
+$factory->define(Transactions::class, function (Faker $faker) {
     return [
-        'name'              => $faker->name,
-        'email'             => $faker->unique()->safeEmail,
-        'password'          => str::random(20), // password
-        'document'          => '12345678910',
-        'credit_balance'    => 0,
-        'is_shopkeeper'     => 0,
-        'creation_date'     => now(),
+        'amount'                    => 100,
+        'transaction_status_id'     => 1,
+        'authorized'                => 0,
+        'requested_date'            => now(),
     ];
 });
