@@ -121,7 +121,7 @@ Além do que esperamos de **júnior**, esperamos:
 
 Além do que esperamos de **júnior** e **pleno**, também esperamos:
 
-* Unit tests
+* Teste unitários
 * Transação assíncrona
 * Evitar side effect (concorrência)
 * Autonomia (_trick - você pode definir a arquitetura do seu transfer, como também definir um endpoint de acordo com o desafio da melhor forma_)
