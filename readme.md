@@ -114,7 +114,7 @@ Além do que esperamos de **júnior**, esperamos:
 * Testes de API (integração)
 * Síntaxe de PHP
 * Domínio avançado de design patterns
-* Cleancode
+* Clean code
 * Métodos e variáveis em inglês
 
 ### Sênior
