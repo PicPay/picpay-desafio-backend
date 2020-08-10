@@ -112,7 +112,7 @@ Além do que esperamos de **júnior**, esperamos:
 
 * Código desacoplado de controller/router (services, repository)
 * Testes de API (integração)
-* Síntaxe de PHP impecável
+* Síntaxe de PHP
 * Domínio avançado de design patterns
 * Cleancode
 * Métodos e variáveis em inglês
