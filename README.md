@@ -94,10 +94,40 @@ Para o ambiente de desenvolvimento utilizei o docker-compose para controlar os c
 * **docker exec -it php7-pp /bin/bash** para acessar o php como ssh.
 * **docker exec -it web-pp /bin/bash** para acessar o nginx como ssh.
 
-## Melhorias pendentes 
+## Testes unitários e de integração
 
-* Testes unitários e de integração
-* Envio de mensagem ao usuário em caso de cancelamento de transação , sugerindo refazê-la.
+``` 
+php artisan test
+
+   PASS  Tests\Unit\FinishTransferServiceTest
+  ✓ authorized transfer checkout
+  ✓ failed transfer checkout
+
+   PASS  Tests\Feature\AddTransferTest
+  ✓ transfer will succeed with credit and valid users
+  ✓ transfer will fail with invalid shopkeeper payer
+  ✓ transfer will fail without enough credit balance
+
+  Tests:  5 passed
+  Time:   3.07s
+```
+
+## Melhorias na estrutura
+
+- Serviços separados para cada tarefa delegando menos responsabilidade a cada classe.
+- Aviso ao cliente em caso de falha na transação implementado.
+
+## PSR-12
+
+Utilizei um pacote para revisão completa do código principal para PSR-12
+
+Referência: https://github.com/symplify/easy-coding-standard
+
+## Revisão do código geral
+
+Tentei revisar o código usando como base um resumo de clean code + SOLID do github voltado para PHP
+
+Referência: https://github.com/jupeter/clean-code-php
 
 -------------------------------------------------------------------------
 
