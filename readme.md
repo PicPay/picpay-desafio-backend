@@ -23,7 +23,7 @@ Abaixo você encontrará todos as informações necessárias para iniciar o seu 
 ## Setup do projeto
 
 - Framework: Fique a vontade pra usar o framework que quiser
-- Subir local ou Docker
+- Subir local ou Docker * (valorizamos uma boa estrutura de docker feita por você)
 
 
 ## Objetivo - PicPay Simplificado
@@ -61,7 +61,7 @@ POST /transaction
 
 # Avaliação
 
-Caso você não se sinta à vontade com a arquitetura proposta, você pode apresentar sua solução utilizando frameworks diferentes.
+Caso você **não se sinta à vontade** com a arquitetura proposta, você pode apresentar sua solução utilizando frameworks diferentes.
 Atente-se a cumprir a maioria dos requisitos, pois você pode cumprir-los parcialmente e durante a avaliação vamos bater um papo a respeito do que faltou.
 
 Teremos 2 partes da avaliação:
@@ -84,6 +84,7 @@ A correção qualitativa será durante a entrevista e levará em conta os seguin
 ## O que NÃO será avaliado
 - Fluxo de cadastro de usuários e lojistas
 - Autenticação
+- Frontend (só avaliaremos a API Restful)
 
 ## O que será um diferencial
 - Uso de Docker
@@ -94,14 +95,57 @@ A correção qualitativa será durante a entrevista e levará em conta os seguin
 - Proposta de melhoria na arquitetura
 
 
-## Para o dia da avaliação
-Na data marcada pelo recrutador tenha sua aplicação rodando na sua máquina local **ou** em algum serviço ne web (Ex: [Heroku](https://www.heroku.com/)).
+## Critério de avaliação por níveis
 
+Se você está se candidatando como:
+
+### Júnior
+Esperamos:
+
+* Ótimo raciocínio
+* Conhecimento básico de design patterns
+* PSR2
+* Boa modelagem de SQL/noSQL
+
+### Pleno
+Além do que esperamos de **júnior**, esperamos:
+
+* Código desacoplado de controller/router (services, repository)
+* Testes de API (integração)
+* Síntaxe de PHP impecável
+* Domínio avançado de design patterns
+* Cleancode
+* Métodos e variáveis em inglês
+
+### Sênior
+
+Além do que esperamos de **júnior** e **pleno**, também esperamos:
+
+* Unit tests
+* Transação assíncrona
+* Evitar side effect (concorrência)
+* Autonomia (_trick - você pode definir a arquitetura do seu transfer, como também definir um endpoint de acordo com o desafio da melhor forma_)
+* Recursos avançados de REST
+* **Nos surpreenda!**
 
 ## Materiais úteis
+- http://br.phptherightway.com/
 - https://www.php-fig.org/psr/psr-12/
 - https://www.atlassian.com/continuous-delivery/software-testing/types-of-software-testing
 - https://github.com/exakat/php-static-analysis-tools
 - https://martinfowler.com/articles/microservices.html
 - https://picpay.com/site/sobre-nos
 
+## Avaliação
+
+De acordo com os critérios acima, iremos avaliar seu teste para avançarmos para a entrevista técnica.
+Caso não tenha atingido aceitavelmente o que estamos propondo acima, não iremos prosseguir com o processo.
+
+## Para o dia da entrevista técnica
+Na data marcada pelo recrutador tenha sua aplicação rodando na sua máquina local para execução dos testes e para nos mostrar os pontos desenvolvidos e possíveis questionamentos.
+
+## Próximos Passos
+
+  * Questionário comportamental
+  * Entrevista com o TechManager
+  * Sua proposta!
