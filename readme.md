@@ -61,7 +61,7 @@ POST /transaction
 
 # Avaliação
 
-Apresente sua solução utilizando no frameworks que você desejar justificando a escolha.
+Apresente sua solução utilizando o framework que você desejar, justificando a escolha.
 Atente-se a cumprir a maioria dos requisitos, pois você pode cumprir-los parcialmente e durante a avaliação vamos bater um papo a respeito do que faltou.
 
 Teremos 2 partes da avaliação:
