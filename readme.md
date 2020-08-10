@@ -123,7 +123,7 @@ Além do que esperamos de **júnior** e **pleno**, também esperamos:
 
 * Teste unitários
 * Transação assíncrona
-* Evitar side effect (concorrência)
+* Evitar side effect ou race condition (concorrência)
 * Autonomia (_trick - você pode definir a arquitetura do seu transfer, como também definir um endpoint de acordo com o desafio da melhor forma_)
 * Recursos avançados de REST
 * **Nos surpreenda!**
