@@ -147,5 +147,5 @@ Na data marcada pelo recrutador tenha sua aplicação rodando na sua máquina lo
 ## Próximos Passos
 
   * Questionário comportamental
-  * Entrevista com o TechManager
+  * Entrevista com o Tech Manager
   * Sua proposta!
