@@ -2,8 +2,8 @@
 
 namespace App\Http\Validators;
 
-use Model\Users\Repositories\UsersRepositoryInterface;
 use Illuminate\Support\Arr;
+use Model\Users\Repositories\UsersRepositoryInterface;
 
 class UserIsShopKeeperValidator
 {
@@ -17,6 +17,6 @@ class UserIsShopKeeperValidator
     public function validate($attribute, $value, $parameters, $validator)
     {
         $user = $this->usersRepository->get($value);
-        return ! (boolean) $user->is_shopkeeper;
+        return !(bool) $user->is_shopkeeper;
     }
 }

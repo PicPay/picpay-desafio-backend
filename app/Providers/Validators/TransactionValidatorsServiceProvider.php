@@ -2,8 +2,8 @@
 
 namespace App\Providers\Validators;
 
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\ServiceProvider;
 
 class TransactionValidatorsServiceProvider extends ServiceProvider
 {

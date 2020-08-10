@@ -15,14 +15,14 @@ class CheckAuthorizationService implements CheckAuthorizationServiceInterface
         $this->transactionRepository = $transactionRepository;
     }
 
-    public function executeCheckAuthorization($transaction_id) : bool
+    public function executeCheckAuthorization($transaction_id): bool
     {
-        try{
+        try {
             $response = Http::get('https://run.mocky.io/v3/8fafdd68-a090-496f-8c9a-3442cf30dae6');
-            if($response->successful() && $response['message'] == 'Autorizado'){
+            if ($response->successful() && $response['message'] == 'Autorizado') {
                 return true;
             }
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             Log::debug($e->getMessage());
         }
         return false;

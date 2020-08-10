@@ -1,9 +1,10 @@
 <?php
+
 namespace App\Providers\Repositories;
 
 use Illuminate\Support\ServiceProvider;
-use Model\Users\Repositories\UsersRepositoryInterface;
 use Model\Users\Repositories\UsersRepository;
+use Model\Users\Repositories\UsersRepositoryInterface;
 
 class UsersRepositoryServiceProvider extends ServiceProvider
 {

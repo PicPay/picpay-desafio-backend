@@ -1,4 +1,5 @@
 <?php
+
 namespace Model\TransactionStatus;
 
 use Illuminate\Database\Eloquent\Model;

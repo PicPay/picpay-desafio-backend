@@ -35,7 +35,7 @@ class SendPayeeSuccessNotification
         $payer_name = $event->transaction->payer->name;
 
         $msg_content = "Você recebeu {$amount} de  {$payer_name}";
-        $message = $this->messageQueueRepository->add($payee_id,$msg_content);
+        $message = $this->messageQueueRepository->add($payee_id, $msg_content);
         SendMessageJob::dispatch($message->message_id);
     }
 }

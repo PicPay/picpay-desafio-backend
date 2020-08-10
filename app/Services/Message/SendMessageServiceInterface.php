@@ -4,5 +4,5 @@ namespace App\Services\Message;
 
 interface SendMessageServiceInterface
 {
-    public function executeSendMessage($message_id) : bool ;
+    public function executeSendMessage($message_id): bool;
 }

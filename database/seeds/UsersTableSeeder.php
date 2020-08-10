@@ -4,7 +4,6 @@ use Illuminate\Database\Seeder;
 
 class UsersTableSeeder extends Seeder
 {
-
     /**
      * Auto generated seed file
      *
@@ -12,13 +11,11 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        
-
         \DB::table('users')->delete();
         
-        \DB::table('users')->insert(array (
-            0 => 
-            array (
+        \DB::table('users')->insert(array(
+            0 =>
+            array(
                 'user_id' => 1,
                 'name' => 'Eduardo',
                 'email' => 'edu_ls@teste.com',
@@ -28,8 +25,8 @@ class UsersTableSeeder extends Seeder
                 'credit_balance' => '1000.00',
                 'creation_date' => '2020-07-18 21:53:20',
             ),
-            1 => 
-            array (
+            1 =>
+            array(
                 'user_id' => 2,
                 'name' => 'Loja Kuka',
                 'email' => 'kuka.b@teste.com',
@@ -39,8 +36,8 @@ class UsersTableSeeder extends Seeder
                 'credit_balance' => '1402.00',
                 'creation_date' => '2020-07-18 21:57:15',
             ),
-            2 => 
-            array (
+            2 =>
+            array(
                 'user_id' => 3,
                 'name' => 'Maria',
                 'email' => 'maria.d@teste.com',
@@ -51,7 +48,5 @@ class UsersTableSeeder extends Seeder
                 'creation_date' => '2020-07-18 03:42:20',
             ),
         ));
-        
-        
     }
 }

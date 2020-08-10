@@ -112,46 +112,46 @@ trait ApiResponse
 
     protected function badRequestResponse($message)
     {
-        return $this->errorResponse($message,400);
+        return $this->errorResponse($message, 400);
     }
 
     protected function unauthorizedResponse($message)
     {
-        return $this->errorResponse($message,401);
+        return $this->errorResponse($message, 401);
     }
 
     protected function forbiddenResponse($message)
     {
-        return $this->errorResponse($message,403);
+        return $this->errorResponse($message, 403);
     }
 
     protected function notFoundResponse($message)
     {
-        return $this->errorResponse($message,404);
+        return $this->errorResponse($message, 404);
     }
 
     protected function methodNotAllowedResponse($message)
     {
-        return $this->errorResponse($message,405);
+        return $this->errorResponse($message, 405);
     }
 
     protected function NotAcceptableResponse($message)
     {
-        return $this->errorResponse($message,406);
+        return $this->errorResponse($message, 406);
     }
 
     protected function conflictResponse($message)
     {
-        return $this->errorResponse($message,409);
+        return $this->errorResponse($message, 409);
     }
 
     protected function unprocessableEntityResponse($message)
     {
-        return $this->errorResponse($message,422);
+        return $this->errorResponse($message, 422);
     }
 
     protected function internalServerErrorResponse($message)
     {
-        return $this->errorResponse($message,500);
+        return $this->errorResponse($message, 500);
     }
 }

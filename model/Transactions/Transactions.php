@@ -1,4 +1,5 @@
 <?php
+
 namespace Model\Transactions;
 
 use Illuminate\Database\Eloquent\Model;
@@ -12,16 +13,16 @@ class Transactions extends Model
 
     public function payer()
     {
-        return $this->hasOne(\Model\Users\Users::class,'user_id','payer_id');
+        return $this->hasOne(\Model\Users\Users::class, 'user_id', 'payer_id');
     }
 
     public function payee()
     {
-        return $this->hasOne(\Model\Users\Users::class,'user_id','payee_id');
+        return $this->hasOne(\Model\Users\Users::class, 'user_id', 'payee_id');
     }
 
     public function status()
     {
-        return $this->belongsTo(\Model\TransactionStatus\TransactionStatus::class,'transaction_status_id','transaction_status_id');
+        return $this->belongsTo(\Model\TransactionStatus\TransactionStatus::class, 'transaction_status_id', 'transaction_status_id');
     }
 }

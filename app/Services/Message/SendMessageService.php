@@ -14,10 +14,10 @@ class SendMessageService implements SendMessageServiceInterface
         $this->messageRepository = $messageQueueRepository;
     }
 
-    public function executeSendMessage($message_id) : bool
+    public function executeSendMessage($message_id): bool
     {
         $response = Http::get('https://run.mocky.io/v3/b19f7b9f-9cbf-4fc6-ad22-dc30601aec04');
-        if($response->successful() && $response['message'] == 'Enviado'){
+        if ($response->successful() && $response['message'] == 'Enviado') {
             return true;
         }
         return false;

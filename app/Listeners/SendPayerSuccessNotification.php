@@ -33,9 +33,9 @@ class SendPayerSuccessNotification
         $payer_id = $event->transaction->payer_id;
         $amount = $event->transaction->amount;
         $payee_name = $event->transaction->payee->name;
-        $msg_content =  "Comprovante: Você pagou {$amount} para  {$payee_name}";
+        $msg_content = "Comprovante: Você pagou {$amount} para  {$payee_name}";
 
-        $message = $this->messageQueueRepository->add($payer_id,$msg_content);
+        $message = $this->messageQueueRepository->add($payer_id, $msg_content);
         SendMessageJob::dispatch($message->message_id);
     }
 }

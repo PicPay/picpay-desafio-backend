@@ -2,12 +2,12 @@
 
 namespace App\Console\Commands\DB;
 
+use DB;
+use File;
 use Illuminate\Console\Command;
 use Illuminate\Foundation\Application;
 use PDO;
 use PDOException;
-use DB;
-use File;
 
 class CreateDatabase extends Command
 {
@@ -24,10 +24,9 @@ class CreateDatabase extends Command
 
     public function handle()
     {
-
         $database = env('DB_DATABASE', false);
 
-        if (! $database) {
+        if (!$database) {
             $this->info('Skipping creation of database as env(DB_DATABASE) is empty');
             return;
         }
@@ -53,4 +52,3 @@ class CreateDatabase extends Command
         return new PDO(sprintf('mysql:host=%s;port=%d;', $host, $port), $username, $password);
     }
 }
-

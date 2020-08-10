@@ -19,12 +19,12 @@ use Model\Users\Users;
 
 $factory->define(Users::class, function (Faker $faker) {
     return [
-        'name'              => $faker->name,
-        'email'             => $faker->unique()->safeEmail,
-        'password'          => str::random(20), // password
-        'document'          => '12345678910',
-        'credit_balance'    => 0,
-        'is_shopkeeper'     => 0,
-        'creation_date'     => now(),
+        'name' => $faker->name,
+        'email' => $faker->unique()->safeEmail,
+        'password' => str::random(20), // password
+        'document' => '12345678910',
+        'credit_balance' => 0,
+        'is_shopkeeper' => 0,
+        'creation_date' => now(),
     ];
 });

@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Exceptions\Transaction\ErrorOnTransactionAuthorization;
 use App\Services\Authorization\CheckAuthorizationService;
 use App\Services\Transfer\FinishTransferService;
 use Illuminate\Bus\Queueable;
@@ -10,9 +11,8 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Http;
-use Model\Transactions\Repositories\TransactionsRepositoryInterface;
 use Log;
-use App\Exceptions\Transaction\ErrorOnTransactionAuthorization;
+use Model\Transactions\Repositories\TransactionsRepositoryInterface;
 
 class TransferAuthorizationJob implements ShouldQueue
 {
@@ -38,16 +38,16 @@ class TransferAuthorizationJob implements ShouldQueue
      *
      * @return void
      */
-    public function handle(CheckAuthorizationService $checkAuthorizationService,FinishTransferService $finishTransferService)
+    public function handle(CheckAuthorizationService $checkAuthorizationService, FinishTransferService $finishTransferService)
     {
-        try{
-            if($checkAuthorizationService->executeCheckAuthorization($this->transaction_id)){
+        try {
+            if ($checkAuthorizationService->executeCheckAuthorization($this->transaction_id)) {
                 $finishTransferService->executeFinishAuthorizedTransaction($this->transaction_id);
-            }else{
+            } else {
                 $finishTransferService->executeRollbackFailedTransaction($this->transaction_id);
             }
             return true;
-        }catch (\Exception $e){
+        } catch (\Exception $e) {
             throw new ErrorOnTransactionAuthorization("Authorization service unavailable");
         }
         return false;

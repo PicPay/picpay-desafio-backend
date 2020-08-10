@@ -136,7 +136,7 @@ return [
     ],
 
     "user_has_credit" => "The user does not have enough credit balance",
-    "is_shopkeeper"   => "The user is a shopkeeper and is not authorized to send transfers to another user",
+    "is_shopkeeper" => "The user is a shopkeeper and is not authorized to send transfers to another user",
 
 
     /*

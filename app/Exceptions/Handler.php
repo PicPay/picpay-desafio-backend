@@ -106,7 +106,5 @@ class Handler extends ExceptionHandler
     {
         $errors = $e->validator->errors()->getMessages();
         return $this->unprocessableEntityResponse($errors);
-
     }
-
 }

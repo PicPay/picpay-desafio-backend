@@ -19,9 +19,9 @@ use Model\Transactions\Transactions;
 
 $factory->define(Transactions::class, function (Faker $faker) {
     return [
-        'amount'                    => 100,
-        'transaction_status_id'     => 1,
-        'authorized'                => 0,
-        'requested_date'            => now(),
+        'amount' => 100,
+        'transaction_status_id' => 1,
+        'authorized' => 0,
+        'requested_date' => now(),
     ];
 });

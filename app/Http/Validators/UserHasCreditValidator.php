@@ -2,8 +2,8 @@
 
 namespace App\Http\Validators;
 
-use Model\Users\Repositories\UsersRepositoryInterface;
 use Illuminate\Support\Arr;
+use Model\Users\Repositories\UsersRepositoryInterface;
 
 class UserHasCreditValidator
 {

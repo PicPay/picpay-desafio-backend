@@ -22,7 +22,8 @@
         "nunomaduro/collision": "^4.1",
         "orangehill/iseed": "^2.6",
         "oscarafdev/migrations-generator": "^2.0",
-        "phpunit/phpunit": "^8.5"
+        "phpunit/phpunit": "^8.5",
+        "symplify/easy-coding-standard": "^8.2"
     },
     "config": {
         "optimize-autoloader": true,

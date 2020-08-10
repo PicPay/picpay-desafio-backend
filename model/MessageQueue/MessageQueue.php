@@ -1,4 +1,5 @@
 <?php
+
 namespace Model\MessageQueue;
 
 use Illuminate\Database\Eloquent\Model;
@@ -12,6 +13,6 @@ class MessageQueue extends Model
 
     public function user()
     {
-        return $this->hasOne(\Model\Users\Users::classs,'user_id','user_id');
+        return $this->hasOne(\Model\Users\Users::classs, 'user_id', 'user_id');
     }
 }

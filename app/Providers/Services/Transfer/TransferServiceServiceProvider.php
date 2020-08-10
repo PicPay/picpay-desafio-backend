@@ -6,7 +6,6 @@ use App\Services\Transfer\AddTransferService;
 use App\Services\Transfer\AddTransferServiceInterface;
 use Illuminate\Support\ServiceProvider;
 
-
 class TransferServiceServiceProvider extends ServiceProvider
 {
     /**

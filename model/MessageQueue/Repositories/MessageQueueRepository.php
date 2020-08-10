@@ -13,16 +13,16 @@ class MessageQueueRepository implements MessageQueueRepositoryInterface
         $this->model = $model;
     }
 
-    public function add($user_id, $content) : MessageQueue
+    public function add($user_id, $content): MessageQueue
     {
         $message = $this->model->create([
-            'user_id'      => $user_id,
-            'content'      => $content
+            'user_id' => $user_id,
+            'content' => $content
         ]);
 
         return $message;
     }
-    public function setSent($message_id) : MessageQueue
+    public function setSent($message_id): MessageQueue
     {
         $message = $this->model->findOrFail($message_id);
         $message->sent = true;

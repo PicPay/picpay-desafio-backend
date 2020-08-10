@@ -14,12 +14,12 @@ class UsersRepository implements UsersRepositoryInterface
         $this->model = $model;
     }
 
-    public function get($user_id) : Users
+    public function get($user_id): Users
     {
         return $this->model->findOrFail($user_id);
     }
 
-    public function addCredit($user_id,$amount) : Users
+    public function addCredit($user_id, $amount): Users
     {
         $user = $this->get($user_id);
         $user->credit_balance += $amount;
@@ -27,10 +27,10 @@ class UsersRepository implements UsersRepositoryInterface
         return $user;
     }
 
-    public function withdrawCredit($user_id,$amount) : Users
+    public function withdrawCredit($user_id, $amount): Users
     {
         $user = $this->get($user_id);
-        if($user->credit_balance < $amount){
+        if ($user->credit_balance < $amount) {
             throw new \Exception("User does not have enough credit");
         }
         $user->credit_balance -= $amount;

@@ -37,15 +37,15 @@ class SendMessageJob implements ShouldQueue
      *
      * @return void
      */
-    public function handle(SendMessageService $sendMessageService,MessageQueueRepositoryInterface $messageQueueRepository)
+    public function handle(SendMessageService $sendMessageService, MessageQueueRepositoryInterface $messageQueueRepository)
     {
-        try{
-            if($sendMessageService->executeSendMessage($this->message_id)){
+        try {
+            if ($sendMessageService->executeSendMessage($this->message_id)) {
                 $messageQueueRepository->setSent($this->message_id);
                 return true;
             }
             return true;
-        }catch (\Exception $e){
+        } catch (\Exception $e) {
             throw new ErrorOnSendMessage("Send message service unavailable");
         }
         return false;
