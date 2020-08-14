@@ -83,6 +83,9 @@ A correção qualitativa será durante a entrevista e levará em conta os seguin
 - Arquitetura (estruturar o pensamento antes de escrever)
 - Carinho em desacoplar componentes (outras camadas, service, repository)
 
+De acordo com os critérios acima, iremos avaliar seu teste para avançarmos para a entrevista técnica.
+Caso não tenha atingido aceitavelmente o que estamos propondo acima, não iremos prosseguir com o processo.
+
 ## O que NÃO será avaliado
 - Fluxo de cadastro de usuários e lojistas
 - Autenticação
@@ -105,10 +108,7 @@ A correção qualitativa será durante a entrevista e levará em conta os seguin
 - https://martinfowler.com/articles/microservices.html
 - https://picpay.com/site/sobre-nos
 
-## Avaliação
 
-De acordo com os critérios acima, iremos avaliar seu teste para avançarmos para a entrevista técnica.
-Caso não tenha atingido aceitavelmente o que estamos propondo acima, não iremos prosseguir com o processo.
 
 ## Para o dia da entrevista técnica
 Na data marcada pelo recrutador tenha sua aplicação rodando na sua máquina local para execução dos testes e para nos mostrar os pontos desenvolvidos e possíveis questionamentos.
