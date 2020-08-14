@@ -23,7 +23,7 @@ Abaixo você encontrará todos as informações necessárias para iniciar o seu 
 ## Setup do projeto
 
 - Framework: Fique a vontade pra usar o framework que quiser
-- Subir local ou Docker
+- Subir local ou Docker * (valorizamos uma boa estrutura de docker feita por você)
 
 
 ## Objetivo - PicPay Simplificado
@@ -61,7 +61,7 @@ POST /transaction
 
 # Avaliação
 
-Caso você não se sinta à vontade com a arquitetura proposta, você pode apresentar sua solução utilizando frameworks diferentes.
+Apresente sua solução utilizando o framework que você desejar, justificando a escolha.
 Atente-se a cumprir a maioria dos requisitos, pois você pode cumprir-los parcialmente e durante a avaliação vamos bater um papo a respeito do que faltou.
 
 Teremos 2 partes da avaliação:
@@ -84,6 +84,7 @@ A correção qualitativa será durante a entrevista e levará em conta os seguin
 ## O que NÃO será avaliado
 - Fluxo de cadastro de usuários e lojistas
 - Autenticação
+- Frontend (só avaliaremos a API Restful)
 
 ## O que será um diferencial
 - Uso de Docker
@@ -94,14 +95,30 @@ A correção qualitativa será durante a entrevista e levará em conta os seguin
 - Proposta de melhoria na arquitetura
 
 
-## Para o dia da avaliação
-Na data marcada pelo recrutador tenha sua aplicação rodando na sua máquina local **ou** em algum serviço ne web (Ex: [Heroku](https://www.heroku.com/)).
+## Critério de avaliação por níveis
 
+Se você está se candidatando como:
+
+### O que olhamos com atenção:
+
+- Variedade de testes (unitários, integração, api)
+- Um código limpo e legível (nomenclatura, etc)
+- Conhecimento de padrões (PSRs, design patterns, SOLID)
+- Saber argumentar suas escolhas
+- Carinho em desacoplar componentes (outras camadas, service, repository)
 
 ## Materiais úteis
+- http://br.phptherightway.com/
 - https://www.php-fig.org/psr/psr-12/
 - https://www.atlassian.com/continuous-delivery/software-testing/types-of-software-testing
 - https://github.com/exakat/php-static-analysis-tools
 - https://martinfowler.com/articles/microservices.html
 - https://picpay.com/site/sobre-nos
 
+## Avaliação
+
+De acordo com os critérios acima, iremos avaliar seu teste para avançarmos para a entrevista técnica.
+Caso não tenha atingido aceitavelmente o que estamos propondo acima, não iremos prosseguir com o processo.
+
+## Para o dia da entrevista técnica
+Na data marcada pelo recrutador tenha sua aplicação rodando na sua máquina local para execução dos testes e para nos mostrar os pontos desenvolvidos e possíveis questionamentos.
