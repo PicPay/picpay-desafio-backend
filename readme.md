@@ -122,9 +122,3 @@ Caso não tenha atingido aceitavelmente o que estamos propondo acima, não iremo
 
 ## Para o dia da entrevista técnica
 Na data marcada pelo recrutador tenha sua aplicação rodando na sua máquina local para execução dos testes e para nos mostrar os pontos desenvolvidos e possíveis questionamentos.
-
-## Próximos Passos
-
-  * Questionário comportamental
-  * Entrevista com o Tech Manager
-  * Sua proposta!
