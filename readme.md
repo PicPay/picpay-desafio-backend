@@ -9,7 +9,7 @@ Abaixo você encontrará todos as informações necessárias para iniciar o seu 
 - Faça seus commits no seu repositório.
 - Envie o link do seu repositório para o email talentos_php@picpay.com.
 - Você poderá consultar o Google, Stackoverflow ou algum projeto particular na sua máquina.
-- De uma olhada no [Materiais úteis](Materiais-úteis)
+- Dê uma olhada nos [Materiais úteis](#materiais-úteis).
 - Fique à vontade para perguntar qualquer dúvida aos recrutadores.
 - Fique tranquilo, respire, assim como você, também já passamos por essa etapa. Boa sorte! :)
 
