@@ -99,34 +99,13 @@ A correção qualitativa será durante a entrevista e levará em conta os seguin
 
 Se você está se candidatando como:
 
-### Júnior
-Esperamos:
+### O que olhamos com atenção:
 
-* Ótimo raciocínio
-* Conhecimento básico de design patterns
-* PSR2
-* Boa modelagem de SQL/noSQL
-
-### Pleno
-Além do que esperamos de **júnior**, esperamos:
-
-* Código desacoplado de controller/router (services, repository)
-* Testes de API (integração)
-* Síntaxe de PHP
-* Domínio avançado de design patterns
-* Clean code
-* Métodos e variáveis em inglês
-
-### Sênior
-
-Além do que esperamos de **júnior** e **pleno**, também esperamos:
-
-* Teste unitários
-* Transação assíncrona
-* Evitar side effect ou race condition (concorrência)
-* Autonomia (_trick - você pode definir a arquitetura do seu transfer, como também definir um endpoint de acordo com o desafio da melhor forma_)
-* Recursos avançados de REST
-* **Nos surpreenda!**
+- Variedade de testes (unitários, integração, api)
+- Um código limpo e legível (nomenclatura, etc)
+- Conhecimento de padrões (PSRs, design patterns, SOLID)
+- Saber argumentar suas escolhas
+- Carinho em desacoplar componentes (outras camadas, service, repository)
 
 ## Materiais úteis
 - http://br.phptherightway.com/
