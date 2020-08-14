@@ -9,6 +9,7 @@ Abaixo você encontrará todos as informações necessárias para iniciar o seu 
 - Faça seus commits no seu repositório.
 - Envie o link do seu repositório para o email talentos_php@picpay.com.
 - Você poderá consultar o Google, Stackoverflow ou algum projeto particular na sua máquina.
+- De uma olhada no [Materiais úteis](Materiais-úteis)
 - Fique à vontade para perguntar qualquer dúvida aos recrutadores.
 - Fique tranquilo, respire, assim como você, também já passamos por essa etapa. Boa sorte! :)
 
@@ -71,15 +72,16 @@ A correção objetiva será realizada através da utilização de um script de c
 A correção qualitativa será durante a entrevista e levará em conta os seguintes critérios:
 
 ## O que será avaliado e valorizamos
-- Código limpo e organizado (Padrão de mercado PSRs)
-- Ser consistente em suas escolhas
+- Código limpo e organizado (nomenclatura, etc)
+- Conhecimento de padrões (PSRs, design patterns, SOLID)
+- Ser consistente e saber argumentar suas escolhas
 - Apresentar soluções que domina
 - Modelagem de Dados
 - Manutenibilidade do Código
 - Tratamento de erros
 - Cuidado com itens de segurança
 - Arquitetura (estruturar o pensamento antes de escrever)
-- Esboço da arquitetura usando o diagrama da sua escolha
+- Carinho em desacoplar componentes (outras camadas, service, repository)
 
 ## O que NÃO será avaliado
 - Fluxo de cadastro de usuários e lojistas
@@ -94,16 +96,6 @@ A correção qualitativa será durante a entrevista e levará em conta os seguin
 - Documentação
 - Proposta de melhoria na arquitetura
 
-
-## Critério de avaliação por níveis
-
-### O que olhamos com atenção:
-
-- Variedade de testes (unitários, integração, api)
-- Um código limpo e legível (nomenclatura, etc)
-- Conhecimento de padrões (PSRs, design patterns, SOLID)
-- Saber argumentar suas escolhas
-- Carinho em desacoplar componentes (outras camadas, service, repository)
 
 ## Materiais úteis
 - http://br.phptherightway.com/
