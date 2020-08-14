@@ -89,7 +89,7 @@ A correção qualitativa será durante a entrevista e levará em conta os seguin
 - Uso de Docker
 - Testes de [integração](https://www.atlassian.com/continuous-delivery/software-testing/types-of-software-testing)
 - Testes [unitários](https://www.atlassian.com/continuous-delivery/software-testing/types-of-software-testing)
-- Uso de Design Patters
+- Uso de Design Patterns
 - Documentação
 - Proposta de melhoria na arquitetura
 
