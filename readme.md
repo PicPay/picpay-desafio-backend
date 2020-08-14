@@ -97,8 +97,6 @@ A correção qualitativa será durante a entrevista e levará em conta os seguin
 
 ## Critério de avaliação por níveis
 
-Se você está se candidatando como:
-
 ### O que olhamos com atenção:
 
 - Variedade de testes (unitários, integração, api)
