@@ -71,8 +71,8 @@ A correção objetiva será realizada através da utilização de um script de c
 
 A correção qualitativa será durante a entrevista e levará em conta os seguintes critérios:
 
-## O que será avaliado e valorizamos
-- Documentação :heart:
+## O que será avaliado e valorizamos :heart:
+- Documentação
 - Código limpo e organizado (nomenclatura, etc)
 - Conhecimento de padrões (PSRs, design patterns, SOLID)
 - Ser consistente e saber argumentar suas escolhas
