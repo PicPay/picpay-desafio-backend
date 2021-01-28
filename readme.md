@@ -73,6 +73,7 @@ A correção qualitativa será durante a entrevista e levará em conta os seguin
 
 ## O que será avaliado e valorizamos :heart:
 - Documentação
+- Se for para vaga sênior, foque bastante no **desenho de arquitetura**
 - Código limpo e organizado (nomenclatura, etc)
 - Conhecimento de padrões (PSRs, design patterns, SOLID)
 - Ser consistente e saber argumentar suas escolhas
