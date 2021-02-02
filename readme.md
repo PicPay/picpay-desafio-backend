@@ -26,6 +26,8 @@ Abaixo você encontrará todos as informações necessárias para iniciar o seu 
 - Framework: Fique a vontade pra usar o framework que quiser
 - Subir local ou Docker * (valorizamos uma boa estrutura de docker feita por você)
 
+## Para o dia da entrevista técnica
+Na data marcada pelo recrutador tenha sua aplicação rodando na sua máquina local para execução dos testes e para nos mostrar os pontos desenvolvidos e possíveis questionamentos.
 
 ## Objetivo - PicPay Simplificado
 
@@ -90,7 +92,7 @@ Caso não tenha atingido aceitavelmente o que estamos propondo acima, não iremo
 
 ## O que NÃO será avaliado
 - Fluxo de cadastro de usuários e lojistas
-- Autenticação
+- Fluxo de autenticação
 - Frontend (só avaliaremos a API Restful)
 
 ## O que será um diferencial
@@ -110,7 +112,3 @@ Caso não tenha atingido aceitavelmente o que estamos propondo acima, não iremo
 - https://martinfowler.com/articles/microservices.html
 - https://picpay.com/site/sobre-nos
 
-
-
-## Para o dia da entrevista técnica
-Na data marcada pelo recrutador tenha sua aplicação rodando na sua máquina local para execução dos testes e para nos mostrar os pontos desenvolvidos e possíveis questionamentos.
