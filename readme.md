@@ -90,7 +90,7 @@ A correção qualitativa será durante a entrevista e levará em conta os seguin
 De acordo com os critérios acima, iremos avaliar seu teste para avançarmos para a entrevista técnica.
 Caso não tenha atingido aceitavelmente o que estamos propondo acima, não iremos prosseguir com o processo.
 
-## O que NÃO será avaliado
+## O que NÃO será avaliado :warning:
 - Fluxo de cadastro de usuários e lojistas
 - Fluxo de autenticação
 - Frontend (só avaliaremos a API Restful)
