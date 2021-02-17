@@ -20,6 +20,8 @@ Abaixo você encontrará todos as informações necessárias para iniciar o seu 
 >Nome do recrutador
 >
 >Link do repositório
+>
+>Link do Linkedin
 
 ## Setup do projeto
 
