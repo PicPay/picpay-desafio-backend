@@ -107,10 +107,10 @@ Caso não tenha atingido aceitavelmente o que estamos propondo acima, não iremo
 
 
 ## Materiais úteis
+- https://picpay.com/site/sobre-nos
+- https://hub.packtpub.com/why-we-need-design-patterns/
 - http://br.phptherightway.com/
 - https://www.php-fig.org/psr/psr-12/
 - https://www.atlassian.com/continuous-delivery/software-testing/types-of-software-testing
 - https://github.com/exakat/php-static-analysis-tools
-- https://martinfowler.com/articles/microservices.html
-- https://picpay.com/site/sobre-nos
-
+- https://martinfowler.com/articles/microservices.htm
