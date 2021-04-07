@@ -115,3 +115,5 @@ Caso não tenha atingido aceitavelmente o que estamos propondo acima, não iremo
 - https://www.atlassian.com/continuous-delivery/software-testing/types-of-software-testing
 - https://github.com/exakat/php-static-analysis-tools
 - https://martinfowler.com/articles/microservices.htm
+- https://docs.guzzlephp.org/en/stable/request-options.html
+- https://refactoring.guru/
