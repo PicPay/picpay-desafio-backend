@@ -10,6 +10,7 @@ Abaixo você encontrará todos as informações necessárias para iniciar o seu 
 - Envie o link do seu repositório para o email **talentos_php@picpay.com**.
 - Você poderá consultar o Google, Stackoverflow ou algum projeto particular na sua máquina.
 - Dê uma olhada nos [Materiais úteis](#materiais-úteis).
+- Dê uma olhada em como será a [entrevista](#para-o-dia-da-entrevista-técnica).
 - Fique à vontade para perguntar qualquer dúvida aos recrutadores.
 - Fique tranquilo, respire, assim como você, também já passamos por essa etapa. Boa sorte! :)
 
@@ -30,6 +31,7 @@ Abaixo você encontrará todos as informações necessárias para iniciar o seu 
 
 ## Para o dia da entrevista técnica
 Na data marcada pelo recrutador tenha sua aplicação rodando na sua máquina local para execução dos testes e para nos mostrar os pontos desenvolvidos e possíveis questionamentos.
+Faremos um code review junto contigo como se você já fosse do nosso time :heart:, você poderá explicar o que você pensou, como arquitetou e como pode evoluir o projeto.
 
 ## Objetivo - PicPay Simplificado
 
