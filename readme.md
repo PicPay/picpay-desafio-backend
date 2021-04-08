@@ -55,7 +55,7 @@ Requisitos:
 
 ### Payload
 
-Voce pode trazer uma proposta de payload, mas trazemos um exemplo aqui:
+Você pode trazer uma **proposta** de payload, mas trazemos um exemplo aqui:
 
 POST /transaction
 
@@ -76,6 +76,9 @@ Atente-se a cumprir a maioria dos requisitos, pois você pode cumprir-los parcia
 Teremos 2 partes da avaliação:
 
 A correção objetiva será realizada através da utilização de um script de correção automatizada.
+```
+docker run -it --rm -v $(pwd):/project -w /project jakzal/phpqa phpmd app text cleancode,codesize,controversial,design,naming,unusedcode
+```    
 
 A correção qualitativa será durante a entrevista e levará em conta os seguintes critérios:
 
@@ -98,7 +101,8 @@ Caso não tenha atingido aceitavelmente o que estamos propondo acima, não iremo
 
 ## O que NÃO será avaliado :warning:
 - Fluxo de cadastro de usuários e lojistas
-- Frontend (só avaliaremos a API Restful)
+- Frontend (só avaliaremos a (API Restful)[https://www.devmedia.com.br/rest-tutorial/28912])
+- Autenticação
 
 ## O que será um diferencial
 - Uso de Docker
@@ -112,10 +116,11 @@ Caso não tenha atingido aceitavelmente o que estamos propondo acima, não iremo
 ## Materiais úteis
 - https://picpay.com/site/sobre-nos
 - https://hub.packtpub.com/why-we-need-design-patterns/
+- https://refactoring.guru/
 - http://br.phptherightway.com/
 - https://www.php-fig.org/psr/psr-12/
 - https://www.atlassian.com/continuous-delivery/software-testing/types-of-software-testing
 - https://github.com/exakat/php-static-analysis-tools
 - https://martinfowler.com/articles/microservices.htm
 - https://docs.guzzlephp.org/en/stable/request-options.html
-- https://refactoring.guru/
+- https://www.devmedia.com.br/rest-tutorial/28912
