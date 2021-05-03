@@ -49,7 +49,7 @@ Requisitos:
 
 - A operação de transferência deve ser uma transação (ou seja, revertida em qualquer caso de inconsistência) e o dinheiro deve voltar para a carteira do usuário que envia. 
 
-- No recebimento de pagamento, o usuário ou lojista precisa receber notificação (envio de email, sms) enviada por um serviço de terceiro e eventualmente este serviço pode estar indisponível/instável. Use este mock para simular o envio (https://run.mocky.io/v3/b19f7b9f-9cbf-4fc6-ad22-dc30601aec04). 
+- No recebimento de pagamento, o usuário ou lojista precisa receber notificação (envio de email, sms) enviada por um serviço de terceiro e eventualmente este serviço pode estar indisponível/instável. Use este mock para simular o envio (http://o4d9z.mocklab.io/notify). 
 
 - Este serviço deve ser RESTFul.
 
@@ -75,7 +75,7 @@ Atente-se a cumprir a maioria dos requisitos, pois você pode cumprir-los parcia
 
 Teremos 2 partes da avaliação:
 
-A correção objetiva será realizada através da utilização de um script de correção automatizada.
+A correção objetiva será realizada através da utilização de um script de correção automatizada. Você pode rodar na sua máquina local ou usar outra ferramenta:
 ```
 docker run -it --rm -v $(pwd):/project -w /project jakzal/phpqa phpmd app text cleancode,codesize,controversial,design,naming,unusedcode
 ```    
