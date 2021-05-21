@@ -45,7 +45,7 @@ Requisitos:
 
 - Lojistas **só recebem** transferências, não enviam dinheiro para ninguém.
 
-- Validar se o usuário tem saldo.
+- Validar se o usuário tem saldo antes da transferência.
 
 - Antes de finalizar a transferência, deve-se consultar um serviço autorizador externo, use este mock para simular (https://run.mocky.io/v3/8fafdd68-a090-496f-8c9a-3442cf30dae6).
 
@@ -57,7 +57,7 @@ Requisitos:
 
 ### Payload
 
-Você pode trazer uma **proposta** de payload, mas trazemos um exemplo aqui:
+Faça uma **proposta** de payload, mas trazemos um exemplo aqui:
 
 POST /transaction
 
@@ -77,7 +77,7 @@ Atente-se a cumprir a maioria dos requisitos, pois você pode cumprir-los parcia
 
 Teremos 2 partes da avaliação:
 
-A correção objetiva será realizada através da utilização de um script de correção automatizada. Você pode rodar na sua máquina local ou usar outra ferramenta:
+A correção objetiva será realizada através da utilização de um script de correção automatizada. Você **pode** rodar na sua máquina local ou usar outra ferramenta:
 ```
 docker run -it --rm -v $(pwd):/project -w /project jakzal/phpqa phpmd app text cleancode,codesize,controversial,design,naming,unusedcode
 ```    
@@ -106,7 +106,7 @@ Caso não tenha atingido aceitavelmente o que estamos propondo acima, não iremo
 - Frontend (só avaliaremos a (API Restful)[https://www.devmedia.com.br/rest-tutorial/28912])
 - Autenticação
 
-## O que será um diferencial
+## O que será um Diferencial
 - Uso de Docker
 - Testes de [integração](https://www.atlassian.com/continuous-delivery/software-testing/types-of-software-testing)
 - Testes [unitários](https://www.atlassian.com/continuous-delivery/software-testing/types-of-software-testing)
