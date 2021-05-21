@@ -45,6 +45,8 @@ Requisitos:
 
 - Lojistas **só recebem** transferências, não enviam dinheiro para ninguém.
 
+- Validar se o usuário tem saldo.
+
 - Antes de finalizar a transferência, deve-se consultar um serviço autorizador externo, use este mock para simular (https://run.mocky.io/v3/8fafdd68-a090-496f-8c9a-3442cf30dae6).
 
 - A operação de transferência deve ser uma transação (ou seja, revertida em qualquer caso de inconsistência) e o dinheiro deve voltar para a carteira do usuário que envia. 
