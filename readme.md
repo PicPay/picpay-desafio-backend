@@ -58,7 +58,7 @@ Requisitos:
 
 ### Payload
 
-Nós iremos rodar validar seu projeto com um teste automatizado, por isso é importante que você mantenha esse payload em suas requisições:
+Nós iremos validar o seu projeto com um teste automatizado, por isso é importante que você mantenha esse payload em suas requisições:
 
 Request: POST /transaction
 
