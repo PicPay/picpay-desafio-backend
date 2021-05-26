@@ -6,6 +6,7 @@ Abaixo você encontrará todos as informações necessárias para iniciar o seu 
 ## Avisos antes de começar
 
 - Crie um repositório no seu GitHub **sem citar nada relacionado ao PicPay**.
+- Nós amamos trabalho otimizado e acreditamos muito no poder dos frameworks, **mas não use nenhuma biblioteca/framework nas regras de negócio do seu projeto.**
 - Faça seus commits no seu repositório.
 - Envie o link do seu repositório para o email **talentos_php@picpay.com**.
 - Você poderá consultar o Google, Stackoverflow ou algum projeto particular na sua máquina.
@@ -26,7 +27,7 @@ Abaixo você encontrará todos as informações necessárias para iniciar o seu 
 
 ## Setup do projeto
 
-- Framework: Fique a vontade pra usar o framework que quiser
+- Framework: Fique a vontade pra usar o framework que quiser, **mas não use nenhuma biblioteca/framework nas regras de negócio do seu projeto.**
 - Subir local ou Docker * (valorizamos uma boa estrutura de docker feita por você)
 
 ## Para o dia da entrevista técnica
@@ -57,15 +58,23 @@ Requisitos:
 
 ### Payload
 
-Faça uma **proposta** de payload, mas trazemos um exemplo aqui:
+Nós iremos rodar validar seu projeto com um teste automatizado, por isso é importante que você mantenha esse payload em suas requisições:
 
-POST /transaction
+Request: POST /transaction
 
 ```json
 {
     "value" : 100.00,
     "payer" : 4,
     "payee" : 15
+}
+```
+
+Response: POST /transaction
+```json
+{
+    "status" : "ok" || "error",
+    "message": "Mensagem de erro caso exista"
 }
 ```
 
