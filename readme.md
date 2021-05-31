@@ -62,7 +62,7 @@ Requisitos:
 
 ### Payload
 
-Faça uma **proposta** de payload, mas trazemos um exemplo aqui:
+Faça uma **proposta** :heart: de payload, se preferir, temos uma exemplo aqui:
 
 POST /transaction
 
