@@ -16,7 +16,7 @@ Abaixo você encontrará todos as informações necessárias para iniciar o seu 
 ### Como submeter
 - Envie o link do seu repositório para o email **talentos_php@picpay.com**.
 
-- No coro do email inclua as seguintes informações:
+- No corpo do email inclua as seguintes informações:
 
 >Seu Nome
 >
