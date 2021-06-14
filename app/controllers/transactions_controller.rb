@@ -17,6 +17,8 @@ class TransactionsController < ApplicationController
 
           NotificationService.new.call # send SMS
           
+          Transaction.create!(senderId: sender.id, receiverId: receiver.id, value: amount)
+          
           render json: {'message': 'The ammount was exchanged successfully.'}, status: :ok
         else
           render json: {'message': 'The sender cannot be a shopkeeper.'}, status: :ok
