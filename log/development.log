@@ -1943,3 +1943,81 @@ Processing by TransactionsController#exchange as JSON
 Completed 200 OK in 69ms (Views: 1.1ms | ActiveRecord: 28.3ms | Allocations: 10493)
 
 
+Started POST "/exchange" for 127.0.0.1 at 2021-06-14 17:30:28 -0300
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by TransactionsController#exchange as JSON
+  Parameters: {"from"=>{"email"=>"email2@email.com", "amount"=>0.7}, "to"=>{"email"=>"email@email.com"}, "transaction"=>{"from"=>{"email"=>"email2@email.com", "amount"=>0.7}, "to"=>{"email"=>"email@email.com"}}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "email2@email.com"], ["LIMIT", 1]]
+  ↳ app/controllers/transactions_controller.rb:5:in `exchange'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "email@email.com"], ["LIMIT", 1]]
+  ↳ app/controllers/transactions_controller.rb:6:in `exchange'
+  [1m[36mWallet Load (0.2ms)[0m  [1m[34mSELECT "wallets".* FROM "wallets" WHERE "wallets"."user_id" = ? LIMIT ?[0m  [["user_id", 3], ["LIMIT", 1]]
+  ↳ app/models/user.rb:13:in `can_pay?'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/wallet.rb:9:in `decrease_balance'
+  [1m[36mWallet Update (1.7ms)[0m  [1m[33mUPDATE "wallets" SET "balance" = ?, "updated_at" = ? WHERE "wallets"."id" = ?[0m  [["balance", 12.600000000000001], ["updated_at", "2021-06-14 20:30:28.247133"], ["id", 3]]
+  ↳ app/models/wallet.rb:9:in `decrease_balance'
+  [1m[36mTRANSACTION (6.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/models/wallet.rb:9:in `decrease_balance'
+  [1m[36mWallet Load (0.2ms)[0m  [1m[34mSELECT "wallets".* FROM "wallets" WHERE "wallets"."user_id" = ? LIMIT ?[0m  [["user_id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/transactions_controller.rb:16:in `exchange'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/wallet.rb:5:in `increase_balance'
+  [1m[36mWallet Update (0.8ms)[0m  [1m[33mUPDATE "wallets" SET "balance" = ?, "updated_at" = ? WHERE "wallets"."id" = ?[0m  [["balance", 7.4], ["updated_at", "2021-06-14 20:30:28.270344"], ["id", 4]]
+  ↳ app/models/wallet.rb:5:in `increase_balance'
+  [1m[36mTRANSACTION (5.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/models/wallet.rb:5:in `increase_balance'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.53ms)
+Completed 200 OK in 246876ms (Views: 27.5ms | ActiveRecord: 17.3ms | Allocations: 209350)
+
+
+Started POST "/exchange" for 127.0.0.1 at 2021-06-14 17:34:46 -0300
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by TransactionsController#exchange as JSON
+  Parameters: {"from"=>{"email"=>"email2@email.com", "amount"=>0.7}, "to"=>{"email"=>"email@email.com"}, "transaction"=>{"from"=>{"email"=>"email2@email.com", "amount"=>0.7}, "to"=>{"email"=>"email@email.com"}}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "email2@email.com"], ["LIMIT", 1]]
+  ↳ app/controllers/transactions_controller.rb:5:in `exchange'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "email@email.com"], ["LIMIT", 1]]
+  ↳ app/controllers/transactions_controller.rb:6:in `exchange'
+  [1m[36mWallet Load (0.2ms)[0m  [1m[34mSELECT "wallets".* FROM "wallets" WHERE "wallets"."user_id" = ? LIMIT ?[0m  [["user_id", 3], ["LIMIT", 1]]
+  ↳ app/models/user.rb:13:in `can_pay?'
+Completed 500 Internal Server Error in 16785ms (ActiveRecord: 2.5ms | Allocations: 19188)
+
+
+  
+ArgumentError (comparison of Float with true failed):
+  
+app/models/user.rb:13:in `>='
+app/models/user.rb:13:in `can_pay?'
+app/controllers/transactions_controller.rb:9:in `exchange'
+Started POST "/exchange" for 127.0.0.1 at 2021-06-14 17:35:27 -0300
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by TransactionsController#exchange as JSON
+  Parameters: {"from"=>{"email"=>"email2@email.com", "amount"=>0.7}, "to"=>{"email"=>"email@email.com"}, "transaction"=>{"from"=>{"email"=>"email2@email.com", "amount"=>0.7}, "to"=>{"email"=>"email@email.com"}}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "email2@email.com"], ["LIMIT", 1]]
+  ↳ app/controllers/transactions_controller.rb:5:in `exchange'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "email@email.com"], ["LIMIT", 1]]
+  ↳ app/controllers/transactions_controller.rb:6:in `exchange'
+  [1m[36mWallet Load (0.3ms)[0m  [1m[34mSELECT "wallets".* FROM "wallets" WHERE "wallets"."user_id" = ? LIMIT ?[0m  [["user_id", 3], ["LIMIT", 1]]
+  ↳ app/models/user.rb:13:in `can_pay?'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/wallet.rb:9:in `decrease_balance'
+  [1m[36mWallet Update (0.6ms)[0m  [1m[33mUPDATE "wallets" SET "balance" = ?, "updated_at" = ? WHERE "wallets"."id" = ?[0m  [["balance", 11.900000000000002], ["updated_at", "2021-06-14 20:35:27.569989"], ["id", 3]]
+  ↳ app/models/wallet.rb:9:in `decrease_balance'
+  [1m[36mTRANSACTION (11.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/models/wallet.rb:9:in `decrease_balance'
+  [1m[36mWallet Load (0.2ms)[0m  [1m[34mSELECT "wallets".* FROM "wallets" WHERE "wallets"."user_id" = ? LIMIT ?[0m  [["user_id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/transactions_controller.rb:16:in `exchange'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/wallet.rb:5:in `increase_balance'
+  [1m[36mWallet Update (1.0ms)[0m  [1m[33mUPDATE "wallets" SET "balance" = ?, "updated_at" = ? WHERE "wallets"."id" = ?[0m  [["balance", 8.1], ["updated_at", "2021-06-14 20:35:27.597037"], ["id", 4]]
+  ↳ app/models/wallet.rb:5:in `increase_balance'
+  [1m[36mTRANSACTION (6.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/models/wallet.rb:5:in `increase_balance'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.48ms)
+Completed 200 OK in 3675ms (Views: 5.6ms | ActiveRecord: 22.3ms | Allocations: 29696)
+
+

@@ -6,7 +6,7 @@ class TransactionsController < ApplicationController
     receiver = User.find_by(email: data['to']['email'])
     amount = data['from']['amount'].to_f
 
-    if !sender.can_pay? amount
+    if !sender.can_pay?(amount) && authorized?
       render json: {'message': 'Sender has not enough funds.'}
     else
       begin
@@ -14,6 +14,8 @@ class TransactionsController < ApplicationController
           sender.wallet.decrease_balance(amount)
   
           receiver.wallet.increase_balance(amount)
+
+          NotificationService.new.call # send SMS
           
           render json: {'message': 'The ammount was exchanged successfully.'}, status: :ok
         else
@@ -23,5 +25,11 @@ class TransactionsController < ApplicationController
         render json: {'message': 'There was an error. Check the transaction payload.'}, status: :forbidden
       end
     end
+  end
+
+  private
+
+  def authorized?
+    AuthorizerService.new.call.body.include? 'Success'
   end
 end
