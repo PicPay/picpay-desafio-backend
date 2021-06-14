@@ -9,6 +9,10 @@ class User < ApplicationRecord
   validates :email, uniqueness: true
   validates :ssn, uniqueness: true 
 
+  def can_pay?(value)
+    self.wallet.balance >= value
+  end
+
   private
   
   def create_default_wallet
