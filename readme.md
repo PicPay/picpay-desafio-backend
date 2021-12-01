@@ -7,7 +7,7 @@ Abaixo você encontrará todos as informações necessárias para iniciar o seu 
 
 - Crie um repositório no seu GitHub **sem citar nada relacionado ao PicPay**.
 - Faça seus commits no seu repositório.
-- Envie o link do seu repositório para o email **do recrutador responsavel**.
+- Envie o link do seu repositório para o email **do recrutador responsável**.
 - Você poderá consultar o Google, Stackoverflow ou algum projeto particular na sua máquina.
 - Dê uma olhada nos [Materiais úteis](#materiais-úteis).
 - Dê uma olhada em como será a [entrevista](#para-o-dia-da-entrevista-técnica).
