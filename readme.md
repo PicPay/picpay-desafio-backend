@@ -5,7 +5,9 @@ Abaixo você encontrará todos as informações necessárias para iniciar o seu 
 
 ## Avisos antes de começar
 
+
 -   Crie um repositório no seu GitHub **sem citar nada relacionado ao PicPay**.
+-   Nós amamos trabalho otimizado e acreditamos muito no poder dos frameworks, **mas não use nenhuma biblioteca/framework nas regras de negócio do seu projeto.**
 -   Faça seus commits no seu repositório.
 -   Envie o link do seu repositório para o email **do recrutador responsável**.
 -   Você poderá consultar o Google, Stackoverflow ou algum projeto particular na sua máquina.
@@ -25,6 +27,7 @@ _Corpo do Email com o link do repositório do desafio_
 > Link do Linkedin
 
 ### Sobre o ambiente da aplicação:
+
 
 -   Escolha qualquer framework que se sinta **confortável** em trabalhar. Esse teste **não faz** nenhuma preferência, portanto decida por aquele com o qual estará mais seguro em apresentar e conversar com a gente na entrevista ;)
 
@@ -63,9 +66,9 @@ Requisitos:
 
 ### Payload
 
-Faça uma **proposta** :heart: de payload, se preferir, temos uma exemplo aqui:
+Nós iremos validar o seu projeto com um teste automatizado, por isso é importante que você mantenha esse payload em suas requisições:
 
-POST /transaction
+Request: POST /transaction
 
 ```json
 {
@@ -74,6 +77,15 @@ POST /transaction
     "payee": 15
 }
 ```
+
+Response: POST /transaction
+```json
+{
+    "status" : "ok" || "error",
+    "message": "Mensagem de erro caso exista"
+}
+```
+
 
 # Avaliação
 
