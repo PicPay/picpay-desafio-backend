@@ -106,13 +106,13 @@ um papo a respeito do que faltou.
 
 ## O que será avaliado e valorizamos :heart:
 
-### Nível Júnior
+Habilidades básicas de criação de APIs:
 - Conhecimentos sobre REST
 - Uso do Git
 - Capacidade analítica
 - Apresentação de código limpo e organizado
 
-### Nível Pleno
+Conhecimentos intermediários de construção de projetos manuteníveis:
 - Aderência a recomendações de implementação como as PSRs
 - Aplicação e conhecimentos de SOLID
 - Identificação e aplicação de Design Patterns
@@ -123,7 +123,7 @@ um papo a respeito do que faltou.
 - Identificar e propor melhorias
 - Boas noções de bancos de dados relacionais
 
-### Nível Sênior
+Aptidões para criar e manter aplicações de alta qualidade:
 - Aplicação de conhecimentos de observabilidade
 - Utlização de CI para rodar testes e análises estáticas
 - Conhecimentos sobre bancos de dados não-relacionais
