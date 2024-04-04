@@ -106,7 +106,7 @@ um papo a respeito do que faltou.
 
 ## O que será avaliado e valorizamos :heart:
 
-Habilidades básicas de criação de APIs:
+Habilidades básicas de criação de projetos backend:
 - Conhecimentos sobre REST
 - Uso do Git
 - Capacidade analítica
