@@ -1,4 +1,5 @@
-# Desafio Back-end PicPay (Desafio feito 100%, olhem a pasta picpay)
+# Desafio Back-end PicPay 
+## (Desafio finalizado dia 13/05/2024, olhem a pasta picpay)
 
 
 Primeiramente, obrigado pelo seu interesse em trabalhar na melhor plataforma de pagamentos do mundo!
