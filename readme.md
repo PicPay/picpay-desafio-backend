@@ -1,5 +1,5 @@
-# Desafio Back-end PicPay
-(Desafio feito 100%, olhem a pasta picpay)
+# Desafio Back-end PicPay (Desafio feito 100%, olhem a pasta picpay)
+
 
 Primeiramente, obrigado pelo seu interesse em trabalhar na melhor plataforma de pagamentos do mundo!
 Abaixo você encontrará todos as informações necessárias para iniciar o seu teste.
