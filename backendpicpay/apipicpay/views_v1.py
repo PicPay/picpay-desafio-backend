@@ -42,6 +42,6 @@ class UsuarioAutorizacaoDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = UsuarioAutorizacaoSerializer
 
     def get_object(self):
-        if self.kwargs.get('curso_pk'):
-            return get_object_or_404(self.get_queryset(), curso_id = self.kwargs.get('curso_pk'), pk = self.kwargs.get('usuario_pk'))
+        if self.kwargs.get('usuario_pk'):
+            return get_object_or_404(self.get_queryset(), curso_id = self.kwargs.get('usuario_pk'), pk = self.kwargs.get('usuario_pk'))
         return get_object_or_404(self.get_queryset(), pk = self.kwargs.get('usuario_pk'))

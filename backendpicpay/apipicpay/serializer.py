@@ -1,10 +1,23 @@
 from rest_framework import serializers
 from .models import *
 
+class ChavePixSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ChavePix
+        fields = '__all__'
+
+class AutorizacaoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Autorizacao
+        fields = '__all__'
+        
 class SaldoUserSerializer(serializers.ModelSerializer):
+    chave_pix = ChavePixSerializer(read_only=True)
+    autorizado = AutorizacaoSerializer(read_only=True)
+
     class Meta:
         model = SaldoUser
-        fields = fields = '__all__'
+        fields = ['usuario', 'saldo', 'ativo', 'autorizado', 'chave_pix']
 
 class UsuarioSerializer(serializers.ModelSerializer):
     saldoUser = SaldoUserSerializer(many=True, read_only=True, source='saldouser_set')
@@ -17,11 +30,6 @@ class UsuarioSerializer(serializers.ModelSerializer):
 class TipoUsuarioSerializer(serializers.ModelSerializer):
     class Meta:
         model = TipoUsuario
-        fields = '__all__'
-
-class AutorizacaoSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Autorizacao
         fields = '__all__'
 
 class UsuarioAutorizacaoSerializer(serializers.ModelSerializer):

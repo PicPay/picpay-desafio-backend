@@ -22,3 +22,7 @@ class UsuarioAutorizacaoAdmin(admin.ModelAdmin):
     list_display = ['id', 'usuario', 'tipo_usuario', 'autorizado']
     list_filter = ['tipo_usuario', 'autorizado']
     search_fields = ['usuario__nome']
+
+@admin.register(SaldoUser)
+class SaldoUserAdmin(admin.ModelAdmin):
+    list_display = ['usuario', 'saldo', 'ativo', 'autorizado', 'chave_pix']

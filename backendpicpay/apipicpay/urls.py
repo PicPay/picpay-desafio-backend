@@ -7,6 +7,6 @@ from .views_v1 import *
 
 urlpatterns = [
     path('usuarios/', UsuarioListCreate.as_view(), name='usuario-list-create'),
-    path('usuarios/<int:pk>/', UsuarioDetail.as_view(), name='usuario-detail'),
+    path('usuario/<int:pk>/', UsuarioDetail.as_view(), name='usuario-detail'),
     # path('auth/', include('rest_framework.urls')),
 ]
