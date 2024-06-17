@@ -1,3 +1,4 @@
 # Desafio Back-end PicPay
 
-![image](https://github.com/mcarina/picpay-desafio-backend/assets/102268481/a80e7572-b25b-4bd1-8ddd-7f5b0bd9d7a5)
+![image](https://github.com/mcarina/picpay-desafio-backend/assets/102268481/4b2b5a81-c238-4c25-825c-438f9a0e8c13)
+
