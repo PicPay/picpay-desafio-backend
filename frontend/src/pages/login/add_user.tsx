@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Api } from '../contexts/api';
+import { Api } from '../../contexts/api';
 
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
@@ -126,7 +126,7 @@ const AddUser: React.FC = () => {
                 </Form.Group>
             )}
 
-            <Button type="submit">Cadastrar Usuário</Button>
+            <Button type="submit">Cadastrar</Button>
         </Form>
     );
 };
