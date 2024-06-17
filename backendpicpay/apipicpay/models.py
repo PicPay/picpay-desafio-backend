@@ -53,11 +53,11 @@ def criar_usuario_autorizacao(sender, instance, created, **kwargs):
         autorizacao = Autorizacao.objects.get(tipo_usuario=tipo_usuario)
         UsuarioAutorizacao.objects.create(usuario=instance, tipo_usuario=tipo_usuario, autorizado=autorizacao.autorizado)
     
-# class SaldoUser(models.Model):
-#     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
-#     saldo = models.DecimalField(max_digits=12, decimal_places=2)
-#     ativo = models.BooleanField()
-#     autorizado = models.ForeignKey(UsuarioAutorizacao, on_delete=models.SET_NULL, null=True, blank=True)
+class SaldoUser(models.Model):
+    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    saldo = models.DecimalField(max_digits=12, decimal_places=2)
+    ativo = models.BooleanField()
+    autorizado = models.ForeignKey(UsuarioAutorizacao, on_delete=models.SET_NULL, null=True, blank=True)
 
-#     def __str__(self):
-#         return f"Saldo de {self.usuario.nome}: {self.saldo}"
+    def __str__(self):
+        return f"Saldo de {self.usuario.nome}: {self.saldo}"
