@@ -1,19 +1,18 @@
 import React, { useEffect } from 'react';
 import { Api } from '../../../contexts/api';
-import Transacao from './transacao';
-import CadChavePix from './cad_chavePix';
+import Recebimento from './recebimento';
 
 import { Navbar, Form, InputGroup, Row, Col } from 'react-bootstrap';
 
 
-const NavSaldoPessoaFIsica: React.FC = () => {
+const NavSaldoPessoaJurica: React.FC = () => {
 
   const [saldo, setSaldo] = React.useState('');
 
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await Api.get('/usuarios/4/');
+        const response = await Api.get('/usuarios/3/');
         // Acessar o saldo dentro de saldoUser
         const saldo = response.data.saldoUser[0]?.saldo || '0.00';
         setSaldo(saldo);
@@ -45,10 +44,9 @@ const NavSaldoPessoaFIsica: React.FC = () => {
                 <p>0000 / 00.000000.0</p>
               </Col>
               <Col xs="auto">
-                <Transacao/>
+              <Recebimento/>
               </Col>
               <Col xs="auto">
-                <CadChavePix/>
               </Col>
             </Row>
           </Form>
@@ -56,4 +54,4 @@ const NavSaldoPessoaFIsica: React.FC = () => {
       );
 };
 
-export default NavSaldoPessoaFIsica;
+export default NavSaldoPessoaJurica;

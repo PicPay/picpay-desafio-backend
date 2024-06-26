@@ -1,43 +1,51 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Api } from '../../../contexts/api';
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
-import Form from 'react-bootstrap/Form';
-import InputGroup from 'react-bootstrap/InputGroup';
+
+import { Button, Modal, Form, InputGroup } from 'react-bootstrap';
 
 const Transacao: React.FC = () => {
-    const [modalShow, setModalShow] = React.useState(false);
-    const [transferType, setTransferType] = React.useState('');
-    const [transferValue, setTransferValue] = React.useState('');
+    const [modalShow, setModalShow] = useState(false);
+    const [transferType, setTransferType] = useState('');
+    const [transferValue, setTransferValue] = useState('');
+    const [pixKey, setPixKey] = useState('');
+    const [error, setError] = useState<string | null>(null);
 
     const handleClose = () => setModalShow(false);
     const handleShow = () => setModalShow(true);
+
+    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setTransferValue(event.target.value);
+    };
+
+    const handlePixKeyChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setPixKey(event.target.value);
+    };
+
     const handleTransferTypeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setTransferType(event.target.value);
     };
 
-    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setTransferValue(event.target.value);
-      }
+    const handleTransferSubmit = async () => {
+        const formattedTransferValue = transferValue.replace(',', '.');
 
-      const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-    
-        const formattedTransferValue = parseFloat(transferValue).toFixed(2); // Format to 2 decimal places
-    
         try {
-          const response = await Api.post('/transferencias', {
-            valor: formattedTransferValue,
-            // Other transfer data as needed
-          });
-    
-          console.log('Transferência enviada com sucesso:', response.data);
-          // Handle successful response (show success message, redirect, etc.)
+            const response = await Api.post('/usuarios/', {
+                saldo: formattedTransferValue,
+                chave_pix: {
+                    cpf: pixKey,
+                },
+            });
+
+            console.log('Transferência enviada com sucesso:', response.data);
+            handleClose();
         } catch (error) {
-          console.error('Erro ao enviar transferência:', error);
-          // Handle errors (show error message, retry logic, etc.)
+            if (error.response && error.response.data && error.response.data.saldo) {
+                setError(error.response.data.saldo[0]);
+            } else {
+                setError('Erro ao enviar transferência.');
+            }
         }
-      };
+    };
 
     return (
         <>
@@ -58,13 +66,12 @@ const Transacao: React.FC = () => {
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-
                     <InputGroup className="mb-2">
                         <InputGroup.Text>Valor</InputGroup.Text>
                         <InputGroup.Text>R$</InputGroup.Text>
-                        <Form.Control 
+                        <Form.Control
                             aria-label="Valor da transferência"
-                            placeholder='00,00'
+                            placeholder="00,00"
                             required
                             type="number"
                             value={transferValue}
@@ -72,9 +79,8 @@ const Transacao: React.FC = () => {
                         />
                     </InputGroup>
 
-
-                    <Form.Select 
-                        aria-label="Tipo de Transferência" 
+                    <Form.Select
+                        aria-label="Tipo de Transferência"
                         onChange={handleTransferTypeChange}
                     >
                         <option>Tipo de Transferência</option>
@@ -85,7 +91,12 @@ const Transacao: React.FC = () => {
                     {transferType === 'Pix' && (
                         <InputGroup className="mt-3">
                             <InputGroup.Text>Chave Pix</InputGroup.Text>
-                            <Form.Control aria-label="Chave do Pix" placeholder='cpf / email / numero / chave-aleatoria' />
+                            <Form.Control
+                                aria-label="Chave do Pix"
+                                placeholder="cpf / email / numero / chave-aleatoria"
+                                value={pixKey}
+                                onChange={handlePixKeyChange}
+                            />
                         </InputGroup>
                     )}
 
@@ -110,10 +121,10 @@ const Transacao: React.FC = () => {
                         </>
                     
                     )}
-
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button type='submit' variant="primary" onClick={handleFormSubmit}> 
+                    {error && <p style={{ color: 'red' }}>{error}</p>}
+                    <Button type="submit" variant="primary" onClick={handleTransferSubmit}>
                         Enviar
                     </Button>
                 </Modal.Footer>

@@ -1,6 +1,5 @@
 import React from 'react';
-import { Link } from "react-router-dom";
-// import { Api } from '../contexts/api';
+import { Link, useNavigate  } from "react-router-dom";
 
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -8,12 +7,19 @@ import { Card } from 'react-bootstrap';
 
 const Login: React.FC = () => {
 
+    const navigate = useNavigate();
+
+    const handleLoginSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        navigate('/PessoaFisica');
+    };
+
   return (
     <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: '80vh'
     }}>
         <Card style={{ width: '30rem' }}>
             <Card.Body>
-                <Form>
+                <Form onSubmit={handleLoginSubmit}>
                     <h3>Login</h3>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Email</Form.Label>

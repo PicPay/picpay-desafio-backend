@@ -6,6 +6,7 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Row from 'react-bootstrap/Row';
+import { Card } from 'react-bootstrap';
 
 const AddUser: React.FC = () => {
     const [userName, setUserName] = useState<string>('');
@@ -13,6 +14,7 @@ const AddUser: React.FC = () => {
     const [email, setEmail] = useState<string>('');
     const [tipousuario, setTipousuario] = useState<number>(0);
     const [errorMessage, setErrorMessage] = useState<string>('');
+    const [successMessage, setSuccessMessage] = useState<string>('');
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -39,14 +41,14 @@ const AddUser: React.FC = () => {
         e.preventDefault();
         
         try {
-            const response = await Api.post('/usuarios/', {
+            await Api.post('/usuarios/', {
                 nome: userName,
                 cpf_cnpj: userCpf_Cnpj,
                 email: email,
                 tipo_usuario: tipousuario,
             });
-            console.log('Usuário cadastrado com sucesso:', response.data);
-            // Optionally, update your local state or fetch users again after successful submission
+            setSuccessMessage('Usuário cadastrado com sucesso');
+
         } catch (error) {
             console.error('Erro ao cadastrar usuário:', error);
             if (error.response && error.response.data && error.response.data.cpf_cnpj || error.response.data.email ) {
@@ -57,77 +59,93 @@ const AddUser: React.FC = () => {
         }
     }
     return (
-        <Form onSubmit={handleSubmit} noValidate>
-            <Form.Group as={Row} className="mb-3" controlId="validationFormik01">
-                <Form.Label column sm={2}>Nome: </Form.Label>
-                <Col sm={10}>
-                    <Form.Control
-                        type="text"
-                        name="Nome"
-                        value={userName}
-                        onChange={handleInputChange}
-                        placeholder='Nome Completo'
-                        required                        
-                    />
-                </Col>
-            </Form.Group>
+        <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: '80vh'
+        }}>    
+        <Card style={{ width: '34rem' }}>
+            <Card.Body>
+                <h3>Cadastre-se</h3>
+                <Form onSubmit={handleSubmit} noValidate>
+                    <Form.Group as={Row} className="mb-3" controlId="validationFormik01">
+                        <Form.Label column sm={2}>Nome: </Form.Label>
+                        <Col sm={10}>
+                            <Form.Control
+                                type="text"
+                                name="Nome"
+                                value={userName}
+                                onChange={handleInputChange}
+                                placeholder='Nome Completo'
+                                required                        
+                            />
+                        </Col>
+                    </Form.Group>
 
-            <Form.Group as={Row} className="mb-3" controlId="validationFormikUsername">
-                <Form.Label column sm={2}>Cpf/Cnpj</Form.Label>
-                <Col sm={10}>
-                    <InputGroup hasValidation>
-                        <Form.Control
-                            type="text"
-                            name="cpf_cnpj"
-                            value={userCpf_Cnpj}
-                            onChange={handleInputChange}
-                            placeholder='Cpf ou Cnpj'
-                            required                                 
-                        />
-                    </InputGroup>
-                </Col>
-            </Form.Group>
+                    <Form.Group as={Row} className="mb-3" controlId="validationFormikUsername">
+                        <Form.Label column sm={2}>Cpf/Cnpj</Form.Label>
+                        <Col sm={10}>
+                            <InputGroup hasValidation>
+                                <Form.Control
+                                    type="text"
+                                    name="cpf_cnpj"
+                                    value={userCpf_Cnpj}
+                                    onChange={handleInputChange}
+                                    placeholder='Cpf ou Cnpj'
+                                    required                                 
+                                />
+                            </InputGroup>
+                        </Col>
+                    </Form.Group>
 
-            <Form.Group as={Row} className="mb-3" controlId="validationFormik03">
-                <Form.Label column sm={2}>Email</Form.Label>
-                <Col sm={10}>
-                    <Form.Control
-                        type="email"
-                        name="email"
-                        value={email}
-                        onChange={handleInputChange}
-                        placeholder='E-mail'
-                        required   
-                    />
-                </Col>
-            </Form.Group>
+                    <Form.Group as={Row} className="mb-3" controlId="validationFormik03">
+                        <Form.Label column sm={2}>Email</Form.Label>
+                        <Col sm={10}>
+                            <Form.Control
+                                type="email"
+                                name="email"
+                                value={email}
+                                onChange={handleInputChange}
+                                placeholder='E-mail'
+                                required   
+                            />
+                        </Col>
+                    </Form.Group>
 
-            <Form.Group as={Row} controlId="formGridState">
-                <Form.Label column sm={2}>Tipo de Usuário</Form.Label>
-                <Col sm={10}>
-                    <Form.Select
-                        value={tipousuario}
-                        onChange={handleTipoUsuarioChange}
-                        aria-label="Selecione o tipo de usuário"
-                        required
-                    >
-                        <option>Selecione</option>
-                        <option value="1">Pessoa Física</option>
-                        <option value="2">Pessoa Jurídica</option>
-                    </Form.Select>
-                </Col>
-            </Form.Group>
+                    <Form.Group as={Row} controlId="formGridState">
+                        <Form.Label column sm={2}>Tipo de Usuário</Form.Label>
+                        <Col sm={10}>
+                            <Form.Select
+                                value={tipousuario}
+                                onChange={handleTipoUsuarioChange}
+                                aria-label="Selecione o tipo de usuário"
+                                required
+                            >
+                                <option>Selecione</option>
+                                <option value="1">Pessoa Física</option>
+                                <option value="2">Pessoa Jurídica</option>
+                            </Form.Select>
+                        </Col>
+                    </Form.Group>
 
-            {errorMessage && (
-                <Form.Group as={Row} className="mb-3">
-                    <Col sm={{ span: 10, offset: 2 }}>
-                        <div className="text-danger">{errorMessage}</div>
-                    </Col>
-                </Form.Group>
-            )}
+                    {errorMessage && (
+                        <Form.Group as={Row} className="mb-3">
+                            <Col sm={{ span: 10, offset: 1 }}>
+                                <div className="text-danger">{errorMessage}</div>
+                            </Col>
+                        </Form.Group>
+                    )}
 
-            <Button type="submit">Cadastrar</Button>
-        </Form>
+                    {successMessage && (
+                        <Form.Group as={Row} className="mb-3">
+                            <Col sm={{ span: 10, offset: 1 }}>
+                                <div className="text-success">{successMessage}</div>
+                            </Col>
+                        </Form.Group>
+                    )}
+
+                    <Button type="submit">Cadastrar</Button>
+                </Form>
+            </Card.Body>
+        </Card>
+    </div>
     );
 };
 

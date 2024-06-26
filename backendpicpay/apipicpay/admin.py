@@ -25,4 +25,8 @@ class UsuarioAutorizacaoAdmin(admin.ModelAdmin):
 
 @admin.register(SaldoUser)
 class SaldoUserAdmin(admin.ModelAdmin):
-    list_display = ['usuario', 'saldo', 'ativo', 'autorizado', 'chave_pix']
+    readonly_fields = ['usuario', 'saldo', 'ativo', 'autorizado', 'chave_pix']
+
+@admin.register(ChavePix)
+class ChavePixAdmin(admin.ModelAdmin):
+    readonly_fields = ['id', 'cpf', 'numero', 'email', 'chave_aleatoria']
