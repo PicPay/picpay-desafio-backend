@@ -50,7 +50,8 @@ class UsuarioAutorizacao(models.Model):
 
     def __str__(self):
         return f"{self.usuario.nome} - {self.tipo_usuario.tipo}"
-
+    
+# gerencia todas as autorizações da qual o usuario tem
 @receiver(post_save, sender=Usuario)
 def criar_usuario_autorizacao(sender, instance, created, **kwargs):
     if created:
@@ -69,7 +70,8 @@ class ChavePix(models.Model):
 
     def __str__(self):
         return f"ChavePix de {self.email}"
-
+    
+# ao ser criada uma nova pix ele é associada ao usúario da qual criou ela
 @receiver(post_save, sender=ChavePix)
 def atualizar_chave_pix_id(sender, instance, created, **kwargs):
     if created:

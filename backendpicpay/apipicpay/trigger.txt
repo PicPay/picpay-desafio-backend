@@ -1,0 +1,20 @@
+# ------------------- Apenas usuarios tipo 1 podem fazer transferencia
+
+CREATE OR REPLACE FUNCTION update_saldo_if_tipo_usuario_is_1()
+RETURNS TRIGGER AS $$
+BEGIN
+    -- Verifica se o usuário tem tipo_usuario_id igual a 1
+    IF (SELECT tipo_usuario_id FROM apipicpay_usuario WHERE id = NEW.usuario_id) = 1 THEN
+        -- Permite a atualização do saldo
+        RETURN NEW;
+    ELSE
+        -- Bloqueia a atualização do saldo e retorna um erro
+        RAISE EXCEPTION 'Usuário não tem permissão para atualizar o saldo';
+    END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER check_tipo_usuario_before_update_saldo
+BEFORE UPDATE OF saldo ON apipicpay_saldouser
+FOR EACH ROW
+EXECUTE FUNCTION update_saldo_if_tipo_usuario_is_1();
