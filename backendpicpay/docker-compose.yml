@@ -1,0 +1,49 @@
+services:
+  db:
+    image: postgres:14.2-alpine
+    restart: always
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - ./data:/var/lib/postgresql/data      
+    ports:
+      - "5432:5432"
+    networks:
+      - webgdjango      
+
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+      PGADMIN_LISTEN_PORT: 80
+    ports:
+      - "5051:80"
+    volumes:
+      - ./data:/var/lib/postgresql/data 
+    depends_on:
+      - db
+    networks:
+      - webgdjango
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONBUFFERED=1
+      - PORT=8000
+    depends_on:
+      - db
+    networks:
+      - webgdjango
+    volumes:
+      - .:/app
+
+networks:
+  webgdjango:
