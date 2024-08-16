@@ -178,6 +178,6 @@ docker run -it --rm -v $(pwd):/project -w /project jakzal/phpqa phpmd app text c
 - https://www.php-fig.org/psr/psr-12/
 - https://www.atlassian.com/continuous-delivery/software-testing/types-of-software-testing
 - https://github.com/exakat/php-static-analysis-tools
-- https://martinfowler.com/articles/microservices.htm
+- https://martinfowler.com/articles/microservices.html
 - https://docs.guzzlephp.org/en/stable/request-options.html
 - https://www.devmedia.com.br/rest-tutorial/28912
