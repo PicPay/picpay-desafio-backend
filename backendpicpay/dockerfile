@@ -1,0 +1,24 @@
+# Use a imagem oficial do Python como imagem base
+FROM python:3.12-slim
+
+ENV PYTHONBUFFERED=1
+
+ENV PORT 8080
+
+# Define o diretório de trabalho no contêiner
+WORKDIR /app
+
+# Copia o arquivo requirements.txt para o diretório de trabalho
+COPY . /app/
+
+# Instala as dependências do projeto
+RUN pip install --no-cache-dir -r requirements.txt \
+    pip install psycopg2-binary
+
+# Copia todo o conteúdo do diretório atual para o diretório de trabalho no contêiner
+COPY . .
+
+EXPOSE 8000
+
+COPY ./entrypoint.sh /
+ENTRYPOINT [ "sh", "/entrypoint.sh" ]
