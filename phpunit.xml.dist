@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.0/phpunit.xsd"
+         colors="true"
+         cacheDirectory=".phpunit.cache">
+    <source>
+        <include>
+            <directory suffix=".php">./src</directory>
+        </include>
+    </source>
+    <testsuites>
+        <testsuite name="default">
+            <directory suffix=".php">./tests</directory>
+        </testsuite>
+    </testsuites>
+</phpunit>

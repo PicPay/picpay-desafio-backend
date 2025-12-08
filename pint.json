@@ -1,0 +1,11 @@
+{
+    "preset": "laravel",
+    "rules": {
+        "not_operator_with_successor_space": true,
+        "phpdoc_align": false,
+        "blank_line_before_statement": false,
+        "@PSR1": true,
+        "@PSR2": true,
+        "@PSR12:risky": true
+    }
+}

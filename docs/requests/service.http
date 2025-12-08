@@ -1,0 +1,2 @@
+### Request to check if the service is up
+GET {{ host }}/up

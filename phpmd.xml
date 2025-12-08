@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<ruleset name="PicPay Dev rule set"
+         xmlns="http://pmd.sf.net/ruleset/1.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://pmd.sf.net/ruleset/1.0.0 http://pmd.sf.net/ruleset_xml_schema.xsd"
+         xsi:noNamespaceSchemaLocation="http://pmd.sf.net/ruleset_xml_schema.xsd">
+    <rule ref="rulesets/cleancode.xml">
+
+    </rule>
+    <rule ref="rulesets/cleancode.xml/BooleanArgumentFlag">
+        <properties>
+            <property name="ignorepattern" value="/^(__construct|format)$/"/>
+        </properties>
+    </rule>
+    <rule ref="rulesets/cleancode.xml/StaticAccess">
+        <properties>
+            <property name="ignorepattern" value="/(^createFrom|create|Raised|from|tryFrom|stack$)/i"/>
+        </properties>
+    </rule>
+    <rule ref="rulesets/controversial.xml"/>
+    <rule ref="rulesets/design.xml/CouplingBetweenObjects">
+        <properties>
+            <property name="maximum" value="20"/>
+        </properties>
+    </rule>
+    <rule ref="rulesets/unusedcode.xml">
+        <exclude name="UnusedFormalParameter"/>
+    </rule>
+    <rule ref="rulesets/codesize.xml">
+    </rule>
+    <rule ref="rulesets/codesize.xml/CyclomaticComplexity">
+        <priority>1</priority>
+        <properties>
+            <property name="reportLevel" value="5"/>
+        </properties>
+    </rule>
+    <rule ref="rulesets/codesize.xml/ExcessiveClassLength">
+        <priority>1</priority>
+        <properties>
+            <property name="minimum" value="90"/>
+            <property name="ignore-whitespace" value="true"/>
+        </properties>
+    </rule>
+    <rule ref="rulesets/codesize.xml/ExcessiveMethodLength">
+        <priority>1</priority>
+        <properties>
+            <property name="minimum" value="25"/>
+            <property name="ignore-whitespace" value="true"/>
+        </properties>
+    </rule>
+    <rule ref="rulesets/codesize.xml/ExcessiveParameterList">
+        <priority>1</priority>
+        <properties>
+            <property name="minimum" value="15"/>
+        </properties>
+    </rule>
+    <rule ref="rulesets/codesize.xml/TooManyFields">
+        <priority>1</priority>
+        <properties>
+            <property name="maxfields" value="12"/>
+        </properties>
+    </rule>
+    <rule ref="rulesets/naming.xml">
+    </rule>
+    <rule ref="rulesets/naming.xml/ShortVariable">
+        <properties>
+            <property name="exceptions" value="id,db,at"/>
+        </properties>
+    </rule>
+    <rule ref="rulesets/naming.xml/LongClassName">
+        <properties>
+            <property name="maximum" value="50"/>
+        </properties>
+    </rule>
+    <rule ref="rulesets/naming.xml/ShortClassName">
+        <properties>
+            <property name="exceptions" value="Id"/>
+        </properties>
+    </rule>
+    <rule ref="rulesets/naming.xml/LongVariable">
+        <properties>
+            <property name="maximum" value="30"/>
+        </properties>
+    </rule>
+    <rule ref="rulesets/naming.xml/ShortMethodName">
+        <properties>
+            <property name="exceptions" value="at"/>
+        </properties>
+    </rule>
+</ruleset>

@@ -1,183 +1,217 @@
-# Desafio Back-end PicPay
+# Desafio Back-end PicPay - Projeto Base para Entrevista
 
 Primeiramente, obrigado pelo seu interesse em trabalhar na melhor plataforma de pagamentos do mundo!
-Abaixo você encontrará todos as informações necessárias para iniciar o seu teste.
 
-## Avisos antes de começar
+## Sobre este projeto
 
-- Leia com atenção este documento todo e tente seguir ao **máximo** as instruções;
-- Crie um repositório no seu GitHub **sem citar nada relacionado ao PicPay**;
-- Faça seus commits no seu repositório;
-- Envie o link do seu repositório para o email **do recrutador responsável**;
-- Você poderá consultar o Google, Stackoverflow ou algum projeto particular na sua máquina;
-- Dê uma olhada nos [Materiais úteis](#materiais-úteis);
-- Dê uma olhada em como será a [entrevista](#para-o-dia-da-entrevista-técnica);
-- Fique à vontade para perguntar qualquer dúvida aos recrutadores;
-- Fique tranquilo, respire, assim como você, também já passamos por essa etapa. Boa sorte! :)
+Este é um **projeto base** que você deve estudar **antes da sua entrevista técnica**. Durante a entrevista, faremos um *
+*live coding** em cima deste código, onde você terá a oportunidade de demonstrar suas habilidades técnicas e propor
+melhorias.
 
-_Corpo do Email com o link do repositório do desafio_
+### O que é este projeto?
 
-> Seu Nome
->
-> Nome do recrutador
->
-> Link do repositório
->
-> Link do Linkedin
+Um **mini PicPay** desenvolvido em **Laravel 12** com funcionalidades básicas de transferência entre usuários. O projeto
+contém implementações propositalmente simplificadas e pontos de melhoria que serão discutidos durante a entrevista.
 
-### Sobre o ambiente da aplicação:
+## Avisos importantes
 
-- Escolha qualquer framework que se sinta **confortável** em trabalhar. Esse teste **não faz** nenhuma preferência,
-  portanto decida por aquele com o qual estará mais seguro em apresentar e conversar com a gente na entrevista ;)
+- **Estude o código com antecedência**: Reserve tempo para entender a estrutura, fluxos e tecnologias utilizadas;
+- **Não é necessário fazer alterações antes da entrevista**: Vamos trabalhar juntos durante o live coding;
+- **Prepare-se para discutir**: Arquitetura, melhorias, design patterns, testes, segurança e boas práticas;
+- **Tenha o ambiente funcionando**: Certifique-se de conseguir rodar o projeto localmente antes da entrevista;
+- **Fique à vontade para fazer anotações**: Identifique pontos que você mudaria ou melhoraria;
+- **Fique tranquilo**: A entrevista é uma conversa técnica, queremos conhecer sua forma de pensar e resolver problemas.
 
-- Você pode, inclusive, não optar por framework nenhum. Neste caso, recomendamos a implementação do serviço via script
-  para diminuir a sobrecarga de criar um servidor web;
+## Requisitos para rodar o projeto
 
-- Ainda assim, se optar por um framework tente evitar usar muito métodos mágicos ou atalhos já prontos. Sabemos que
-  essas facilidades aumentam a produtividade no dia-a-dia mas aqui queremos ver o **seu** código e a sua forma de
-  resolver problemas;
+- **Docker** e **Docker Compose** instalados
+- **Git** para clonar o repositório
+- **Make** (já vem instalado no Linux/Mac, no Windows use WSL)
 
-> Valorizamos uma boa estrutura de containeres criada por você.
+## Como configurar e rodar o projeto
 
-## Para o dia da entrevista técnica
+### 1. Clone o repositório
 
-Na data marcada pelo recrutador tenha sua aplicação rodando na sua máquina local para execução dos testes e para nos
-mostrar os pontos desenvolvidos e possíveis questionamentos.
-Faremos um code review junto contigo como se você já fosse do nosso time :heart:, você poderá explicar o que você
-pensou, como arquitetou e como pode evoluir o projeto.
+```bash
+git clone https://github.com/PicPay/picpay-desafio-backend.git
+cd picpay-desafio-backend
+git checkout -B laravel-12 origin/laravel-12
+```
 
-## Objetivo: PicPay Simplificado
+### 2. Execute o setup completo
 
-O PicPay Simplificado é uma plataforma de pagamentos simplificada. Nela é possível depositar e realizar transferências
-de dinheiro entre usuários. Temos 2 tipos de usuários, os comuns e lojistas, ambos têm carteira com dinheiro e realizam
-transferências entre eles.
+```bash
+make setup
+```
+
+Este comando irá:
+
+- Criar o arquivo `.env` baseado no `.env.example`
+- Buildar os containers Docker
+- Instalar as dependências do PHP (Composer)
+- Instalar as dependências do frontend (NPM)
+- Gerar a chave da aplicação
+- Criar o banco de dados SQLite
+- Executar as migrations
+- Subir os containers
+
+### 3. Acesse a aplicação
+
+Após o setup, a aplicação estará disponível em:
+
+- **WEB/API**: http://localhost:8080
+
+### 4. Comandos úteis
+
+```bash
+# Parar os containers
+make stop
+
+# Rodar os testes
+make test
+
+# Rodar análise estática e qualidade de código
+make ci
+
+# Corrigir code style
+make fix
+
+# Acessar o container da aplicação
+make container
+
+# Executar comandos Artisan
+make artisan <comando>
+
+# Ver todos os comandos disponíveis
+make help
+```
+
+## Sobre o PicPay Simplificado
+
+O projeto implementa uma plataforma de pagamentos simplificada.
 
 ### Requisitos
 
-A seguir estão algumas regras de negócio que são importantes para o funcionamento do PicPay Simplificado:
+A seguir estão algumas regras de negócio importantes para o funcionamento do PicPay Simplificado:
 
-- Para ambos tipos de usuário, precisamos do `Nome Completo`, `CPF`, `e-mail` e `Senha`. CPF/CNPJ e e-mails devem ser
+- [ ] Para ambos tipos de usuário, precisamos do `Nome Completo`, `CPF`, `e-mail` e `Senha`. CPF/CNPJ e e-mails devem ser
   únicos no sistema. Sendo assim, seu sistema deve permitir apenas um cadastro com o mesmo CPF ou endereço de e-mail;
-
-- Usuários podem enviar dinheiro (efetuar transferência) para lojistas e entre usuários;
-
-- Lojistas **só recebem** transferências, não enviam dinheiro para ninguém;
-
-- Validar se o usuário tem saldo antes da transferência;
-
-- Antes de finalizar a transferência, deve-se consultar um serviço autorizador externo, use este mock
+- [ ] Usuários podem enviar dinheiro (efetuar transferência) para lojistas e entre usuários;
+- [ ] Lojistas **só recebem** transferências, não enviam dinheiro para ninguém;
+- [ ] Validar se o usuário tem saldo antes da transferência;
+- [ ] Antes de finalizar a transferência, deve-se consultar um serviço autorizador externo, use este mock
   [https://util.devi.tools/api/v2/authorize](https://util.devi.tools/api/v2/authorize) para simular o serviço
   utilizando o verbo `GET`;
-
-- A operação de transferência deve ser uma transação (ou seja, revertida em qualquer caso de inconsistência) e o
+- [ ] A operação de transferência deve ser uma transação (ou seja, revertida em qualquer caso de inconsistência) e o
   dinheiro deve voltar para a carteira do usuário que envia;
-
-- No recebimento de pagamento, o usuário ou lojista precisa receber notificação (envio de email, sms) enviada por um
+- [ ] No recebimento de pagamento, o usuário ou lojista precisa receber notificação (envio de email, sms) enviada por um
   serviço de terceiro e eventualmente este serviço pode estar indisponível/instável. Use este mock
   [https://util.devi.tools/api/v1/notify)](https://util.devi.tools/api/v1/notify)) para simular o envio da notificação
   utilizando o verbo `POST`;
+- [ ] Este serviço deve ser RESTFul.
 
-- Este serviço deve ser RESTFul.
+## Estrutura do projeto
 
-> Tente ser o mais aderente possível ao que foi pedido, mas não se preocupe se não conseguir atender a todos os
-> requisitos. Durante a entrevista vamos conversar sobre o que você conseguiu fazer e o que não conseguiu.
+```
+app/
+├── Http/Controllers/    # Controllers da API
+├── Models/             # Models Eloquent
+├── Services/           # Lógica de negócio
+├── Repositories/       # Acesso aos dados
+└── ...
 
-### Endpoint de transferência
+database/
+├── migrations/         # Migrations do banco
+└── seeders/           # Seeders de exemplo
 
-Você pode implementar o que achar conveniente, porém vamos nos atentar **somente** ao fluxo de transferência entre dois
-usuários. A implementação deve seguir o contrato abaixo.
-
-```http request
-POST /transfer
-Content-Type: application/json
-
-{
-  "value": 100.0,
-  "payer": 4,
-  "payee": 15
-}
+tests/
+├── Unit/              # Testes unitários
+└── Feature/           # Testes de integração
 ```
 
-Caso ache interessante, faça uma **proposta** de endpoint e apresente para os entrevistadores :heart:
+## Para o dia da entrevista técnica
 
-# Avaliação
+### O que esperar
 
-Apresente sua solução utilizando o framework que você desejar, justificando a escolha.
-Atente-se a cumprir a maioria dos requisitos, pois você pode cumprir-los parcialmente e durante a avaliação vamos bater
-um papo a respeito do que faltou.
+Durante a entrevista, faremos um **code review interativo** e **live coding** onde:
 
-## O que será avaliado e valorizamos :heart:
+1. **Você explicará** partes do código e suas decisões
+2. **Discutiremos** pontos de melhoria e refatorações
+3. **Faremos pair programming** para implementar melhorias juntos
+4. **Conversaremos** sobre arquitetura, patterns e boas práticas
+5. **Você poderá demonstrar** seu conhecimento técnico na prática
 
-Habilidades básicas de criação de projetos backend:
-- Conhecimentos sobre REST
-- Uso do Git
-- Capacidade analítica
-- Apresentação de código limpo e organizado
+### Tenha em mente
 
-Conhecimentos intermediários de construção de projetos manuteníveis:
-- Aderência a recomendações de implementação como as PSRs
-- Aplicação e conhecimentos de SOLID
-- Identificação e aplicação de Design Patterns
-- Noções de funcionamento e uso de Cache
-- Conhecimentos sobre conceitos de containers (Docker, Podman etc)
-- Documentação e descrição de funcionalidades e manuseio do projeto
-- Implementação e conhecimentos sobre testes de unidade e integração
-- Identificar e propor melhorias
-- Boas noções de bancos de dados relacionais
+- Como você estruturaria melhor o código?
+- Quais design patterns você aplicaria?
+- Como melhoraria a testabilidade?
+- Que aspectos de segurança você observou?
+- Como tornaria o código mais manutenível?
+- Quais seriam suas preocupações com desempenho e escalabilidade?
 
-Aptidões para criar e manter aplicações de alta qualidade:
-- Aplicação de conhecimentos de observabilidade
-- Utlização de CI para rodar testes e análises estáticas
-- Conhecimentos sobre bancos de dados não-relacionais
-- Aplicação de arquiteturas (CQRS, Event-sourcing, Microsserviços, Monolito modular)
-- Uso e implementação de mensageria
-- Noções de escalabilidade
-- Boas habilidades na aplicação do conhecimento do negócio no software
-- Implementação margeada por ferramentas de qualidade (análise estática, PHPMD, PHPStan, PHP-CS-Fixer etc)
-- Noções de PHP assíncrono
+## O que será avaliado
 
-### Boas práticas
+Durante a entrevista técnica, avaliaremos sua capacidade de:
 
-Caso use PHP tente seguir as [PSRs](https://www.php-fig.org/psr/psr-12/), caso use outro framework ou linguagem, tente
-seguir as boas práticas da comunidade.
+### Análise e pensamento crítico
+- Identificar pontos fortes e fracos do código existente
+- Propor melhorias fundamentadas
+- Justificar suas decisões técnicas
+- Pensar em soluções alternativas para os problemas apresentados
 
-Uma sugestão para revisar a qualidade do seu código é usar ferramentas como o PHPMD antes de submeter o seu teste.
-O comando a seguir pode ser usado para rodar o PHPMD no seu projeto localmente, por exemplo:
+### Conhecimento técnico
+- Demonstrar domínio das tecnologias utilizadas
+- Aplicar boas práticas e princípios de desenvolvimento
+- Considerar aspectos de qualidade, manutenibilidade e evolução do código
+
+### Habilidades práticas
+- Capacidade de implementar melhorias durante o pair programming
+- Comunicação clara de ideias técnicas
+- Trabalho colaborativo
+
+**Dica**: Explore o projeto com curiosidade! Identifique o que você faria diferente, o que melhoraria e o que manteria. Estamos interessados em conhecer sua forma de pensar e resolver problemas.
+
+## Ferramentas de qualidade implementadas
+
+O projeto já conta com várias ferramentas configuradas:
+
 ```bash
-docker run -it --rm -v $(pwd):/project -w /project jakzal/phpqa phpmd app text cleancode,codesize,controversial,design,naming,unusedcode
+# Pint (Laravel Code Style)
+make lint
+
+# PHPStan (Análise estática)
+composer test:types
+
+# Rector (Refatoração automatizada)
+composer test:refacto
+
+# PHPMD (Mess Detector)
+composer test:mess
+
+# Executar tudo
+make ci
 ```
 
-## O que NÃO será avaliado :warning:
+## Pontos de atenção
 
-- Fluxo de cadastro de usuários e lojistas
-- Frontend (só avaliaremos a (API Restful)[https://www.devmedia.com.br/rest-tutorial/28912])
-- Autenticação
+Este projeto contém **intencionalmente** alguns pontos que podem ser melhorados. Durante a entrevista, você terá a oportunidade de identificá-los e discuti-los conosco.
 
-## O que será um Diferencial
+Sugestão: Analise o código pensando em cenários reais de produção e identifique oportunidades de melhoria.
 
-- Uso de Docker
-- Uma cobertura de testes consistente
-- Uso de Design Patterns
-- Documentação
-- Proposta de melhoria na arquitetura
-- Ser consistente e saber argumentar suas escolhas
-- Apresentar soluções que domina
-- Modelagem de Dados
-- Manutenibilidade do Código
-- Tratamento de erros
-- Cuidado com itens de segurança
-- Arquitetura (estruturar o pensamento antes de escrever)
-- Carinho em desacoplar componentes (outras camadas, service, repository)
+## Materiais úteis para estudo
 
-## Materiais úteis
+- [Laravel 12 Documentation](https://laravel.com/docs/12.x)
+- [PHP The Right Way](http://br.phptherightway.com/)
+- [PSR-12: Extended Coding Style](https://www.php-fig.org/psr/psr-12/)
+- [Refactoring Guru - Design Patterns](https://refactoring.guru/)
+- [SOLID Principles](https://www.digitalocean.com/community/conceptual_articles/s-o-l-i-d-the-first-five-principles-of-object-oriented-design)
+- [REST API Best Practices](https://www.devmedia.com.br/rest-tutorial/28912)
+- [Testing Best Practices](https://www.atlassian.com/continuous-delivery/software-testing/types-of-software-testing)
 
-- https://picpay.com/site/sobre-nos
-- https://hub.packtpub.com/why-we-need-design-patterns/
-- https://refactoring.guru/
-- http://br.phptherightway.com/
-- https://www.php-fig.org/psr/psr-12/
-- https://www.atlassian.com/continuous-delivery/software-testing/types-of-software-testing
-- https://github.com/exakat/php-static-analysis-tools
-- https://martinfowler.com/articles/microservices.html
-- https://docs.guzzlephp.org/en/stable/request-options.html
-- https://www.devmedia.com.br/rest-tutorial/28912
+## Dúvidas?
+
+Se tiver qualquer problema para rodar o projeto ou dúvidas sobre o processo, entre em contato com o recrutador
+responsável.
+
+**Boa sorte e até a entrevista! 🚀**

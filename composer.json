@@ -1,0 +1,103 @@
+{
+    "$schema": "https://getcomposer.org/schema.json",
+    "name": "picpay/picpay-desafio-backend",
+    "version": "0.1.0",
+    "type": "project",
+    "description": "The PicPay backend challenge project.",
+    "keywords": [
+        "php",
+        "backend-test"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Douglas Medeiros",
+            "email": "eu@douglasmedeiros.dev"
+        }
+    ],
+    "require": {
+        "php": "^8.4",
+        "laravel/framework": "^12.0",
+        "laravel/tinker": "^2.10.1"
+    },
+    "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.16.0",
+        "barryvdh/laravel-ide-helper": "^3.6.0",
+        "fakerphp/faker": "^1.23",
+        "laravel/pail": "^1.2.2",
+        "laravel/pint": "^1.24",
+        "laravel/sail": "^1.41",
+        "mockery/mockery": "^1.6",
+        "nunomaduro/collision": "^8.6",
+        "larastan/larastan": "^3.7.2",
+        "phpmd/phpmd": "@stable",
+        "phpstan/phpstan": "^2.1.26",
+        "phpunit/phpunit": "^11.5.3",
+        "rector/rector": "^2.2.7",
+        "roave/security-advisories": "dev-latest"
+    },
+    "autoload": {
+        "psr-4": {
+            "PicPay\\": "app/",
+            "PicPay\\Database\\Factories\\": "database/factories/",
+            "PicPay\\Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "PicPay\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "dev": [
+            "Composer\\Config::disableProcessTimeout",
+            "npx concurrently -c \"#93c5fd,#c4b5fd,#fb7185,#fdba74\" \"php artisan serve\" \"php artisan queue:listen --tries=1\" \"php artisan pail --timeout=0\" \"npm run dev\" --names=server,queue,logs,vite --kill-others"
+        ],
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover --ansi"
+        ],
+        "post-update-cmd": [
+            "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
+        ],
+        "pre-package-uninstall": [
+            "Illuminate\\Foundation\\ComposerScripts::prePackageUninstall"
+        ],
+        "refacto": "rector",
+        "lint": "pint",
+        "test:refacto": "rector --dry-run",
+        "test:lint": "pint --test",
+        "test:types": "phpstan analyse --ansi --memory-limit=-1",
+        "test:mess": "php -d error_reporting=\"E_ALL & ~E_DEPRECATED & ~E_NOTICE\" $(which phpmd) app ansi phpmd.xml",
+        "test": [
+            "@php artisan config:clear --ansi",
+            "@php artisan test"
+        ],
+        "ci": [
+            "@test:lint",
+            "@test:types",
+            "@test:refacto",
+            "@test"
+        ],
+        "fix": [
+            "@refacto",
+            "@lint"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "dont-discover": []
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "php-http/discovery": true
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}

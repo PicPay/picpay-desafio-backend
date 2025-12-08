@@ -1,0 +1,7 @@
+parameters:
+    level: max
+    paths:
+        - app
+    reportUnmatchedIgnoredErrors: true
+includes:
+    - vendor/larastan/larastan/extension.neon
