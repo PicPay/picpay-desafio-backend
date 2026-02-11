@@ -1,19 +1,20 @@
 # Desafio Back-end PicPay
 
-Primeiramente, obrigado pelo seu interesse em trabalhar na melhor plataforma de pagamentos do mundo!
-Abaixo você encontrará todos as informações necessárias para iniciar o seu teste.
+Primeiramente, obrigado pelo seu interesse em construir a melhor e maior plataforma de pagamentos do mundo!
+
+Este desafio foi desenhado para simular nosso ambiente de trabalho e avaliar sua capacidade de construir soluções robustas. Abaixo, você encontrará todas as informações necessárias.
 
 ## Avisos antes de começar
 
 - Leia com atenção este documento todo e tente seguir ao **máximo** as instruções;
-- Crie um repositório no seu GitHub **sem citar nada relacionado ao PicPay**;
+- Crie um repositório **público** no seu GitHub **sem citar nada relacionado ao PicPay**;
 - Faça seus commits no seu repositório;
 - Envie o link do seu repositório para o email **do recrutador responsável**;
 - Você poderá consultar o Google, Stackoverflow ou algum projeto particular na sua máquina;
 - Dê uma olhada nos [Materiais úteis](#materiais-úteis);
 - Dê uma olhada em como será a [entrevista](#para-o-dia-da-entrevista-técnica);
 - Fique à vontade para perguntar qualquer dúvida aos recrutadores;
-- Fique tranquilo, respire, assim como você, também já passamos por essa etapa. Boa sorte! :)
+- **Importante:** Fique tranquilo e respire. Assim como você, todos nós já passamos por esta etapa. Boa sorte! :)
 
 _Corpo do Email com o link do repositório do desafio_
 
@@ -24,6 +25,23 @@ _Corpo do Email com o link do repositório do desafio_
 > Link do repositório
 >
 > Link do Linkedin
+
+### Sobre o uso de IA
+
+No PicPay acreditamos que o papel do engenheiro de software moderno evoluiu. Mais do que um escritor de código, ele é um arquiteto de soluções que utiliza a Inteligência Artificial como uma ferramenta para acelerar a entrega e elevar a qualidade.
+
+Neste desafio, seu processo de desenvolvimento é tão importante quanto o resultado final. O uso de IA como copiloto não é apenas aceitável, mas incentivado.
+
+Para entendermos sua abordagem, pedimos que você documente sua estratégia no arquivo `AI_STRATEGY.md`. Detalhe como a IA foi aplicada em seu projeto ou, caso opte por não utilizá-la, justifique sua decisão.
+
+Esperamos que nossos engenheiros demonstrem as seguintes competências:
+
+- Orientar: Fornecer direção clara e prompts eficazes para a ferramenta de IA.
+- Criticar: Analisar o código gerado, aplicando seus fundamentos para validar a qualidade, segurança e eficiência da solução.
+- Iterar: Refinar o resultado em colaboração com a IA, guiando-a até a solução ideal.
+
+> Veja aqui exemplos de como criar seu [AI_STRATEGY.md](./AI_STRATEGY.md) para se inspirar. Este documento é tão importante quanto o código.
+
 
 ### Sobre o ambiente da aplicação:
 
